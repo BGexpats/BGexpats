@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"><rect width="1080" height="1920" fill="#1e5e3f"/><text x="540" y="960" text-anchor="middle" font-family="Georgia" font-size="80" fill="white">BGexpats</text></svg>
