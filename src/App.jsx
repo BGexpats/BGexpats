@@ -1192,7 +1192,7 @@ const CAT_PHOTOS={
   legal:"https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=75",
   healthcare:"https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=75",
   banking:"https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=75",
-  tourism:"https://images.unsplash.com/photo-1555993539-1732b0258235?w=600&q=75",
+  tourism:"https://images.unsplash.com/photo-1753529179550-c6aff1b76e6e?w=600&q=75",
   housing:"https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=75",
   business:"https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=75",
 }
