@@ -3168,13 +3168,14 @@ function MapPage({user,setView,subscription,openCheckout}){
   useEffect(()=>{
     if(!loaded||!mapRef.current||mapInst.current)return
     const L=window.L
-    const map=L.map(mapRef.current,{zoomControl:true}).setView([42.6977,23.3219],13)
+    const map=L.map(mapRef.current,{zoomControl:true,maxZoom:20}).setView([42.6977,23.3219],13)
 
     // Standard OpenStreetMap tiles (local Cyrillic labels) — used as fallback.
     const osmLayer=L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
       attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
       referrerPolicy:"strict-origin-when-cross-origin",
-      maxZoom:19
+      maxZoom:20,
+      maxNativeZoom:19
     })
 
     const keySet = MAPTILER_KEY && MAPTILER_KEY!=="YOUR_MAPTILER_KEY"
@@ -3185,7 +3186,8 @@ function MapPage({user,setView,subscription,openCheckout}){
       const mtLayer=L.tileLayer(
         `https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=${MAPTILER_KEY}&language=latin`,{
           attribution:'© <a href="https://www.maptiler.com/copyright/">MapTiler</a> © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
-          maxZoom:19,
+          maxZoom:20,
+          maxNativeZoom:20,
           crossOrigin:true
         })
       mtLayer.on("tileerror",()=>{
