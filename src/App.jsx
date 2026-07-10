@@ -3147,7 +3147,7 @@ function MapPage({user,setView,subscription,openCheckout}){
   // Key is domain-locked (bgexpats.com / *.vercel.app) so it's safe in frontend code.
   // If left as the placeholder OR if MapTiler tiles fail to load, the map automatically
   // falls back to standard OpenStreetMap tiles so it never goes blank.
-  const MAPTILER_KEY = "nH3oySI2WkMV18HpsJCK"
+  const MAPTILER_KEY = "YOUR_MAPTILER_KEY"
 
   useEffect(()=>{
     if(!document.getElementById("leaflet-css")){
@@ -3177,7 +3177,7 @@ function MapPage({user,setView,subscription,openCheckout}){
       maxZoom:19
     })
 
-    const keySet = MAPTILER_KEY && MAPTILER_KEY!=="nH3oySI2WkMV18HpsJCK"
+    const keySet = MAPTILER_KEY && MAPTILER_KEY!=="YOUR_MAPTILER_KEY"
     if(keySet){
       // MapTiler raster tiles with Latin labels. If a tile errors (bad key, quota,
       // network), swap the whole basemap to OSM so the map still works.
