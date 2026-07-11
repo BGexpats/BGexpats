@@ -2631,6 +2631,16 @@ const PHRASE_CAT_ICON_MAP={
   transport:{d:"M4 16l1.5-5A2 2 0 017.4 9.5h9.2a2 2 0 011.9 1.5L20 16v4h-2v-1H6v1H4zM6 16h.01M18 16h.01",accent:"#0891b2"},
   emergency:{d:"M12 2l9 4.5v6c0 5-3.5 8.5-9 9.5-5.5-1-9-4.5-9-9.5v-6L12 2zM12 8v5M12 16h.01",accent:"#dc2626"},
 }
+const CONNECT_ICON_MAP={
+  all:{d:"M8 11a3 3 0 100-6 3 3 0 000 6zm8 0a3 3 0 100-6 3 3 0 000 6zM2 21c0-3.5 3-6 6-6M22 21c0-3.5-3-6-6-6M8 21c0-3.9 2-6 4-6s4 2.1 4 6",accent:"#9333ea"},
+  bulgarian:{d:"M5 3v18M5 4h13l-2.5 3 2.5 3H5",accent:"#00966e"},
+  expat:{d:"M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2c2.5 2.7 4 6.2 4 10s-1.5 7.3-4 10c-2.5-2.7-4-6.2-4-10s1.5-7.3 4-10z",accent:"#2563eb"},
+  friends:{d:"M9 11a3 3 0 100-6 3 3 0 000 6zm7 1a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM2 21c0-3.9 2.8-6 6.5-6M15.5 21c0-3-1.8-5-4-5.5",accent:"#16a34a"},
+  networking:{d:"M4 8h16v11H4zM9 8V6a2 2 0 012-2h2a2 2 0 012 2v2",accent:"#b8792a"},
+  roommate:{d:"M4 11l8-7 8 7M6 10v10h12V10",accent:"#7c3aed"},
+  dating:{d:"M12 20.5s-7-4.3-9.3-8.7C1.4 8.7 2.8 5.5 6 5.5c1.9 0 3.2 1.2 6 3.7 2.8-2.5 4.1-3.7 6-3.7 3.2 0 4.6 3.2 3.3 6.3-2.3 4.4-9.3 8.7-9.3 8.7z",accent:"#db2777"},
+  shield:{d:"M12 2l9 4.5v6c0 5-3.5 8.5-9 9.5-5.5-1-9-4.5-9-9.5v-6L12 2zM9 12l2 2 4-4",accent:"#f0c060"},
+}
 const MAP_ICON_MAP={
   all:"M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2c2.5 2.7 4 6.2 4 10s-1.5 7.3-4 10c-2.5-2.7-4-6.2-4-10s1.5-7.3 4-10z",
   health:"M12 2a10 10 0 100 20 10 10 0 000-20zm-1.2 5.5h2.4v3.8h3.8v2.4h-3.8v3.8h-2.4v-3.8H7v-2.4h3.8V7.5z",
@@ -4950,7 +4960,7 @@ function ConnectPage({user,setView,subscription}){
   }
 
   const cities=[{v:"all",l:"All cities"},{v:"sofia",l:"Sofia"},{v:"plovdiv",l:"Plovdiv"},{v:"varna",l:"Varna"},{v:"burgas",l:"Burgas"},{v:"bansko",l:"Bansko"}]
-  const fromOpts=[{v:"all",l:"Everyone"},{v:"bulgarian",l:"Bulgarians 🇧🇬"},{v:"expat",l:"Expats 🌍"}]
+  const fromOpts=[{v:"all",l:"Everyone"},{v:"bulgarian",l:"Bulgarians"},{v:"expat",l:"Expats"}]
 
   return(
     <div style={{minHeight:"100vh",background:C.page}}>
@@ -4978,7 +4988,7 @@ function ConnectPage({user,setView,subscription}){
               </button>
             )}
             <button onClick={()=>setShowSafety(!showSafety)} style={{background:"rgba(255,255,255,0.1)",border:"1px solid rgba(255,255,255,0.2)",color:"rgba(255,255,255,0.8)",padding:"9px 18px",borderRadius:10,cursor:"pointer",fontSize:14}}>
-              🛡️ Safety tips
+              <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d={CONNECT_ICON_MAP.shield.d} accent="#f0c060" size={14}/>Safety tips</span>
             </button>
           </div>
         </div>
@@ -5057,7 +5067,7 @@ function ConnectPage({user,setView,subscription}){
         {/* Filters */}
         <div style={{display:"flex",gap:8,marginBottom:20,flexWrap:"wrap",alignItems:"center"}}>
           <div style={{display:"flex",gap:6}}>
-            {fromOpts.map(o=><button key={o.v} onClick={()=>setFilterFrom(o.v)} style={{padding:"6px 12px",borderRadius:16,border:`1.5px solid ${filterFrom===o.v?"#9333ea":C.border}`,background:filterFrom===o.v?"#f3e8ff":"transparent",color:filterFrom===o.v?"#6b21a8":C.muted,cursor:"pointer",fontSize:12,fontWeight:filterFrom===o.v?700:400}}>{o.l}</button>)}
+            {fromOpts.map(o=><button key={o.v} onClick={()=>setFilterFrom(o.v)} style={{padding:"6px 12px",borderRadius:16,border:`1.5px solid ${filterFrom===o.v?"#9333ea":C.border}`,background:filterFrom===o.v?"#f3e8ff":"transparent",color:filterFrom===o.v?"#6b21a8":C.muted,cursor:"pointer",fontSize:12,fontWeight:filterFrom===o.v?700:400,display:"flex",alignItems:"center",gap:5}}><Icon2c d={(CONNECT_ICON_MAP[o.v]||{}).d} accent={(CONNECT_ICON_MAP[o.v]||{}).accent} size={13}/>{o.l}</button>)}
           </div>
           <div style={{display:"flex",gap:6}}>
             {LOOKING_FOR_OPTS.map(o=>{
@@ -5067,7 +5077,7 @@ function ConnectPage({user,setView,subscription}){
                 <button key={o.v}
                   onClick={()=>locked?setView("pricing"):setFilterLooking(o.v)}
                   style={{padding:"6px 14px",borderRadius:16,border:`1.5px solid ${filterLooking===o.v?"#9333ea":isDating&&!isPremium?"#f0c060":C.border}`,background:filterLooking===o.v?"#f3e8ff":isDating&&!isPremium?"#fffbeb":"transparent",color:filterLooking===o.v?"#6b21a8":isDating&&!isPremium?"#92400e":C.muted,cursor:"pointer",fontSize:12,fontWeight:filterLooking===o.v?700:400,display:"flex",alignItems:"center",gap:5,flexShrink:0}}>
-                  {o.icon} {o.l}
+                  <Icon2c d={(CONNECT_ICON_MAP[o.v]||{}).d} accent={(CONNECT_ICON_MAP[o.v]||{}).accent} size={13}/> {o.l}
                   {locked&&<span style={{fontSize:9,background:"#f0c060",color:"#1a3a20",padding:"1px 5px",borderRadius:4,fontWeight:700}}>PRO</span>}
                 </button>
               )
