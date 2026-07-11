@@ -1393,7 +1393,12 @@ function CategoryPage({catId,setView,lang,t,cache,setCache,user,reviews,setRevie
     if(cache[key])return
     setCache(prev=>({...prev,[key]:"__loading__"}))
     try{
-      const res=await fetch("https://api.anthropic.com/v1/messages",{
+      // Use the Vercel proxy (/api/chat) in production so the API key stays
+      // server-side. Only localhost hits Anthropic directly (for dev testing).
+      const endpoint=(typeof window!=="undefined"&&window.location&&window.location.hostname==="localhost")
+        ? "https://api.anthropic.com/v1/messages"
+        : "/api/chat"
+      const res=await fetch(endpoint,{
         method:"POST",headers:{"Content-Type":"application/json"},
         body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1000,messages:[{role:"user",content:`Translate this expat guide text to ${LANGS[lang].name}. Keep all formatting exactly: • bullet points, **bold** text, 💡 tip blocks, line breaks. Return only the translated text:\n\n${body}`}]})
       })
