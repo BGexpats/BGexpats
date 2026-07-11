@@ -2254,8 +2254,8 @@ function TaxCalcTool({user,setView}){
   return(
     <div>
       <div style={{display:"flex",gap:8,marginBottom:14}}>
-        {[["employee","👤 Employee"],["eood","🏢 EOOD Owner"]].map(([k,l])=>(
-          <button key={k} onClick={()=>setMode(k)} style={{flex:1,padding:"9px",borderRadius:10,border:`1.5px solid ${mode===k?C.primary:C.border}`,background:mode===k?C.primaryLight:"transparent",color:mode===k?C.primary:C.muted,cursor:"pointer",fontSize:13,fontWeight:mode===k?600:400}}>{l}</button>
+        {[["employee","Employee"],["eood","EOOD Owner"]].map(([k,l])=>(
+          <button key={k} onClick={()=>setMode(k)} style={{flex:1,padding:"9px",borderRadius:10,border:`1.5px solid ${mode===k?C.primary:C.border}`,background:mode===k?C.primaryLight:"transparent",color:mode===k?C.primary:C.muted,cursor:"pointer",fontSize:13,fontWeight:mode===k?600:400,display:"flex",alignItems:"center",justifyContent:"center",gap:6}}><Icon2c d={k==="employee"?"M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4.4 3.6-7 8-7s8 2.6 8 7":"M4 8h16v11H4zM9 8V6a2 2 0 012-2h2a2 2 0 012 2v2"} accent={k==="employee"?"#1d4ed8":"#b8792a"} size={14}/>{l}</button>
         ))}
       </div>
       <div style={{display:"flex",gap:10,marginBottom:14}}>
@@ -2388,8 +2388,8 @@ function NeighbourhoodTool({user,setView,subscription}){
       {/* City selector (only in city mode) */}
       {mode==="city"&&(
         <div style={{display:"flex",gap:6,marginBottom:12,flexWrap:"wrap"}}>
-          {[["sofia","🏛️ Sofia"],["plovdiv","🏺 Plovdiv"],["varna","🌊 Varna"],["burgas","⚓ Burgas"],["stara","🌳 Stara Zagora"],["ruse","🌉 Ruse"],["bansko","🏔️ Bansko"],["velingrad","♨️ Velingrad"],["shumen","🏰 Shumen"],["yambol","🌾 Yambol"],["sliven","🏔️ Sliven"]].map(([id,label])=>(
-            <button key={id} onClick={()=>setHoodCity(id)} style={{padding:"5px 12px",borderRadius:16,border:`1.5px solid ${hoodCity===id?C.primary:C.border}`,background:hoodCity===id?C.primaryLight:"transparent",color:hoodCity===id?C.primary:C.muted,cursor:"pointer",fontSize:12,fontWeight:hoodCity===id?600:400}}>{label}</button>
+          {[["sofia","Sofia"],["plovdiv","Plovdiv"],["varna","Varna"],["burgas","Burgas"],["stara","Stara Zagora"],["ruse","Ruse"],["bansko","Bansko"],["velingrad","Velingrad"],["shumen","Shumen"],["yambol","Yambol"],["sliven","Sliven"]].map(([id,label])=>(
+            <button key={id} onClick={()=>setHoodCity(id)} style={{padding:"5px 12px",borderRadius:16,border:`1.5px solid ${hoodCity===id?C.primary:C.border}`,background:hoodCity===id?C.primaryLight:"transparent",color:hoodCity===id?C.primary:C.muted,cursor:"pointer",fontSize:12,fontWeight:hoodCity===id?600:400,display:"flex",alignItems:"center",gap:5}}><Icon2c d={MAP_PIN_D} accent={hoodCity===id?"#1e5e3f":"#b8792a"} size={13}/>{label}</button>
           ))}
         </div>
       )}
