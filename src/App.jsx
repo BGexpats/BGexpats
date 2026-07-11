@@ -2114,17 +2114,17 @@ function CostCalcTool({user,setView,subscription}){
   const total1=Object.values(v1).reduce((s,x)=>s+x,0)
   const total2=Object.values(v2).reduce((s,x)=>s+x,0)
   const euAvg=2400
-  const cats=[["🏠","Rent","rent"],["🍽️","Groceries","food"],["🚌","Transport","transport"],["💡","Utilities","utilities"],["🍷","Dining out","dining"],["🏥","Health","health"]]
+  const cats=[["rent","Rent","rent"],["food","Groceries","food"],["transport","Transport","transport"],["utilities","Utilities","utilities"],["dining","Dining out","dining"],["health","Health","health"]]
 
   return(
     <div>
       {/* Mode toggle */}
       <div style={{display:"flex",gap:8,marginBottom:14}}>
         <button onClick={()=>setMode("single")} style={{flex:1,padding:"8px",borderRadius:10,border:`1.5px solid ${mode==="single"?C.primary:C.border}`,background:mode==="single"?C.primaryLight:"transparent",color:mode==="single"?C.primary:C.muted,cursor:"pointer",fontSize:13,fontWeight:mode==="single"?600:400}}>
-          📍 Single city
+          <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d={MAP_PIN_D} accent="#1e5e3f" size={14}/>Single city</span>
         </button>
         <button onClick={()=>isBasic?setMode("compare"):setView("pricing")} style={{flex:1,padding:"8px",borderRadius:10,border:`1.5px solid ${mode==="compare"?C.accent:C.border}`,background:mode==="compare"?C.accentLight:"transparent",color:mode==="compare"?C.accent:C.muted,cursor:"pointer",fontSize:13,fontWeight:mode==="compare"?600:400,display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
-          ⚖️ Compare cities
+          <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d="M12 3v3M5 7l4-1M19 7l-4-1M5 7l-3 6.5a3 3 0 006 0zM19 7l-3 6.5a3 3 0 006 0zM8 21h8M12 6v15" accent="#b8792a" size={14}/>Compare cities</span>
           {!isBasic&&<span style={{fontSize:9,background:"#fef3c7",color:"#92400e",padding:"1px 5px",borderRadius:5,fontWeight:700}}>BASIC</span>}
         </button>
       </div>
@@ -2142,19 +2142,19 @@ function CostCalcTool({user,setView,subscription}){
           <div style={{display:"flex",gap:6,marginBottom:16,flexWrap:"wrap"}}>
             {cities.map(([id,cd])=>(
               <button key={id} onClick={()=>setCity(id)} style={{padding:"5px 11px",borderRadius:16,border:`1.5px solid ${city===id?C.primary:C.border}`,background:city===id?C.primaryLight:"transparent",color:city===id?C.primary:C.muted,cursor:"pointer",fontSize:12,fontWeight:city===id?600:400,display:"flex",alignItems:"center",gap:4}}>
-                <span>{cd.flag}</span><span>{cd.name}</span>
+                <Icon2c d={MAP_PIN_D} accent={city===id?"#1e5e3f":"#b8792a"} size={13}/><span>{cd.name}</span>
               </button>
             ))}
           </div>
           {/* City vibe */}
           <div style={{background:C.primaryLight,borderRadius:10,padding:"8px 12px",marginBottom:12,fontSize:12,color:C.primary}}>
-            {CITY_DATA[city]?.flag} <strong>{CITY_DATA[city]?.name}</strong> — {CITY_DATA[city]?.vibe}
+            <strong>{CITY_DATA[city]?.name}</strong> — {CITY_DATA[city]?.vibe}
           </div>
           {/* Breakdown */}
           <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:14}}>
             {cats.map(([icon,label,key])=>(
               <div key={key} style={{display:"flex",justifyContent:"space-between",alignItems:"center",background:C.page,borderRadius:8,padding:"9px 12px"}}>
-                <span style={{fontSize:13,color:C.text}}>{icon} {label}</span>
+                <span style={{fontSize:13,color:C.text,display:"flex",alignItems:"center",gap:6}}><Icon2c d={(EXPENSE_ICON_MAP[icon]||{}).d} accent={(EXPENSE_ICON_MAP[icon]||{}).accent} size={14}/>{label}</span>
                 <span style={{fontSize:13,fontWeight:600,color:C.primary}}>€{v1[key]}</span>
               </div>
             ))}
@@ -2196,7 +2196,7 @@ function CostCalcTool({user,setView,subscription}){
               const diff=v1[key]-v2[key]
               return(
                 <div key={key} style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",padding:"9px 12px",borderTop:`1px solid ${C.border}`,fontSize:13,alignItems:"center"}}>
-                  <span style={{color:C.text}}>{icon} {label}</span>
+                  <span style={{color:C.text,display:"flex",alignItems:"center",gap:6}}><Icon2c d={(EXPENSE_ICON_MAP[icon]||{}).d} accent={(EXPENSE_ICON_MAP[icon]||{}).accent} size={13}/>{label}</span>
                   <span style={{textAlign:"right",fontWeight:600,color:C.primary}}>€{v1[key]}</span>
                   <div style={{textAlign:"right"}}>
                     <span style={{fontWeight:600,color:C.accent}}>€{v2[key]}</span>
@@ -2220,7 +2220,7 @@ function CostCalcTool({user,setView,subscription}){
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
             {[[city,total1,C.primary],[city2,total2,C.accent]].map(([cid,tot,col])=>(
               <div key={cid} style={{background:`${col}15`,border:`1.5px solid ${col}40`,borderRadius:12,padding:"14px",textAlign:"center"}}>
-                <div style={{fontSize:20,marginBottom:4}}>{CITY_DATA[cid]?.flag}</div>
+                <div style={{marginBottom:4,display:"flex",justifyContent:"center"}}><Icon2c d={MAP_PIN_D} accent={col} size={20}/></div>
                 <div style={{fontSize:13,fontWeight:600,color:col,marginBottom:2}}>{CITY_DATA[cid]?.name}</div>
                 <div style={{fontSize:24,fontWeight:800,color:col}}>€{tot.toLocaleString()}</div>
                 <div style={{fontSize:11,color:C.muted}}>per month</div>
@@ -2611,6 +2611,18 @@ const TOOLS_ICON_MAP={
   hoodmatch:{d:"M12 21s7-7.5 7-12a7 7 0 10-14 0c0 4.5 7 12 7 12zM12 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z",accent:"#db2777"},
   langcoach:{d:"M12 3l9 4-9 4-9-4 9-4zM5 10v4c0 1.5 3 3.2 7 3.2s7-1.7 7-3.2v-4",accent:"#16a34a"},
   budget:{d:"M12 3a9 9 0 109 9h-9z M12 12V3a9 9 0 00-9 9 9 9 0 009 9",accent:"#1d4ed8"},
+}
+const EXPENSE_ICON_MAP={
+  rent:{d:"M4 11l8-7 8 7M6 10v10h12V10",accent:"#b45309"},
+  food:{d:"M7 2v8a2 2 0 002 2v10M7 2v8M9.3 2v8M17 2c-2.2 0-3.5 3-3.5 6.5S17 15 17 15v9",accent:"#16a34a"},
+  transport:{d:"M4 16l1.5-5A2 2 0 017.4 9.5h9.2a2 2 0 011.9 1.5L20 16v4h-2v-1H6v1H4zM6 16h.01M18 16h.01",accent:"#1d4ed8"},
+  utilities:{d:"M9 2h6l-1.5 8H17l-8 12 2-9H7z",accent:"#f0c060"},
+  dining:{d:"M8 3h8l-1 6.2a3 3 0 01-3 2.8v0a3 3 0 01-3-2.8L8 3zM12 12v6M9 21h6",accent:"#7c2d12"},
+  health:{d:"M12 2a10 10 0 100 20 10 10 0 000-20zm-1.2 5.5h2.4v3.8h3.8v2.4h-3.8v3.8h-2.4v-3.8H7v-2.4h3.8V7.5z",accent:"#16a34a"},
+  savings:{d:"M12 3a9 9 0 109 9h-9z M12 12V3a9 9 0 00-9 9 9 9 0 009 9",accent:"#1d4ed8"},
+  salary:{d:"M4 8h16v11H4zM9 8V6a2 2 0 012-2h2a2 2 0 012 2v2",accent:"#dc2626"},
+  freelance:{d:"M4 6h16v12H4zM4 10h16M8 14h4",accent:"#9333ea"},
+  other:{d:"M12 2l1.2 4.4 4.4-1.2-2.6 3.8 3.8 2.6-4.4 1.2L12 17l-2.4-4.2-4.4-1.2 3.8-2.6L6.4 5.2l4.4 1.2z",accent:"#6b7280"},
 }
 const MAP_ICON_MAP={
   all:"M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2c2.5 2.7 4 6.2 4 10s-1.5 7.3-4 10c-2.5-2.7-4-6.2-4-10s1.5-7.3 4-10z",
@@ -4652,7 +4664,7 @@ function BudgetPlanner({subscription,setView}){
             <div style={{fontSize:12,fontWeight:600,color:C.muted,marginBottom:8}}>💰 MONTHLY INCOME</div>
             {INCOME_CATS.map(c=>(
               <div key={c.k} style={{background:C.page,borderRadius:8,padding:"8px 12px",marginBottom:6,display:"flex",alignItems:"center",gap:8}}>
-                <span style={{fontSize:14}}>{c.icon}</span>
+                <Icon2c d={(EXPENSE_ICON_MAP[c.k]||{}).d} accent={(EXPENSE_ICON_MAP[c.k]||{}).accent} size={15}/>
                 <span style={{fontSize:12,color:C.text,flex:1}}>{c.l}</span>
                 <input type="number" value={income[c.k]} onChange={e=>setIncome(p=>({...p,[c.k]:Number(e.target.value)||0}))} style={{width:80,border:`1px solid ${C.border}`,borderRadius:6,padding:"4px 8px",fontSize:13,textAlign:"right",outline:"none",color:C.text,background:C.surface}}/>
               </div>
@@ -4666,7 +4678,7 @@ function BudgetPlanner({subscription,setView}){
             <div style={{fontSize:12,fontWeight:600,color:C.muted,marginBottom:8}}>📊 MONTHLY EXPENSES</div>
             {BUDGET_CATS.map(c=>(
               <div key={c.k} style={{background:C.page,borderRadius:8,padding:"8px 12px",marginBottom:6,display:"flex",alignItems:"center",gap:8}}>
-                <span style={{fontSize:14}}>{c.icon}</span>
+                <Icon2c d={(EXPENSE_ICON_MAP[c.k]||{}).d} accent={(EXPENSE_ICON_MAP[c.k]||{}).accent} size={15}/>
                 <span style={{fontSize:12,color:C.text,flex:1}}>{c.l}</span>
                 <input type="number" value={expenses[c.k]} onChange={e=>setExpenses(p=>({...p,[c.k]:Number(e.target.value)||0}))} style={{width:80,border:`1px solid ${C.border}`,borderRadius:6,padding:"4px 8px",fontSize:13,textAlign:"right",outline:"none",color:C.text,background:C.surface}}/>
               </div>
