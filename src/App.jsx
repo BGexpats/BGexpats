@@ -1418,12 +1418,12 @@ function CategoryPage({catId,setView,lang,t,cache,setCache,user,reviews,setRevie
 
   const formatBody=(text)=>
     text.split("\n").map((line,i)=>{
-      if(line.startsWith("**")&&line.endsWith("**"))return<div key={i} style={{fontWeight:600,color:C.text,margin:"12px 0 3px",fontSize:14}}>{line.slice(2,-2)}</div>
-      if(line.startsWith("• ")||line.startsWith("• "))return<div key={i} style={{display:"flex",gap:8,margin:"3px 0"}}><span style={{color:C.accent,flexShrink:0}}>•</span><span>{line.slice(2)}</span></div>
-      if(line.match(/^\d+\./))return<div key={i} style={{margin:"3px 0",paddingLeft:4}}>{line}</div>
-      if(line.startsWith("💡"))return<div key={i} style={{background:"#fff9f0",border:`1px solid #f0d9b0`,borderRadius:8,padding:"9px 12px",margin:"12px 0 0",fontSize:13,color:"#8a5a1a"}}>{line}</div>
+      if(line.startsWith("**")&&line.endsWith("**"))return<div key={i} style={{fontWeight:600,color:C.text,margin:"12px 0 3px",fontSize:14,fontFamily:"'Sora',sans-serif"}}>{line.slice(2,-2)}</div>
+      if(line.startsWith("• ")||line.startsWith("• "))return<div key={i} style={{display:"flex",gap:8,margin:"3px 0",fontFamily:"'Inter',sans-serif",fontSize:14,color:C.text,lineHeight:1.7}}><span style={{color:C.accent,flexShrink:0}}>•</span><span>{line.slice(2)}</span></div>
+      if(line.match(/^\d+\./))return<div key={i} style={{margin:"3px 0",paddingLeft:4,fontFamily:"'Inter',sans-serif",fontSize:14,color:C.text,lineHeight:1.7}}>{line}</div>
+      if(line.startsWith("💡"))return<div key={i} style={{background:"#fff9f0",border:`1px solid #f0d9b0`,borderRadius:8,padding:"9px 12px",margin:"12px 0 0",fontSize:13,color:"#8a5a1a",fontFamily:"'Inter',sans-serif"}}>{line}</div>
       if(line.trim()==="")return<div key={i} style={{height:5}}/>
-      return<div key={i} style={{lineHeight:1.7,color:C.text,fontSize:14}}>{line}</div>
+      return<div key={i} style={{lineHeight:1.7,color:C.text,fontSize:14,fontFamily:"'Inter',sans-serif"}}>{line}</div>
     })
 
   return(
@@ -1432,7 +1432,7 @@ function CategoryPage({catId,setView,lang,t,cache,setCache,user,reviews,setRevie
         <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:26}}>
           <div style={{width:46,height:46,borderRadius:13,background:cat.bg,display:"flex",alignItems:"center",justifyContent:"center",fontSize:23}}>{cat.icon}</div>
           <div>
-            <h1 style={{fontSize:22,fontWeight:700,color:C.text,margin:0}}>{lb.label}</h1>
+            <h1 style={{fontSize:22,fontWeight:700,color:C.text,margin:0,fontFamily:"'Sora',sans-serif"}}>{lb.label}</h1>
             <p style={{fontSize:13,color:C.muted,margin:0}}>{cat.articles.length} {cat.articles.length>1?t.guides:t.guide}</p>
           </div>
         </div>
@@ -1445,7 +1445,7 @@ function CategoryPage({catId,setView,lang,t,cache,setCache,user,reviews,setRevie
             return(
               <div key={i} style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:14,overflow:"hidden",boxShadow:"0 1px 3px rgba(0,0,0,0.04)"}}>
                 <button onClick={()=>handleOpen(i)} style={{width:"100%",background:"none",border:"none",padding:"16px 18px",cursor:"pointer",textAlign:"left",display:"flex",justifyContent:"space-between",alignItems:"center",gap:12}}>
-                  <span style={{fontWeight:600,fontSize:14,color:C.text}}>{art.titles[lang]||art.titles.en||art.titles.en}</span>
+                  <span style={{fontWeight:600,fontSize:14,color:C.text,fontFamily:"'Sora',sans-serif"}}>{art.titles[lang]||art.titles.en||art.titles.en}</span>
                   <span style={{color:C.muted,fontSize:16,flexShrink:0,transform:isOpen?"rotate(180deg)":"none",transition:"transform 0.2s"}}>⌄</span>
                 </button>
                 {isOpen&&(
@@ -3651,7 +3651,7 @@ export default function App(){
   return(
     <div style={{fontFamily:"'Figtree',system-ui,-apple-system,sans-serif",background:C.page,minHeight:"100vh"}}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Figtree:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Figtree:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
         *{box-sizing:border-box;margin:0;padding:0}
         body,button,input,textarea,select{font-family:'Figtree',system-ui,sans-serif}
         h1,h2,h3,.serif{font-family:'Bricolage Grotesque','Figtree',sans-serif;letter-spacing:-0.02em}
