@@ -4967,10 +4967,11 @@ function ConnectPage({user,setView,subscription}){
 
       {/* Header */}
       <div style={{background:"linear-gradient(135deg,#6b21a8,#9333ea)",padding:"32px 20px 44px"}}>
-        <div style={{maxWidth:1100,margin:"0 auto"}}>
-          <h1 className="serif" style={{color:"#fff",fontSize:"clamp(24px,4vw,38px)",fontWeight:400,margin:"0 0 6px",display:"flex",alignItems:"center",gap:12}}><Icon2c d={CONNECT_ICON_D} accent="#f0c060" size={30}/>Meet & Connect</h1>
-          <p style={{color:"rgba(255,255,255,0.75)",fontSize:15,margin:"0 0 10px",fontWeight:300}}>Connect expats and Bulgarians across Bulgaria</p>
-          <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
+        <div style={{maxWidth:1100,margin:"0 auto",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:32,alignItems:"center"}}>
+          <div>
+            <h1 className="serif" style={{color:"#fff",fontSize:"clamp(24px,4vw,38px)",fontWeight:400,margin:"0 0 6px",display:"flex",alignItems:"center",gap:12}}><Icon2c d={CONNECT_ICON_D} accent="#f0c060" size={30}/>Meet & Connect</h1>
+            <p style={{color:"rgba(255,255,255,0.75)",fontSize:15,margin:"0 0 10px",fontWeight:300}}>Connect expats and Bulgarians across Bulgaria</p>
+            <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
             {user?(
               <button onClick={()=>setShowCreate(!showCreate)} style={{background:"rgba(255,255,255,0.15)",border:"1px solid rgba(255,255,255,0.3)",color:"#fff",padding:"9px 18px",borderRadius:10,cursor:"pointer",fontSize:14,fontWeight:600}}>
                 {showCreate?"✕ Close":"✏️ Create my profile"}
@@ -4983,6 +4984,15 @@ function ConnectPage({user,setView,subscription}){
             <button onClick={()=>setShowSafety(!showSafety)} style={{background:"rgba(255,255,255,0.1)",border:"1px solid rgba(255,255,255,0.2)",color:"rgba(255,255,255,0.8)",padding:"9px 18px",borderRadius:10,cursor:"pointer",fontSize:14}}>
               <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d={CONNECT_ICON_MAP.shield.d} accent="#f0c060" size={14}/>Safety tips</span>
             </button>
+            </div>
+          </div>
+          <div>
+            {/* TODO: replace with a real photo — two people meeting/laughing together (café, park, event). Import it like the other hero images at the top of this file, then swap the background below for: background:`url(${yourImportedImage}) center/cover` */}
+            <div style={{width:"100%",height:220,borderRadius:20,boxShadow:"0 12px 32px rgba(0,0,0,0.25)",border:"1.5px dashed rgba(255,255,255,0.4)",background:"linear-gradient(135deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04))",display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",gap:8,textAlign:"center",padding:20,boxSizing:"border-box"}}>
+              <Icon2c d={CONNECT_ICON_D} accent="#f0c060" size={30}/>
+              <span style={{color:"rgba(255,255,255,0.75)",fontSize:13,fontWeight:500}}>Add a photo here</span>
+              <span style={{color:"rgba(255,255,255,0.5)",fontSize:11}}>Two people meeting — café, park or event</span>
+            </div>
           </div>
         </div>
       </div>
