@@ -3541,6 +3541,11 @@ export default function App(){
   const [view,setView]=useState("home")
   const [installPrompt,setInstallPrompt]=useState(null)
   const [showInstall,setShowInstall]=useState(false)
+  const [showIosHelp,setShowIosHelp]=useState(false)
+  // Detect iPhone/iPad (they can't use the native install prompt) and whether the
+  // app is already installed (running standalone) so we don't show the button then.
+  const isIos = typeof navigator!=="undefined" && /iphone|ipad|ipod/i.test(navigator.userAgent)
+  const isStandalone = typeof window!=="undefined" && (window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone===true)
 
   useEffect(()=>{
     const handler=e=>{e.preventDefault();setInstallPrompt(e);setShowInstall(true)}
@@ -3553,6 +3558,13 @@ export default function App(){
     installPrompt.prompt()
     const{outcome}=await installPrompt.userChoice
     if(outcome==='accepted'){setShowInstall(false);setInstallPrompt(null)}
+  }
+  // Fixed button tap: iPhone → show Add-to-Home-Screen steps; others → native prompt.
+  const handleInstallClick=()=>{
+    if(isIos){setShowIosHelp(true);return}
+    if(installPrompt){installApp();return}
+    // No prompt available yet (browser hasn't offered it) — guide the user.
+    setShowIosHelp(true)
   }
   const [lang,setLang]=useState("en")
   const [cache,setCache]=useState({})
@@ -3639,6 +3651,7 @@ export default function App(){
         body,button,input,textarea,select{font-family:'Figtree',system-ui,sans-serif}
         h1,h2,h3,.serif{font-family:'Bricolage Grotesque','Figtree',sans-serif;letter-spacing:-0.02em}
         button:focus-visible{outline:2px solid ${C.accent};outline-offset:2px}
+        @media (max-width: 768px){.bg-install-fab{display:flex !important}}
         @keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
         @keyframes spin{to{transform:rotate(360deg)}}
         @keyframes gradShift{0%,100%{opacity:1}50%{opacity:0.85}}
@@ -3667,6 +3680,48 @@ export default function App(){
           </div>
           <button onClick={installApp} style={{background:"#f0c060",border:"none",color:"#1a3a20",padding:"8px 16px",borderRadius:8,cursor:"pointer",fontSize:13,fontWeight:700,flexShrink:0}}>Install</button>
           <button onClick={()=>setShowInstall(false)} style={{background:"none",border:"none",color:"rgba(255,255,255,0.6)",cursor:"pointer",fontSize:20,padding:"0 4px",flexShrink:0}}>×</button>
+        </div>
+      )}
+      {/* Always-visible mobile install button (hidden once app is installed) */}
+      {!isStandalone && !showInstall && (
+        <button onClick={handleInstallClick} className="bg-install-fab" style={{position:"fixed",right:16,bottom:16,zIndex:9998,background:"#1e5e3f",color:"#fff",border:"none",borderRadius:30,padding:"12px 18px",display:"none",alignItems:"center",gap:8,cursor:"pointer",fontSize:14,fontWeight:700,boxShadow:"0 6px 20px rgba(0,0,0,0.28)"}}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0c060" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          Install App
+        </button>
+      )}
+      {/* iPhone / fallback install instructions */}
+      {showIosHelp && (
+        <div onClick={()=>setShowIosHelp(false)} style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.55)",zIndex:10000,display:"flex",alignItems:"flex-end",justifyContent:"center"}}>
+          <div onClick={e=>e.stopPropagation()} style={{background:"#fff",borderRadius:"18px 18px 0 0",padding:"22px 20px 28px",maxWidth:440,width:"100%",boxShadow:"0 -8px 30px rgba(0,0,0,0.25)"}}>
+            <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:14}}>
+              <div style={{width:38,height:38,borderRadius:10,background:"#e6f2eb",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}><img src={LOGO_ICON} alt="BGexpats" style={{height:22,width:22}}/></div>
+              <div style={{fontSize:16,fontWeight:800,color:"#1e5e3f"}}>Install BGexpats</div>
+              <button onClick={()=>setShowIosHelp(false)} style={{marginLeft:"auto",background:"none",border:"none",fontSize:22,color:"#888",cursor:"pointer"}}>×</button>
+            </div>
+            {isIos ? (
+              <div style={{fontSize:14,color:"#333",lineHeight:1.6}}>
+                <p style={{margin:"0 0 12px"}}>Add BGexpats to your home screen so it works like an app — no App Store needed:</p>
+                <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
+                  <span style={{background:"#1e5e3f",color:"#fff",width:24,height:24,borderRadius:12,display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:700,flexShrink:0}}>1</span>
+                  <span>Tap the <b>Share</b> button <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1e5e3f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{verticalAlign:"middle"}}><path d="M12 3v13M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> at the bottom of Safari</span>
+                </div>
+                <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
+                  <span style={{background:"#1e5e3f",color:"#fff",width:24,height:24,borderRadius:12,display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:700,flexShrink:0}}>2</span>
+                  <span>Scroll down and tap <b>Add to Home Screen</b></span>
+                </div>
+                <div style={{display:"flex",alignItems:"center",gap:10}}>
+                  <span style={{background:"#1e5e3f",color:"#fff",width:24,height:24,borderRadius:12,display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:700,flexShrink:0}}>3</span>
+                  <span>Tap <b>Add</b> — done!</span>
+                </div>
+              </div>
+            ) : (
+              <div style={{fontSize:14,color:"#333",lineHeight:1.6}}>
+                <p style={{margin:"0 0 12px"}}>To install BGexpats as an app:</p>
+                <p style={{margin:"0 0 8px"}}>Open your browser menu (⋮) and choose <b>Install app</b> or <b>Add to Home screen</b>.</p>
+                <p style={{margin:0,fontSize:13,color:"#666"}}>If you don't see the option, your browser may not support installing — try Chrome or Edge.</p>
+              </div>
+            )}
+          </div>
         </div>
       )}
       <Nav view={view} setView={setView} lang={lang} t={t} user={user} setUser={setUser} subscription={subscription} openCheckout={openCheckout}/>
