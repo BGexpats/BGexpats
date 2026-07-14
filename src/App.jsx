@@ -4144,14 +4144,17 @@ export default function App(){
         h1,h2,h3,.serif{font-family:'Bricolage Grotesque','Figtree',sans-serif;letter-spacing:-0.02em}
         button:focus-visible{outline:2px solid ${C.accent};outline-offset:2px}
         @media (max-width: 768px){.bg-install-fab{display:flex !important}}
-        /* Nav on small screens: drop the wordmark and the first name so the
-           avatar button always has room and never gets cut off. */
+        /* Nav on small screens: keep the logo AND wordmark visible, drop only the
+           user's first name so the avatar button always has room. */
         .nav-links::-webkit-scrollbar{display:none}
         @media (max-width: 560px){
           .bg-nav-username{display:none}
         }
         @media (max-width: 420px){
-          .bg-nav-wordmark{display:none}
+          .bg-nav-wordmark{font-size:14px}
+        }
+        @media (max-width: 360px){
+          .bg-nav-wordmark{font-size:13px}
         }
         @keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
         @keyframes spin{to{transform:rotate(360deg)}}
