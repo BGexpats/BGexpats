@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react"
-import { signUp as sbSignUp, signIn as sbSignIn, signOut as sbSignOut, getCurrentUser as sbGetCurrentUser, resetPassword as sbResetPassword } from "./supabase"
+import { signUp as sbSignUp, signIn as sbSignIn, signOut as sbSignOut, getCurrentUser as sbGetCurrentUser, resetPassword as sbResetPassword, getProfile as sbGetProfile, updateProfile as sbUpdateProfile, uploadAvatar as sbUploadAvatar, listProfiles as sbListProfiles } from "./supabase"
 import heroImg1 from "./assets/hero-rila-lake.jpg"
 import heroImg2 from "./assets/hero-sunny-beach.jpg"
 import heroImg3 from "./assets/hero-ivan-vazov.jpg"
@@ -1113,6 +1113,7 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
                     <div style={{fontWeight:700,fontSize:13,color:C.text}}>{user.name}</div>
                     <div style={{fontSize:12,color:C.muted}}>{user.email}</div>
                   </div>
+                  <button onClick={()=>{setView("account");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:C.text,display:"flex",alignItems:"center",gap:9,borderTop:`1px solid ${C.border}`}}><svg width="15" height="15" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#1e5e3f" fillOpacity=".28" stroke="none" d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/><path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>My account</button>
                   <button onClick={()=>{setView("advertise");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:"#b8792a",display:"flex",alignItems:"center",gap:9,borderTop:`1px solid ${C.border}`}}><svg width="15" height="15" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#b8792a" fillOpacity=".3" stroke="none" d="M3 11l18-5v12L3 14v-3z"/><path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M3 11l18-5v12L3 14v-3z"/></svg>Advertise on BGexpats</button>
           <button onClick={()=>{setView("community");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:C.text,display:"flex",alignItems:"center",gap:9}}><svg width="15" height="15" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#f0c060" fillOpacity=".35" stroke="none" d="M4 4h16v12H7l-3 3V4z"/><path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M4 4h16v12H7l-3 3V4z"/></svg>My community</button>
                   {(user&&user.isAdmin)&&<button onClick={()=>{setView("analytics");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:"#1d4ed8",display:"flex",alignItems:"center",gap:9,borderTop:"1px solid var(--border)"}}><svg width="15" height="15" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#1d4ed8" fillOpacity=".25" stroke="none" d="M5 20V10h4v10H5zm5 0V4h4v16h-4zm5 0v-7h4v7h-4z"/><path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M5 20V10h4v10H5zm5 0V4h4v16h-4zm5 0v-7h4v7h-4z"/></svg>Analytics dashboard</button>}
@@ -1789,6 +1790,12 @@ function CommunityPage({user,setView,posts,setPosts}){
   const [newCat,setNewCat]=useState("general")
   const [replyOpen,setReplyOpen]=useState(null)
   const [replyText,setReplyText]=useState("")
+  const [isMobile,setIsMobile]=useState(typeof window!=="undefined"&&window.innerWidth<=768)
+  useEffect(()=>{
+    const onResize=()=>setIsMobile(window.innerWidth<=768)
+    window.addEventListener("resize",onResize)
+    return()=>window.removeEventListener("resize",onResize)
+  },[])
   const filtered=filter==="all"?posts:posts.filter(p=>p.cat===filter)
   const tabs=["all","general","legal","healthcare","banking","tourism","housing","business"]
 
@@ -1822,7 +1829,7 @@ function CommunityPage({user,setView,posts,setPosts}){
         </div>
       </div>
 
-      <div style={{maxWidth:1100,margin:"0 auto",padding:"24px 20px",display:"grid",gridTemplateColumns:"1fr 300px",gap:20,alignItems:"start"}}>
+      <div style={{maxWidth:1100,margin:"0 auto",padding:isMobile?"18px 14px":"24px 20px",display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 300px",gap:isMobile?16:20,alignItems:"start"}}>
         <div style={{minWidth:0}}>
           {user&&(
             <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,padding:"18px",marginBottom:16,boxShadow:"0 1px 4px rgba(0,0,0,0.05)"}}>
@@ -1845,7 +1852,7 @@ function CommunityPage({user,setView,posts,setPosts}){
             </div>
           )}
 
-          <div style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:10,marginBottom:14}}>
+          <div style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:10,marginBottom:14,maxWidth:"100%",WebkitOverflowScrolling:"touch",scrollbarWidth:"none"}}>
             {tabs.map(c=>(
               <button key={c} onClick={()=>setFilter(c)}
                 style={{background:filter===c?C.primary:C.surface,border:`1px solid ${filter===c?C.primary:C.border}`,color:filter===c?"#fff":C.text,padding:"6px 14px",borderRadius:20,cursor:"pointer",fontSize:13,fontWeight:filter===c?700:400,whiteSpace:"nowrap",flexShrink:0,transition:"all 0.15s"}}>
@@ -1865,7 +1872,7 @@ function CommunityPage({user,setView,posts,setPosts}){
                       <span style={{fontSize:11,color:C.muted}}>{post.time}</span>
                       <span style={{fontSize:11,background:CAT_COLORS[post.cat],padding:"2px 9px",borderRadius:10,color:C.text,display:"inline-flex",alignItems:"center",gap:4}}><Icon2c d={(COMMUNITY_ICON_MAP[post.cat]||{}).d} accent={(COMMUNITY_ICON_MAP[post.cat]||{}).accent} size={12}/>{post.cat}</span>
                     </div>
-                    <p style={{fontSize:14,color:C.text,margin:"0 0 12px",lineHeight:1.65}}>{post.content}</p>
+                    <p style={{fontSize:14,color:C.text,margin:"0 0 12px",lineHeight:1.65,overflowWrap:"anywhere",wordBreak:"break-word"}}>{post.content}</p>
                     <div style={{display:"flex",gap:14,paddingTop:10,borderTop:`1px solid ${C.border}`}}>
                       <button onClick={()=>user&&toggleLike(post.id)}
                         style={{background:"none",border:"none",cursor:user?"pointer":"default",display:"flex",alignItems:"center",gap:5,fontSize:13,color:post.liked?C.accent:C.muted,fontWeight:post.liked?700:400,padding:0}}>
@@ -3765,6 +3772,212 @@ function PricingPage({user,setView,lang,openCheckout=()=>{}}){
   )
 }
 
+// ── Account / Profile Page ───────────────────────────────────────
+const PROFILE_CITIES=["Sofia","Plovdiv","Varna","Burgas","Bansko","Ruse","Stara Zagora","Sunny Beach","Nessebar","Other"]
+const PROFILE_LANGS=["English","Bulgarian","Russian","German","French","Spanish","Dutch","Turkish","Ukrainian","Italian","Polish","Romanian"]
+
+function AccountPage({user,setUser,setView}){
+  const [bio,setBio]=useState("")
+  const [city,setCity]=useState("")
+  const [lookingFor,setLookingFor]=useState("")
+  const [interests,setInterests]=useState([])
+  const [languages,setLanguages]=useState([])
+  const [avatarUrl,setAvatarUrl]=useState("")
+  const [loading,setLoading]=useState(true)
+  const [saving,setSaving]=useState(false)
+  const [uploading,setUploading]=useState(false)
+  const [msg,setMsg]=useState("")
+  const [err,setErr]=useState("")
+  const fileRef=useRef(null)
+  const [isMobile,setIsMobile]=useState(typeof window!=="undefined"&&window.innerWidth<=768)
+  useEffect(()=>{
+    const onResize=()=>setIsMobile(window.innerWidth<=768)
+    window.addEventListener("resize",onResize)
+    return()=>window.removeEventListener("resize",onResize)
+  },[])
+
+  // Load the current profile
+  useEffect(()=>{
+    if(!user){setLoading(false);return}
+    let cancelled=false
+    ;(async()=>{
+      const {data}=await sbGetProfile(user.id)
+      if(cancelled)return
+      if(data){
+        setBio(data.bio||"")
+        setCity(data.city||"")
+        setLookingFor(data.looking_for||"")
+        setInterests(data.interests||[])
+        setLanguages(data.languages||[])
+        setAvatarUrl(data.avatar_url||"")
+      }
+      setLoading(false)
+    })()
+    return()=>{cancelled=true}
+  },[user])
+
+  const toggle=(list,setList,item)=>
+    setList(list.includes(item)?list.filter(i=>i!==item):[...list,item])
+
+  const save=async()=>{
+    setErr("");setMsg("");setSaving(true)
+    const {error}=await sbUpdateProfile(user.id,{
+      bio:bio.trim()||null,
+      city:city||null,
+      looking_for:lookingFor||null,
+      interests:interests.length?interests:null,
+      languages:languages.length?languages:null,
+    })
+    setSaving(false)
+    if(error){setErr("Could not save your profile. Please try again.");return}
+    setMsg("Profile saved.")
+    setTimeout(()=>setMsg(""),3000)
+  }
+
+  const pickFile=()=>fileRef.current&&fileRef.current.click()
+
+  const onFile=async(e)=>{
+    const file=e.target.files&&e.target.files[0]
+    if(!file)return
+    setErr("");setMsg("")
+    if(file.size>3*1024*1024){setErr("Image must be under 3 MB.");return}
+    if(!["image/jpeg","image/png","image/webp"].includes(file.type)){
+      setErr("Please use a JPG, PNG or WebP image.");return
+    }
+    setUploading(true)
+    const {url,error}=await sbUploadAvatar(user.id,file)
+    setUploading(false)
+    if(error){setErr("Upload failed. Please try again.");return}
+    setAvatarUrl(url)
+    setUser(u=>u?{...u,avatarUrl:url}:u)
+    setMsg("Photo updated.")
+    setTimeout(()=>setMsg(""),3000)
+  }
+
+  if(!user){
+    return(
+      <div style={{minHeight:"60vh",display:"flex",alignItems:"center",justifyContent:"center",padding:"40px 20px",background:C.page}}>
+        <div style={{textAlign:"center",maxWidth:380}}>
+          <h2 className="serif" style={{fontSize:22,color:C.text,margin:"0 0 8px"}}>Sign in to view your account</h2>
+          <p style={{fontSize:14,color:C.muted,margin:"0 0 18px"}}>Create a profile so other members can get to know you.</p>
+          <button onClick={()=>setView("login")} style={{background:C.primary,border:"none",color:"#fff",padding:"11px 22px",borderRadius:10,cursor:"pointer",fontSize:14,fontWeight:700}}>Sign in →</button>
+        </div>
+      </div>
+    )
+  }
+
+  const inputStyle={width:"100%",border:`1px solid ${C.border}`,borderRadius:9,padding:"10px 12px",fontSize:14,outline:"none",color:C.text,background:C.page,boxSizing:"border-box"}
+
+  return(
+    <div style={{minHeight:"100vh",background:C.page}}>
+      <div style={{background:`linear-gradient(135deg,${C.primary},#2a7a52)`,padding:isMobile?"26px 16px 42px":"32px 20px 48px"}}>
+        <div style={{maxWidth:760,margin:"0 auto"}}>
+          <h1 className="serif" style={{color:"#fff",fontSize:"clamp(24px,4vw,34px)",fontWeight:400,margin:"0 0 6px"}}>My account</h1>
+          <p style={{color:"rgba(255,255,255,0.75)",fontSize:isMobile?13:15,margin:0,fontWeight:300}}>Your profile is visible to other signed-in members</p>
+        </div>
+      </div>
+
+      <div style={{maxWidth:760,margin:isMobile?"-24px auto 32px":"-24px auto 48px",padding:isMobile?"0 12px":"0 20px"}}>
+        <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,padding:isMobile?"18px 16px":"24px",boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
+
+          {loading?(
+            <div style={{textAlign:"center",padding:"40px 0",color:C.muted,fontSize:14}}>Loading your profile…</div>
+          ):(
+            <>
+              {/* Avatar + name */}
+              <div style={{display:"flex",alignItems:"center",gap:16,paddingBottom:20,marginBottom:20,borderBottom:`1px solid ${C.border}`}}>
+                <div style={{position:"relative",flexShrink:0}}>
+                  {avatarUrl?(
+                    <img src={avatarUrl} alt="" style={{width:76,height:76,borderRadius:"50%",objectFit:"cover",border:`2px solid ${C.border}`}}/>
+                  ):(
+                    <Av initials={user.av||"?"} size={76}/>
+                  )}
+                </div>
+                <div style={{minWidth:0}}>
+                  <div style={{fontSize:18,fontWeight:700,color:C.text,marginBottom:2}}>{user.name}</div>
+                  <div style={{fontSize:13,color:C.muted,marginBottom:8,overflow:"hidden",textOverflow:"ellipsis"}}>{user.email}</div>
+                  <input ref={fileRef} type="file" accept="image/jpeg,image/png,image/webp" onChange={onFile} style={{display:"none"}}/>
+                  <button onClick={pickFile} disabled={uploading}
+                    style={{background:"transparent",border:`1.5px solid ${C.primary}`,color:C.primary,padding:"6px 14px",borderRadius:8,cursor:uploading?"default":"pointer",fontSize:12,fontWeight:600}}>
+                    {uploading?"Uploading…":(avatarUrl?"Change photo":"Add photo")}
+                  </button>
+                </div>
+              </div>
+
+              {/* About you */}
+              <div style={{marginBottom:16}}>
+                <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>ABOUT YOU</label>
+                <textarea value={bio} onChange={e=>setBio(e.target.value.slice(0,300))}
+                  placeholder="Tell other members a bit about yourself — what brought you to Bulgaria, what you enjoy…"
+                  style={{...inputStyle,height:90,resize:"none",fontFamily:"inherit",lineHeight:1.6}}/>
+                <div style={{fontSize:11,color:C.muted,textAlign:"right",marginTop:2}}>{bio.length}/300</div>
+              </div>
+
+              {/* City + Looking for */}
+              <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:12,marginBottom:16}}>
+                <div>
+                  <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>CITY</label>
+                  <select value={city} onChange={e=>setCity(e.target.value)} style={inputStyle}>
+                    <option value="">Select a city…</option>
+                    {PROFILE_CITIES.map(c=><option key={c} value={c}>{c}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>LOOKING FOR</label>
+                  <select value={lookingFor} onChange={e=>setLookingFor(e.target.value)} style={inputStyle}>
+                    <option value="">Select…</option>
+                    <option value="friends">Friends</option>
+                    <option value="networking">Networking</option>
+                    <option value="language">Language exchange</option>
+                    <option value="activities">Activity partners</option>
+                    <option value="relationship">Relationship</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Languages */}
+              <div style={{marginBottom:16}}>
+                <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:6}}>LANGUAGES I SPEAK</label>
+                <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
+                  {PROFILE_LANGS.map(l=>{
+                    const sel=languages.includes(l)
+                    return<button key={l} onClick={()=>toggle(languages,setLanguages,l)}
+                      style={{padding:"5px 12px",borderRadius:14,border:`1.5px solid ${sel?C.primary:C.border}`,background:sel?C.primaryLight:"transparent",color:sel?C.primary:C.muted,cursor:"pointer",fontSize:12,fontWeight:sel?600:400}}>{l}</button>
+                  })}
+                </div>
+              </div>
+
+              {/* Interests */}
+              <div style={{marginBottom:20}}>
+                <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:6}}>INTERESTS</label>
+                <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
+                  {INTEREST_TAGS.map(t=>{
+                    const sel=interests.includes(t)
+                    return<button key={t} onClick={()=>toggle(interests,setInterests,t)}
+                      style={{padding:"5px 12px",borderRadius:14,border:`1.5px solid ${sel?"#9333ea":C.border}`,background:sel?"#f3e8ff":"transparent",color:sel?"#6b21a8":C.muted,cursor:"pointer",fontSize:12,fontWeight:sel?600:400}}>{t}</button>
+                  })}
+                </div>
+              </div>
+
+              {err&&<div style={{background:"#fff0f0",border:"1px solid #fcc",borderRadius:9,padding:"10px 14px",fontSize:13,color:"#c00",marginBottom:14}}>⚠️ {err}</div>}
+              {msg&&<div style={{background:"#f0fff4",border:"1px solid #9de",borderRadius:9,padding:"10px 14px",fontSize:13,color:"#060",marginBottom:14}}>✅ {msg}</div>}
+
+              <button onClick={save} disabled={saving}
+                style={{width:"100%",background:saving?"#9bb8a8":C.primary,border:"none",color:"#fff",padding:"12px",borderRadius:10,cursor:saving?"default":"pointer",fontSize:15,fontWeight:700}}>
+                {saving?"Saving…":"Save profile"}
+              </button>
+
+              <p style={{fontSize:11,color:C.muted,textAlign:"center",margin:"14px 0 0",lineHeight:1.5}}>
+                Only signed-in members can see your profile. Never share your home address, phone number or financial details.
+              </p>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function App(){
   const [view,setViewState]=useState(()=>{
     // On first load, honour a hash like #map so refresh/shared links work.
@@ -4013,6 +4226,8 @@ export default function App(){
         <AdvertisePage setView={setView} lang={lang}/>
       ):view==="analytics"?(
         <AnalyticsPage liveEvents={liveEvents} user={user}/>
+      ):view==="account"?(
+        <AccountPage user={user} setUser={setUser} setView={setView}/>
       ):view==="map"?(
         <MapPage user={user} setView={setView} subscription={subscription} openCheckout={openCheckout}/>
       ):view==="tools"?(
@@ -5065,6 +5280,7 @@ const INTEREST_TAGS = ["travel","hiking","cooking","music","art","yoga","photogr
 // ── Connect Page ──────────────────────────────────────────────────
 function ConnectPage({user,setView,subscription}){
   const [profiles,setProfiles]=useState(INIT_PROFILES)
+  const [loadingProfiles,setLoadingProfiles]=useState(true)
   const [myAvatar,setMyAvatar]=useState(()=>user?loadAvatar(user.email):null)
   const [avatarUploading,setAvatarUploading]=useState(false)
   const [isMobile,setIsMobile]=useState(typeof window!=="undefined"&&window.innerWidth<=768)
@@ -5073,6 +5289,36 @@ function ConnectPage({user,setView,subscription}){
     window.addEventListener("resize",onResize)
     return()=>window.removeEventListener("resize",onResize)
   },[])
+
+  // Load real member profiles from the database. Only signed-in members can read
+  // them (enforced by RLS), so signed-out visitors just see the team card.
+  useEffect(()=>{
+    if(!user){setLoadingProfiles(false);return}
+    let cancelled=false
+    ;(async()=>{
+      const {data,error}=await sbListProfiles()
+      if(cancelled)return
+      if(error||!data){setLoadingProfiles(false);return}
+      // Only show profiles people have actually filled in (a bio is the signal).
+      const real=data
+        .filter(p=>p.bio&&p.bio.trim())
+        .map(p=>({
+          id:p.id,
+          name:p.name||"Member",
+          city:(p.city||"").toLowerCase(),
+          bio:p.bio,
+          lookingFor:p.looking_for||"friends",
+          languages:p.languages||[],
+          interests:p.interests||[],
+          av:p.av||"?",
+          avatarUrl:p.avatar_url||null,
+          isMe:user&&p.id===user.id,
+        }))
+      setProfiles([...INIT_PROFILES,...real])
+      setLoadingProfiles(false)
+    })()
+    return()=>{cancelled=true}
+  },[user])
 
   const uploadAvatar=async(e)=>{
     const file=e.target.files[0]
@@ -5140,8 +5386,8 @@ function ConnectPage({user,setView,subscription}){
             <p style={{color:"rgba(255,255,255,0.9)",fontSize:16,margin:"0 0 16px",fontWeight:300,textShadow:"0 1px 8px rgba(0,0,0,0.35)"}}>Connect expats and Bulgarians across Bulgaria</p>
             <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
             {user?(
-              <button onClick={()=>setShowCreate(!showCreate)} style={{background:"rgba(255,255,255,0.18)",backdropFilter:"blur(6px)",border:"1px solid rgba(255,255,255,0.35)",color:"#fff",padding:"10px 20px",borderRadius:10,cursor:"pointer",fontSize:14,fontWeight:600}}>
-                {showCreate?"✕ Close":"✏️ Create my profile"}
+              <button onClick={()=>setView("account")} style={{background:"rgba(255,255,255,0.18)",backdropFilter:"blur(6px)",border:"1px solid rgba(255,255,255,0.35)",color:"#fff",padding:"10px 20px",borderRadius:10,cursor:"pointer",fontSize:14,fontWeight:600}}>
+                ✏️ Edit my profile
               </button>
             ):(
               <button onClick={()=>setView("login")} style={{background:"#fff",border:"none",color:"#6b21a8",padding:"10px 20px",borderRadius:10,cursor:"pointer",fontSize:14,fontWeight:700,boxShadow:"0 4px 16px rgba(0,0,0,0.2)"}}>
@@ -5282,6 +5528,18 @@ function ConnectPage({user,setView,subscription}){
           </div>
         )}
 
+        {/* Loading / empty states */}
+        {user&&loadingProfiles&&(
+          <div style={{textAlign:"center",padding:"30px 0",color:C.muted,fontSize:14}}>Loading members…</div>
+        )}
+        {user&&!loadingProfiles&&profiles.filter(p=>!p.team).length===0&&(
+          <div style={{background:C.surface,border:`1px dashed ${C.border}`,borderRadius:16,padding:"28px 20px",textAlign:"center",marginBottom:20}}>
+            <div style={{fontSize:15,fontWeight:600,color:C.text,marginBottom:6}}>No member profiles yet</div>
+            <p style={{fontSize:13,color:C.muted,margin:"0 0 14px",lineHeight:1.6}}>Be the first — add a photo and a short bio so others can find you.</p>
+            <button onClick={()=>setView("account")} style={{background:"#9333ea",border:"none",color:"#fff",padding:"10px 20px",borderRadius:10,cursor:"pointer",fontSize:14,fontWeight:700}}>Create my profile →</button>
+          </div>
+        )}
+
         {/* Profile grid */}
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))",gap:16,marginBottom:24}}>
           {visible.map(p=>{
@@ -5294,18 +5552,23 @@ function ConnectPage({user,setView,subscription}){
 
                 {/* Card header */}
                 <div style={{background:"linear-gradient(135deg,#6b21a8,#9333ea)",padding:"20px",display:"flex",alignItems:"center",gap:14}}>
-                  <div style={{width:56,height:56,borderRadius:"50%",background:"rgba(255,255,255,0.2)",border:"2.5px solid rgba(255,255,255,0.4)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,fontWeight:700,color:"#fff",flexShrink:0}}>
-                    {p.av}
-                  </div>
-                  <div style={{flex:1}}>
-                    <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:2}}>
-                      <span style={{fontSize:16,fontWeight:700,color:"#fff"}}>{p.name}, {p.age}</span>
+                  {p.avatarUrl?(
+                    <img src={p.avatarUrl} alt="" style={{width:56,height:56,borderRadius:"50%",objectFit:"cover",border:"2.5px solid rgba(255,255,255,0.4)",flexShrink:0}}/>
+                  ):(
+                    <div style={{width:56,height:56,borderRadius:"50%",background:"rgba(255,255,255,0.2)",border:"2.5px solid rgba(255,255,255,0.4)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,fontWeight:700,color:"#fff",flexShrink:0}}>
+                      {p.av}
+                    </div>
+                  )}
+                  <div style={{flex:1,minWidth:0}}>
+                    <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:2,flexWrap:"wrap"}}>
+                      <span style={{fontSize:16,fontWeight:700,color:"#fff"}}>{p.name}{p.age?`, ${p.age}`:""}</span>
+                      {p.isMe&&<span style={{fontSize:11,background:"rgba(255,255,255,0.25)",color:"#fff",padding:"1px 6px",borderRadius:8}}>You</span>}
                       {p.verified&&<span style={{fontSize:11,background:"rgba(255,255,255,0.2)",color:"#fff",padding:"1px 6px",borderRadius:8}}>✓ verified</span>}
                     </div>
-                    <div style={{fontSize:12,color:"rgba(255,255,255,0.8)",display:"flex",alignItems:"center",gap:6}}>
-                      <span>{p.flag} {p.from}</span>
-                      <span>·</span>
-                      <span style={{textTransform:"capitalize"}}>{p.city}</span>
+                    <div style={{fontSize:12,color:"rgba(255,255,255,0.8)",display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>
+                      {p.from&&<span>{p.flag} {p.from}</span>}
+                      {p.from&&p.city&&<span>·</span>}
+                      {p.city&&<span style={{textTransform:"capitalize"}}>{p.city}</span>}
                       {p.online&&<span>·</span>}
                       {p.online&&<span style={{color:"#4ade80"}}>● online</span>}
                     </div>
@@ -5319,18 +5582,18 @@ function ConnectPage({user,setView,subscription}){
                   </div>
 
                   {/* Bio */}
-                  <p style={{fontSize:13,color:C.text,margin:"0 0 12px",lineHeight:1.6}}>{p.bio.slice(0,120)}{p.bio.length>120?"...":""}</p>
+                  <p style={{fontSize:13,color:C.text,margin:"0 0 12px",lineHeight:1.6,overflowWrap:"anywhere"}}>{(p.bio||"").slice(0,120)}{(p.bio||"").length>120?"...":""}</p>
 
                   {/* Languages */}
                   <div style={{display:"flex",gap:5,flexWrap:"wrap",marginBottom:10}}>
-                    {p.languages.slice(0,3).map(l=>(
+                    {(p.languages||[]).slice(0,3).map(l=>(
                       <span key={l} style={{fontSize:11,background:C.page,border:`1px solid ${C.border}`,borderRadius:8,padding:"2px 7px",color:C.muted}}>🗣️ {l}</span>
                     ))}
                   </div>
 
                   {/* Interests */}
                   <div style={{display:"flex",gap:5,flexWrap:"wrap",marginBottom:14}}>
-                    {p.interests.slice(0,4).map(i=>(
+                    {(p.interests||[]).slice(0,4).map(i=>(
                       <span key={i} style={{fontSize:11,background:"#f3e8ff",border:"1px solid #e9d5ff",borderRadius:8,padding:"2px 7px",color:"#6b21a8"}}>{i}</span>
                     ))}
                     {p.interests.length>4&&<span style={{fontSize:11,color:C.muted}}>+{p.interests.length-4}</span>}
