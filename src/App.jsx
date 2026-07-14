@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react"
+import { signUp as sbSignUp, signIn as sbSignIn, signOut as sbSignOut, getCurrentUser as sbGetCurrentUser, resetPassword as sbResetPassword } from "./supabase"
 import heroImg1 from "./assets/hero-rila-lake.jpg"
 import heroImg2 from "./assets/hero-sunny-beach.jpg"
 import heroImg3 from "./assets/hero-ivan-vazov.jpg"
@@ -1115,7 +1116,7 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
                   <button onClick={()=>{setView("advertise");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:"#b8792a",display:"flex",alignItems:"center",gap:9,borderTop:`1px solid ${C.border}`}}><svg width="15" height="15" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#b8792a" fillOpacity=".3" stroke="none" d="M3 11l18-5v12L3 14v-3z"/><path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M3 11l18-5v12L3 14v-3z"/></svg>Advertise on BGexpats</button>
           <button onClick={()=>{setView("community");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:C.text,display:"flex",alignItems:"center",gap:9}}><svg width="15" height="15" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#f0c060" fillOpacity=".35" stroke="none" d="M4 4h16v12H7l-3 3V4z"/><path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M4 4h16v12H7l-3 3V4z"/></svg>My community</button>
                   {(user&&user.isAdmin)&&<button onClick={()=>{setView("analytics");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:"#1d4ed8",display:"flex",alignItems:"center",gap:9,borderTop:"1px solid var(--border)"}}><svg width="15" height="15" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#1d4ed8" fillOpacity=".25" stroke="none" d="M5 20V10h4v10H5zm5 0V4h4v16h-4zm5 0v-7h4v7h-4z"/><path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M5 20V10h4v10H5zm5 0V4h4v16h-4zm5 0v-7h4v7h-4z"/></svg>Analytics dashboard</button>}
-                  <button onClick={()=>{setUser(null);setUserMenu(false);setView("home")}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:"#c00",display:"flex",alignItems:"center",gap:9,borderTop:`1px solid ${C.border}`}}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Sign out</button>
+                  <button onClick={async()=>{await sbSignOut();setUser(null);setUserMenu(false);setView("home")}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:"#c00",display:"flex",alignItems:"center",gap:9,borderTop:`1px solid ${C.border}`}}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Sign out</button>
                 </div>
               )}
             </div>
@@ -1603,7 +1604,9 @@ function ChatPage({lang,t}){
 
 
 // ── Social data (session-level) ─────────────────────────────────
-let SESSION_USERS = [{email:"demo@bulgaria.com",password:"demo123",name:"Demo User",av:"DU",joined:"January 2024"},{email:"admin@bgexpats.com",password:"BGexpats2025!",name:"Diego — Admin",av:"DA",joined:"January 2025",isAdmin:true}]
+// User accounts are now handled by Supabase Auth (passwords hashed server-side).
+// The old hardcoded SESSION_USERS array has been removed — it exposed credentials
+// in the public JS bundle and did not persist registrations.
 const INIT_REVIEWS = {
   legal:[{author:"David K.",av:"DK",rating:5,time:"1 month ago",text:"The Type D visa guide was incredibly detailed. Followed it step by step and got approved first try!"}],
   healthcare:[{author:"Lisa M.",av:"LM",rating:4,time:"2 weeks ago",text:"Great info about Tokuda Hospital. The English-speaking staff really made a difference at my first appointment."}],
@@ -1644,23 +1647,53 @@ function LoginPage({setUser,setView}){
   const [name,setName]=useState("")
   const [err,setErr]=useState("")
   const [ok,setOk]=useState(false)
+  const [busy,setBusy]=useState(false)
+  const [notice,setNotice]=useState("")
 
-  const submit=()=>{
-    setErr("")
+  const submit=async()=>{
+    setErr("");setNotice("")
     if(!email.includes("@")){setErr("Please enter a valid email address.");return}
     if(pass.length<6){setErr("Password must be at least 6 characters.");return}
-    if(mode==="register"){
-      if(!name.trim()){setErr("Please enter your full name.");return}
-      if(SESSION_USERS.find(u=>u.email===email)){setErr("This email is already registered.");return}
-      const av=name.trim().split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase()
-      const u={email,password:pass,name:name.trim(),av,joined:new Date().toLocaleDateString("en-GB",{month:"long",year:"numeric"})}
-      SESSION_USERS=[...SESSION_USERS,u]
-      setUser(u);setOk(true);gtrack("login",{method:"email"});setTimeout(()=>setView("community"),900)
-    } else {
-      const u=SESSION_USERS.find(u=>u.email===email&&u.password===pass)
-      if(!u){setErr("Incorrect email or password. Try demo@bulgaria.com / demo123");return}
-      setUser(u);setOk(true);gtrack("sign_up",{method:"email"});setTimeout(()=>setView("community"),900)
+    if(mode==="register"&&!name.trim()){setErr("Please enter your full name.");return}
+
+    setBusy(true)
+    try{
+      if(mode==="register"){
+        const {data,error}=await sbSignUp(email,pass,name.trim())
+        if(error){
+          setErr(error.message||"Could not create your account. Please try again.")
+          setBusy(false);return
+        }
+        // If email confirmation is on, there's no session yet — tell the user to check their inbox.
+        if(!data.session){
+          setNotice("Almost there! Check your email to confirm your account, then sign in.")
+          setMode("login");setPass("");setBusy(false);return
+        }
+        const u=await sbGetCurrentUser()
+        setUser(u);setOk(true);gtrack("sign_up",{method:"email"})
+        setTimeout(()=>setView("community"),900)
+      } else {
+        const {error}=await sbSignIn(email,pass)
+        if(error){
+          setErr("Incorrect email or password.")
+          setBusy(false);return
+        }
+        const u=await sbGetCurrentUser()
+        setUser(u);setOk(true);gtrack("login",{method:"email"})
+        setTimeout(()=>setView("community"),900)
+      }
+    }catch(e){
+      setErr("Something went wrong. Please try again.")
+      setBusy(false)
     }
+  }
+
+  const forgot=async()=>{
+    setErr("");setNotice("")
+    if(!email.includes("@")){setErr("Enter your email address first, then click 'Forgot password'.");return}
+    const {error}=await sbResetPassword(email)
+    if(error){setErr("Could not send the reset email. Please try again.");return}
+    setNotice("Password reset email sent — check your inbox.")
   }
 
   return(
@@ -1699,16 +1732,23 @@ function LoginPage({setUser,setView}){
                 style={{width:"100%",border:`1px solid ${C.border}`,borderRadius:9,padding:"11px 14px",fontSize:14,outline:"none",color:C.text,background:C.page,boxSizing:"border-box"}}/>
             </div>
             {err&&<div style={{background:"#fff0f0",border:"1px solid #fcc",borderRadius:9,padding:"10px 14px",fontSize:13,color:"#c00",marginBottom:16}}>⚠️ {err}</div>}
+            {notice&&<div style={{background:"#f0f6ff",border:"1px solid #b8d4f0",borderRadius:9,padding:"10px 14px",fontSize:13,color:"#1d4ed8",marginBottom:16}}>✉️ {notice}</div>}
             {ok&&<div style={{background:"#f0fff4",border:"1px solid #9de",borderRadius:9,padding:"10px 14px",fontSize:13,color:"#060",marginBottom:16}}>✅ Welcome! Redirecting to community...</div>}
-            <button onClick={submit}
-              style={{width:"100%",background:C.primary,border:"none",color:"#fff",padding:"13px",borderRadius:10,cursor:"pointer",fontSize:15,fontWeight:700,marginBottom:18,boxSizing:"border-box"}}>
-              {mode==="login"?"Sign in to community":"Join the community →"}
+            <button onClick={submit} disabled={busy}
+              style={{width:"100%",background:busy?"#9bb8a8":C.primary,border:"none",color:"#fff",padding:"13px",borderRadius:10,cursor:busy?"default":"pointer",fontSize:15,fontWeight:700,marginBottom:18,boxSizing:"border-box"}}>
+              {busy?"Please wait…":(mode==="login"?"Sign in to community":"Join the community →")}
             </button>
             <div style={{textAlign:"center",padding:"14px 0",borderTop:`1px solid ${C.border}`}}>
-              <p style={{fontSize:12,color:C.muted,margin:"0 0 6px"}}>Try the demo account:</p>
-              <code style={{fontSize:12,background:C.page,padding:"4px 10px",borderRadius:6,color:C.text}}>demo@bulgaria.com</code>
-              <span style={{fontSize:12,color:C.muted,margin:"0 6px"}}>/</span>
-              <code style={{fontSize:12,background:C.page,padding:"4px 10px",borderRadius:6,color:C.text}}>demo123</code>
+              {mode==="login"&&(
+                <button onClick={forgot} style={{background:"none",border:"none",color:C.primary,cursor:"pointer",fontSize:13,textDecoration:"underline",padding:0}}>
+                  Forgot your password?
+                </button>
+              )}
+              {mode==="register"&&(
+                <p style={{fontSize:12,color:C.muted,margin:0,lineHeight:1.5}}>
+                  By creating an account you agree to our terms and privacy policy.
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -3791,6 +3831,18 @@ export default function App(){
   const [lang,setLang]=useState("en")
   const [cache,setCache]=useState({})
   const [user,setUser]=useState(null)
+  // Restore the logged-in user on page load / refresh. Supabase keeps the session
+  // in the browser, so returning visitors stay signed in.
+  useEffect(()=>{
+    let cancelled=false
+    ;(async()=>{
+      try{
+        const u=await sbGetCurrentUser()
+        if(!cancelled&&u)setUser(u)
+      }catch(e){/* not signed in — fine */}
+    })()
+    return()=>{cancelled=true}
+  },[])
   const [liveEvents,setLiveEvents]=useState([])
   const [subscription,setSubscription]=useState(null)
   const [checkoutPlan,setCheckoutPlan]=useState("basic")
