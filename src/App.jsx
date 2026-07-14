@@ -1049,13 +1049,13 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
   )
   return(
     <nav style={{background:C.primary,position:"sticky",top:0,zIndex:100,borderBottom:`1px solid ${C.primaryDark}`}}>
-      <div style={{maxWidth:1100,margin:"0 auto",padding:"0 16px",height:58,display:"flex",alignItems:"center",justifyContent:"space-between",gap:12}}>
+      <div style={{maxWidth:1100,margin:"0 auto",padding:"0 12px",height:58,display:"flex",alignItems:"center",justifyContent:"space-between",gap:8}}>
         <button onClick={()=>setView("home")} style={{background:"none",border:"none",cursor:"pointer",display:"flex",alignItems:"center",gap:8,padding:0,flexShrink:0}}>
           <img src={LOGO_ICON} alt="BGexpats" style={{height:24,width:24}}/>
-          <span style={{color:"#fff",fontSize:16,fontWeight:700,letterSpacing:"-0.3px"}}>BGexpats</span>
+          <span className="bg-nav-wordmark" style={{color:"#fff",fontSize:16,fontWeight:700,letterSpacing:"-0.3px"}}>BGexpats</span>
           {subscription&&<span style={{background:"#f0c060",color:"#1a3a20",fontSize:10,padding:"2px 8px",borderRadius:10,fontWeight:700,marginLeft:4}}>{subscription.plan.toUpperCase()}</span>}
         </button>
-        <div className="nav-links" style={{display:"flex",alignItems:"center",gap:2,overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none",msOverflowStyle:"none",flexShrink:0,maxWidth:"calc(100vw - 180px)","&::WebkitScrollbar":{display:"none"}}}>
+        <div className="nav-links" style={{display:"flex",alignItems:"center",gap:2,overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none",msOverflowStyle:"none",minWidth:0,flex:"1 1 auto"}}>
           <button onClick={()=>setView("tools")} style={navBtnStyle(view==="tools")}>
             <NavIcon d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" d2="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
             {clean(t.nav?.tools)||"Tools"}
@@ -1108,9 +1108,9 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
           {user?(
             <div style={{position:"relative"}}>
               <button onClick={()=>setUserMenu(!userMenu)}
-                style={{background:"rgba(255,255,255,0.15)",border:"1px solid rgba(255,255,255,0.25)",color:"#fff",padding:"5px 10px 5px 6px",borderRadius:20,cursor:"pointer",fontSize:13,display:"flex",alignItems:"center",gap:8}}>
-                <div style={{width:26,height:26,borderRadius:"50%",background:"rgba(255,255,255,0.25)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700}}>{user.av||user.name.slice(0,2).toUpperCase()}</div>
-                {user.name.split(" ")[0]}
+                style={{background:"rgba(255,255,255,0.15)",border:"1px solid rgba(255,255,255,0.25)",color:"#fff",padding:"5px 10px 5px 6px",borderRadius:20,cursor:"pointer",fontSize:13,display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
+                <div style={{width:26,height:26,borderRadius:"50%",background:"rgba(255,255,255,0.25)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700,flexShrink:0}}>{user.av||user.name.slice(0,2).toUpperCase()}</div>
+                <span className="bg-nav-username">{user.name.split(" ")[0]}</span>
               </button>
               {userMenu&&(
                 <div style={{position:"absolute",right:0,top:42,background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,boxShadow:"0 8px 24px rgba(0,0,0,0.12)",minWidth:190,zIndex:9999,overflow:"hidden"}}>
@@ -4144,6 +4144,15 @@ export default function App(){
         h1,h2,h3,.serif{font-family:'Bricolage Grotesque','Figtree',sans-serif;letter-spacing:-0.02em}
         button:focus-visible{outline:2px solid ${C.accent};outline-offset:2px}
         @media (max-width: 768px){.bg-install-fab{display:flex !important}}
+        /* Nav on small screens: drop the wordmark and the first name so the
+           avatar button always has room and never gets cut off. */
+        .nav-links::-webkit-scrollbar{display:none}
+        @media (max-width: 560px){
+          .bg-nav-username{display:none}
+        }
+        @media (max-width: 420px){
+          .bg-nav-wordmark{display:none}
+        }
         @keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
         @keyframes spin{to{transform:rotate(360deg)}}
         @keyframes gradShift{0%,100%{opacity:1}50%{opacity:0.85}}
