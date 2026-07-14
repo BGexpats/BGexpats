@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react"
 import heroImg1 from "./assets/hero-rila-lake.jpg"
 import heroImg2 from "./assets/hero-sunny-beach.jpg"
 import heroImg3 from "./assets/hero-ivan-vazov.jpg"
+import connectHeroImg from "./assets/connect-hero.png"
 
 const LOGO_ICON = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAS4AAAEuCAYAAAAwQP9DAAAQAElEQVR4AeydB7wtRZXuD6O+wRlzjqCYUBwTOgYwDIigmMWEGQOoqCNmDIg54qgoUcwoCmICQQRRgjqAiiOCggjImJgRRd+TGcN93//cOodz7tld9XXvDtV71/3VutW7a9VKtWqd7uoKf7dQ/hULFAsUC4zMAiVwjazBirjFAsUCCwslcBUvKBYoFhidBUrgGl2TpQUuGMUCs26BErhmvYWLfsUCM2iBErhmsFGLSsUCs26BErhmvYVb0m/dunXXEtxGcC/BQwQ7C3YTvFSwl+BtgvcI9hXsJzggANfcowwccKlDXWhAC5rQvlZL4s4emaLRKguUwLXKHPP7Q0GGwLGD8ucK3i74lOAkwfmCP8kylwp+IviW4CjBJwX7Cd4peL3gFYJ/FTxfsJvgOQG45h5l4IBLHepCA1rQhPal8BLAE97IgCzP0z1ku41ollQsUL4qzpsPKABsLnic4A2CwwVnCf4iOxA4vqL8g4KXC54g2FpwS8HGgr4SvOAJb2RAlg+IObL9BFkFyIzs6IAum6u8pDmyQHnimuHGVge/lYDXsX2Uf1PwB6l7tuAwwWsFjxHcQXAlwVgSsiIzsqMDupyNbgJ0RFd0vtVYFCpy1rfAbASu+nrPZA113DsLXiA4TPBzKXmegNexFyu/r+BqgllN6IaO6IrO52EDAbbAJneeVcXnUa8SuEbc6uqUmwh2EXxS8Eup8n3B+wSPE9xMMO8JG2ALbPJ9bCTAVthsk3k3zpj1L4FrZK2njncfwZsEp0v0CwUfEuwsuJGgpLgFsBG2wmYXYkMBtrxPvFopzc0CJXDl1iIT5FHneqCAKQUEqlOE8mrBloIZTr2ohg2x5SmyL4EMGz+wF86FyVQWKIFrKvN1V1kd6b6C9wn+U1yOEzCloLzeyBAdJWyLjY/D5gJsz5hZR+wK2WksUALXNNZrua46C3OpXqecL3/fFPkXCG4iyC0xp+t8CfU9AXIerfwIAYPiH1F+sODAAFxzjzJwwKUOdaEBLaFmlbA5tucrJV8saZMyhyyjJiqBK4PGUKB6omBxnpLE2Vsw5LwkgsnXJAMB53XKdxFsL+CrHGNEV9poo42uI7iV4G6C+wt2FOwkeLLgGYJnC3YNwDX3KAMHXOpQFxrXEW2mOEAbHvCCJ7yRAVmQSWiDJNqCNmEO2VfUTk8cRIrZYNqaFiVwtWbKeoTUAZhj9WblfA08VLV3EPSZzhKzTwleI2BO1BbKr6JgQzDZTjkB543KPyz4quAHgl8L/ia8VhM0BdCGB7zgCW9kQBbmZF1FTJERWZEZ2X+oe30m2uhQ2kxA2yFXn/wLr2CBEriCIfrK5PDbCJg0yRyrPcWXJw1lnaZzRP1jAl5/+IJ2VQWKOwp2FrxZ8DnBjwTMoBdafgnZBMiIrMiM7P8kSa8qQCd0Q0d01a1OE21G2zFXjHli23TKrRBfY4ESuNaYpJsbCla8Dp4k6scLmFukrLN0hii/R8DTyY3U4W8veJpgX8G3BJerbCYSugjQCd3Q8fZSjMCC7tgAW+hWZ4m2PF7ty9rK8hrZmZlXEy6Ba7U9Wv8lh95VwGsZr4Osv6viMc39i1SZ8SDW9t1AHfnugj0EPJ38WmVzlaQ3r53ojg3uLuVvIMA22Ahb6WfribblNZJ1lCwsb51BIXiFBUrgusIWrV4pWLHMhEHl/UWYtXXKWk3fETUGsO+hjrqpgPGgw5RfovslrbAANhFgG2y0qYruIcB22FCXrSbamq182OGC19dWiRdi6y1QAtd6O7T2vwIW28IQsFhmwi4HrdEWoZMFLxHcWh3xXgIGsJlBr1sluRaQ3U4XYLt7qc6tBdgU2+qytUTbMxeMAPbc1qgWQosWKIFr0QzT/6eA9RQBr4RsC4PTTk90PYUzlTEQfBt1tvsK9hH8VPdKasEC2FKATZlsylwtbI3NW6C+sCAi+MIH8Q3BU/S7pBYsUALXlEaUM7LBHYPufNHiNWFKiovVf6//2YPqPupUdxG8VcBXSN0uqSsLYGMBtr6LePClkjagLfRz6oRvfEz+wiA+0yqmJjjPBErgatj6csA7CJjWwMRRBmYbUlpVjRnlTL5kgufu6kTsDLoKofzoxwLYXrC7uDFBljahbfRz6oSvMJGVaRQEs6kJziOBErhqtrqC1ZUEb1Y1Xgv5FK7LqRNfuxizYkY5ky9bn+Q5tYRzSkDB628C2uT+MgFjYrSVLqdO+A5fIN8if2LlwNQE54nAoIFrbIaWgzFP51zJzTiIsqkS0xTYf515Vnzt6uIL11QClsqrLaAA9h3Bs3WXeWK0HW2on1OlV6n2ucG3dFmSY4ESuAwryalY/Hy4UJmLxWCrLhsn9nbnM/mN1Qn2FrTh/I2FKRXrW4A2E7B+8caqTVvSprpsnPAp5oCxjz4fCBoTmpeKJXAlWlpBaw+hsFsDM7F12TjxavksOfztBMzyXteYUqmYhQXUjusEtOXtJNCzBLSxssYJH2M3CnyuMZF5qFgCV0UrK2Cxfzs7E7xbKNOMQbB2joDF2kB23hS5GU5zqpoC2IcEd5T6BDDaXJeNEr72bvnf1wTsltGIyKxXKoFrQgvLYV6q2+zfvq3ypokNAF8gZ2adYAlYTa04snpqbwIY6yV5hcQHmmqA77FPPr7YlMbM1iuBa0XTKmCx1QwHlHJg6YqSWpfssMDA7S3kxPvWqlmQZ8YCoe1vIYXwBXxCl43SO+WXRwnKFjorzFcCVzCGHONpuuQp6yHKmyY+lW8mp2XQfRpnbcq/1MvIAvKDvwgYxN9MYuEbyholfJKnL3y0EYHpKuVXuwQutYmC1n7K2F6Ys/l0WTsxOfEBclKmNXCeYW0CpcLsWkB+8XMB0ygeIC3xFWW1E775keCrtSvPWoW5Dlxygi0FLFJuug0Jy0GeL6dk4ug3Zs05ij7tWkB+8g0BE1k5lAPfacJgN3xWwAlFTerPRJ25DVxqeJZxnKZWbOoAPKExtYFF1SJTUrGAZwEFL3yGKRT4kFdpNRY+e1rw4dUlc/JrLgOXGnwftS9f+jZSXjexZc1j5HwcAPHrhYW61Qt+scDCgvyHzQ6fsbCwwNwtfEqXtRK++6Hgy7UqzgLyXAUuNfINBSyKfnHDxuMv5RZyus81rF+qFQusskDwJQ4BwbdWlZk/XoxPC25o4s8E2twELjUs25ScolZrsqXIxarHUxbjWTOzX7t0KikDCyh4XS5g3IunryYfd/BpTuPGxzPQqHsR5iJwKWixOJodLpvMhWF94p3kWOUpq3t/zIXDIHIEH2O2/CcbCIBvnxx8vUH1cVWZ+cClhny5moTgw5iALmslnrCeJIe6tFatglws0NAC+JrgyarOE5iyWgkfZ7E2Pl+r4tiQZzpwKWgxCP/2Bo3CkVaclNN03KEBy1KlWOAKCyh44XucUIQvXlHgXb09+L6HPUKsmQ1cariPqz2aDMIfLKchaDVxGLEsqVigHQvID88QELyazLpn0J4+0I4wmVFpErgyU2G1OApYGwtYb8jj9urC9K8XyVGY4ZzGLBjFAj1ZIPjkixqwezJ9QbBxg7pZV5mpwKUGur6sfZyAtV3K7MQq/u3kIBwpZlcqiMUCfVkg+OZ24oevKrMTfeG40DfsSrkjzkzgUsNsImMfK+AwAmV2Yu3YVnIM9t6yKxXEYoG+LRB8dCvxxWeV2Yk+cWzoI3alnBFnInCpQfgUzMTSu9Y09sfkDKwzvLBmvZlDLwqNwwLy1wsFrHfkOLw6QtM3OF2IvlKnXpa4ow9cClrs0c2YVt2jnt4sByjbhGTplkWolAWC73LaVAp1ZTl9hL296DMr74/uetSBS0GLvx5fktVZsKrMTuxM+hobuyAWC2RoAQUvfJidVutIR1/5Uug7deplhTvawCXDM6b1RVmThlBmpyeowcvOpLa5CmLOFgi+/ISJMlbfpM98MfShaqyMS0YZuGRwvh5+Xnbl0VeZlf4orO3V0IcpL6lYYGYsEHx6eymEjyuzEn3n86EvWRVyQhpd4JKhmZPCukEGG11bcnbhg9TAX3UrFLxigTFZIPj2gyQzvq7MSvShz4U+ZVXIBWl0gUuGO0LA511lVrpIWDuoYb+lvKRigZm1QPBxdorA51096Uv0KRc/C7xRBS79ZWAJAxPqXOOxQduD1aAcgrG6TvnVyAJqA1YmbKb8PoJHCHYRsLxkL+WskXuv8g8KDgjANfcoAwdc6lAXGtDiKbqRPKXSagsEX3+w7uL7yqz0ELUVfctCzgFpNIFLhmXBdJ1lPDTcjmrIH+Vg6DHJIFtfSXBnwc6CvQXsOPAd5b+SHn8S/FTA3maMM7KTLG3DMVzsSvBClT1X8JwAXHOPMnDApQ51oQGtP0FbAA94wRPeyMABqSJVkmuB4PM7Cp8+oMxKLA+ibSzkoZFGEbjk0Dh9nQXTPCo/TA04zYnCQ7dNb/xlXwLErsoPFnxXjP8s4CmVfaFep2v2M/tn5V3usglteMALnvBGhj8jkwDZkJH9qiRKSTELBN9/mHDoC8qsxNMwfc1CHhIp+8Alh8WR62xNw+DkI9Rw5UmrwrNkUwIVTvoFXf9WaASI/ZU/U8CALfs66TKLhCzIhGzIyPmCv5XcyI4OKwJZFvJmI0ToA4+QQPQJZVbilZ4+ZyEPhZR14JJzshUtf3ld+/A5+FFqMDqiW2fm8WRHXv0YU2Lc6QIpjH14LXi4rq8tGFtCZmRHBwLZBdIR3dCxvFquaM3QFx6lW/QNZVb6pOxJ37OQh0DKNnDJcLw6sB6Lv7iubdgXvnw9DNaSDXcSsPvrZbrFmBLjTpvqetYSOqEbOl6GzoKdZk3JpvooeNEn2M/eJUGf+5hsSB906/SKl23gkhU4c44lPbq0EjPi536elpzt/gKePn4nq31WwGP/Pyifl4Su6PxZ2eF3AmzBouR50X+ingpe9I06M+zpe/TBifR6vDmRVZaBS87GKwDzUSYKPeEmaw/ndka87HUtAeM9vAKeKPvw9HFN5fOesAG2OFH24ZUSG11rXo2i4EUfqbO2cQfZjb6YncmyC1wy1C6yUp0viOzyMJdrD2UrBtnZm/wS2QwHKwPVMkRFwjbY6BLZjbll/K5And3bCl70lTq7ShDs6ZNZGSWrwCWH2lLWqbO/NvtpsUJe1eYnyU7bCFj2xBMW86SuPLD2fxB/pp4crZyJjMzTOlDXANfcowwccFU0WMJW2IwnMJa7bDOYJAMxVvCizzB+7ErAVBT6povfOV5WgUvaHiBgYFBZMn1TDTBX+2kpWG0vOEaWOV7AlyJlgyY2b7yX2uEagtsLmPD7VOXPEuwagGvuUQbONSTxvQTUVTZowobHY1MBi5QHFaZP5mob+o67kyp9kr7Zp4hRXtkELjnOfpLUjersu/1U4c9Fkm0YcOeJhaDVZQdzz4/8sQy/s5z/IYLv6LpWoo6ApVs7qyK0lCWTK1uS0AQEbHqM7Hy0YJ4G8ulDkEbrGgAAEABJREFU9KUJJllza0vZhj66pmCIG1kELhmE6L9bDQM8XY4/89styy53EDCdgQF31p/VMJGF+j1hvUvwUAGvDsyP0mU0fUald5b9P6V8qhRoMNYEzRQtZOOVE1mRGdlTdeqWY2MG8ll2xLYvdeuPCl/2pw89vYbQu8kf6as1qnSDOnjgkiH47MqAoashR4jN9MEWsgkLmVktcJaMwqd9Za0ltrlmjOcWcty7CV4myozz8NdXl9H0VuE/XvA/UawahdASPF5V3ipIpacIYRvhv0xwN13fQoAu6KTL1hI2P0vtwCzy3heAt6aFQUh2pC/VOfpsX9mFPmtQ7w5l8MAl1TgS7GrKnXSwDA2+gztKHDkFf9HOlfBtrhnjFZMlM9eW/R4q2F/AX9sF8aOT7iF+qcRY1Z4ppKblkgfazzLq7xFkXlAdDo5AF57CeCJDR3Q1yFgotMG54kebWBXGiCQ70qfcj2L0VfAHVXXQwCWHeKm0Z6xDWTKdIQPP7GGtssXtBMz8ZtLfzZLWSCPwBe/VQuPJiq19DpH9mJSqW+uT+N1SV0ynUBZNu6kuXwejSNMWBh7OkAHTGZB9maXq/k6Ajrzu8SSG7thgGafhBW3xEdmK3ULZ8rghmbyryXb0rTNMKdkGh75rorePNljgkiMwtvHOGirtWgN3VKiyBfPWWBTOgthpZT9SBHiq4gveW+SQi09WujcpfUA3UxMyXyEavX1RCrxeIbliCZmRfSKOaPAkhu63FwJPY9hEl1Ml2uZHoa2mIpRx5Tp97J2yBX14EHUGC1zS9t0CNz1fzrj418CtMAY8NfxtBHwtZGLktG1BR76j7PRoQXLMR3xfKxvxdKKsMtH531FZ2lGB5IfnWxLkHywd2P4miiZaRwkeLaQ7CrCRssaJNtpHfPn6OPojvja0guxEH3v+hvcjv+v04QiZ+kU0RP1aU9ZQwzOmsq1J5pMyqPM6Y5LLA002eIYkYQJpKngIrTKxbxaD+DeRjXYXMJhfibxUIN7/ous3CGIJu/O6FcPprEy6wDu1MwgbDqJLUg7RO0uwuxBvIsBm2E6XjRJtxgRW2rARgVwryUb0Nb5kOyJuK1+iLzu4reL0HrikKH+p+IvqKPJzIdVZWyX0/JNswKvXIZKUBcHKGiWmBNxMjvZKwS9rUkgFLXbOrPOXtyZ7Gx0ZkCVWIaXLqrrYSvBK3WTsChvqslGi7Q4JbdmIQMaVCPAXm/K9QzagT5vo7aD1HrgkNp+93T2T/lVO1uXEQ4nTX1IDs7bwNHFk4a+yRomAdyvZhSkBv6lLQTIw+M0BCbGqzxP938cQWi2rIBZkeF5F8dLtrYNOS7+tXLR/I2AqCJ/2salVbwLSc8T/NMFg4z0TZJrqluxCn3OnSNCX6dNT8axbudfApcbl07u7L9AHZUDW49XVKUv8oDuzzO/eUMATVO++sskzBamnEKGuTZLh6rq7tyCW9hb9Y2MIfZYFWZIyB91qiyb65wuYRnFfVcbGymon2pT98vHv2pVzrCCb0Pd4bXTEe4zs36vuvQUuKUZkdlel0zFf4lhsDDjSnUFkxg3+voG8/6U6z5EjbSs4WdfTJALADSIEThAPDrSIoPRfFGSKBRV0QrfGwonHyQLGXXkaxuZ1adG2zLinrevWzRWfPkhfdOR7s/ycPu7gTo3TW+CSpG8UrJp7o99Videgy6sKx3RfjclrSNNORd3N1aEOmlZnycE6UKZdxEjtFSscuCwlG9uvoONUYgZbby4i2F5Z7cQHg6Z1azPrsoJsQR/kddphQ99eMd7oVGmO00vgUqdh3derTDE/IoPxmGqi54kmndncj1ncTb488VHisbIDr4X/3ZKGbGUSI8UM9Gmf6GL0pyqTLZCNwzJidFI6xuoul4nXfwt4fXysbtIWymqlZ6j9WbTNfLNaFXNDlh3oi0yKdkTbU3rT1x3cqXB6CVySMPXXUiiLiQFhvvgs/hjrf2q8zSQ7rzbsOqDLWomFxHeSwxxeq1YEWfLcU8WPFFQl9shy26iKRh/3kRFZq3g9MuhaVV7rfmiDO6kSbaKsVqLtT5A8+EKtihki0yfpm45otJGDNxVO54FLDccWzI8zpdxTzlLnKCWTbH9o0pevS8eJI0dqKauVniv92btq1dKcWhQmI3Mg6+SS9Xf3Et/aXyjXV+3v/yBjqmOkdK0lsHiylIgF6CzmrlVXyPjAccEn9HOcSTagT7KW1FHgcdKXPu/gNsbpPHBJMiYSKksmNgZ0v2IkiQ2BoAbjyYYvcom/smukY4uWu8tBUq9CayqmbkgmnhjY96oK9Xvi+56qwtzuB1mxV5VoOwedq8ob3Rdf2oavhzHek2jjC8dKJnxjUvko7kl/+qa78aDb5xvr3mngUmOxDUlqztCS8KP+GiNdOYeO5Tt1j3TiNeSecgyWWyzZos089QTy3jaZ9UQrJXNK50Zihjb6Z1WmzZTZCZ9gmRA+YlfKENHto8yto+93pkKngUtS826sLJnYruYbSaxMERS0+Gv6JYl3HUGd9Fp1Bl4Np1l+UslPct1ahQwyK5uYzhH/j04syfhmkDm288Mzg+6tayHefxHw6shazzr08Y0vSS58pU69bHClN33U3f7G7fuN9OsscKmBGBNwvjD8RZL39hlVvFpN0pMxrS+IKI6pzE5PkSO8ycZuhph68hh8X6Vmai3WSsme0n2RSNP/QtutfKpwSOEjXwg+4+DniENfpc+mZGP3XmJACq9ReWeBS9K48z/eJCdo8slZLIZNckDGL/hczKuAKwyTG5lM+gm3QhM8ycZpNrEN8C6S3bPZQ7yujkH2iyL1nhZsEEGZrkgy0IZMWqVNXWL4CqcL4TtunWzwpDN91f2D68aA2vp1ErjkMCyMZkJaSiA26ndn06do9VouHZmjw5SFOg7IzqYELaZKdC0vTwOcqFPFJzVOVFUvp/sxHdAdG3QqrzoybUnwom1dXvjM4cGH3Do54dFn6bspmW4pHYkFKbza5Z0ELkmRmqEtlMX0NjW889i5iJzZf5+WPHzuVmYlvkZtJ31/YGFPj8Q4TBUV5uSkXrWq6uZ0Hx3QpUqmmA2q6tS+H9p0O1WkjZVZCd/BhyzknJCkL332baZMbiwwya1Haz1wKcKy+8CGT1vrua3+n4HhOodkrK494C/pyJIOJhi6UrC4egc1eGw3UpdWEk/yMe72gAjixyQLzhdByb8o6MDpRFXCPiDYoqq8tfuShbZl/hJt7dLdXvLhSy5+NnjSl74b+0CyJCtPXXV2Vl2qF81bD1zi5j4aTrMXktgMk+RofBKus4wHR+Yw1D4neKZekep+zh/G2B7XlC4pW3hcDCx1Ztp4R6HS5sqsxPIgfMpCzgzJ7cOtfyhpNXCpU7O1hfMlkd0oOz98oe1GDvrVWTDNq8PD5dBtrTd0VYq9Ip0iedgTzKWVNV7Q5ZSIkDFbRKo1K5I8tPXDVZu2V2YlFmbTdyzkXJCkK33Y2XWXL4yt6tdq4JJBU5u+CWUxjWam9qK0+k9Bi9evD+vSTQzWPkqNy19ht87UeJLzCSJyfUFVSj2hVNVbcz+jGzGdrh9s0pu4oc0fJYb4gDIrfVhy4mMWckZIbl92Y4OlWmuBS0bfRhydWfI/UcMSqYU+qsTEO/ZccoTm8/hO0pNxDwe/TRz+2lfRY5uS2JhQVb3c76MTulXJGbNJVZ2p7oe230lE8AVlyYRv4WNJxJwQpCd9+SeGTMymJ0YYqGmU1gKXWLkDcO8X7qiSgjJ7xLNOzZX78WrQvr4eLsskOWlPjtFavrfBBYPyf9rg3uh/ytboRPCq0uURwTZV5Z3cl1z4wONrEL+75MTXalTJAtXt026MSCqFoyeRUggyNvt2OztAsMp82iOiUuK0Wi7dGIhnV0yXLjPimdvj4reJx5MFhzhU0WTeWVXZ2O/HdMMm2KZ3HRW88IU6HwjYwx6f613WRYbN/qNP07dTtdk5gliRwkuWtxK4xGUXgZP2U0OucxBzwFHQ4vQSPvu64rD2kNnULn7beLHOeYlsz3Y7bfPMgl7Q7ZKIMDHbRKpNXyTZ8Ik6axv3Db43PfMeKEg/+rS7CsONFVHJ+w5cbA0SFSizQmZm89faEevjakB3KYRDrwlO7DXxi00IjqxOTMfHKhg8SHBrwUZ96xV8I/YRYaVI+By+t/Je7tdu384jcMkJ+Mx5I8Oq7ADhPE4apLpHkV7M+OXgT4cZn75baRCH2SQcycvkRxbxTirmHgvByWcOpPvfCR4qxa4rqEpXUwF7pfGl71Thv1vwUEFbf7xFPpnYqQNfSSIKgZO68UFd5p8UmOnbzseFG8nmxIyplGqj0dx5Mo5SUynTVmUZ9naitXZynW5WpGer4YaeiR57FfqD5GPbnQrxx3lb7XQ1wbMk/VEC9IttTy2U5XQvXe0hoM5R0BAQ2HSru6Q2YPuiZ9fg8C7JhS/WqDIoqtvH3ZhRqcxUgUtGZQyIv/SVDEIBu5vWmU0cqg2WvV2cXduw3XJXmwBKDDvFliDFXqFsBjkhyvfQl0McOAHJ8cEq8akLjY8EmlV4rdxX8MJX3O1e8EF8sRXeXRORbvRxZ5fUHWRrYkdjkTBM48qq6D7y4WBCzz/JoGwFExsrWqkE41ruu/3Keq1eS2b+KrPjQBXdmXlNlK68FrKEhE/w7uHCVXZZeR9a7xf9Fwqm7Rcr6a65VgfHZ9zxLqZy4JNr6GR6w+3rbuyYqOa0DeQwZ/X+KHbZlMNuLCu5A+zsS0QHUpXBU2xBNcIxtkM+alD7cOAoB9YycD3VX+wrDLHqCprQfn3gtaqw5R/4Dj7kkH2T5ME3Hdyhcejr9PmUHE7sqKTROHDJkPcV1c0FqfQJ/YX5Wwopk3LWId7MlGUP6dX2aTwm6zVoscB1quS8bE2Nkd2Qv+GrnPBTZ1pBUy3hsVfg2ZRGtJ7aBN9hnC2KFwrxSXwz/Mw3k170daZ/pITcXPYlhqTwJpbjDBMLjJsclmmgLXzSQRoaR0ZkcfjLTTkOUQPFJjyaZFpDiwWur7fGZVhCu4s9AUVZLwle8OyMWfAhd1ublwcf7UyeFgm7fd6NIWtEmyZwMSawhuAGN85U43xrg3u5/nRPQWbtmRvgOtdVzsyGdLHpKCd2LkTHDKQjA/GdBpEKFXYPvCuKW7mNL+FTDjHXRx1aneGEPn+mwcCJIRPJJALXxDoLaswHquQmglQ6LIWQQ7n0ub/kcN+591TDsHWJqmSRYk9bfH4fdeBS2zBNgSkEjD/1bXB4PjvI0Anv4Et7msSfKFnwVRN9UDSn799E+hBLagvaKHCJiztf5rPCHUN6hSnkCXI0Pp2b6L2g/UuEy4mSd+j5ZRHxrCK26Wn8l9niEEeCNzLEsaYoVRvhU6xpdKi4vurQ6hLH7ftuLFkla9PA9bBVVCb/OFkNct7konzuKuLzGuLOkGdwOB/h10sSO6dv7E9b+CeBY72mw/3/GBG+JjgAABAASURBVPkJsnQpgetbzKjHZ7uUZWraoe+fbBByYskaMrUbQw3IabybrKG09saRa29lecddVsGAvNMQvSmptmCl/Q0iDCcFrgh6dkUPkURMEFU2aEIGZOlMCHV0fMsdqHd9tjN5TcJODNhEfkxMMUmuR6sduFTNbcDsJz3KYGxs5v714kgmqZ9VSu0RdnpW0tYXJvYaXJ/adDX6kMX1MQ7ZwHen06j72m4McGPKssRNAhd/fZYJVFx8R39BflpRltNt90vVu6TP+TkJHmTZMuSTsu9K5v+dVDCGe/qjwg4Otf8Sd6jbfYJMnbFQe+Fj7hpZ13c7kzdFWPoQA1gGlEJ1YsoqGrUClxqOV8RYZ1kizqLXpessc+nC/t7sC56Sjy9z70whDVQea4uxP23xGsxi6IFMu4YtsiDTmoKWb+Br+FyK7KOCDy/iZfyfEwu2lC7EFluNWoFLVN1Pl18Rbu7J3UZ2H/3l6PXAixqGi70qspi3BqnsUGNrL4cStnOZgq/tYyro+rBJrhM0Nxa4sWVRyLqBa9vFWvH/LpLxs/5rr+h+LanA3CBlycTatSRS3wjSgZn+14jwHXvgul5Et6GK+pLJ9TnmmOHLQ9kjyTfEgouSiAsLTmxZJlM3cDkDgl9dpp7vBXt6X9kQ7wMy/C8NvCFQYk9b/yu5xx64mHg6hF1jPHuRSW2Hz7GPe0wWyvBhfJnrnMGJCU5sWdbRDlz6C8+YUGxpyRLRry1d5JJPkMPdJsTdR3sCi85v0R5VTMYetKr0mqf7ru+5vjyk7ZyYwM6oMZ9eJb8duFTrfgInuTOAHVqt4ygAs2TCMdCR+st3VusCtEeQPbiqqH23qmBE9/+Yoay9yRR8z5kHdefg0xmaa1kkNya4MWahTuByDns9QwaPnbSyrMmAFzubvDno0kQdBC0WuM4ZRKJ2mboLj9vlGqfWt0yuD7o+Hdeuo9IQE5y3ACfGLEpZJ3A5c2qcbVsXGQ/4n3NA5zkytvMZdxA19BeWU49vHWH+40jZWIqY01Qt6zAlvcoUfND5I+T49DAWu4KrExucGLNI0Qpc6ijMX2Ezs8VKkf9YthApHrZIeuwkCa4pSCV3W90Una7KY09b8JyFwMXkxW+jTCaALMjUtziOL14z+HbfstXh58SGm0kPYk2SrhW4RCW2kFfFy+mU5as8Lx5tiuVuhGaSax0tFrj+qL/Uzufn1oVqk6B04JDRU9ukOSUtdpJFpinJ1K7u+qLr27UFaKmCGxusWOMGrtin9yW9eL3ibLWl31nliuTsV+4cgnGMOs2FWQm/VphY4HJeLdZSzPNOTru3DiJL8MVjjObhUA183EDtH0V6EBsSvrkolxNr7MF5h9i/L7LN97+HSrR/EKSSu49Qik6X5bHANQuviUu2O1oXTqcVWqcJGZClUyYR4o5P4tv4eITM4EVOjHBijR242B44pfVpKYSBy90V6J8bWE6H/VwELv2V5uCFIxyDdIxzRJClYzaV5F2fdH28klHHBU6McGJNOnDpFYuTfJwZw87nzo7tEiXvbF9zlByU01eihDIovEVEhll64kLNT+u/IYMXvJFBYgyTgk86X7kdHx9GifVcnRjB6eTEnPU1Kv53xrjuVFF3w9vf2/BGLr8VfJlwuqkhz5cNnIFQ1rOVLlfV1fUFVSn38bkquSfeV6dl0idbG587EaHbm/A8KMjQLac0dcc3N5V/4OtpasNguDEiGXOcwHVHQ8cfqnEvN/CGQnHXQbkr2YfSA7435b8IXBwpG2WRfOtYCb6voO+0b+DdN99J/FzfdH19Eo9O78mWxAhnNUoy5jiBi10IUgr9Rwph4PLYSThLon1Phh3D00psPt3fpMN/Lik0YzmB64096gQvePbIspqV2hXfdJ5YHF+vZtR9yQ8MFsmY4wSu2xuMnChqkOkMxTkx9/jOuLdLOPbENatBa0Edl4F6TnMmoLRr0bXU4LF34Lm2tL07dSk5Pur4el2+beI7sSIZc5zAFfuCtaTQ2UsXueXhnf/ahlxjOVgi9sQ1c6+JK9tNgeSv+v16wYsEjD8pazVBE9qvD7xaJd4CMcdHrx18vgV2nZBwYkUy5kQDlwzAgZjOpDZnYlknVjCIsuWugbbgrKVy6HSNM7eBC8MqoPA6/D5dv0DAFz9lrSRovUD03yfg6a4Voi0TcX3U9fmWxbPIObHiSiH2VBKMBi7VstYNCe8nglzTPQzBTpez/sHAywFlLl8VNzS82osB+6frPjvZMkFUl40TY0dPDzQbE+m6ouTDR53dhR2f71rcKvpurIjGnlTgcvbYPl8G7eK05CrF696/m1HBOYnEINMLylw/ca20sPyOdZkH696OgocJ2KudxdC6rJX+Aq1aNYZDdnzV8flBNJCdiRXOLhu3jAmYClzO3CdHiJgMnZXpcZPX3LsYDJwZvQaZXlBie4yz5W8vQuTERJ2B18cvK3+J5GJrFIY4mIz5JP3mQAkgthVyzKYikVVyfPUuwfezEnyFME7MiE2yXkgFLufIoAtWCJTbJfNBOJ8vJdeYdgz9x4gy/zdSNhdFCl7rBOcJvio4VHAgIOWPE1SlmE2r6gx13/FVfB7fH0rGFF8nZkRjTypwxV5LloTLeQuVLZaEjOQcLJH7PLSV4rOYduXvldfZB66VwvZ8HbNNzKY9ixlnpyCMr/5vHGux1PH9RcQB/nNiRjT2pAJXbCB4Sd+cP8EnP6tKCWdeidCySbGng1jnzEaBgQSJ2SZm04HEjbJ1fNbx/SiTDgudmBGNPanAdWND+JwnPTLWkVLBmVeSotFLucYt2LL5KhFmsc4ZqTYXRf8vouVVgm0jKFkVOT7r+P5QSjkxIxp7KgOXGpIBy40NzX5l4AyFEv2kGoRyP88G9EGz1JNBrHMOKngGzFNBPWXbDFRYFsHxWcf3lwlOdVG/shMzNg4xaCL1ysAl7NgOBCpeTuxsuPwjswvnq+gQ+4g3NVOqc6U6Z1O+s1AvZZuUbXOygeOzju8PpZMbMypjUCxwXdfUKsvjyBSteVq8oaGD84XDINMLSmoQOdU5exEyUyYp26Rsm5Najs/eMPSBnOReksWNGZUxKBa4rrPEJZJfqq8cuS6PuElE7pVFP1/5I/Pr1FNBqnNmrl6n4qVsk7Jtp8LVJO76rNsHarKfDj3EjEsNKpUxKBa4GONK0XaYp2h0VX4jk7AzUGiSmoDW7q1Y57pcDsEi5HY5zgi1YBv2g6rSKGbbqjpD3Xd91u0DQ+jhxI7KGBQLXNcwtPm9gTMUSuX78QqB/ksOzRKEFbeyvox1rtQTRdaK9SRczEYx2/Yknscm+Ox/GdhOHzDIdILixI7KGBQLXM4+8yz67ESrFohWvh+voO2+a6+oMuhlrHPFOuWgQmfEPGajmG0zUmFZFMd3nT6wTLDnCyd2VMagWOByGpL9wHvW12bnnFjtPK7aDHtAjLVJrFP2INooWMRsFLPtBspl8dPxXacPDKWMEzsq2yQWuDiUIaXUn1IIA5ZXPmaukOnm+vJywFhAcrOFi7KJ6Xpj0WMoOWW16wmq0rOHkqsJXylxc0EqOX0gRaOrcid2VMagWOBilnZK6NhgZ6pu1+XO520a/zkSZCywtWStSoxnjEWPoeTERlX2w7ZDydWEL75bpcvSfacPLOH2nTuxozIGxQJXbGnJkpJ/XrrIMGceV4ZiFZGKBXqzQM59wIkdlTEoFrjYyypl4Qlf5FJVeiuvVLo3CQqjYoFhLZBzH3BiR2UMigWuWNlSc+Q6+RT5KpWmsECxwBxYIOc+4MSOyhhUWTAHjVpULBYoFhipBWKBa6qImIE9yizy9hqhUBqnBXLuA7HYs2TtyhgUq+wofeUlDhnmzuBfhmIXkYoFWrNAzn3AiR2VMSgWuBylcx78cz63tuYhhVCxQIYWyLkPOLGjMgbFAtf/GA2R8+dWZ1M9VtkfKD3HAidL1qrEEpCx6DGUnNioyn7Ydii5mvDFd6t0Wbof7QNLSAPlTuyojEGxwDXVzNaBjLGS7WUrf1Rc/3yjjTbadSwgHQ4SVCUWjI9GlyFsLsPFFiYfNIRMTXlKFydwOX1ApAZJlbPiV0hTGYNigSu2rmuJduUiyCWEAXNn9fm1B5SvCetYm1Su62rCaEbrxGwUs22O5nB81+kDQ+nmxI7KNokFLmcR5NWH0trg+98GTmwJiFG9d5TKhpQksU6p4pJkgZiNYrZV1eyS47tOHxhKMSd2VMagWOByHjNzXn0eG89YaiwWJk/8urGEkFke61yxTpmZGoOJE7NRzLaDCTyJ8bp16/DZ2ILxpWpOH1jC7Tt3YkdlDIoFrt8ZmjiPqwaZTlCck0RgHD2/DYSMINa5OBUl55nSg5pRnR3bxAaEY7YdVPYJzF2fdfvABBad33JiR2UMigWu3xqiX1sOEaNhkOgM5RcmZWeVvUmqc7RU54o9UXQuXOYMUrZJ2TYn9VyfdftAr7qFmOEErsoYFAs67vux867dq2Fgpq81zGFxjkG6BfgjgdTn7VTnHImanYj5jwtxsinbxmv3W+r47K9DH+hXMo+bGzMqY1AscLnvx84RYJ467WNdaJC8lYGTC0rqqaAEruqWStkmZdtqyv2XOD7r+H7/kq/n6MaMyhhUGbgUrXm/5KllPavq/3M+ScQ5OPO21aplV5LqXKnOmZ1CPQqU2lQvZdseRU2ycnzW8f0ko44QnJjBqVXEoIkiVAaugP3LkMcyd6AwRqOrsnMNwrc3cLJA0R8TZhJXLoOQkKnOKZS5TbGg/udg27EYx/FZx/eH0teJGdHYc0XgmqyCc37bzSZXzeLujw0ptjBwckKJPRnEOmdOOgwhS8w2MZsOIWuKp+Ozju+n+HRV7sSMaOxJBa6LDck3MXCGQjnLYPx/9JXjnwy8XFBig8ixzpmL/EPJEbNNzKZDyTuRb/DV/zOxcPVNx/dX1+jvlxMzorEnFbguMnRxvnAYZDpB+aGorhOk0t1SCBmVx54OYp0zIxUGESVmm5hNBxE2wtTxVXwe34+QGbTIiRnR2JMKXBcY6m1m4AyConEL9vP5vsH8HgZOLiiVA5YS8MaCFalcrrBAzDYxm64gkcWl46vfD76fhcAThHBiRvSraCpw/WwC0w1vbabHV5YgbHg/l9/fNQS5p4GTC0rsEdoZO8hFj77liNkmZtO+5Uzxc3zV8fkUn07KQ6xwAtf5MQFSgcv9pOp8no3J0WXZaQbxu8ugzqJPg1TnKLFBS+drTecCZsogZpuYTbNRJ/jo3Q2BHJ83yHSC4saKaOyJBi49bvJJldetlAabpxAGLP+2yft+Jt7QaLGng9hTxdByD80/ZpuYTYeWeyV/fHTl76pr1+er6nd534kVfw2xp1KOaOAKtZzPqs68kkCu30wGOFMcLxWk0gNSCJmUxzpZ7KkiE/EHE2MWApfjo5cGnx/M0AnGTqxIxhwncJ2dEIRiZ14JeEPBSQbjbQ1n92gcAAAQAElEQVScHFBirzWxzpmD7EPKEAvqMZsOKfOGvB0fdXx9Q7p9/nZiRTLmOIHrR4ZWdzJwhkQ50WB+V40hbGrgDY0Se+L6O+kQ66BDyz4I/2CTmK/HbDqIzBsylQ745l03vD/ht+PrE6r1dsuZM5mMObHGXNLEmQ+yhQwb2+toiVbXeRX9E6oKNrj/4A1+5/gz9XRQnrrWtlrKJimbrqXY/x3XN11f712DECPuaDBOxhwncP3AYASK89cAvN4hvPNH54UEoR4a8mwz6cIBApWr5iU4f5mVlbTCAjGbXBJsugI9y0vHNy+ULozpZqmAhHJjRDLmJAOXDHGOGFbu/ayypbTl0kWm+bGGXDvqr8K1DLyhUWITg283tHAZ8o/ZJGbLLFQJPrmjIYzj4waZzlCcGPHHEHOiQiQDV6j9vZDHMmdGb6x+12VHmwwebeINiRb76hLrpEPK3Jh3CxVjNonZsgXWrZBwfdL18VaEakDEiRFOrFlwA9fphpD/bOAMifJlMXcW0z5WeLmnWGeLddLc9epKvphNYrbsSp66dB2fxLfx8bq0+8R3YoQTa1oNXJvrkdbd2bBPYy3y0uMnE2m/sPgj/t8O0iM2JhKv3U9prLM5E/z6kTIfLjGbxGw5uAbBF3cwBPlC8HEDtX8U6UFsiLXDklCtBq7vLFFN5Fslyocu/pwpwJNMvKHQYp3tanISZ9uQoWTvlW+wRezw0Zgte5W1gpnri65vV7Dp/Pbq2FDNzoo11quiIjnrhpy5LltXyzN8ifQ4XFL8XpBKT0khDFye6myxV6OBRe+dfcoWKVv2LvAGDB1f/H3w7Q2qZvXTiQ0XSw9iTVJwK3AFKqeGPJa5a6liNLouO8xgwGuv8xXHINU+ihqXLZzPi1BOddZI1ZkritnivGDLLJXW0yI+6LxeOT49tI5ObHBizKIedQLXyYs14v9tKWO7Rw/FKXVXeqhJ+pkm3lBosScFx9mHkrtvvjFbxGzYt5yT+Lk+6Pr0JB6d3wsxwZkK4cSYRXnrBK5vLtZI/7dNGmU4DP2F/Ya4O5P0HiWDO+uqRK7l5JGLdTpnl0yPy/ixYraI2XBQzYPvPcoQ4szg0wbqYChuTHBjjP1VcUHGobP/ylD9gQbO0CgfNQV4rok3BBrtUcXX+etWVXfW7sdsEbPh0HZwfc/15SH1cWLCr0KMseSs88QFQWcd1INAzBw+LPn+Ikil5+svX2zL31T9LsvPiBDnAJBYh41UnZ0itR02iB0sYX1679sikhufe77BFx/Glw3UQVGcmODElmUl6gau45drVl9sIsM7uzRWU+i4RJGdPcYPMtm8yMTrFU06cIrLZRGmdNpI8VwUxWxwmWyY3IWgPSvVouT63EHSAV+uRbxP5BALnOk5TmxZFr1u4Pracs34hbuSPU6l29IDTPJ7yPg3MHH7Ros9McQ6bd9yDsUvZoOY7YaSdyH42h6mAK4Pm+Q6QXNjgRtbFoWsFbgU3TkyKPaKskhU//EZV1m+SbowvnGkIeFVhPMyQY4p1hZZP/X2ZMyYDWK260m8iWzwNXxuYuGKm0cGH15xK8tLJxacIV2ILbYCtQJXoHpMyGPZPfWX41YxhEzK9jXleKn0cU4mMcm1hhbrfHeTzLHxndaEyJFQ0D32RTFmu0FUksz42EtN5q7vmuTaR5M+xADnVCInpqwSsEngclegP2IVp+iPYQoV5RkQdLcCefUwUka5pjpf7IkjSngGClO65/iq6PrYscF3c28mNwa4MWVZ39qBSwZjdqvzWOfMQVkWZMCL95i8d9FfEGfZgkluejS1BbPnfxOh5ByuEKk+6qKY7r+R7aylJX1ZIPjWLiY/12dNcp2hOTHgIrUFMaWWELUDV6D+pZDHsq3VGLeOIeRQJqPxxPUVU5a9Tbw+0WKLUmOdt08Zh+AV0z1msyFkhafrW18JPkudbCH0fecPvRNL1ujZNHB9fg2lyTecfYQm1+z37ttNdtuoQZ5t4vaF9vUIowdI3qFOGY+I1W1R0DkWuGI261a4CdQlLz7lzi53fXUCp15vuX3fjSWrhG8UuBTx+XT5i1WUJv94/OTbed2VPiwD+pQp1VvkaNc1cftAi53qwtepWAfuQ74heKAzulfxjtmsqk4n94MvvcUk/qngqyb6oGhO3/+F9CGW1Ba0UeAKXI4IeSy7sxrm3jGEjMreZMpyPeG9Q5BFUsOz1W1sKda/ZCFov0IQuKo4srQEm1WV930fX8KnHL6ujzq0OsMJff7OBgMnhkwkM03g+uxEimtvuhuhra3Z4x0FAGZR40QOVwbqd3IQe8KJPUHEOnFP4vXOJhasY7bqVVB1cHzIHZB/R/DRXmXckJn52+3zbgxZw7Zx4JIRTxI1TgBSFk1PVgM15hOl3H7hXiLpbJgotIV9pFcuJwLFOuN9JOc1EHgeIOh6n4iuMVtFqrVbJDnxnX1MqvgkvmmiD4cmvejrTzYkOCfEEAN1LQpM1t717zjjQtcUuacJsk8y5OUS8jUCJ91cSO8T5JBSg83b5yBkTzKkdM0icMkW+A4+pMtkek3wzSRiBgj0dfp8ShQndlTS6CNwwfzp/DcGkIOwTYhzqAbqPEV/YXbjYkiQzD8R//MFVcmdCFhVf0z3Y7qeL1sNvgdX8BlnS2bsziEY+CTXYwC3rw8XuOQE58qSznT9+6mxnKn/IpdFeoWk+JvASftJt8XFvA5yhzjMR6si//Cqghm8H9M1ZqNeTBF8ZT+TGT6IL5row6JJN/q4s0XzMSF2NBZ42icuGH+M/wx4loGTBYqMyl9ld80YMh+kRot9fgena/hihMHVJd/DIuUzURR0vHpEmZiNItXaKZJ8zKlzt1OC6UuDL3I9BnD7uBszKnWeOnDJsDzyxT7HLzF/lhqOs9WWfmedSy+WVbgz6u8qZT4kGCxJXp58fxsRIPYKFak2qqKYjr8NNhpSoUPEHF9RlkzMkMcHk4g5IIS+7QQupqMQM6YSe+rAFbjTIOEymg0+HhSVbm0hG7pxQvDakrV3GO9yB/bX1m7nTmxsLvYK1Q734anEdIzZplrylkrUsfENd1wLn8P3WuLeCxm3b7uxIip034HruWrAjaISZVSov9CM4e1eQ6Q3Sj/nU3ANkrVQY69C15ds29WiNiLkoFvshKmYbTrVVLLhE2+swWT34Hs1qgyHKv3o0+4e+fkELhmZlfafMUzHq6Kzl7ZBqh8U6cae3gfW4PZxNaS77qwGWQuVzslf6ypkJjxWlY39fkw3bIJtetcx+MLHazA+MPhcjSqDo9Kn6dspQT4j3YgVKbxkeVtPXDByt5F9AchjAhl7V8lbZ/+mw+Swd1KdXpPk5CtU7JXoqZLrqr0K1QOzoNNTI6yYUoBtIijtF0kufKDOYa2nqw3xtfaF6Zai26fdGJGUdrrAtYK8DM6mfCevuFV1eVs16DOrCjO+z8Dj/5jysfbscOm5qYnfJlrsyWJjMYp1cBWPMqETulUJH7NJVZ2p7oe2P1xE8AVlyYRv4WNJxJwQpCd9+baGTCeHGGGgplFaC1yB1QdDnspenELIrVxGZ4/6Z9SQ6zbCPVIN2+tBG5Lz0+J7iaAquQPEVfVzvB/T6ZJgk97kDm3OeQb4gMv3GZITH3Pxc8Fz+7IbGyy9Wg1cMjyfOVmsnGK+hRqXSJ3Cy6o86FdnzRifvr8oXfveBic2T2YryXOPrAw7hTBBl60iJGK2iFRrViR5aGue8Gh7l8hewbdc/CzwpCt9eAtDmB+1rV+rgSsowBqscBnN6kzwjBLqs1AN8AbxY8BemZWYTXyUGrnPJ6/UYHDkCcXSKSeklC4pW7SmS2jjo0SQNldmpQ8Hn7KQM0Ny+/D725a79cClRmAA7meGoJuroetMNTBI9oMiHdmKpM7yERz5GOnby5iX5OOVI7aYmEF6ZnH3Y7COuMie6MD4VhWHE4Mtqspbuy9ZaFsmAdPWLl0OvcCXXPxs8KQvfXdzQ6CfqQ32N/BqobQeuAJ3d8bvK2UAnC9UG1X2BElbZ0M6Xh2Ok758aVLVzlPsFYnV+y/sXILuGaADulRxitmgqk7t+6FNj1NF2liZlfAdfMhCzglJ+tJnX2nK5MYCk9x6tE4ClyIsj4bOU9dNJYZ7JJNQ80nSkaPPmTsU25VhQ4EZrD1eDd/HPC9ekS7bUIAVv8c2M3uF6MuXMR3QHRssI3dxEdqS4+NpW5cFPrNT8CG3zjR4bdelz9J3U3R52iIWpPBql3cSuIIU7wx5KnuNGt/dlyhFq9dyOR4O+Ggx/bXATXweJ3gxm9qtUxtPsv1FlWLboWwiu7uznUUqrxRk3yQi1UeDDSIo0xVJBtqQoEWbusTwlUdLNnzHrZMNnnSmr7J8yZHJjQEOrVU4nQUuNQxbdzhfGHnsfN0qqUb0Q3oynsTi3tgC50kaMcPedYBJ9Z17qQ8lvGo5dHLEScme0n0qndSBabu6T3T4yCOCz0zFf8DK9FX6bEoEviQSA1J4jco7C1xBmreFPJWxc8T9U0i5lssROaePbWNwzDpisrbxY+oEjiPUobuIK7k4MDa2awUfSNixchF/LP/JXsgcGxj+UNC9dZXE+yoCxs7qrD1EDnzjYZILX+H36EB600fdSbJu329kh04DlxqJv0jObHqEZ5oBed/QCj/peqoIPUTAq4AyO/E5/9/lFF1tRph68oiNE9lK9IyYkjmlcyNxQxsReGizOjTwiYcEH6lTLzdct48yS56+35n8nQauIPWbQ57K2CX1eSmknMvlmDg1e57XHb/ga9Tp6hju1iC2GSTTD4R8qKAq3VV83dnPVTR6ux9kxV5VPA8NOleVN7ovvrQN61VjvCfRxhe2l0z4xqTyUdyT/vRNZ3dT9HH7PLiNoPPApQZjbouzcwQKcNiqs8oc3CxB+jLmxfYxfO6uKyPbQPPqyAkwdevG8FNPIHvLMfucIBuTtbIsyLh3JcL6gpSu67HM/8XzWgJeDZuM1+AD2wWfMDnmhyb96ZPuobXsAEGf71SRzgNXkD7lbAFtgTk5nb4bLzHqMpej8leWKQ91JqkuicRryA/kLEy1WLo3VS55+GsfO+qc7Y7dNppKlikrIyOyVpH5fNB1oQqhzv3QBjyx0iZ1qoJL228jefAFfo8Z6JP0TUcH2sjBmwqnl8ClxuProhuxny6HYYrBVIoNXVk6/06wg+SoszxI6IuJT86flR0+JGDt2+LNKf97U6L+buK1dQJnsOIgG69rMRlSOsbqLpeJ13UFfNTgwFLaYrnMvGAZzw5qf+b6mVXyRJMd6IvuyT1vlc709c6V6SVwBS34jOpMSgX9nTJYbJsScEYBakiWdNRZmL1SL+qeI1s8e+XNJteS4wzVS81i7uWvpeRoklKyvSfo2IT2cp1gaw46xvbL92tcsGC6ad0abLpHlS3og+5cLPr2a7uXaj2H3gKXnOqvYsmMW2XJtJkw3i2YiSTd+Rqzs5Rh6DN1aQAAEABJREFUzyVltRKTGw+UEzFpddonIgLobyLctxGf10fKBykKMvHqXcUfndCtqjx5Xzy2FjCZlN1usXmyzgYItO3Ooa03KBrtT/ogfdFR4NXSnT7u4DbDWVGrt8AFTynGtjdHcG3A8+RIPKYaqPmjBN1ZgMuXqSYC03FPkk14fXSdaRUfyfAH3Uh18L3Egy+jQh0+BVmSMgfdagss+psJeC08SZWxsbLaiTa9p2TAv2tXzrGCbELf40uiI94Rfevea+AKFniVcjcyv1cGvLbwZyKpcc8UsBcWf9Wb6sRryE9lF16na38JFH9W6qfm1n1Q9N3B2KZ6JOsFGVIb0DFnCJ2S9FYiiPYNBLwGsQc6Nl1ZXOeaPeLvIbvyNblOvWxxZRf63L+ZAtKX6dMmejtovQcuNTAn57zcFP9mwttXMFNJNmBfcToLhzg01Y29kC6Wk71NcOOaRBhvjFXhie4DMYSeypABWWLsUrqsqoutBHwlu1gF2FBZo0Tb7RLashGBjCuxMNr9KPFy2YA+3as6vQcutJOi+yhnPEFZMu0sR3MfWZPEckGQDfjaeBfJ4x46K9Q1idOzOaL9F+vWrdtXdnJ2o1wQ76+LUur160mi1/lEQskxMQXeT5pYeMXN1wVdrrhTcSV67LrLH8FfCAWbYTtdNkq02V3EmzZsRCDXSrITfS1l9yXxj5cN6MtLv3vLBwlcQbuXhNzJPiCDdrUkxuHfCY4a/VwBy4T2EINpT6HhiKgfyk6fE+woetEkvnwwoAPG8PYULffpOEanVlnguWei0lekQ3K9oGjtKPicaP1QgI2UNU600R7iy/Kd3p8yGkttVpSd6GM85Zo1Fur0YZemhTdY4FLjMybwMkvK9UjsrLr+asb+ly2YpnAHqRU7WkzFVnqUsL4sJzxbQOBhZ07dmpjoyKm5Rm8XHV5tJxJo+2bg9fYEXWRG9oloorGpAN3PFsKXBdhE2VSJtrlDaKupCGVcuU4fe5lsQR8eRJ3BAhfaSvF3KT9a4KQt5YwHOYhjxJEtfix4pGRnsh/jL7qcKrF7Aq96F8huXxHsIli1lEj8mHvDq0GK0f6qy8EIKbypygMPZ6D9eUH2ZX6qy9IcdOQp8gIVoDs20OVUibZ4uvg9UvDjqSjVrtxfBdmPvsUTl8P0aNmCvuvgdoIzaOAKGrGv0h/DdSpj+xvwU3ijLZdDsPkfu2m+o0UlmMHPJ/9L5aA8jTFLfvFJTPz4hO+MUxysuu7qh9qiB9oHGxXfHWReUB2erNCFp6pLVRcd0VWXrSTa4DbiR5u0QjBHIrIjfcrdroa+Cv6gqgweuOQUfI5m433XEEyReKCLPEY82eRyAQPIDLYTWNpUg/EvFgzzJPZdOS1TAjjM19mG5FXCP0zw920JBC3BYaLnfFJnsfPXhc9UkO+qDk9W6IJO+tlawuZb0AaCy1ujmiEh2ZK+9N4aou0um9Bna1RpH3XwwIVKMgR/0ZxXBNCBj8jgi08M/JhVkF3YRZIZ9w+QjrwCKWs1sUULUwJ4YmEhMU8tKQaPE8KZsv8TlU+VAg3GSaCZooVsnOiDrMiM7Kk6dcux8QNkd2bA97Lmrq6AbeLL/vShj9Sgub9sQ1+tUaUb1CwCF6rJIOx/zno6fqbgpgsLC/z1TeHNRLls8w0BXx95DWLXga70YuKhQ/t2QjpUjn+0gNUA+ukn6ggY22SfMGg5lV3ZHFob4mBTFkXztfAbGxbO8G/6kHPoBSY4Qz5IH+V6cMgmcAVL8PVqXbhOZWw8mEX0TwnaVrkch3P4CF7biuaRgqHTgyXAtxWELhPwFfMo5ewnxnjYAboGuOYeZeBw+s63VY+6ygZN2HBb2ZWgRfAaVJg+matt6DvuxoD0SfpmnyJGeWUVuORAPHG5g4QoxsGmrWxlArGxgOx0goC1ZExgZYyHE32GFJ89sviCx1Mhr5x8gXyOBAK45h5l4ICrosEStsJmTCDltB3G9wYTZgjGClr0GV67XfbPkr/RN138zvGyClxoKwMdopx5Tcqs9Go1RJ3BfYvoGJBkK9Y+Mp3h+pKXSayMF+lytKlLwbENNrq+7MZ0Cn53yS9L2qGvuLu0oAPbBdEnuc4GsgtcWEaOhYPV2f71/WqQx1N3HkH2YtNCHIwnMAbyWcT9+3m0xQY6YwNswYA7T1jYiMmrG6DNx8/QR1iH6Cp8jHyLvuji94aXZeAK2jMRs85n10+rYR4U6s5tJkdjIH9X5Uw2fawMwad9FgTrci4SuqLzY7GBAFvM04D7xEYOfePTEwsn36Tv0Qcnlw58N9vAJYfjSCfewxkYdM10hBro3i7yrOPJhocLmE5xDenKrHyePi7U9awldEI3dLwGOgsOnzUlm+oT+oS7Dx5s6HNPlQ3pg/yeCrqonG3gQlkZjrMK3ZXqVLma/jtSDcUrky5LwgKy418FXxDw9HEL3cM+vAJ8UdfMj1I2qoTMyI4OvALeIuiGjuwPNSpluhQ29AW+ntI3XFZPkj3pey5+73hZBy6sIQPy2M8scn46wFFKX1CDsWjZwZ87HNmUQX3Gex6h6+vIAAQyDqJgyQxHavEXV7ezSMiCTMiGjASq60huZEeHuRxkd1om9AEWh9MnnCrgvEK2pc9xnS1kH7iwnAzJmrE6Xxo3Ub0vqeH4/K7LkmIWkH0JZAco57P33YTLXlUEM5522f4GR/533e/y1QHa8IAXPOGNDFeRXHcTIBsylkClhkil4PtfEh59QZmV+ENAX7OQh0QaReDCQHJcXgs+wbUJ7JzJpMesn7xMXXpFk615tSSYHaprTq1hCQx7qt9IglxVcCvBVgLGlJinRdtwyAZO/z7dZ54UY04A19yjDBxwqUNdaEDrquJzIwE84AVPeCNDefWTQeskBS18/ijVoQ8os9InZH/axkIeGmk0gQtDybBMZGSpCD8doOHY0oW/3A5+wUlYQG3AAvDzlZ8qYEzpEOX8pd5bOa8ZL1LOPCnG0wCuuUcZOOBSh7rQgNZML2ROmLTVYgUtfJ01l/i+S5ttauhbLv7geKMKXMFaj1GeOuxBKMuJR+Vj1KDla+OyScrFLFog+DjzH/F5V0X6En3Kxc8Cb3SBS3/N+evMchcGbF0jMjj5VTXs3M/zcg1W8KawwABVg29/VazxdWVWog+x7Ik+ZVXIBWl0gQvDKXhdopwxkjpbj/A5+Fg18NzOsJfNSppBCwSfZpE4Pu5qSN9hV1f6klsnG7xRBi6sp+B1kfKHC+pup8sM+7lc2yhblTRjFlDQwpfrzIjHAvSZh4c+xO/RwWgDF5aW4VmW8DBd0xDK7MTaRlbI2xUKYrFAbhZQ0MKH66w9RAX6ysNC3+H3KKH/wNWymdQAHBPF1r08+tahzq4S7ElUp07BLRbIwgIKWvhunV0ekJs+smPoM/weLYw+cGF5NQRPXmxMx2Ajt1xgP69vyAnYwtatU/CKBQazAL4qYNE463jryEHfeHDoK3XqZYk7E4ELy6pBGPPaXtd83lVmJ3aBPEXOwKEBdqWCWCzQtwWCj54ivvisMjvRJ7YPfcSulDPizAQujKyG4QvJdrquM0lV6Avsu32cHGPwY5cQZnxQJO7aAsE3jxMffFWZnegL24W+YVfKHXGmAhfGVgMxs5sxrzrLg6gKcPQZB2NyXaBYIAsLKGjhk3WOEFuSm2U8jGmNbp7WkgJV+cwFriVFFcBYwlBnYfZSVQ6dPV3O4p7qu1Sv5MUCrVoAHxScLqJ1zmEQ+mJiaRV9YPHHrP03s4GLhlLwYtFonS1xqAYQtAhe7OfO7wLFAr1aQAEL3yNo4Yt1ebMuFN+vW28lftbXMx24sLyCF7sSsAso+zpxqw58QA70CUGXZ/rVkafgzrgF8DXBJ6XmBwR1Ez7O7hr4fN26o8Kf+cBFayh4scfT1rpm2oSyWol9oc6UM7E+slbFglwsUMcCwcd+oDr8oVVWK+HbWwdfr1VxjMhzEbhoGDUoW9Gy/xOr57lVB24uZPaz5wlsY12XVCzQmgUUsDYW8ITFvvA3a0AYn94q+HiD6uOrMjeBi6ZRw/5awETVJoP2kGDc4ax169aVpy+sUWBqCyhg4UtniRC+pax2YhCeiaXsIFu78lgrzFXgWmokBS8GLtmFkzGBpdtuzgZtPH19WE5XZwsRl37BmwML4DuCD0tVnrLwKV3WSvjuM4Mv16o4C8hzGbhoODU4p/PeQ9dnCJokzpz7sZyv6V/KJjxLnRmwQPAZFjvjQ000wmfvEXy4Sf3R15nbwEXLqeHPENxd1/sLmqRrqhLjXqx3vL+uSxqxBboWXQHr/gLWGTKehe80Ybk/PisgeDWpPxN15jpwLbWgnOC5uuav3x+VN0msHTtRTnmQgIH8JjRKnRm1AD4hYPb7iVIRX1FWO+GbTw++WrvyrFUogSu0qByCbUI4aIC1XeFu7YwZzufLSfcSXLl27VJhpiyADwj2klLnC/ANZY0SPsl5kvhoIwKzVqkErhUtquD1UwHrHF+24nbdSwIWx3BdIKdld8q69Qv+DFggtP0FUgVfwCd02Si9DJ8UME+rEYFZrGQHrllUvkonOcm7VMbT1/HKmyZW8bPT6tlyYr5gNqVT6o3IArS14GyJzM6k+IAuGyV8j6csfLERgVmuVAJXResqeHEYKXt0vUQo0xxKurnqHyxn/qGgBDAZYxYTbSv4oXQ7WECbK2uU8LWXyP8eKDizEYU5qFQCV6KR5Tz7COX2AubbKGuctlBNAhhTKHaXk2+k3yWN2AK0oYC2ZGoDAYs2nkYjfOz2weemoTPzdUvgMppYjnSuYCehsobsZ8qnSbdVZV4jfimnZxB/uEmsEqSk+hZQu91QwKD7L1WbtqRNddk44VMsjt5JfsYZCo0JzUvFErhqtLScisXat1GVtwqmTQQsBm5/pU7ANIp7Tkuw1O/WAmqnewqY1vArcaLtaENdTpXeotq3Cb6ly5IcC5TA5VhpBY4c7K+CPXWL14LPKG8j8an82+oUTGR9hvLSLm1YtQUatIWANmHi6LdFkrZSNnXCd7aQL71awLjW1ATniUDpIA1bW872IwGnYrNom8MIGlJaVY3JiSxF+q06y76Ce68qLT96swC2F+wrhr8V0Ca0jS6nTvgKi6IfL//huLCpCa4mMB+/SuCasp3lfMcI7isyHBfVliOyHOT5onmqOs/3Ba8S3Fq/S+rQAthYgK2/LzZsg0Qb0Bb6OXXCN56KrwjYhmZqgvNMoASullpfzvhxAa+PLLpmsLUlygt3FiHGQc5VpzpJsIfgVrpXUgsWwJYCbHqSyDEwjq2xuX62kvCF5+Ebgo+3QrEQWSiBq2UnkHPuJ2CbEo46w2nb5MAuru8WwfPU2RgTe61yFonrVkmuBbCZANsxZnWe6mFTbKvL1hJt/0J8QbBfa1QLoUULzFngWtS5l//krO8XEMBYwM1rQtt8+Qr5BhE9TZ3wQgFfJh+v/Pq6V9IKC8rv2kUAAATDSURBVGATAbbBRheq6DQBtsOGumw10da70fYCpkq0SrwQW2+BErjW26Gz/+W8bEPCKyRzwBiY7YLXJiLK165PK/+NOiknFO2j/NGCNj7Zi+x4EjoL0B0bcFLObyQ9tsFG2Eo/W0+0LXOx+FJ4QOvUC8FVFiiBa5U5uvuhAPYpAYP424oLn8KVdZY40urFos5MbOaJsV7yo+rMzPK+t/KZ2TcfXQTohG7oyDpB5lmhOzbAFjJFZ4m23Ja2FTDPrzNGhfAVFiiB6wpb9HIl5z5BwDQKvhIyEEwn65o3a+f46smrC1/L/qTO/h+CQwWvFvB0cgfl0+xi0KkOyCZARmRFZmRnbeCfxBid0A0d0VW3Ok20GW13a9pScEKn3ArxNRYogWuNSfq5IWdnCx0mH95YHHmN7PsT+R3F94mCNwl4OuHAhj8rOPxUcJyA8SAGsJl8+SD9vpOApS6t+4zo/p0A2vCAFzzhjQzIwpYuf5acyIisyIzsvILrdm+JNuJ18MZqP9oOuXpjXhhdYYHWnfAK0uXKtYA6Aa+RTGRlzRtr4M5x63aAxwcFdsVgPIgBbCZfHis+7FTAk8ZfFWSYIEuA+66ume1/lPLDBRyeyyEiBJwD9BvgmnuUgQMudagLDSZ4MnMc2vCAFzzhjQzIgkwSYZBEW9Amt1U7MXG0vA4O0gyrmZbAtdoeg/5Sx2Ax9xuUsxsFM7V5/fnFoEJNZs7J3gSTu6oYOR+i/DECDs9lC2wCznP0G+Cae5SBAy51qAsNaAk1q4TNsf39aAsBbcIcr6yEnGVhUrqVwJWy0EDl6iwnCZgHxGZ020kMDli4SHlJ3VgA22Lj7WT3mwqwPZNSu+FWqE5lgRK4pjJfP5XVib4m2F2wqThuJXizYK5PeZH+bSRsiC23wrYCbPy1NggXGt1aoASubu3bOnV1rlMFrxEwY55Axq6qh4oRY0TKSopYABthK2y2KTYUYEu+SkaqlaLcLFACV24tYsizhKJOd5HgEMGTBHydZJ98lhoxt+jiJbw5zrEBtsAm7N/O10Bshc14NZxj04xb9RK4xt1+q6RX8GKffJYasWUK5zsyV4xB8fcIkfEazubT5UwmdENHdEVn5ljdXDbBFtiEL5Yzqfg8KlUC1wy3ujotc8UOVb6HgC9kV5e6fLFkAuwbdc2cKNbWMR1BP0eRkBWZkR0d0IV92q8edERXdC5zrEbRnM2ELIGrmd1GW0ud+xzBZwSvE7DHOWvrmDHPHDLmkrEH1TukIGv7WH/HLgeX63dfCV7whDcyIAtbBSEbc6muLLmRGdnRAV2Ya9WXfN3wKVRrWaAErlrmml1kBQPmkLEp4gd1/QrBEwX3FWwmuKo0Z74VwY1dWXfUb17H2PniZbpm//W3K/83AVMK9ld+YACuuUcZOOBSh7rQgBY0oX1teAngCW9kQBa2CkK2MpdKRi1poezHVZzAs4CCye8EBLdvKz9awOsYO1+8S9d7C14peLGAKQXPVb5rAK65Rxk44FKHutCAFjSh/TtPmoI17xYoT1zz7gFF/2KBEVpgHIFrhIYtIhcLFAt0Z4ESuLqzbaFcLFAs0JEFSuDqyLCFbLFAsUB3FiiBqzvbFspRC5TCYoHmFvj/AAAA///FpmInAAAABklEQVQDAOCsNuMAYKzlAAAAAElFTkSuQmCC"
 
@@ -1111,10 +1112,10 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
                     <div style={{fontWeight:700,fontSize:13,color:C.text}}>{user.name}</div>
                     <div style={{fontSize:12,color:C.muted}}>{user.email}</div>
                   </div>
-                  <button onClick={()=>{setView("advertise");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:"#b8792a",display:"flex",gap:8,borderTop:`1px solid ${C.border}`}}>📢 Advertise on BGexpats</button>
-          <button onClick={()=>{setView("community");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:C.text,display:"flex",gap:8}}>💬 My community</button>
-                  {(user&&user.isAdmin)&&<button onClick={()=>{setView("analytics");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:"#1d4ed8",display:"flex",gap:8,borderTop:"1px solid var(--border)"}}>📊 Analytics dashboard</button>}
-                  <button onClick={()=>{setUser(null);setUserMenu(false);setView("home")}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:"#c00",display:"flex",gap:8,borderTop:`1px solid ${C.border}`}}>🚪 Sign out</button>
+                  <button onClick={()=>{setView("advertise");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:"#b8792a",display:"flex",alignItems:"center",gap:9,borderTop:`1px solid ${C.border}`}}><svg width="15" height="15" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#b8792a" fillOpacity=".3" stroke="none" d="M3 11l18-5v12L3 14v-3z"/><path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M3 11l18-5v12L3 14v-3z"/></svg>Advertise on BGexpats</button>
+          <button onClick={()=>{setView("community");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:C.text,display:"flex",alignItems:"center",gap:9}}><svg width="15" height="15" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#f0c060" fillOpacity=".35" stroke="none" d="M4 4h16v12H7l-3 3V4z"/><path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M4 4h16v12H7l-3 3V4z"/></svg>My community</button>
+                  {(user&&user.isAdmin)&&<button onClick={()=>{setView("analytics");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:"#1d4ed8",display:"flex",alignItems:"center",gap:9,borderTop:"1px solid var(--border)"}}><svg width="15" height="15" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#1d4ed8" fillOpacity=".25" stroke="none" d="M5 20V10h4v10H5zm5 0V4h4v16h-4zm5 0v-7h4v7h-4z"/><path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M5 20V10h4v10H5zm5 0V4h4v16h-4zm5 0v-7h4v7h-4z"/></svg>Analytics dashboard</button>}
+                  <button onClick={()=>{setUser(null);setUserMenu(false);setView("home")}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:"#c00",display:"flex",alignItems:"center",gap:9,borderTop:`1px solid ${C.border}`}}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Sign out</button>
                 </div>
               )}
             </div>
@@ -1260,30 +1261,16 @@ function CategoryGrid({setView,t,lang}){
   )
 }
 
-// Neutral line icons for the Quick Facts row. Rendered by position (0-5) so they
-// work across all 9 language versions without editing each translated factsList.
-function FactIcon({i,size=19,color="#1e5e3f"}){
-  const p={fill:"none",stroke:color,strokeWidth:1.7,strokeLinecap:"round",strokeLinejoin:"round"}
-  const icons=[
-    // 0 — Tax (percent)
-    <g {...p}><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/><path d="M19 5L5 19"/></g>,
-    // 1 — Euro currency
-    <g {...p}><path d="M17 6.5a6 6 0 1 0 0 11M4 10h8M4 14h8"/></g>,
-    // 2 — Emergency (medical cross in shield)
-    <g {...p}><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M12 9v5M9.5 11.5h5"/></g>,
-    // 3 — EU (stars in circle)
-    <g {...p}><circle cx="12" cy="12" r="9"/><circle cx="12" cy="6.5" r="0.9" fill={color}/><circle cx="17.5" cy="12" r="0.9" fill={color}/><circle cx="12" cy="17.5" r="0.9" fill={color}/><circle cx="6.5" cy="12" r="0.9" fill={color}/></g>,
-    // 4 — Cost of living (mountains / low)
-    <g {...p}><path d="M3 19l6-9 4 5 3-4 5 8H3z"/></g>,
-    // 5 — Sun
-    <g {...p}><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g>,
-  ]
-  return(
-    <svg width={size} height={size} viewBox="0 0 24 24" style={{flexShrink:0}}>
-      {icons[i]||icons[0]}
-    </svg>
-  )
-}
+// Quick Facts icons — Icon2c duotone, keyed by position (0-5) so they work
+// across all 9 language versions without editing each translated factsList.
+const FACTS_ICON_MAP=[
+  {d:"M19 5L5 19M8.5 7a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM18.5 17a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z",accent:"#16a34a"},   // 10% flat tax
+  {d:"M17 6.5a6 6 0 100 11M4 10h8M4 14h8",accent:"#1d4ed8"},                                                              // Euro
+  {d:"M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3zM12 9v5M9.5 11.5h5",accent:"#dc2626"},                              // Emergency 112
+  {d:"M12 3a9 9 0 100 18 9 9 0 000-18zM12 6.5v.01M17.5 12v.01M12 17.5v.01M6.5 12v.01",accent:"#f0c060"},                   // EU member
+  {d:"M3 19l6-9 4 5 3-4 5 8H3z",accent:"#b8792a"},                                                                        // Cost of living
+  {d:"M12 8a4 4 0 100 8 4 4 0 000-8zM12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4",accent:"#f0c060"}, // Sunny days
+]
 
 function QuickFacts({t}){
   return(
@@ -1292,8 +1279,8 @@ function QuickFacts({t}){
         <h3 style={{fontSize:17,fontWeight:600,color:C.primary,margin:"0 0 18px"}}>{t.facts}</h3>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(270px,1fr))",gap:10}}>
           {t.factsList.map(([icon,text],i)=>(
-            <div key={text} style={{display:"flex",alignItems:"flex-start",gap:10,background:"#fff",borderRadius:10,padding:"11px 13px",border:`1px solid #bcd4c6`}}>
-              <FactIcon i={i}/>
+            <div key={text} style={{display:"flex",alignItems:"flex-start",gap:10,background:"#fff",borderRadius:10,padding:"11px 13px",border:`1px solid #bcd4c6`,color:C.primary}}>
+              <Icon2c d={(FACTS_ICON_MAP[i]||{}).d} accent={(FACTS_ICON_MAP[i]||{}).accent} size={18}/>
               <span style={{fontSize:13,color:C.text,lineHeight:1.5}}>{text}</span>
             </div>
           ))}
@@ -1457,7 +1444,7 @@ function CategoryPage({catId,setView,lang,t,cache,setCache,user,reviews,setRevie
     <div style={{minHeight:"100vh",background:C.page}}>
       <div style={{maxWidth:820,margin:"0 auto",padding:"32px 20px 60px"}}>
         <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:26}}>
-          <div style={{width:46,height:46,borderRadius:13,background:cat.bg,display:"flex",alignItems:"center",justifyContent:"center",fontSize:23}}>{cat.icon}</div>
+          <div style={{width:46,height:46,borderRadius:13,background:cat.bg,display:"flex",alignItems:"center",justifyContent:"center"}}><Icon2c d={(COMMUNITY_ICON_MAP[cat.id]||{}).d} accent={(COMMUNITY_ICON_MAP[cat.id]||{}).accent} size={23}/></div>
           <div>
             <h1 style={{fontSize:22,fontWeight:700,color:C.text,margin:0,fontFamily:"'Sora',sans-serif"}}>{lb.label}</h1>
             <p style={{fontSize:13,color:C.muted,margin:0}}>{cat.articles.length} {cat.articles.length>1?t.guides:t.guide}</p>
@@ -1822,7 +1809,7 @@ function CommunityPage({user,setView,posts,setPosts}){
             {tabs.map(c=>(
               <button key={c} onClick={()=>setFilter(c)}
                 style={{background:filter===c?C.primary:C.surface,border:`1px solid ${filter===c?C.primary:C.border}`,color:filter===c?"#fff":C.text,padding:"6px 14px",borderRadius:20,cursor:"pointer",fontSize:13,fontWeight:filter===c?700:400,whiteSpace:"nowrap",flexShrink:0,transition:"all 0.15s"}}>
-                {c==="all"?"🌍 All":CAT_ICONS[c]+" "+c.charAt(0).toUpperCase()+c.slice(1)}
+                <span style={{display:"flex",alignItems:"center",gap:5}}><Icon2c d={(COMMUNITY_ICON_MAP[c]||{}).d} accent={(COMMUNITY_ICON_MAP[c]||{}).accent} size={14}/>{c==="all"?"All":c.charAt(0).toUpperCase()+c.slice(1)}</span>
               </button>
             ))}
           </div>
@@ -1836,7 +1823,7 @@ function CommunityPage({user,setView,posts,setPosts}){
                     <div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap",marginBottom:6}}>
                       <span style={{fontWeight:700,fontSize:14,color:C.text}}>{post.author}</span>
                       <span style={{fontSize:11,color:C.muted}}>{post.time}</span>
-                      <span style={{fontSize:11,background:CAT_COLORS[post.cat],padding:"2px 9px",borderRadius:10,color:C.text}}>{CAT_ICONS[post.cat]} {post.cat}</span>
+                      <span style={{fontSize:11,background:CAT_COLORS[post.cat],padding:"2px 9px",borderRadius:10,color:C.text,display:"inline-flex",alignItems:"center",gap:4}}><Icon2c d={(COMMUNITY_ICON_MAP[post.cat]||{}).d} accent={(COMMUNITY_ICON_MAP[post.cat]||{}).accent} size={12}/>{post.cat}</span>
                     </div>
                     <p style={{fontSize:14,color:C.text,margin:"0 0 12px",lineHeight:1.65}}>{post.content}</p>
                     <div style={{display:"flex",gap:14,paddingTop:10,borderTop:`1px solid ${C.border}`}}>
@@ -1897,7 +1884,7 @@ function CommunityPage({user,setView,posts,setPosts}){
             </div>
           )}
           <div style={{background:"linear-gradient(135deg,#6b21a8,#9333ea)",borderRadius:14,padding:"16px",textAlign:"center",marginBottom:0}}>
-            <div style={{fontSize:24,marginBottom:6}}>💑</div>
+            <div style={{marginBottom:6}}><Icon2c d={CONNECT_ICON_D} accent="#f0c060" size={24}/></div>
             <div style={{color:"#fff",fontWeight:700,fontSize:14,marginBottom:4}}>Meet & Connect</div>
             <p style={{color:"rgba(255,255,255,0.75)",fontSize:12,margin:"0 0 12px"}}>Find friends or romance with Bulgarians and expats</p>
             <button onClick={()=>setView("connect")} style={{background:"#fff",border:"none",color:"#6b21a8",padding:"8px",borderRadius:8,cursor:"pointer",fontSize:13,fontWeight:700,width:"100%"}}>Browse profiles →</button>
@@ -2143,17 +2130,17 @@ function CostCalcTool({user,setView,subscription}){
   const total1=Object.values(v1).reduce((s,x)=>s+x,0)
   const total2=Object.values(v2).reduce((s,x)=>s+x,0)
   const euAvg=2400
-  const cats=[["🏠","Rent","rent"],["🍽️","Groceries","food"],["🚌","Transport","transport"],["💡","Utilities","utilities"],["🍷","Dining out","dining"],["🏥","Health","health"]]
+  const cats=[["rent","Rent","rent"],["food","Groceries","food"],["transport","Transport","transport"],["utilities","Utilities","utilities"],["dining","Dining out","dining"],["health","Health","health"]]
 
   return(
     <div>
       {/* Mode toggle */}
       <div style={{display:"flex",gap:8,marginBottom:14}}>
         <button onClick={()=>setMode("single")} style={{flex:1,padding:"8px",borderRadius:10,border:`1.5px solid ${mode==="single"?C.primary:C.border}`,background:mode==="single"?C.primaryLight:"transparent",color:mode==="single"?C.primary:C.muted,cursor:"pointer",fontSize:13,fontWeight:mode==="single"?600:400}}>
-          📍 Single city
+          <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d={MAP_PIN_D} accent="#1e5e3f" size={14}/>Single city</span>
         </button>
         <button onClick={()=>isBasic?setMode("compare"):setView("pricing")} style={{flex:1,padding:"8px",borderRadius:10,border:`1.5px solid ${mode==="compare"?C.accent:C.border}`,background:mode==="compare"?C.accentLight:"transparent",color:mode==="compare"?C.accent:C.muted,cursor:"pointer",fontSize:13,fontWeight:mode==="compare"?600:400,display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
-          ⚖️ Compare cities
+          <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d="M12 3v3M5 7l4-1M19 7l-4-1M5 7l-3 6.5a3 3 0 006 0zM19 7l-3 6.5a3 3 0 006 0zM8 21h8M12 6v15" accent="#b8792a" size={14}/>Compare cities</span>
           {!isBasic&&<span style={{fontSize:9,background:"#fef3c7",color:"#92400e",padding:"1px 5px",borderRadius:5,fontWeight:700}}>BASIC</span>}
         </button>
       </div>
@@ -2171,19 +2158,19 @@ function CostCalcTool({user,setView,subscription}){
           <div style={{display:"flex",gap:6,marginBottom:16,flexWrap:"wrap"}}>
             {cities.map(([id,cd])=>(
               <button key={id} onClick={()=>setCity(id)} style={{padding:"5px 11px",borderRadius:16,border:`1.5px solid ${city===id?C.primary:C.border}`,background:city===id?C.primaryLight:"transparent",color:city===id?C.primary:C.muted,cursor:"pointer",fontSize:12,fontWeight:city===id?600:400,display:"flex",alignItems:"center",gap:4}}>
-                <span>{cd.flag}</span><span>{cd.name}</span>
+                <Icon2c d={MAP_PIN_D} accent={city===id?"#1e5e3f":"#b8792a"} size={13}/><span>{cd.name}</span>
               </button>
             ))}
           </div>
           {/* City vibe */}
           <div style={{background:C.primaryLight,borderRadius:10,padding:"8px 12px",marginBottom:12,fontSize:12,color:C.primary}}>
-            {CITY_DATA[city]?.flag} <strong>{CITY_DATA[city]?.name}</strong> — {CITY_DATA[city]?.vibe}
+            <strong>{CITY_DATA[city]?.name}</strong> — {CITY_DATA[city]?.vibe}
           </div>
           {/* Breakdown */}
           <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:14}}>
             {cats.map(([icon,label,key])=>(
               <div key={key} style={{display:"flex",justifyContent:"space-between",alignItems:"center",background:C.page,borderRadius:8,padding:"9px 12px"}}>
-                <span style={{fontSize:13,color:C.text}}>{icon} {label}</span>
+                <span style={{fontSize:13,color:C.text,display:"flex",alignItems:"center",gap:6}}><Icon2c d={(EXPENSE_ICON_MAP[icon]||{}).d} accent={(EXPENSE_ICON_MAP[icon]||{}).accent} size={14}/>{label}</span>
                 <span style={{fontSize:13,fontWeight:600,color:C.primary}}>€{v1[key]}</span>
               </div>
             ))}
@@ -2225,7 +2212,7 @@ function CostCalcTool({user,setView,subscription}){
               const diff=v1[key]-v2[key]
               return(
                 <div key={key} style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",padding:"9px 12px",borderTop:`1px solid ${C.border}`,fontSize:13,alignItems:"center"}}>
-                  <span style={{color:C.text}}>{icon} {label}</span>
+                  <span style={{color:C.text,display:"flex",alignItems:"center",gap:6}}><Icon2c d={(EXPENSE_ICON_MAP[icon]||{}).d} accent={(EXPENSE_ICON_MAP[icon]||{}).accent} size={13}/>{label}</span>
                   <span style={{textAlign:"right",fontWeight:600,color:C.primary}}>€{v1[key]}</span>
                   <div style={{textAlign:"right"}}>
                     <span style={{fontWeight:600,color:C.accent}}>€{v2[key]}</span>
@@ -2249,7 +2236,7 @@ function CostCalcTool({user,setView,subscription}){
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
             {[[city,total1,C.primary],[city2,total2,C.accent]].map(([cid,tot,col])=>(
               <div key={cid} style={{background:`${col}15`,border:`1.5px solid ${col}40`,borderRadius:12,padding:"14px",textAlign:"center"}}>
-                <div style={{fontSize:20,marginBottom:4}}>{CITY_DATA[cid]?.flag}</div>
+                <div style={{marginBottom:4,display:"flex",justifyContent:"center"}}><Icon2c d={MAP_PIN_D} accent={col} size={20}/></div>
                 <div style={{fontSize:13,fontWeight:600,color:col,marginBottom:2}}>{CITY_DATA[cid]?.name}</div>
                 <div style={{fontSize:24,fontWeight:800,color:col}}>€{tot.toLocaleString()}</div>
                 <div style={{fontSize:11,color:C.muted}}>per month</div>
@@ -2283,8 +2270,8 @@ function TaxCalcTool({user,setView}){
   return(
     <div>
       <div style={{display:"flex",gap:8,marginBottom:14}}>
-        {[["employee","👤 Employee"],["eood","🏢 EOOD Owner"]].map(([k,l])=>(
-          <button key={k} onClick={()=>setMode(k)} style={{flex:1,padding:"9px",borderRadius:10,border:`1.5px solid ${mode===k?C.primary:C.border}`,background:mode===k?C.primaryLight:"transparent",color:mode===k?C.primary:C.muted,cursor:"pointer",fontSize:13,fontWeight:mode===k?600:400}}>{l}</button>
+        {[["employee","Employee"],["eood","EOOD Owner"]].map(([k,l])=>(
+          <button key={k} onClick={()=>setMode(k)} style={{flex:1,padding:"9px",borderRadius:10,border:`1.5px solid ${mode===k?C.primary:C.border}`,background:mode===k?C.primaryLight:"transparent",color:mode===k?C.primary:C.muted,cursor:"pointer",fontSize:13,fontWeight:mode===k?600:400,display:"flex",alignItems:"center",justifyContent:"center",gap:6}}><Icon2c d={k==="employee"?"M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4.4 3.6-7 8-7s8 2.6 8 7":"M4 8h16v11H4zM9 8V6a2 2 0 012-2h2a2 2 0 012 2v2"} accent={k==="employee"?"#1d4ed8":"#b8792a"} size={14}/>{l}</button>
         ))}
       </div>
       <div style={{display:"flex",gap:10,marginBottom:14}}>
@@ -2407,18 +2394,18 @@ function NeighbourhoodTool({user,setView,subscription}){
       {/* Mode toggle */}
       <div style={{display:"flex",gap:8,marginBottom:12}}>
         <button onClick={()=>setMode("city")} style={{flex:1,padding:"7px",borderRadius:10,border:`1.5px solid ${mode==="city"?C.primary:C.border}`,background:mode==="city"?C.primaryLight:"transparent",color:mode==="city"?C.primary:C.muted,cursor:"pointer",fontSize:12,fontWeight:mode==="city"?600:400}}>
-          📍 By city
+          <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d={MAP_PIN_D} accent="#1e5e3f" size={14}/>By city</span>
         </button>
         <button onClick={()=>isBasic?setMode("allcities"):setView("pricing")} style={{flex:1,padding:"7px",borderRadius:10,border:`1.5px solid ${mode==="allcities"?C.accent:C.border}`,background:mode==="allcities"?C.accentLight:"transparent",color:mode==="allcities"?C.accent:C.muted,cursor:"pointer",fontSize:12,fontWeight:mode==="allcities"?600:400,display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
-          🌍 All cities
+          <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d={MAP_ICON_MAP.all} accent="#b8792a" size={14}/>All cities</span>
           {!isBasic&&<span style={{fontSize:9,background:"#fef3c7",color:"#92400e",padding:"1px 5px",borderRadius:5,fontWeight:700}}>BASIC</span>}
         </button>
       </div>
       {/* City selector (only in city mode) */}
       {mode==="city"&&(
         <div style={{display:"flex",gap:6,marginBottom:12,flexWrap:"wrap"}}>
-          {[["sofia","🏛️ Sofia"],["plovdiv","🏺 Plovdiv"],["varna","🌊 Varna"],["burgas","⚓ Burgas"],["stara","🌳 Stara Zagora"],["ruse","🌉 Ruse"],["bansko","🏔️ Bansko"],["velingrad","♨️ Velingrad"],["shumen","🏰 Shumen"],["yambol","🌾 Yambol"],["sliven","🏔️ Sliven"]].map(([id,label])=>(
-            <button key={id} onClick={()=>setHoodCity(id)} style={{padding:"5px 12px",borderRadius:16,border:`1.5px solid ${hoodCity===id?C.primary:C.border}`,background:hoodCity===id?C.primaryLight:"transparent",color:hoodCity===id?C.primary:C.muted,cursor:"pointer",fontSize:12,fontWeight:hoodCity===id?600:400}}>{label}</button>
+          {[["sofia","Sofia"],["plovdiv","Plovdiv"],["varna","Varna"],["burgas","Burgas"],["stara","Stara Zagora"],["ruse","Ruse"],["bansko","Bansko"],["velingrad","Velingrad"],["shumen","Shumen"],["yambol","Yambol"],["sliven","Sliven"]].map(([id,label])=>(
+            <button key={id} onClick={()=>setHoodCity(id)} style={{padding:"5px 12px",borderRadius:16,border:`1.5px solid ${hoodCity===id?C.primary:C.border}`,background:hoodCity===id?C.primaryLight:"transparent",color:hoodCity===id?C.primary:C.muted,cursor:"pointer",fontSize:12,fontWeight:hoodCity===id?600:400,display:"flex",alignItems:"center",gap:5}}><Icon2c d={MAP_PIN_D} accent={hoodCity===id?"#1e5e3f":"#b8792a"} size={13}/>{label}</button>
           ))}
         </div>
       )}
@@ -2481,7 +2468,8 @@ function CurrencyTool(){
   const [liveRates,setLiveRates]=useState(false)
   const [ratesUpdated,setRatesUpdated]=useState("Indicative rates")
 
-  // Try to pull live rates. If anything fails, we silently keep the fallback.
+  // Try to pull live rates. If anything fails we silently keep the fallback,
+  // so this tool can never crash or go blank.
   useEffect(()=>{
     let cancelled=false
     ;(async()=>{
@@ -2494,7 +2482,7 @@ function CurrencyTool(){
         setLiveRates(true)
         setRatesUpdated(data.date||"today")
       }catch{
-        // keep fallback rates — no action needed
+        // keep fallback rates
       }
     })()
     return()=>{cancelled=true}
@@ -2607,7 +2595,7 @@ function ChecklistTool({user,setView}){
 function PhraseTool(){
   const [cat,setCat]=useState("basics")
   const [q,setQ]=useState("")
-  const cats=[{v:"basics",l:"Basics 🗣️"},{v:"bank",l:"Banking 🏦"},{v:"health",l:"Health 🏥"},{v:"transport",l:"Transport 🚌"},{v:"emergency",l:"Emergency 🚨"}]
+  const cats=[{v:"basics",l:"Basics"},{v:"bank",l:"Banking"},{v:"health",l:"Health"},{v:"transport",l:"Transport"},{v:"emergency",l:"Emergency"}]
   const list=PHRASES[cat]||[]
   const filtered=q?Object.values(PHRASES).flat().filter(p=>p.en.toLowerCase().includes(q.toLowerCase())||p.ph.toLowerCase().includes(q.toLowerCase())):list
   return(
@@ -2615,7 +2603,7 @@ function PhraseTool(){
       <input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search phrases in English..." style={{width:"100%",border:`1.5px solid ${C.border}`,borderRadius:10,padding:"10px 14px",fontSize:14,outline:"none",color:C.text,background:C.page,marginBottom:12,boxSizing:"border-box"}}/>
       {!q&&(
         <div style={{display:"flex",gap:6,marginBottom:14,flexWrap:"wrap"}}>
-          {cats.map(c=><button key={c.v} onClick={()=>setCat(c.v)} style={{padding:"5px 12px",borderRadius:16,border:`1.5px solid ${cat===c.v?C.primary:C.border}`,background:cat===c.v?C.primaryLight:"transparent",color:cat===c.v?C.primary:C.muted,cursor:"pointer",fontSize:12,fontWeight:cat===c.v?600:400}}>{c.l}</button>)}
+          {cats.map(c=><button key={c.v} onClick={()=>setCat(c.v)} style={{padding:"5px 12px",borderRadius:16,border:`1.5px solid ${cat===c.v?C.primary:C.border}`,background:cat===c.v?C.primaryLight:"transparent",color:cat===c.v?C.primary:C.muted,cursor:"pointer",fontSize:12,fontWeight:cat===c.v?600:400,display:"flex",alignItems:"center",gap:5}}><Icon2c d={(PHRASE_CAT_ICON_MAP[c.v]||{}).d} accent={(PHRASE_CAT_ICON_MAP[c.v]||{}).accent} size={13}/>{c.l}</button>)}
         </div>
       )}
       <div style={{display:"flex",flexDirection:"column",gap:8}}>
@@ -2646,6 +2634,96 @@ const CITY_DATA = {
   yambol:   {name:"Yambol",        flag:"🌾",mult:0.40,rentBase:220, food:145,transport:36, utilities:65, dining:65, health:26,pop:"70K", vibe:"Thracian plain city — peaceful, very affordable, authentic Bulgaria"},
   sliven:   {name:"Sliven",        flag:"🏔️",mult:0.42,rentBase:235, food:148,transport:37, utilities:67, dining:67, health:28,pop:"80K", vibe:"Balkan Mountain gateway — affordable, historic silk-weaving city"},
 }
+
+
+// ── 2C-style duotone icon helper ────────────────────────────────────
+function Icon2c({d,accent="#f0c060",size=16}){
+  return(
+    <svg width={size} height={size} viewBox="0 0 24 24" style={{flexShrink:0}}>
+      <path fill={accent} fillOpacity=".32" stroke="none" d={d}/>
+      <path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d={d}/>
+    </svg>
+  )
+}
+const TOOLS_ICON_MAP={
+  cost:{d:"M4 7a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2V7z M15 12a1.3 1.3 0 102.6 0 1.3 1.3 0 00-2.6 0z",accent:"#f0c060"},
+  tax:{d:"M5 20V11h3v9H5zm5.5 0V4h3v16h-3zM16 20v-6h3v6h-3z",accent:"#1d4ed8"},
+  visa:{d:"M7 2h8l3 3v17H7V2zM10 8h5M10 12h5M10 16h3",accent:"#16a34a"},
+  hood:{d:"M4 21V10l5-4 5 4v11M14 21V6l4 3v12M4 21h16M9 21v-5h2v5",accent:"#b8792a"},
+  fx:{d:"M4 7h13M17 7l-3.5-3.5M17 7l-3.5 3.5M20 17H7M7 17l3.5-3.5M7 17l3.5 3.5",accent:"#0891b2"},
+  checklist:{d:"M5 4h14v16H5z M8.5 12l2.5 2.5 4.5-5",accent:"#1e5e3f"},
+  phrases:{d:"M4 4h16v12H8l-4 4V4z M8 9h8M8 13h5",accent:"#7c3aed"},
+  docgen:{d:"M7 2h7l4 4v16H7V2zM11 8h5M11 12h5M11 16h5",accent:"#9333ea"},
+  relocate:{d:"M9 3l6 2 6-2v16l-6 2-6-2-6 2V5zM9 3v16M15 5v16",accent:"#f0c060"},
+  property:{d:"M4 11l8-7 8 7M6 10v10h12V10",accent:"#b45309"},
+  deadlines:{d:"M5 4h14v17H5z M5 9h14M9 2v4M15 2v4",accent:"#dc2626"},
+  hoodmatch:{d:"M12 21s7-7.5 7-12a7 7 0 10-14 0c0 4.5 7 12 7 12zM12 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z",accent:"#db2777"},
+  langcoach:{d:"M12 3l9 4-9 4-9-4 9-4zM5 10v4c0 1.5 3 3.2 7 3.2s7-1.7 7-3.2v-4",accent:"#16a34a"},
+  budget:{d:"M12 3a9 9 0 109 9h-9z M12 12V3a9 9 0 00-9 9 9 9 0 009 9",accent:"#1d4ed8"},
+}
+const EXPENSE_ICON_MAP={
+  rent:{d:"M4 11l8-7 8 7M6 10v10h12V10",accent:"#b45309"},
+  food:{d:"M7 2v8a2 2 0 002 2v10M7 2v8M9.3 2v8M17 2c-2.2 0-3.5 3-3.5 6.5S17 15 17 15v9",accent:"#16a34a"},
+  transport:{d:"M4 16l1.5-5A2 2 0 017.4 9.5h9.2a2 2 0 011.9 1.5L20 16v4h-2v-1H6v1H4zM6 16h.01M18 16h.01",accent:"#1d4ed8"},
+  utilities:{d:"M9 2h6l-1.5 8H17l-8 12 2-9H7z",accent:"#f0c060"},
+  dining:{d:"M8 3h8l-1 6.2a3 3 0 01-3 2.8v0a3 3 0 01-3-2.8L8 3zM12 12v6M9 21h6",accent:"#7c2d12"},
+  health:{d:"M12 2a10 10 0 100 20 10 10 0 000-20zm-1.2 5.5h2.4v3.8h3.8v2.4h-3.8v3.8h-2.4v-3.8H7v-2.4h3.8V7.5z",accent:"#16a34a"},
+  savings:{d:"M12 3a9 9 0 109 9h-9z M12 12V3a9 9 0 00-9 9 9 9 0 009 9",accent:"#1d4ed8"},
+  salary:{d:"M4 8h16v11H4zM9 8V6a2 2 0 012-2h2a2 2 0 012 2v2",accent:"#dc2626"},
+  freelance:{d:"M4 6h16v12H4zM4 10h16M8 14h4",accent:"#9333ea"},
+  other:{d:"M12 2l1.2 4.4 4.4-1.2-2.6 3.8 3.8 2.6-4.4 1.2L12 17l-2.4-4.2-4.4-1.2 3.8-2.6L6.4 5.2l4.4 1.2z",accent:"#6b7280"},
+}
+const PHRASE_CAT_ICON_MAP={
+  basics:{d:"M4 4h16v12H8l-4 4V4z M8 9h8M8 13h5",accent:"#7c3aed"},
+  bank:{d:"M3 10l9-6 9 6M5 10v9M10 10v9M14 10v9M19 10v9M3 21h18",accent:"#1d4ed8"},
+  health:{d:"M12 2a10 10 0 100 20 10 10 0 000-20zm-1.2 5.5h2.4v3.8h3.8v2.4h-3.8v3.8h-2.4v-3.8H7v-2.4h3.8V7.5z",accent:"#16a34a"},
+  transport:{d:"M4 16l1.5-5A2 2 0 017.4 9.5h9.2a2 2 0 011.9 1.5L20 16v4h-2v-1H6v1H4zM6 16h.01M18 16h.01",accent:"#0891b2"},
+  emergency:{d:"M12 2l9 4.5v6c0 5-3.5 8.5-9 9.5-5.5-1-9-4.5-9-9.5v-6L12 2zM12 8v5M12 16h.01",accent:"#dc2626"},
+}
+const CONNECT_ICON_MAP={
+  all:{d:"M8 11a3 3 0 100-6 3 3 0 000 6zm8 0a3 3 0 100-6 3 3 0 000 6zM2 21c0-3.5 3-6 6-6M22 21c0-3.5-3-6-6-6M8 21c0-3.9 2-6 4-6s4 2.1 4 6",accent:"#9333ea"},
+  bulgarian:{d:"M5 3v18M5 4h13l-2.5 3 2.5 3H5",accent:"#00966e"},
+  expat:{d:"M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2c2.5 2.7 4 6.2 4 10s-1.5 7.3-4 10c-2.5-2.7-4-6.2-4-10s1.5-7.3 4-10z",accent:"#2563eb"},
+  friends:{d:"M9 11a3 3 0 100-6 3 3 0 000 6zm7 1a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM2 21c0-3.9 2.8-6 6.5-6M15.5 21c0-3-1.8-5-4-5.5",accent:"#16a34a"},
+  networking:{d:"M4 8h16v11H4zM9 8V6a2 2 0 012-2h2a2 2 0 012 2v2",accent:"#b8792a"},
+  roommate:{d:"M4 11l8-7 8 7M6 10v10h12V10",accent:"#7c3aed"},
+  dating:{d:"M12 20.5s-7-4.3-9.3-8.7C1.4 8.7 2.8 5.5 6 5.5c1.9 0 3.2 1.2 6 3.7 2.8-2.5 4.1-3.7 6-3.7 3.2 0 4.6 3.2 3.3 6.3-2.3 4.4-9.3 8.7-9.3 8.7z",accent:"#db2777"},
+  shield:{d:"M12 2l9 4.5v6c0 5-3.5 8.5-9 9.5-5.5-1-9-4.5-9-9.5v-6L12 2zM9 12l2 2 4-4",accent:"#f0c060"},
+}
+const MAP_ICON_MAP={
+  all:"M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2c2.5 2.7 4 6.2 4 10s-1.5 7.3-4 10c-2.5-2.7-4-6.2-4-10s1.5-7.3 4-10z",
+  health:"M12 2a10 10 0 100 20 10 10 0 000-20zm-1.2 5.5h2.4v3.8h3.8v2.4h-3.8v3.8h-2.4v-3.8H7v-2.4h3.8V7.5z",
+  bank:"M3 10l9-6 9 6M5 10v9M10 10v9M14 10v9M19 10v9M3 21h18",
+  legal:"M12 3v3M5 7l4-1M19 7l-4-1M5 7l-3 6.5a3 3 0 006 0zM19 7l-3 6.5a3 3 0 006 0zM8 21h8M12 6v15",
+  work:"M4 8h16v11H4zM9 8V6a2 2 0 012-2h2a2 2 0 012 2v2",
+  car:"M4 16l1.5-5A2 2 0 017.4 9.5h9.2a2 2 0 011.9 1.5L20 16v4h-2v-1H6v1H4zM6 16h.01M18 16h.01",
+  jobs:"M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4.4 3.6-7 8-7s8 2.6 8 7",
+  art:"M12 3a9 9 0 000 18c1.4 0 2-.9 2-1.8 0-.5-.2-1-.5-1.4-.3-.4-.5-.9-.5-1.4 0-1 .8-1.9 1.9-1.9H17a4 4 0 004-4c0-5-4-7.5-9-7.5zM7.5 11a1.3 1.3 0 100-2.6 1.3 1.3 0 000 2.6zm3-4a1.3 1.3 0 100-2.6 1.3 1.3 0 000 2.6zm5 0a1.3 1.3 0 100-2.6 1.3 1.3 0 000 2.6zm2 4a1.3 1.3 0 100-2.6 1.3 1.3 0 000 2.6z",
+  dining:"M7 2v8a2 2 0 002 2v10M7 2v8M9.3 2v8M17 2c-2.2 0-3.5 3-3.5 6.5S17 15 17 15v9",
+  party:"M12 2l1.2 4.4 4.4-1.2-2.6 3.8 3.8 2.6-4.4 1.2L12 17l-2.4-4.2-4.4-1.2 3.8-2.6L6.4 5.2l4.4 1.2z",
+  festival:"M12 3l9 8H3zM7 11v8M17 11v8M3 19h18",
+  disco:"M12 3a9 9 0 100 18 9 9 0 000-18zM3 12h18M12 3v18M6.5 6.5l11 11M17.5 6.5l-11 11",
+  piano:"M4 6h16v12H4zM7.5 6v8M11 6v8M13 6v8M16.5 6v8",
+  hotel:"M3 18v-7a2 2 0 012-2h6a2 2 0 012 2v1h6a2 2 0 012 2v4M3 18h18M7 11a2 2 0 100-4 2 2 0 000 4z",
+  cultural:"M4 21h16M5 21V10M9 21V10M15 21V10M19 21V10M3 10l9-6 9 6",
+  tradfest:"M12 3a9 9 0 00-9 9c0 3 2 5 4 6M12 3a9 9 0 019 9c0 3-2 5-4 6M8.5 10a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4zm7 0a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4zM9 15c1 1 2 1.5 3 1.5s2-.5 3-1.5",
+  wine:"M8 3h8l-1 6.2a3 3 0 01-3 2.8v0a3 3 0 01-3-2.8L8 3zM12 12v6M9 21h6",
+  summer:"M12 8a4 4 0 100 8 4 4 0 000-8zM12 3v2M12 19v2M4.2 12H6M18 12h1.8M6 6l1.3 1.3M16.7 16.7L18 18M18 6l-1.3 1.3M7.3 16.7L6 18",
+  winter:"M12 2v20M5 5l14 14M19 5L5 19M12 6.5l-2 2M12 6.5l2 2M12 17.5l-2-2M12 17.5l2-2",
+  hood:"M4 21V10l5-4 5 4v11M14 21V6l4 3v12M4 21h16",
+}
+const MAP_PIN_D="M12 21s7-7.5 7-12a7 7 0 10-14 0c0 4.5 7 12 7 12zM12 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"
+const COMMUNITY_ICON_MAP={
+  all:{d:MAP_ICON_MAP.all,accent:"#1e5e3f"},
+  general:{d:"M4 4h16v12H7l-3 3V4z",accent:"#6b7280"},
+  legal:{d:MAP_ICON_MAP.legal,accent:"#1d4ed8"},
+  healthcare:{d:MAP_ICON_MAP.health,accent:"#16a34a"},
+  banking:{d:MAP_ICON_MAP.bank,accent:"#b45309"},
+  tourism:{d:"M2 13l20-7-7 20-3-8-8-3z",accent:"#2563eb"},
+  housing:{d:"M4 11l8-7 8 7M6 10v10h12V10",accent:"#7c3aed"},
+  business:{d:MAP_ICON_MAP.work,accent:"#dc2626"},
+}
+const CONNECT_ICON_D="M12 20.5s-7-4.3-9.3-8.7C1.4 8.7 2.8 5.5 6 5.5c1.9 0 3.2 1.2 6 3.7 2.8-2.5 4.1-3.7 6-3.7 3.2 0 4.6 3.2 3.3 6.3-2.3 4.4-9.3 8.7-9.3 8.7z"
 
 const TOOLS_LIST=[
   {id:"cost",icon:"💰",label:"Cost of living",desc:"Budget + compare 8 cities"},
@@ -2700,7 +2778,7 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
       </div>
       <div style={{maxWidth:1100,margin:isMobile?"-24px auto 32px":"-24px auto 48px",padding:isMobile?"0 12px":"0 20px"}}>
         {isMobile ? (
-          /* MOBILE: dropdown selector, then the tool at full width */
+          /* MOBILE: dropdown selector, then the tool at full screen width */
           <>
             <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:14,padding:"12px 14px",marginBottom:12,boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
               <label style={{display:"block",fontSize:11,fontWeight:600,color:C.muted,letterSpacing:"0.05em",marginBottom:6}}>CHOOSE A TOOL</label>
@@ -2710,21 +2788,24 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
                 style={{width:"100%",padding:"11px 12px",fontSize:15,fontWeight:600,color:C.primary,background:C.primaryLight,border:`1px solid ${C.border}`,borderRadius:10,cursor:"pointer",appearance:"none",WebkitAppearance:"none",backgroundImage:"url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e5e3f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",backgroundRepeat:"no-repeat",backgroundPosition:"right 10px center",backgroundSize:"18px",paddingRight:36}}>
                 <optgroup label="Free tools">
                   {TOOLS_LIST.filter(t=>!t.divider&&!t.premium).map(t=>(
-                    <option key={t.id} value={t.id}>{t.icon} {t.label}</option>
+                    <option key={t.id} value={t.id}>{t.label}</option>
                   ))}
                 </optgroup>
                 <optgroup label="Premium tools">
                   {TOOLS_LIST.filter(t=>!t.divider&&t.premium).map(t=>(
-                    <option key={t.id} value={t.id}>{t.icon} {t.label} (PRO)</option>
+                    <option key={t.id} value={t.id}>{t.label} (PRO)</option>
                   ))}
                 </optgroup>
               </select>
             </div>
             <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:14,padding:"16px 14px",boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
               <div style={{display:"flex",alignItems:"center",gap:9,marginBottom:14,paddingBottom:12,borderBottom:`1px solid ${C.border}`}}>
-                <span style={{fontSize:22,flexShrink:0}}>{(tool&&tool.icon)}</span>
+                {tool&&<Icon2c d={(TOOLS_ICON_MAP[tool.id]||{}).d} accent={(TOOLS_ICON_MAP[tool.id]||{}).accent} size={22}/>}
                 <div style={{minWidth:0}}>
-                  <h2 className="serif" style={{fontSize:17,fontWeight:400,color:C.text,margin:0}}>{(tool&&tool.label)}</h2>
+                  <h2 className="serif" style={{fontSize:17,fontWeight:400,color:C.text,margin:0,display:"flex",alignItems:"center",gap:6}}>
+                    {(tool&&tool.label)}
+                    {tool&&tool.premium&&<span style={{fontSize:9,background:"#fef3c7",color:"#92400e",padding:"1px 5px",borderRadius:5,fontWeight:700}}>PRO</span>}
+                  </h2>
                   <p style={{fontSize:12,color:C.muted,margin:0}}>{(tool&&tool.desc)}</p>
                 </div>
               </div>
@@ -2740,7 +2821,7 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
                 return(
                   <button key={t.id} onClick={()=>{setActive(t.id);trackEvent("tool",t.id)}}
                     style={{width:"100%",background:active===t.id?C.primaryLight:"transparent",border:"none",borderLeft:`3px solid ${active===t.id?C.primary:"transparent"}`,padding:"11px 14px",cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:8,transition:"all 0.15s"}}>
-                    <span style={{fontSize:16,flexShrink:0}}>{t.icon}</span>
+                    <Icon2c d={(TOOLS_ICON_MAP[t.id]||{}).d} accent={(TOOLS_ICON_MAP[t.id]||{}).accent} size={17}/>
                     <div style={{flex:1,minWidth:0}}>
                       <div style={{fontSize:12,fontWeight:active===t.id?600:400,color:active===t.id?C.primary:C.text,display:"flex",alignItems:"center",gap:5}}>
                         {t.label}
@@ -2754,7 +2835,7 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
             </div>
             <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,padding:"22px",boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
               <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:18,paddingBottom:14,borderBottom:`1px solid ${C.border}`}}>
-                <span style={{fontSize:24}}>{(tool&&tool.icon)}</span>
+                {tool&&<Icon2c d={(TOOLS_ICON_MAP[tool.id]||{}).d} accent={(TOOLS_ICON_MAP[tool.id]||{}).accent} size={24}/>}
                 <div>
                   <h2 className="serif" style={{fontSize:19,fontWeight:400,color:C.text,margin:0}}>{(tool&&tool.label)}</h2>
                   <p style={{fontSize:13,color:C.muted,margin:0}}>{(tool&&tool.desc)}</p>
@@ -3393,7 +3474,7 @@ function MapPage({user,setView,subscription,openCheckout}){
           {MAP_CITIES.map(c=>(
             <button key={c.id} onClick={()=>{setCity(c.id);setFilter("all")}}
               style={{padding:"6px 14px",borderRadius:20,border:`1.5px solid ${city===c.id?"#f0c060":"rgba(255,255,255,0.15)"}`,background:city===c.id?"rgba(240,192,96,0.2)":"rgba(255,255,255,0.06)",color:city===c.id?"#f0c060":"rgba(255,255,255,0.7)",cursor:"pointer",fontSize:12,fontWeight:city===c.id?700:400,whiteSpace:"nowrap",flexShrink:0,transition:"all 0.15s"}}>
-              {c.icon} {c.label}
+              <span style={{display:"flex",alignItems:"center",gap:5}}><Icon2c d={MAP_PIN_D} accent="#f0c060" size={14}/>{c.label}</span>
             </button>
           ))}
         </div>
@@ -3410,7 +3491,7 @@ function MapPage({user,setView,subscription,openCheckout}){
                 else{setFilter(cat.id);setSelected(null)}
               }}
                 style={{padding:"7px 14px",borderRadius:20,border:`1.5px solid ${filter===cat.id?cat.color:C.border}`,background:filter===cat.id?`${cat.color}15`:"transparent",color:filter===cat.id?cat.color:locked?C.muted:C.text,cursor:"pointer",fontSize:13,fontWeight:filter===cat.id?700:400,whiteSpace:"nowrap",flexShrink:0,transition:"all 0.15s",opacity:locked?0.65:1,display:"flex",alignItems:"center",gap:5}}>
-                {cat.icon} {cat.label}
+                <Icon2c d={MAP_ICON_MAP[cat.id]} accent={cat.color} size={15}/> {cat.label}
                 {locked&&<span style={{fontSize:10,background:PREMIUM_CATS.includes(cat.id)?"#f0c060":"var(--bg-accent)",color:PREMIUM_CATS.includes(cat.id)?"#1a3a20":"var(--text-accent)",padding:"1px 5px",borderRadius:6,fontWeight:700}}>{PREMIUM_CATS.includes(cat.id)?"PRO":"BASIC"}</span>}
               </button>
             )
@@ -4693,7 +4774,7 @@ function BudgetPlanner({subscription,setView}){
             <div style={{fontSize:12,fontWeight:600,color:C.muted,marginBottom:8}}>💰 MONTHLY INCOME</div>
             {INCOME_CATS.map(c=>(
               <div key={c.k} style={{background:C.page,borderRadius:8,padding:"8px 12px",marginBottom:6,display:"flex",alignItems:"center",gap:8}}>
-                <span style={{fontSize:14}}>{c.icon}</span>
+                <Icon2c d={(EXPENSE_ICON_MAP[c.k]||{}).d} accent={(EXPENSE_ICON_MAP[c.k]||{}).accent} size={15}/>
                 <span style={{fontSize:12,color:C.text,flex:1}}>{c.l}</span>
                 <input type="number" value={income[c.k]} onChange={e=>setIncome(p=>({...p,[c.k]:Number(e.target.value)||0}))} style={{width:80,border:`1px solid ${C.border}`,borderRadius:6,padding:"4px 8px",fontSize:13,textAlign:"right",outline:"none",color:C.text,background:C.surface}}/>
               </div>
@@ -4707,7 +4788,7 @@ function BudgetPlanner({subscription,setView}){
             <div style={{fontSize:12,fontWeight:600,color:C.muted,marginBottom:8}}>📊 MONTHLY EXPENSES</div>
             {BUDGET_CATS.map(c=>(
               <div key={c.k} style={{background:C.page,borderRadius:8,padding:"8px 12px",marginBottom:6,display:"flex",alignItems:"center",gap:8}}>
-                <span style={{fontSize:14}}>{c.icon}</span>
+                <Icon2c d={(EXPENSE_ICON_MAP[c.k]||{}).d} accent={(EXPENSE_ICON_MAP[c.k]||{}).accent} size={15}/>
                 <span style={{fontSize:12,color:C.text,flex:1}}>{c.l}</span>
                 <input type="number" value={expenses[c.k]} onChange={e=>setExpenses(p=>({...p,[c.k]:Number(e.target.value)||0}))} style={{width:80,border:`1px solid ${C.border}`,borderRadius:6,padding:"4px 8px",fontSize:13,textAlign:"right",outline:"none",color:C.text,background:C.surface}}/>
               </div>
@@ -4851,7 +4932,7 @@ function AppsPage(){
           {BG_APP_CATS.map(c=>(
             <button key={c.id} onClick={()=>{setCat(c.id);setSearch("")}}
               style={{padding:"6px 14px",borderRadius:20,border:`1.5px solid ${cat===c.id?"#a5b4fc":"rgba(255,255,255,0.15)"}`,background:cat===c.id?"rgba(165,180,252,0.15)":"transparent",color:cat===c.id?"#a5b4fc":"rgba(255,255,255,0.65)",cursor:"pointer",fontSize:12,fontWeight:cat===c.id?700:400,whiteSpace:"nowrap",flexShrink:0,transition:"all 0.15s"}}>
-              {c.icon} {c.label}
+              <span style={{display:"flex",alignItems:"center",gap:5}}><Icon2c d={MAP_PIN_D} accent="#f0c060" size={14}/>{c.label}</span>
             </button>
           ))}
         </div>
@@ -4882,7 +4963,7 @@ function AppsPage(){
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M17.05 12.94c-.03-2.68 2.19-3.97 2.29-4.03-1.25-1.83-3.19-2.08-3.88-2.11-1.65-.17-3.22.97-4.06.97-.84 0-2.13-.95-3.5-.92-1.8.03-3.46 1.05-4.39 2.66-1.87 3.25-.48 8.06 1.35 10.69.89 1.29 1.96 2.73 3.36 2.68 1.35-.05 1.86-.87 3.49-.87 1.63 0 2.09.87 3.51.84 1.45-.02 2.37-1.31 3.26-2.6 1.03-1.49 1.45-2.94 1.47-3.01-.03-.01-2.82-1.08-2.85-4.3M14.4 4.66c.74-.9 1.24-2.14 1.1-3.39-1.07.04-2.37.71-3.13 1.61-.68.79-1.28 2.06-1.12 3.27 1.19.09 2.41-.61 3.15-1.49"/></svg>
                   </div>}
                   {app.android&&<div style={{width:20,height:20,borderRadius:4,background:"#fff",border:"1px solid #e0dbd0",display:"flex",alignItems:"center",justifyContent:"center"}}>
-                    <svg width="12" height="12" viewBox="0 0 24 24"><path fill="#00D4FF" d="M3.6 1.8a1.5 1.5 0 0 0-.5 1.1v18.2c0 .44.19.83.5 1.1l10-10.2-10-10.2z"/><path fill="#FFCE00" d="M17.4 8.6l-3.8-2.2-2.5 2.6 2.5 2.6 3.8-2.2c.7-.4.7-1.4 0-1.8z"/><path fill="#FF3A44" d="M3.6 1.8c-.3.3-.5.7-.5 1.1l7.5 7.6 2.5-2.6L3.6 1.8z"/><path fill="#00F076" d="M3.1 21.1c0 .44.19.83.5 1.1l9.5-6.1-2.5-2.6-7.5 7.6z"/></svg>
+                    <svg width="12" height="12" viewBox="0 0 24 24"><path fill="#00D4FF" d="M3.6 1.8a1.5 1.5 0 00-.5 1.1v18.2c0 .44.19.83.5 1.1l10-10.2-10-10.2z"/><path fill="#FFCE00" d="M17.4 8.6l-3.8-2.2-2.5 2.6 2.5 2.6 3.8-2.2c.7-.4.7-1.4 0-1.8z"/><path fill="#FF3A44" d="M3.6 1.8c-.3.3-.5.7-.5 1.1l7.5 7.6 2.5-2.6L3.6 1.8z"/><path fill="#00F076" d="M3.1 21.1c0 .44.19.83.5 1.1l9.5-6.1-2.5-2.6-7.5 7.6z"/></svg>
                   </div>}
                   {app.web&&!app.ios&&!app.android&&<div style={{width:20,height:20,borderRadius:4,background:"#6366f1",display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,color:"#fff"}}>🌐</div>}
                 </div>
@@ -4899,7 +4980,7 @@ function AppsPage(){
                     App Store
                   </a>}
                   {app.android&&<a href={app.android} target="_blank" rel="noopener noreferrer" style={{flex:1,background:"#000",color:"#fff",borderRadius:8,padding:"7px",fontSize:11,fontWeight:600,textAlign:"center",textDecoration:"none",display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
-                    <svg width="13" height="13" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#00D4FF" d="M3.6 1.8a1.5 1.5 0 0 0-.5 1.1v18.2c0 .44.19.83.5 1.1l10-10.2-10-10.2z"/><path fill="#FFCE00" d="M17.4 8.6l-3.8-2.2-2.5 2.6 2.5 2.6 3.8-2.2c.7-.4.7-1.4 0-1.8z"/><path fill="#FF3A44" d="M3.6 1.8c-.3.3-.5.7-.5 1.1l7.5 7.6 2.5-2.6L3.6 1.8z"/><path fill="#00F076" d="M3.1 21.1c0 .44.19.83.5 1.1l9.5-6.1-2.5-2.6-7.5 7.6z"/></svg>
+                    <svg width="13" height="13" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#00D4FF" d="M3.6 1.8a1.5 1.5 0 00-.5 1.1v18.2c0 .44.19.83.5 1.1l10-10.2-10-10.2z"/><path fill="#FFCE00" d="M17.4 8.6l-3.8-2.2-2.5 2.6 2.5 2.6 3.8-2.2c.7-.4.7-1.4 0-1.8z"/><path fill="#FF3A44" d="M3.6 1.8c-.3.3-.5.7-.5 1.1l7.5 7.6 2.5-2.6L3.6 1.8z"/><path fill="#00F076" d="M3.1 21.1c0 .44.19.83.5 1.1l9.5-6.1-2.5-2.6-7.5 7.6z"/></svg>
                     Google Play
                   </a>}
                   {app.web&&<a href={app.web} target="_blank" rel="noopener noreferrer" style={{flex:!app.ios&&!app.android?2:1,background:"#6366f1",color:"#fff",borderRadius:8,padding:"7px",fontSize:11,fontWeight:600,textAlign:"center",textDecoration:"none",display:"flex",alignItems:"center",justifyContent:"center",gap:4}}>🌐 Open website</a>}
@@ -4982,24 +5063,18 @@ function ConnectPage({user,setView,subscription}){
   }
 
   const cities=[{v:"all",l:"All cities"},{v:"sofia",l:"Sofia"},{v:"plovdiv",l:"Plovdiv"},{v:"varna",l:"Varna"},{v:"burgas",l:"Burgas"},{v:"bansko",l:"Bansko"}]
-  const fromOpts=[{v:"all",l:"Everyone"},{v:"bulgarian",l:"Bulgarians 🇧🇬"},{v:"expat",l:"Expats 🌍"}]
+  const fromOpts=[{v:"all",l:"Everyone"},{v:"bulgarian",l:"Bulgarians"},{v:"expat",l:"Expats"}]
 
   return(
     <div style={{minHeight:"100vh",background:C.page}}>
 
       {/* Header */}
       <div style={{background:"linear-gradient(135deg,#6b21a8,#9333ea)",padding:"32px 20px 44px"}}>
-        <div style={{maxWidth:1100,margin:"0 auto"}}>
-          <h1 className="serif" style={{color:"#fff",fontSize:"clamp(24px,4vw,38px)",fontWeight:400,margin:"0 0 6px"}}>💑 Meet & Connect</h1>
-          <p style={{color:"rgba(255,255,255,0.75)",fontSize:15,margin:"0 0 10px",fontWeight:300}}>Connect expats and Bulgarians across Bulgaria</p>
-          <div style={{display:"flex",gap:8,marginBottom:20,flexWrap:"wrap"}}>
-            {[["🤝","Expat Friends","Basic"],["💼","Networking","Basic"],["🏠","Roommate Finder","Basic"],["💘","Dating","Premium"]].map(([icon,label,tier])=>(
-              <span key={label} style={{background:"rgba(255,255,255,0.12)",border:`1px solid rgba(255,255,255,${tier==="Premium"?"0.4":"0.15"})`,borderRadius:20,padding:"4px 12px",fontSize:12,color:tier==="Premium"?"#f0c060":"rgba(255,255,255,0.85)",fontWeight:tier==="Premium"?600:400}}>
-                {icon} {label} {tier==="Premium"&&"✨"}
-              </span>
-            ))}
-          </div>
-          <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
+        <div style={{maxWidth:1100,margin:"0 auto",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:32,alignItems:"center"}}>
+          <div>
+            <h1 className="serif" style={{color:"#fff",fontSize:"clamp(24px,4vw,38px)",fontWeight:400,margin:"0 0 6px",display:"flex",alignItems:"center",gap:12}}><Icon2c d={CONNECT_ICON_D} accent="#f0c060" size={30}/>Meet & Connect</h1>
+            <p style={{color:"rgba(255,255,255,0.75)",fontSize:15,margin:"0 0 10px",fontWeight:300}}>Connect expats and Bulgarians across Bulgaria</p>
+            <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
             {user?(
               <button onClick={()=>setShowCreate(!showCreate)} style={{background:"rgba(255,255,255,0.15)",border:"1px solid rgba(255,255,255,0.3)",color:"#fff",padding:"9px 18px",borderRadius:10,cursor:"pointer",fontSize:14,fontWeight:600}}>
                 {showCreate?"✕ Close":"✏️ Create my profile"}
@@ -5010,8 +5085,12 @@ function ConnectPage({user,setView,subscription}){
               </button>
             )}
             <button onClick={()=>setShowSafety(!showSafety)} style={{background:"rgba(255,255,255,0.1)",border:"1px solid rgba(255,255,255,0.2)",color:"rgba(255,255,255,0.8)",padding:"9px 18px",borderRadius:10,cursor:"pointer",fontSize:14}}>
-              🛡️ Safety tips
+              <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d={CONNECT_ICON_MAP.shield.d} accent="#f0c060" size={14}/>Safety tips</span>
             </button>
+            </div>
+          </div>
+          <div>
+            <img src={connectHeroImg} alt="A man and a woman meeting warmly at sunset" style={{width:"100%",height:220,objectFit:"cover",borderRadius:20,boxShadow:"0 12px 32px rgba(0,0,0,0.25)",border:"1px solid rgba(255,255,255,0.25)"}}/>
           </div>
         </div>
       </div>
@@ -5087,28 +5166,41 @@ function ConnectPage({user,setView,subscription}){
         )}
 
         {/* Filters */}
-        <div style={{display:"flex",gap:8,marginBottom:20,flexWrap:"wrap",alignItems:"center"}}>
-          <div style={{display:"flex",gap:6}}>
-            {fromOpts.map(o=><button key={o.v} onClick={()=>setFilterFrom(o.v)} style={{padding:"6px 12px",borderRadius:16,border:`1.5px solid ${filterFrom===o.v?"#9333ea":C.border}`,background:filterFrom===o.v?"#f3e8ff":"transparent",color:filterFrom===o.v?"#6b21a8":C.muted,cursor:"pointer",fontSize:12,fontWeight:filterFrom===o.v?700:400}}>{o.l}</button>)}
+        <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,padding:"16px 18px",marginBottom:20,boxShadow:"0 2px 8px rgba(0,0,0,0.04)"}}>
+          <div style={{display:"flex",flexDirection:"column",gap:14}}>
+            <div style={{display:"flex",flexWrap:"wrap",alignItems:"center",gap:10}}>
+              <div style={{fontSize:11,fontWeight:600,color:C.muted,textTransform:"uppercase",letterSpacing:"0.05em",flexShrink:0,width:78}}>Show</div>
+              <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
+                {fromOpts.map(o=><button key={o.v} onClick={()=>setFilterFrom(o.v)} style={{padding:"6px 12px",borderRadius:16,border:`1.5px solid ${filterFrom===o.v?"#9333ea":C.border}`,background:filterFrom===o.v?"#f3e8ff":"transparent",color:filterFrom===o.v?"#6b21a8":C.muted,cursor:"pointer",fontSize:12,fontWeight:filterFrom===o.v?700:400,display:"flex",alignItems:"center",gap:5}}><Icon2c d={(CONNECT_ICON_MAP[o.v]||{}).d} accent={(CONNECT_ICON_MAP[o.v]||{}).accent} size={13}/>{o.l}</button>)}
+              </div>
+            </div>
+            <div style={{display:"flex",flexWrap:"wrap",alignItems:"center",gap:10}}>
+              <div style={{fontSize:11,fontWeight:600,color:C.muted,textTransform:"uppercase",letterSpacing:"0.05em",flexShrink:0,width:78}}>Looking for</div>
+              <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
+                {LOOKING_FOR_OPTS.map(o=>{
+                  const isDating=o.v==="dating"
+                  const locked=isDating&&!isPremium
+                  return(
+                    <button key={o.v}
+                      onClick={()=>locked?setView("pricing"):setFilterLooking(o.v)}
+                      style={{padding:"6px 14px",borderRadius:16,border:`1.5px solid ${filterLooking===o.v?"#9333ea":C.border}`,background:filterLooking===o.v?"#f3e8ff":"transparent",color:filterLooking===o.v?"#6b21a8":C.muted,cursor:"pointer",fontSize:12,fontWeight:filterLooking===o.v?700:400,display:"flex",alignItems:"center",gap:5,flexShrink:0}}>
+                      <Icon2c d={(CONNECT_ICON_MAP[o.v]||{}).d} accent={(CONNECT_ICON_MAP[o.v]||{}).accent} size={13}/> {o.l}
+                      {locked&&<span style={{fontSize:9,color:"#9333ea",fontWeight:600}}>· Premium</span>}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+            <div style={{display:"flex",flexWrap:"wrap",alignItems:"center",justifyContent:"space-between",gap:10,paddingTop:10,borderTop:`1px solid ${C.border}`}}>
+              <div style={{display:"flex",alignItems:"center",gap:10}}>
+                <div style={{fontSize:11,fontWeight:600,color:C.muted,textTransform:"uppercase",letterSpacing:"0.05em",flexShrink:0,width:78}}>City</div>
+                <select value={filterCity} onChange={e=>setFilterCity(e.target.value)} style={{border:`1px solid ${C.border}`,borderRadius:10,padding:"6px 12px",fontSize:12,color:C.text,background:C.page,outline:"none"}}>
+                  {cities.map(c=><option key={c.v} value={c.v}>{c.l}</option>)}
+                </select>
+              </div>
+              <span style={{fontSize:12,color:C.muted,fontWeight:500}}>{visible.filter(p=>!p.team).length > 0 ? `${visible.length} members` : "Be the first member!"}</span>
+            </div>
           </div>
-          <div style={{display:"flex",gap:6}}>
-            {LOOKING_FOR_OPTS.map(o=>{
-              const isDating=o.v==="dating"
-              const locked=isDating&&!isPremium
-              return(
-                <button key={o.v}
-                  onClick={()=>locked?setView("pricing"):setFilterLooking(o.v)}
-                  style={{padding:"6px 14px",borderRadius:16,border:`1.5px solid ${filterLooking===o.v?"#9333ea":isDating&&!isPremium?"#f0c060":C.border}`,background:filterLooking===o.v?"#f3e8ff":isDating&&!isPremium?"#fffbeb":"transparent",color:filterLooking===o.v?"#6b21a8":isDating&&!isPremium?"#92400e":C.muted,cursor:"pointer",fontSize:12,fontWeight:filterLooking===o.v?700:400,display:"flex",alignItems:"center",gap:5,flexShrink:0}}>
-                  {o.icon} {o.l}
-                  {locked&&<span style={{fontSize:9,background:"#f0c060",color:"#1a3a20",padding:"1px 5px",borderRadius:4,fontWeight:700}}>PRO</span>}
-                </button>
-              )
-            })}
-          </div>
-          <select value={filterCity} onChange={e=>setFilterCity(e.target.value)} style={{border:`1px solid ${C.border}`,borderRadius:10,padding:"6px 12px",fontSize:12,color:C.text,background:C.page,outline:"none"}}>
-            {cities.map(c=><option key={c.v} value={c.v}>{c.l}</option>)}
-          </select>
-          <span style={{fontSize:12,color:C.muted,marginLeft:"auto"}}>{visible.filter(p=>!p.team).length > 0 ? `${visible.length} members` : "Be the first member!"}</span>
         </div>
 
         {/* Dating upsell */}
@@ -5162,7 +5254,7 @@ function ConnectPage({user,setView,subscription}){
                 <div style={{padding:"14px 16px"}}>
                   {/* Looking for badge */}
                   <div style={{display:"inline-flex",alignItems:"center",gap:4,background:`${lookColor}12`,border:`1px solid ${lookColor}30`,borderRadius:10,padding:"3px 10px",marginBottom:10,fontSize:12,fontWeight:600,color:lookColor}}>
-                    {p.lookingFor==="friends"?"🤝 Expat Friends":p.lookingFor==="networking"?"💼 Networking":p.lookingFor==="roommate"?"🏠 Roommate":p.lookingFor==="dating"?"💘 Dating":"💫 "+p.lookingFor}
+                    <Icon2c d={(CONNECT_ICON_MAP[p.lookingFor]||CONNECT_ICON_MAP.all).d} accent={(CONNECT_ICON_MAP[p.lookingFor]||CONNECT_ICON_MAP.all).accent} size={13}/> {p.lookingFor==="friends"?"Expat Friends":p.lookingFor==="networking"?"Networking":p.lookingFor==="roommate"?"Roommate":p.lookingFor==="dating"?"Dating":p.lookingFor}
                   </div>
 
                   {/* Bio */}
@@ -5207,7 +5299,7 @@ function ConnectPage({user,setView,subscription}){
         {/* Upgrade gates */}
         {!user&&(
           <div style={{background:"linear-gradient(135deg,#6b21a8,#9333ea)",borderRadius:16,padding:"28px",textAlign:"center"}}>
-            <div style={{fontSize:28,marginBottom:10}}>💑</div>
+            <div style={{marginBottom:10}}><Icon2c d={CONNECT_ICON_D} accent="#f0c060" size={28}/></div>
             <h3 style={{color:"#fff",fontSize:18,fontWeight:700,margin:"0 0 8px"}}>See all {profiles.length} profiles</h3>
             <p style={{color:"rgba(255,255,255,0.75)",fontSize:14,margin:"0 0 18px"}}>Sign in free to see all members and express interest</p>
             <button onClick={()=>setView("login")} style={{background:"#fff",border:"none",color:"#6b21a8",padding:"12px 28px",borderRadius:10,cursor:"pointer",fontSize:15,fontWeight:700}}>Sign up free →</button>
