@@ -2635,6 +2635,12 @@ const TOOLS_LIST=[
 
 function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
   const [active,setActive]=useState("cost")
+  const [isMobile,setIsMobile]=useState(typeof window!=="undefined"&&window.innerWidth<=768)
+  useEffect(()=>{
+    const onResize=()=>setIsMobile(window.innerWidth<=768)
+    window.addEventListener("resize",onResize)
+    return()=>window.removeEventListener("resize",onResize)
+  },[])
   const tool=TOOLS_LIST.find(t=>t.id===active)
   const render=()=>{
     if(active==="cost")return<CostCalcTool user={user} setView={setView} subscription={subscription}/>
@@ -2654,43 +2660,78 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
   }
   return(
     <div style={{minHeight:"100vh",background:C.page}}>
-      <div style={{background:`linear-gradient(135deg,${C.primary},#2a7a52)`,padding:"32px 20px 48px"}}>
+      <div style={{background:`linear-gradient(135deg,${C.primary},#2a7a52)`,padding:isMobile?"26px 16px 42px":"32px 20px 48px"}}>
         <div style={{maxWidth:1100,margin:"0 auto"}}>
           <h1 className="serif" style={{color:"#fff",fontSize:"clamp(24px,4vw,38px)",fontWeight:400,margin:"0 0 6px"}}>Expat tools</h1>
-          <p style={{color:"rgba(255,255,255,0.7)",fontSize:15,margin:0,fontWeight:300}}>Free interactive tools to plan your life in Bulgaria</p>
+          <p style={{color:"rgba(255,255,255,0.7)",fontSize:isMobile?13:15,margin:0,fontWeight:300}}>Free interactive tools to plan your life in Bulgaria</p>
         </div>
       </div>
-      <div style={{maxWidth:1100,margin:"-24px auto 48px",padding:"0 20px"}}>
-        <div style={{display:"grid",gridTemplateColumns:"min(220px,30vw) 1fr",gap:"clamp(8px,2vw,20px)",alignItems:"start"}}>
-          <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,overflow:"hidden",boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
-            {TOOLS_LIST.map(t=>{
-              if(t.divider)return<div key={t.id} style={{padding:"8px 14px",fontSize:10,fontWeight:600,color:C.muted,letterSpacing:"0.06em",borderTop:`1px solid ${C.border}`,marginTop:4}}>{t.label}</div>
-              return(
-                <button key={t.id} onClick={()=>{setActive(t.id);trackEvent("tool",t.id)}}
-                  style={{width:"100%",background:active===t.id?C.primaryLight:"transparent",border:"none",borderLeft:`3px solid ${active===t.id?C.primary:"transparent"}`,padding:"11px 14px",cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:8,transition:"all 0.15s"}}>
-                  <span style={{fontSize:16,flexShrink:0}}>{t.icon}</span>
-                  <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:12,fontWeight:active===t.id?600:400,color:active===t.id?C.primary:C.text,display:"flex",alignItems:"center",gap:5}}>
-                      {t.label}
-                      {t.premium&&<span style={{fontSize:9,background:"#fef3c7",color:"#92400e",padding:"1px 5px",borderRadius:5,fontWeight:700}}>PRO</span>}
-                    </div>
-                    <div style={{fontSize:11,color:C.muted,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{t.desc}</div>
-                  </div>
-                </button>
-              )
-            })}
-          </div>
-          <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,padding:"22px",boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
-            <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:18,paddingBottom:14,borderBottom:`1px solid ${C.border}`}}>
-              <span style={{fontSize:24}}>{(tool&&tool.icon)}</span>
-              <div>
-                <h2 className="serif" style={{fontSize:19,fontWeight:400,color:C.text,margin:0}}>{(tool&&tool.label)}</h2>
-                <p style={{fontSize:13,color:C.muted,margin:0}}>{(tool&&tool.desc)}</p>
-              </div>
+      <div style={{maxWidth:1100,margin:isMobile?"-24px auto 32px":"-24px auto 48px",padding:isMobile?"0 12px":"0 20px"}}>
+        {isMobile ? (
+          /* MOBILE: dropdown selector, then the tool at full width */
+          <>
+            <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:14,padding:"12px 14px",marginBottom:12,boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
+              <label style={{display:"block",fontSize:11,fontWeight:600,color:C.muted,letterSpacing:"0.05em",marginBottom:6}}>CHOOSE A TOOL</label>
+              <select
+                value={active}
+                onChange={e=>{setActive(e.target.value);trackEvent("tool",e.target.value)}}
+                style={{width:"100%",padding:"11px 12px",fontSize:15,fontWeight:600,color:C.primary,background:C.primaryLight,border:`1px solid ${C.border}`,borderRadius:10,cursor:"pointer",appearance:"none",WebkitAppearance:"none",backgroundImage:"url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e5e3f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",backgroundRepeat:"no-repeat",backgroundPosition:"right 10px center",backgroundSize:"18px",paddingRight:36}}>
+                <optgroup label="Free tools">
+                  {TOOLS_LIST.filter(t=>!t.divider&&!t.premium).map(t=>(
+                    <option key={t.id} value={t.id}>{t.icon} {t.label}</option>
+                  ))}
+                </optgroup>
+                <optgroup label="Premium tools">
+                  {TOOLS_LIST.filter(t=>!t.divider&&t.premium).map(t=>(
+                    <option key={t.id} value={t.id}>{t.icon} {t.label} (PRO)</option>
+                  ))}
+                </optgroup>
+              </select>
             </div>
-            {render()}
+            <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:14,padding:"16px 14px",boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
+              <div style={{display:"flex",alignItems:"center",gap:9,marginBottom:14,paddingBottom:12,borderBottom:`1px solid ${C.border}`}}>
+                <span style={{fontSize:22,flexShrink:0}}>{(tool&&tool.icon)}</span>
+                <div style={{minWidth:0}}>
+                  <h2 className="serif" style={{fontSize:17,fontWeight:400,color:C.text,margin:0}}>{(tool&&tool.label)}</h2>
+                  <p style={{fontSize:12,color:C.muted,margin:0}}>{(tool&&tool.desc)}</p>
+                </div>
+              </div>
+              {render()}
+            </div>
+          </>
+        ) : (
+          /* DESKTOP: sidebar + tool, unchanged */
+          <div style={{display:"grid",gridTemplateColumns:"min(220px,30vw) 1fr",gap:"clamp(8px,2vw,20px)",alignItems:"start"}}>
+            <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,overflow:"hidden",boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
+              {TOOLS_LIST.map(t=>{
+                if(t.divider)return<div key={t.id} style={{padding:"8px 14px",fontSize:10,fontWeight:600,color:C.muted,letterSpacing:"0.06em",borderTop:`1px solid ${C.border}`,marginTop:4}}>{t.label}</div>
+                return(
+                  <button key={t.id} onClick={()=>{setActive(t.id);trackEvent("tool",t.id)}}
+                    style={{width:"100%",background:active===t.id?C.primaryLight:"transparent",border:"none",borderLeft:`3px solid ${active===t.id?C.primary:"transparent"}`,padding:"11px 14px",cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:8,transition:"all 0.15s"}}>
+                    <span style={{fontSize:16,flexShrink:0}}>{t.icon}</span>
+                    <div style={{flex:1,minWidth:0}}>
+                      <div style={{fontSize:12,fontWeight:active===t.id?600:400,color:active===t.id?C.primary:C.text,display:"flex",alignItems:"center",gap:5}}>
+                        {t.label}
+                        {t.premium&&<span style={{fontSize:9,background:"#fef3c7",color:"#92400e",padding:"1px 5px",borderRadius:5,fontWeight:700}}>PRO</span>}
+                      </div>
+                      <div style={{fontSize:11,color:C.muted,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{t.desc}</div>
+                    </div>
+                  </button>
+                )
+              })}
+            </div>
+            <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,padding:"22px",boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
+              <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:18,paddingBottom:14,borderBottom:`1px solid ${C.border}`}}>
+                <span style={{fontSize:24}}>{(tool&&tool.icon)}</span>
+                <div>
+                  <h2 className="serif" style={{fontSize:19,fontWeight:400,color:C.text,margin:0}}>{(tool&&tool.label)}</h2>
+                  <p style={{fontSize:13,color:C.muted,margin:0}}>{(tool&&tool.desc)}</p>
+                </div>
+              </div>
+              {render()}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   )
