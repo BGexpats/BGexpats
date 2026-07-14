@@ -5015,6 +5015,12 @@ function ConnectPage({user,setView,subscription}){
   const [profiles,setProfiles]=useState(INIT_PROFILES)
   const [myAvatar,setMyAvatar]=useState(()=>user?loadAvatar(user.email):null)
   const [avatarUploading,setAvatarUploading]=useState(false)
+  const [isMobile,setIsMobile]=useState(typeof window!=="undefined"&&window.innerWidth<=768)
+  useEffect(()=>{
+    const onResize=()=>setIsMobile(window.innerWidth<=768)
+    window.addEventListener("resize",onResize)
+    return()=>window.removeEventListener("resize",onResize)
+  },[])
 
   const uploadAvatar=async(e)=>{
     const file=e.target.files[0]
@@ -5098,7 +5104,7 @@ function ConnectPage({user,setView,subscription}){
         </div>
       </div>
 
-      <div style={{maxWidth:1100,margin:"-24px auto 48px",padding:"0 20px"}}>
+      <div style={{maxWidth:1100,margin:"0 auto",padding:isMobile?"20px 14px 40px":"28px 20px 48px"}}>
 
         {/* Safety Tips */}
         {showSafety&&(
@@ -5114,7 +5120,7 @@ function ConnectPage({user,setView,subscription}){
         {showCreate&&user&&(
           <div style={{background:C.surface,border:`1px solid #9333ea30`,borderRadius:16,padding:"22px",marginBottom:16,boxShadow:"0 4px 20px rgba(107,33,168,0.1)"}}>
             <div style={{fontSize:15,fontWeight:600,color:C.text,marginBottom:16}}>✏️ Your profile</div>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:12}}>
+            <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr 88px":"1fr 1fr",gap:12,marginBottom:12}}>
               <div>
                 <label style={{fontSize:12,color:C.muted,display:"block",marginBottom:4}}>First name only</label>
                 <input value={newProfile.name} onChange={e=>setNewProfile(p=>({...p,name:e.target.value}))} placeholder="Maria" style={{width:"100%",border:`1px solid ${C.border}`,borderRadius:8,padding:"9px 12px",fontSize:14,outline:"none",color:C.text,background:C.page,boxSizing:"border-box"}}/>
@@ -5129,7 +5135,7 @@ function ConnectPage({user,setView,subscription}){
               <textarea value={newProfile.bio} onChange={e=>setNewProfile(p=>({...p,bio:e.target.value.slice(0,200)}))} placeholder="Tell people a bit about yourself, what you enjoy, what you're looking for..." style={{width:"100%",border:`1px solid ${C.border}`,borderRadius:8,padding:"9px 12px",fontSize:14,outline:"none",color:C.text,background:C.page,resize:"none",height:80,fontFamily:"inherit",boxSizing:"border-box"}}/>
               <div style={{fontSize:11,color:C.muted,textAlign:"right"}}>{newProfile.bio.length}/200</div>
             </div>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10,marginBottom:12}}>
+            <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr 1fr",gap:10,marginBottom:12}}>
               <div>
                 <label style={{fontSize:12,color:C.muted,display:"block",marginBottom:4}}>I am</label>
                 <select value={newProfile.gender} onChange={e=>setNewProfile(p=>({...p,gender:e.target.value}))} style={{width:"100%",border:`1px solid ${C.border}`,borderRadius:8,padding:"9px 12px",fontSize:14,outline:"none",color:C.text,background:C.page}}>
@@ -5169,16 +5175,16 @@ function ConnectPage({user,setView,subscription}){
         )}
 
         {/* Filters */}
-        <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,padding:"16px 18px",marginBottom:20,boxShadow:"0 2px 8px rgba(0,0,0,0.04)"}}>
-          <div style={{display:"flex",flexDirection:"column",gap:14}}>
-            <div style={{display:"flex",flexWrap:"wrap",alignItems:"center",gap:10}}>
-              <div style={{fontSize:11,fontWeight:600,color:C.muted,textTransform:"uppercase",letterSpacing:"0.05em",flexShrink:0,width:78}}>Show</div>
+        <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,padding:isMobile?"14px 14px":"16px 18px",marginBottom:20,boxShadow:"0 2px 8px rgba(0,0,0,0.04)"}}>
+          <div style={{display:"flex",flexDirection:"column",gap:isMobile?12:14}}>
+            <div style={{display:"flex",flexDirection:isMobile?"column":"row",flexWrap:"wrap",alignItems:isMobile?"stretch":"center",gap:isMobile?7:10}}>
+              <div style={{fontSize:11,fontWeight:600,color:C.muted,textTransform:"uppercase",letterSpacing:"0.05em",flexShrink:0,width:isMobile?"auto":78}}>Show</div>
               <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
                 {fromOpts.map(o=><button key={o.v} onClick={()=>setFilterFrom(o.v)} style={{padding:"6px 12px",borderRadius:16,border:`1.5px solid ${filterFrom===o.v?"#9333ea":C.border}`,background:filterFrom===o.v?"#f3e8ff":"transparent",color:filterFrom===o.v?"#6b21a8":C.muted,cursor:"pointer",fontSize:12,fontWeight:filterFrom===o.v?700:400,display:"flex",alignItems:"center",gap:5}}><Icon2c d={(CONNECT_ICON_MAP[o.v]||{}).d} accent={(CONNECT_ICON_MAP[o.v]||{}).accent} size={13}/>{o.l}</button>)}
               </div>
             </div>
-            <div style={{display:"flex",flexWrap:"wrap",alignItems:"center",gap:10}}>
-              <div style={{fontSize:11,fontWeight:600,color:C.muted,textTransform:"uppercase",letterSpacing:"0.05em",flexShrink:0,width:78}}>Looking for</div>
+            <div style={{display:"flex",flexDirection:isMobile?"column":"row",flexWrap:"wrap",alignItems:isMobile?"stretch":"center",gap:isMobile?7:10}}>
+              <div style={{fontSize:11,fontWeight:600,color:C.muted,textTransform:"uppercase",letterSpacing:"0.05em",flexShrink:0,width:isMobile?"auto":78}}>Looking for</div>
               <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
                 {LOOKING_FOR_OPTS.map(o=>{
                   const isDating=o.v==="dating"
@@ -5195,13 +5201,13 @@ function ConnectPage({user,setView,subscription}){
               </div>
             </div>
             <div style={{display:"flex",flexWrap:"wrap",alignItems:"center",justifyContent:"space-between",gap:10,paddingTop:10,borderTop:`1px solid ${C.border}`}}>
-              <div style={{display:"flex",alignItems:"center",gap:10}}>
-                <div style={{fontSize:11,fontWeight:600,color:C.muted,textTransform:"uppercase",letterSpacing:"0.05em",flexShrink:0,width:78}}>City</div>
-                <select value={filterCity} onChange={e=>setFilterCity(e.target.value)} style={{border:`1px solid ${C.border}`,borderRadius:10,padding:"6px 12px",fontSize:12,color:C.text,background:C.page,outline:"none"}}>
+              <div style={{display:"flex",alignItems:"center",gap:10,flex:isMobile?1:"none",minWidth:0}}>
+                <div style={{fontSize:11,fontWeight:600,color:C.muted,textTransform:"uppercase",letterSpacing:"0.05em",flexShrink:0,width:isMobile?"auto":78}}>City</div>
+                <select value={filterCity} onChange={e=>setFilterCity(e.target.value)} style={{flex:isMobile?1:"none",minWidth:0,border:`1px solid ${C.border}`,borderRadius:10,padding:"7px 12px",fontSize:12,color:C.text,background:C.page,outline:"none"}}>
                   {cities.map(c=><option key={c.v} value={c.v}>{c.l}</option>)}
                 </select>
               </div>
-              <span style={{fontSize:12,color:C.muted,fontWeight:500}}>{visible.filter(p=>!p.team).length > 0 ? `${visible.length} members` : "Be the first member!"}</span>
+              <span style={{fontSize:12,color:C.muted,fontWeight:500,flexShrink:0}}>{visible.filter(p=>!p.team).length > 0 ? `${visible.length} members` : "Be the first member!"}</span>
             </div>
           </div>
         </div>
