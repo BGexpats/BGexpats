@@ -1100,6 +1100,11 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
               {clean(t.nav?.upgrade)||"Upgrade"}
             </button>
           )}
+        </div>
+        {/* User menu lives OUTSIDE the scrolling nav-links container — a parent with
+            overflow:auto clips absolutely-positioned dropdowns, which was making the
+            "My account" menu unclickable. */}
+        <div style={{display:"flex",alignItems:"center",flexShrink:0}}>
           {user?(
             <div style={{position:"relative"}}>
               <button onClick={()=>setUserMenu(!userMenu)}
@@ -1108,7 +1113,7 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
                 {user.name.split(" ")[0]}
               </button>
               {userMenu&&(
-                <div style={{position:"absolute",right:0,top:42,background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,boxShadow:"0 8px 24px rgba(0,0,0,0.12)",minWidth:180,zIndex:200,overflow:"hidden"}}>
+                <div style={{position:"absolute",right:0,top:42,background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,boxShadow:"0 8px 24px rgba(0,0,0,0.12)",minWidth:190,zIndex:9999,overflow:"hidden"}}>
                   <div style={{padding:"14px 16px",borderBottom:`1px solid ${C.border}`,background:C.page}}>
                     <div style={{fontWeight:700,fontSize:13,color:C.text}}>{user.name}</div>
                     <div style={{fontSize:12,color:C.muted}}>{user.email}</div>
