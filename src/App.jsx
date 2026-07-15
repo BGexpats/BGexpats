@@ -3820,6 +3820,7 @@ const PROFILE_LANGS=["English","Bulgarian","Russian","German","French","Spanish"
 function AccountPage({user,setUser,setView}){
   const [name,setName]=useState("")
   const [bio,setBio]=useState("")
+  const [origin,setOrigin]=useState("")
   const [city,setCity]=useState("")
   const [lookingFor,setLookingFor]=useState("")
   const [interests,setInterests]=useState([])
@@ -3850,6 +3851,7 @@ function AccountPage({user,setUser,setView}){
       if(data){
         setName(data.name||user.name||"")
         setBio(data.bio||"")
+        setOrigin(data.origin||"")
         setCity(data.city||"")
         setLookingFor(data.looking_for||"")
         setInterests(data.interests||[])
@@ -3872,13 +3874,18 @@ function AccountPage({user,setUser,setView}){
     const {error}=await sbUpdateProfile(user.id,{
       name:name.trim(),
       bio:bio.trim()||null,
+      origin:origin||null,
       city:city||null,
       looking_for:lookingFor||null,
       interests:interests.length?interests:null,
       languages:languages.length?languages:null,
     })
     setSaving(false)
-    if(error){setErr("Could not save your profile. Please try again.");return}
+    if(error){
+      console.error("Profile save error:",error)
+      setErr("Could not save: "+(error.message||"unknown error"))
+      return
+    }
     setUser(u=>u?{...u,name:name.trim()}:u)
     setMsg("Profile saved.")
     setTimeout(()=>setMsg(""),3000)
@@ -3978,6 +3985,18 @@ function AccountPage({user,setUser,setView}){
                   placeholder="How you'd like to appear"
                   style={inputStyle}/>
                 <div style={{fontSize:11,color:C.muted,marginTop:3}}>This is shown across BGexpats, including in Meet & Connect if you join.</div>
+              </div>
+
+              {/* I am — Bulgarian or Expat */}
+              <div style={{marginBottom:16}}>
+                <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:6}}>I AM</label>
+                <div style={{display:"flex",gap:8}}>
+                  {[["expat","🌍 Expat"],["bulgarian","🇧🇬 Bulgarian"]].map(([v,l])=>(
+                    <button key={v} onClick={()=>setOrigin(v)}
+                      style={{flex:1,padding:"10px",borderRadius:10,border:`1.5px solid ${origin===v?C.primary:C.border}`,background:origin===v?C.primaryLight:"transparent",color:origin===v?C.primary:C.muted,cursor:"pointer",fontSize:14,fontWeight:origin===v?700:400}}>{l}</button>
+                  ))}
+                </div>
+                <div style={{fontSize:11,color:C.muted,marginTop:3}}>Helps others in Meet & Connect find locals or fellow expats.</div>
               </div>
 
               {/* About you */}
@@ -5589,6 +5608,7 @@ function ConnectPage({user,setView,subscription}){
           city:(p.city||"").toLowerCase(),
           bio:p.bio,
           lookingFor:p.looking_for||"friends",
+          origin:p.origin||null,
           languages:p.languages||[],
           interests:p.interests||[],
           av:p.av||"?",
@@ -5627,8 +5647,9 @@ function ConnectPage({user,setView,subscription}){
   const filtered=profiles.filter(p=>{
     if(filterCity!=="all"&&p.city!==filterCity)return false
     if(filterLooking!=="all"&&p.lookingFor!==filterLooking)return false
-    if(filterFrom==="expat"&&p.from==="Bulgarian")return false
-    if(filterFrom==="bulgarian"&&p.from!=="Bulgarian")return false
+    // Real origin field (team cards have no origin and always show)
+    if(!p.team&&filterFrom==="expat"&&p.origin!=="expat")return false
+    if(!p.team&&filterFrom==="bulgarian"&&p.origin!=="bulgarian")return false
     return true
   })
   const safeFiltered=filtered.filter(p=>p.lookingFor!=="dating"||isPremium)
@@ -5847,8 +5868,10 @@ function ConnectPage({user,setView,subscription}){
                       {p.verified&&<span style={{fontSize:11,background:"rgba(255,255,255,0.2)",color:"#fff",padding:"1px 6px",borderRadius:8}}>✓ verified</span>}
                     </div>
                     <div style={{fontSize:12,color:"rgba(255,255,255,0.8)",display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>
+                      {p.origin==="bulgarian"&&<span>🇧🇬 Bulgarian</span>}
+                      {p.origin==="expat"&&<span>🌍 Expat</span>}
                       {p.from&&<span>{p.flag} {p.from}</span>}
-                      {p.from&&p.city&&<span>·</span>}
+                      {(p.origin||p.from)&&p.city&&<span>·</span>}
                       {p.city&&<span style={{textTransform:"capitalize"}}>{p.city}</span>}
                       {p.online&&<span>·</span>}
                       {p.online&&<span style={{color:"#4ade80"}}>● online</span>}
