@@ -1734,6 +1734,7 @@ function LoginPage({setUser,setView}){
   const [ok,setOk]=useState(false)
   const [busy,setBusy]=useState(false)
   const [notice,setNotice]=useState("")
+  const [showPass,setShowPass]=useState(false)
 
   const submit=async()=>{
     setErr("");setNotice("")
@@ -1812,9 +1813,25 @@ function LoginPage({setUser,setView}){
             </div>
             <div style={{marginBottom:err||ok?16:24}}>
               <label style={{display:"block",fontSize:13,fontWeight:600,color:C.text,marginBottom:5}}>Password</label>
-              <input value={pass} onChange={e=>setPass(e.target.value)} type="password" placeholder="Minimum 6 characters"
-                onKeyDown={e=>e.key==="Enter"&&submit()}
-                style={{width:"100%",border:`1px solid ${C.border}`,borderRadius:9,padding:"11px 14px",fontSize:14,outline:"none",color:C.text,background:C.page,boxSizing:"border-box"}}/>
+              <div style={{position:"relative"}}>
+                <input value={pass} onChange={e=>setPass(e.target.value)} type={showPass?"text":"password"} placeholder="Minimum 6 characters"
+                  onKeyDown={e=>e.key==="Enter"&&submit()}
+                  style={{width:"100%",border:`1px solid ${C.border}`,borderRadius:9,padding:"11px 44px 11px 14px",fontSize:14,outline:"none",color:C.text,background:C.page,boxSizing:"border-box"}}/>
+                <button type="button" onClick={()=>setShowPass(s=>!s)}
+                  style={{position:"absolute",right:12,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",cursor:"pointer",padding:4,color:C.muted,display:"flex",alignItems:"center"}}>
+                  {showPass?(
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/>
+                      <line x1="1" y1="1" x2="23" y2="23"/>
+                    </svg>
+                  ):(
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  )}
+                </button>
+              </div>
             </div>
             {err&&<div style={{background:"#fff0f0",border:"1px solid #fcc",borderRadius:9,padding:"10px 14px",fontSize:13,color:"#c00",marginBottom:16}}>⚠️ {err}</div>}
             {notice&&<div style={{background:"#f0f6ff",border:"1px solid #b8d4f0",borderRadius:9,padding:"10px 14px",fontSize:13,color:"#1d4ed8",marginBottom:16}}>✉️ {notice}</div>}
@@ -6630,10 +6647,15 @@ function DeadlineTracker({user,subscription,setView}){
 // ── Advertise / Sponsorship Page ─────────────────────────────────
 const AD_CONTACT_EMAIL = "partners@bgexpats.com" // ← your partnerships inbox
 
+const AD_TIER_ICONS={
+  pin:<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 1114 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>,
+  featured:<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
+  sponsor:<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/><circle cx="12" cy="12" r="3" fill="none"/></svg>,
+}
+
 const AD_TIERS = [
   {
     id:"pin",
-    icon:"📍",
     name:"Map Listing",
     monthly:17,
     yearly:137,
@@ -6649,7 +6671,6 @@ const AD_TIERS = [
   },
   {
     id:"featured",
-    icon:"⭐",
     name:"Featured Partner",
     monthly:47,
     yearly:378,
@@ -6667,7 +6688,6 @@ const AD_TIERS = [
   },
   {
     id:"sponsor",
-    icon:"👑",
     name:"Sponsored Guide",
     monthly:119,
     yearly:956,
@@ -6766,7 +6786,7 @@ function AdvertisePage({setView,lang}){
               <div key={tier.id} onClick={()=>setSel(tier.id)}
                 style={{background:C.surface,border:`2px solid ${active?tier.accent:C.border}`,borderRadius:18,padding:"26px 22px",cursor:"pointer",position:"relative",transition:"all 0.2s",boxShadow:active?"0 10px 30px rgba(0,0,0,0.10)":"0 2px 10px rgba(0,0,0,0.04)",transform:active?"translateY(-3px)":"none"}}>
                 {tier.popular&&<div style={{position:"absolute",top:-11,left:"50%",transform:"translateX(-50%)",background:tier.accent,color:"#fff",fontSize:11,fontWeight:700,letterSpacing:"0.05em",padding:"3px 14px",borderRadius:20,whiteSpace:"nowrap"}}>MOST POPULAR</div>}
-                <div style={{fontSize:30,marginBottom:8}}>{tier.icon}</div>
+                <div style={{color:tier.accent,marginBottom:10,display:"flex",alignItems:"center"}}>{AD_TIER_ICONS[tier.id]}</div>
                 <div className="serif" style={{fontSize:22,color:C.text,fontWeight:400,marginBottom:3}}>{tier.name}</div>
                 <div style={{fontSize:13,color:C.muted,marginBottom:16,minHeight:34,lineHeight:1.4}}>{tier.tagline}</div>
                 <div style={{marginBottom:18}}>
