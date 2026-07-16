@@ -575,7 +575,7 @@ All legally resident children (EU and non-EU) have the right to free public educ
     labels:{en:{label:"Tourism & Travel",sub:"Places, tips, getting around"},fr:{label:"Tourisme & Voyages",sub:"Lieux, conseils, transports"},es:{label:"Turismo y Viajes",sub:"Lugares, consejos, transporte"},de:{label:"Tourismus & Reisen",sub:"Orte, Tipps, Mobilität"},nl:{label:"Toerisme & Reizen",sub:"Plaatsen, tips, vervoer"},ru:{label:"Туризм и путешествия",sub:"Места, транспорт, советы"},uk:{label:"Туризм та подорожі",sub:"Місця, транспорт, поради"},tr:{label:"Turizm ve Seyahat",sub:"Yerler, ulaşım, ipuçları"},bg:{label:"Туризъм и пътувания",sub:"Места, транспорт, съвети"}},
     articles:[
       {titles:{en:"Top places to visit in Bulgaria",fr:"Les incontournables de la Bulgarie",es:"Los mejores lugares para visitar en Bulgaria",de:"Top-Sehenswürdigkeiten in Bulgarien",nl:"Topbestemmingen in Bulgarije"},
-       body:`Bulgaria is one of Europe's most underrated destinations.\n\n**Sofia** — the capital. Must-see: Alexander Nevsky Cathedral (free), Vitosha Mountain (15 min from center), Boyana Church (UNESCO), Vitosha Blvd for shopping and coffee.\n\n**Plovdiv** — older than Rome. Cobblestone Old Town (Stari Grad) with a working Roman amphitheater. 2 hours from Sofia. Very walkable.\n\n**Bansko** — best ski resort in Bulgaria (Pirin Mountains). Excellent skiing (Dec–Mar) and hiking (summer). Great restaurants and nightlife.\n\n**[[travel-black-sea|Black Sea]]** — Varna city is beautiful. Sunny Beach is the big resort. Golden Sands is more pleasant. 👉 Tap to explore the coast, its resorts and top places.\n\n**Rila Monastery** — UNESCO site, one of the most beautiful monasteries in the Balkans. Easy day trip from Sofia.\n\n**Veliko Tarnovo** — dramatic medieval capital on a hilltop. Tsarevets Fortress has a famous sound-and-light show.\n\n💡 Best time to visit: May–June or September–October. Warm, not crowded.`},
+       body:`Bulgaria is one of Europe's most underrated destinations.\n\n**[[travel-sofia|Sofia]]** — the capital. Must-see: Alexander Nevsky Cathedral (free), Vitosha Mountain (15 min from center), Boyana Church (UNESCO), Vitosha Blvd for shopping and coffee.\n\n**[[travel-plovdiv|Plovdiv]]** — older than Rome. Cobblestone Old Town (Stari Grad) with a working Roman amphitheater. 2 hours from Sofia. Very walkable.\n\n**[[travel-bansko|Bansko]]** — best ski resort in Bulgaria (Pirin Mountains). Excellent skiing (Dec–Mar) and hiking (summer). Great restaurants and nightlife.\n\n**[[travel-black-sea|Black Sea]]** — Varna city is beautiful. Sunny Beach is the big resort. Golden Sands is more pleasant. 👉 Tap to explore the coast, its resorts and top places.\n\n**Rila Monastery** — UNESCO site, one of the most beautiful monasteries in the Balkans. Easy day trip from Sofia.\n\n**Veliko Tarnovo** — dramatic medieval capital on a hilltop. Tsarevets Fortress has a famous sound-and-light show.\n\n💡 Best time to visit: May–June or September–October. Warm, not crowded.`},
       {titles:{en:"Getting around Bulgaria",fr:"Se déplacer en Bulgarie",es:"Moverse por Bulgaria",de:"In Bulgarien unterwegs",nl:"Vervoer in Bulgarije",ru:"Передвижение по Болгарии",uk:"Пересування Болгарією",tr:"Bulgaristan'da ulaşım",bg:"Придвижване в България"},
        body:`**By bus (recommended):**\n• Sofia → Plovdiv: 1h45m, €6\n• Sofia → Varna: 6h, €15\n• Book at bus stations or avtogara.bg\n\n**By train:**\n• Sofia → Plovdiv: €5, ~2.5h. Slower but scenic.\n• Book at bdz.bg (English available)\n\n**By car:**\n• Motorway vignette required: €8/week or €15/month\n• Parking in Sofia: €0.80–1/hour (blue zone, pay by SMS)\n\n**In Sofia:**\n• Metro, trams, buses — ticket €0.80, day pass €2\n• Sofia Traffic app for routes\n\n**Taxis:**\n• Use Bolt or Yandex Go apps — cheaper and safer than street taxis\n• Avoid unmarked taxis at airports\n\n💡 Buses are usually faster than trains and similarly priced.`},
     ]
@@ -585,7 +585,7 @@ All legally resident children (EU and non-EU) have the right to free public educ
     labels:{en:{label:"Housing & Renting",sub:"Find your home in Bulgaria"},fr:{label:"Logement & Location",sub:"Trouvez votre logement en Bulgarie"},es:{label:"Vivienda y Alquiler",sub:"Encuentra tu hogar en Bulgaria"},de:{label:"Wohnen & Mieten",sub:"Dein Zuhause in Bulgarien finden"},nl:{label:"Wonen & Huren",sub:"Vind uw thuis in Bulgarije"},ru:{label:"Жильё и аренда",sub:"Квартиры, покупка, коммунальные"},uk:{label:"Житло та оренда",sub:"Квартири, купівля, комунальні"},tr:{label:"Konut ve Kiralama",sub:"Daireler, satın alma, faturalar"},bg:{label:"Жилище и наем",sub:"Апартаменти, покупка, комунални"}},
     articles:[
       {titles:{en:"How to rent an apartment as a foreigner",fr:"Comment louer un appartement en tant qu'étranger",es:"Cómo alquilar un apartamento como extranjero",de:"Als Ausländer eine Wohnung mieten",nl:"Een appartement huren als buitenlander"},
-       body:`Renting in Bulgaria is very affordable, especially outside Sofia.\n\n**Typical prices (2024):**\n\nSofia center:\n• Studio/1-bed: €400–720/month\n• 2-bed: €600–1,000/month\n\nSofia suburbs: 30–40% cheaper\nPlovdiv: 40% cheaper than Sofia\nVarna: similar to Plovdiv (higher in summer)\nBansko: €200–700 for 1-bed (winter)\n\n**Where to find apartments:**\n• imoti.net — main property portal\n• address.bg — another large portal\n• Facebook: "Apartments for rent Sofia English"\n• Real estate agents (charge 1 month rent fee)\n\n**Rental contract:**\n• Always in writing, in both Bulgarian and English\n• Standard deposit: 1–2 months rent\n• Notice period: usually 1 month\n\n**Utilities:** NOT included in rent. Budget €51–200 extra in winter.\n\n💡 Best Sofia neighbourhoods for expats: Lozenets, Iztok, Doctor's Garden, Mladost, Oborishte.`},
+       body:`Renting in Bulgaria is still affordable by European standards — but prices have risen since 2022 and again after euro adoption in January 2026.\n\n## Typical prices (2026)\n\nTap any city below for a neighbourhood guide, top places and activities.\n\n**[[travel-sofia|Sofia]] — the capital (most expensive)**\n• Studio/1-bed center: €500–850/month\n• Studio/1-bed suburbs: €350–550/month\n• 2-bed center: €700–1,200/month\n• 2-bed suburbs: €500–750/month\n\n**[[travel-plovdiv|Plovdiv]] — 25–35% cheaper than Sofia**\n• Studio/1-bed: €300–500/month\n• 2-bed: €400–650/month\n\n**[[travel-varna|Varna]] — Black Sea city (higher in summer)**\n• Studio/1-bed: €380–600/month\n• 2-bed: €500–800/month\n\n**[[travel-burgas|Burgas]] — more affordable Black Sea base**\n• Studio/1-bed: €280–450/month\n• 2-bed: €380–600/month\n\n**[[travel-bansko|Bansko]] — mountain resort**\n• Studio/1-bed: €280–500/month\n• Higher in ski season (Dec–Mar), lower in spring/autumn\n\n---\n\n## Where to find apartments\n• imoti.net — main property portal\n• address.bg — another large portal\n• Facebook: "Apartments for rent Sofia English"\n• Real estate agents (charge 1 month rent fee)\n\n## Rental contract\n• Always in writing, in both Bulgarian and English\n• Standard deposit: 1–2 months rent\n• Notice period: usually 1 month\n\n## Utilities\nNOT included in rent. Budget €60–200/month extra (higher in winter for heating).\n\n💡 Best Sofia neighbourhoods for expats: Lozenets, Iztok, Doctor's Garden, Mladost, Oborishte.`},
     ,
       {titles:{en:"Buying property in Bulgaria \u2014 the complete guide",fr:"Acheter un bien immobilier en Bulgarie",es:"Comprar una propiedad en Bulgaria",de:"Immobilienkauf in Bulgarien",nl:"Onroerend goed kopen in Bulgarije"},
        source:"Bulgarian Property Registry",sourceUrl:"https://www.registryagency.bg",readTime:"7 min read",body:`Bulgaria offers some of the most affordable property in the EU — but the buying process and legal framework differ significantly from Western Europe.
@@ -5588,8 +5588,72 @@ const TRAVEL_GUIDE = {
     ],
   },
   // ── ADD MORE REGIONS HERE (copy the whole "black-sea" block) ──
-  // "sofia-region": { name:"Sofia & Around", ... },
   // "rila-pirin": { name:"Rila & Pirin Mountains", ... },
+  "sofia": {
+    name: "Sofia",
+    tagline: "Bulgaria's capital — culture, mountains and expat life",
+    hero: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=1200&q=80",
+    intro: "Sofia is the cheapest EU capital and one of Europe's most underrated cities. Mountains 30 minutes from the center, a buzzing café culture, and a fast-growing expat community.",
+    cities: [
+      { id:"sofia-center", name:"Sofia Center", tagline:"Embassies, cafés, nightlife", hero:"https://images.unsplash.com/photo-1555993539-1732b0258235?w=1200&q=80",
+        intro:"The heart of Sofia — walkable, vibrant, close to everything. Home to Alexander Nevsky Cathedral, Vitosha Blvd and most expat-friendly services.",
+        places:[
+          {name:"Add a place",type:"attraction",desc:"Tap 'Edit' in your code to add real places here.",img:"",area:"Center"},
+        ]},
+    ],
+  },
+  "plovdiv": {
+    name: "Plovdiv",
+    tagline: "Older than Rome — cobblestones, culture and great coffee",
+    hero: "https://images.unsplash.com/photo-1593804423029-5e3e0d2df7a5?w=1200&q=80",
+    intro: "Bulgaria's second city and a growing expat favourite. The cobblestone Old Town (Stari Grad) sits above a Roman amphitheatre still used for concerts. Rents are 25–35% below Sofia.",
+    cities: [
+      { id:"plovdiv-old-town", name:"Old Town", tagline:"Cobblestones & Roman ruins", hero:"https://images.unsplash.com/photo-1593804423029-5e3e0d2df7a5?w=1200&q=80",
+        intro:"The hilltop Old Town is Plovdiv's showpiece — restored Revival-era houses, galleries and the Roman theatre. The flat Kapana district below is the creative hub.",
+        places:[
+          {name:"Add a place",type:"attraction",desc:"Add real places from Plovdiv here.",img:"",area:"Old Town"},
+        ]},
+    ],
+  },
+  "varna": {
+    name: "Varna",
+    tagline: "Bulgaria's sea capital — beaches, nightlife and sea views",
+    hero: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80",
+    intro: "Varna is Bulgaria's third city and Black Sea capital. Larger and more sophisticated than Sunny Beach — a proper city with beaches, the Sea Garden park, and a lively summer scene. Rents are seasonal.",
+    cities: [
+      { id:"varna-center", name:"Varna Center", tagline:"Sea Garden, beach & city life", hero:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80",
+        intro:"Varna's center runs from the Cathedral down to the famous Sea Garden and beach. The Briz and Chayka districts are popular with expats for their sea views.",
+        places:[
+          {name:"Add a place",type:"beach",desc:"Add real Varna places here.",img:"",area:"Sea Garden"},
+        ]},
+    ],
+  },
+  "burgas": {
+    name: "Burgas",
+    tagline: "Underrated Black Sea city — lakes, beaches and low rents",
+    hero: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80",
+    intro: "Burgas is the most affordable of Bulgaria's main cities. Its flat center is easy to walk, and it's surrounded by four lakes. A relaxed base for exploring the Southern Black Sea coast.",
+    cities: [
+      { id:"burgas-center", name:"Burgas Center", tagline:"Lakes, beach and a relaxed vibe", hero:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80",
+        intro:"Burgas is flat, walkable and unpretentious. The pedestrian Aleko Bogoridi street is the main artery. The beach is a 10-minute walk from the center.",
+        places:[
+          {name:"Add a place",type:"beach",desc:"Add real Burgas places here.",img:"",area:"Center"},
+        ]},
+    ],
+  },
+  "bansko": {
+    name: "Bansko",
+    tagline: "Bulgaria's top ski resort — and a great year-round base",
+    hero: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=80",
+    intro: "Bansko is a small mountain town at the foot of the Pirin Mountains. World-class skiing Dec–Mar, hiking and biking in summer. A strong expat and digital nomad community has built up here.",
+    cities: [
+      { id:"bansko-center", name:"Bansko Town", tagline:"Ski, hike and après",hero:"https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=80",
+        intro:"The old cobblestone town meets a modern ski resort. The gondola is walkable from the center, and the main strip has dozens of mehanas (taverns) and bars.",
+        places:[
+          {name:"Add a place",type:"bar",desc:"Add real Bansko places here.",img:"",area:"Center"},
+        ]},
+    ],
+  },
 }
 
 // Place-type styling (icon + colour). Add new types here if you need them.
