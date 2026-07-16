@@ -1048,6 +1048,43 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
   )
   const navBtnStyle=(active,tint)=>({display:"flex",alignItems:"center",gap:6,background:tint?"rgba(240,192,96,0.12)":"transparent",border:"none",color:tint?"#f0c060":"rgba(255,255,255,0.92)",padding:"8px 13px",borderRadius:10,cursor:"pointer",fontSize:13,fontWeight:active?700:500}
   )
+
+  // ── Dropdown component used for Explore + Community ──────────────
+  const NavDropdown=({label,active,items})=>{
+    const [open,setOpen]=useState(false)
+    const ref=useRef(null)
+    useEffect(()=>{
+      const handler=(e)=>{if(ref.current&&!ref.current.contains(e.target))setOpen(false)}
+      document.addEventListener("mousedown",handler)
+      return()=>document.removeEventListener("mousedown",handler)
+    },[])
+    return(
+      <div ref={ref} style={{position:"relative"}}>
+        <button
+          onClick={()=>setOpen(o=>!o)}
+          style={{...navBtnStyle(active),display:"flex",alignItems:"center",gap:5,fontWeight:active?700:500}}>
+          {label}
+          <svg width="12" height="12" viewBox="0 0 24 24" style={{flexShrink:0,opacity:0.7,transition:"transform 0.2s",transform:open?"rotate(180deg)":"rotate(0deg)"}}>
+            <path fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+        {open&&(
+          <div style={{position:"absolute",top:44,left:0,background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,boxShadow:"0 8px 24px rgba(0,0,0,0.13)",minWidth:180,zIndex:9999,overflow:"hidden",padding:"4px 0"}}>
+            {items.map((item,i)=>(
+              <button key={i} onClick={()=>{setView(item.view);setOpen(false)}}
+                style={{width:"100%",background:view===item.view?C.primaryLight:"none",border:"none",padding:"11px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:view===item.view?C.primary:C.text,display:"flex",alignItems:"center",gap:10,fontWeight:view===item.view?700:400}}>
+                <svg width="15" height="15" viewBox="0 0 24 24" style={{flexShrink:0,opacity:0.6}}>
+                  <path fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" d={item.d}/>
+                </svg>
+                {item.label}
+                {item.tint&&<span style={{marginLeft:"auto",fontSize:10,background:"rgba(240,192,96,0.2)",color:"#f0c060",padding:"1px 6px",borderRadius:6,fontWeight:700}}>💼</span>}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    )
+  }
   return(
     <nav style={{background:C.primary,position:"sticky",top:0,zIndex:100,borderBottom:`1px solid ${C.primaryDark}`}}>
       <div style={{maxWidth:1100,margin:"0 auto",padding:"0 12px",height:58,display:"flex",alignItems:"center",justifyContent:"space-between",gap:8}}>
@@ -1057,44 +1094,37 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
           {subscription&&<span style={{background:"#f0c060",color:"#1a3a20",fontSize:10,padding:"2px 8px",borderRadius:10,fontWeight:700,marginLeft:4}}>{subscription.plan.toUpperCase()}</span>}
         </button>
         <div className="nav-links" style={{display:"flex",alignItems:"center",gap:2,overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none",msOverflowStyle:"none",minWidth:0,flex:"1 1 auto"}}>
-          <button onClick={()=>setView("tools")} style={navBtnStyle(view==="tools")}>
-            <NavIcon d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" d2="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
-            {clean(t.nav?.tools)||"Tools"}
-          </button>
-          <button onClick={()=>setView("map")} style={navBtnStyle(view==="map")}>
-            <NavIcon d="M12 21s7-7.5 7-12a7 7 0 10-14 0c0 4.5 7 12 7 12z" d2="M12 13a3 3 0 100-6 3 3 0 000 6z"/>
-            {clean(t.nav?.map)||"Map"}
-          </button>
-          <button onClick={()=>setView("advertise")} style={navBtnStyle(false,true)}>
-            <NavIcon d="M3 11l18-5v12L3 14v-3z" d2="M3 11l18-5v12L3 14v-3z"/>
-            {clean(t.nav?.advertise)||"Advertise"}
-          </button>
-          <button onClick={()=>setView("pricing")} style={navBtnStyle(view==="pricing")}>
-            <NavIcon d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17.1 5.9 20.5l1.5-6.8-5.2-4.7 6.9-.7z" d2="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17.1 5.9 20.5l1.5-6.8-5.2-4.7 6.9-.7z"/>
-            {clean(t.nav?.pricing)||"Pricing"}
-          </button>
-          <button onClick={()=>setView("community")} style={navBtnStyle(view==="community")}>
-            <NavIcon d="M4 4h16v12H7l-3 3V4z" d2="M4 4h16v12H7l-3 3V4z"/>
-            {clean(t.nav?.community)||"Community"}
-          </button>
-          <button onClick={()=>setView("connect")} style={navBtnStyle(view==="connect",view==="connect")}>
-            <NavIcon d="M12 20.5s-7-4.3-9.3-8.7C1.4 8.7 2.8 5.5 6 5.5c1.9 0 3.2 1.2 6 3.7 2.8-2.5 4.1-3.7 6-3.7 3.2 0 4.6 3.2 3.3 6.3-2.3 4.4-9.3 8.7-9.3 8.7z" d2="M12 20.5s-7-4.3-9.3-8.7C1.4 8.7 2.8 5.5 6 5.5c1.9 0 3.2 1.2 6 3.7 2.8-2.5 4.1-3.7 6-3.7 3.2 0 4.6 3.2 3.3 6.3-2.3 4.4-9.3 8.7-9.3 8.7z" accent="#c77dff"/>
-            {clean(t.nav?.connect)||"Connect"}
-          </button>
-          <button onClick={()=>setView("apps")} style={navBtnStyle(view==="apps",view==="apps")}>
-            <NavIcon d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z" d2="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z" accent="#8b93f7"/>
-            {clean(t.nav?.apps)||"Apps"}
-          </button>
+
+          {/* ── Explore dropdown ───────────────────── */}
+          <NavDropdown
+            label="Explore"
+            active={["tools","map","apps","pricing","advertise","tracker"].includes(view)}
+            items={[
+              {label:clean(t.nav?.tools)||"Tools",   view:"tools",     d:"M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"},
+              {label:clean(t.nav?.map)||"Map",       view:"map",       d:"M12 21s7-7.5 7-12a7 7 0 10-14 0c0 4.5 7 12 7 12z"},
+              {label:clean(t.nav?.apps)||"Apps",     view:"apps",      d:"M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z"},
+              {label:"Pricing",                      view:"pricing",   d:"M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17.1 5.9 20.5l1.5-6.8-5.2-4.7 6.9-.7z"},
+              {label:"Advertise",                    view:"advertise", d:"M3 11l18-5v12L3 14v-3z", tint:true},
+              ...(user?[{label:"Deadlines",          view:"tracker",   d:"M4 5h16v15H4V5zm0 4h16M8 3v4m8-4v4"}]:[]),
+            ]}
+          />
+
+          {/* ── Community dropdown ─────────────────── */}
+          <NavDropdown
+            label="Community"
+            active={["community","connect"].includes(view)}
+            items={[
+              {label:clean(t.nav?.community)||"Community", view:"community", d:"M4 4h16v12H7l-3 3V4z"},
+              {label:clean(t.nav?.connect)||"Connect",     view:"connect",   d:"M12 20.5s-7-4.3-9.3-8.7C1.4 8.7 2.8 5.5 6 5.5c1.9 0 3.2 1.2 6 3.7 2.8-2.5 4.1-3.7 6-3.7 3.2 0 4.6 3.2 3.3 6.3-2.3 4.4-9.3 8.7-9.3 8.7z"},
+            ]}
+          />
+
+          {/* ── AI — always standalone + highlighted ── */}
           <button onClick={()=>setView("chat")} style={{display:"flex",alignItems:"center",gap:6,background:C.accent,border:"none",color:"#fff",padding:"9px 16px",borderRadius:10,cursor:"pointer",fontSize:13,fontWeight:700,flexShrink:0,marginLeft:6}}>
             <NavIcon d="M12 2l1.8 4.6L18 8l-4.2 1.9L12 15l-1.8-5.1L6 8l4.2-1.4z" filled accent="#fff"/>
             {aiLabel[lang]||"AI"}
           </button>
-          {user&&(
-            <button onClick={()=>setView("tracker")} style={navBtnStyle(view==="tracker",view==="tracker")}>
-              <NavIcon d="M4 5h16v15H4V5zm0 4h16M8 3v4m8-4v4" d2="M4 5h16v15H4V5z"/>
-              Deadlines
-            </button>
-          )}
+
           {user&&!subscription&&(
             <button onClick={()=>openCheckout("basic")} style={{...navBtnStyle(false,true),padding:"7px 12px",fontSize:12}}>
               <NavIcon d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" d2="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/>
