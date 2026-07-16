@@ -1924,9 +1924,6 @@ function CommunityPage({user,setView,posts,setPosts}){
             <h1 style={{color:"#fff",fontSize:22,fontWeight:800,margin:"0 0 4px"}}>💬 Expat Community</h1>
             <p style={{color:"rgba(255,255,255,0.7)",fontSize:14,margin:0}}>Connect with expats living in Bulgaria</p>
           </div>
-          <div style={{display:"flex",gap:20,color:"rgba(255,255,255,0.8)",fontSize:13}}>
-            <span>👥 2,400+ members</span><span>🌍 34 countries</span>
-          </div>
         </div>
       </div>
 
