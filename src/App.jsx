@@ -1470,9 +1470,14 @@ function PhotoGallery({setView,lang}){
                   onError={e=>{e.currentTarget.style.display="none"}}/>
               </div>
               <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 55%)"}}/>
-              <div style={{position:"absolute",bottom:24,left:28}}>
-                <div style={{color:"#f0c060",fontSize:13,fontWeight:600,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:4}}>{p.city}</div>
-                <div style={{color:"#fff",fontSize:20,fontWeight:700}}>{p.desc}</div>
+              <div style={{position:"absolute",bottom:24,left:28,right:28,display:"flex",justifyContent:"space-between",alignItems:"flex-end",gap:16}}>
+                <div>
+                  <div style={{color:"#f0c060",fontSize:13,fontWeight:600,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:4}}>{p.city}</div>
+                  <div style={{color:"#fff",fontSize:20,fontWeight:700}}>{p.desc}</div>
+                </div>
+                <button onClick={()=>setView("tourism")} style={{flexShrink:0,background:"#f0c060",border:"none",color:C.primaryDark,padding:"10px 20px",borderRadius:999,cursor:"pointer",fontSize:14,fontWeight:700,zIndex:5}}>
+                  {lang==="fr"?"Explorer":lang==="es"?"Explorar":lang==="de"?"Entdecken":lang==="nl"?"Ontdekken":"Explore →"}
+                </button>
               </div>
             </div>
           ))}
