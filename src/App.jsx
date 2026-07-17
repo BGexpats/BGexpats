@@ -1574,16 +1574,21 @@ function CategoryPage({catId,setView,lang,t,cache,setCache,user,reviews,setRevie
     }
   }
 
+  // Auto-translate all articles in background when page opens or language changes
+  useEffect(()=>{
+    if(lang==="en")return
+    cat.articles.forEach((art,i)=>{
+      const key=`${catId}_${i}_${lang}`
+      if(!cache[key])translateArticle(i,art.body)
+    })
+  },[lang,catId])
+
   const handleOpen=(i)=>{
     const next=open===i?-1:i
     setOpen(next)
+    // Also trigger in case it wasn't cached yet
     if(next>=0&&lang!=="en")translateArticle(next,cat.articles[next].body)
   }
-
-  // Re-translate when language changes for the currently open article
-  useEffect(()=>{
-    if(open>=0&&lang!=="en")translateArticle(open,cat.articles[open].body)
-  },[lang])
 
   const renderInline=(str)=>
     // Split on both **bold** and [[view|label]] link markers.
@@ -1655,8 +1660,11 @@ function CategoryPage({catId,setView,lang,t,cache,setCache,user,reviews,setRevie
             return(
               <div key={i} style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:14,overflow:"hidden",boxShadow:"0 1px 3px rgba(0,0,0,0.04)"}}>
                 <button onClick={()=>handleOpen(i)} style={{width:"100%",background:"none",border:"none",padding:"16px 18px",cursor:"pointer",textAlign:"left",display:"flex",justifyContent:"space-between",alignItems:"center",gap:12}}>
-                  <span style={{fontWeight:600,fontSize:14,color:C.text,fontFamily:"'Sora',sans-serif"}}>{art.titles[lang]||art.titles.en||art.titles.en}</span>
-                  <span style={{color:C.muted,fontSize:16,flexShrink:0,transform:isOpen?"rotate(180deg)":"none",transition:"transform 0.2s"}}>⌄</span>
+                  <span style={{fontWeight:600,fontSize:14,color:C.text,fontFamily:"'Sora',sans-serif",flex:1}}>{art.titles[lang]||art.titles.en}</span>
+                  <span style={{display:"flex",alignItems:"center",gap:8}}>
+                    {isLoading&&!isOpen&&<span style={{fontSize:11,color:C.muted,animation:"spin 1s linear infinite",display:"inline-block"}}>⟳</span>}
+                    <span style={{color:C.muted,fontSize:16,flexShrink:0,transform:isOpen?"rotate(180deg)":"none",transition:"transform 0.2s"}}>⌄</span>
+                  </span>
                 </button>
                 {isOpen&&(
                   <div style={{padding:"0 18px 18px",borderTop:`1px solid ${C.border}`,paddingTop:14}}>
