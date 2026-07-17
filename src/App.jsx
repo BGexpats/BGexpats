@@ -1337,12 +1337,12 @@ function QuickFacts({t}){
 
 function PhotoGallery({setView,lang}){
   const photos=[
-    {src:"https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80",city:"Sofia",desc:"Alexander Nevsky Cathedral"},
-    {src:"https://images.unsplash.com/photo-1596302765416-c0c3b876e1a0?w=800&q=80",city:"Plovdiv",desc:"Old Town Plovdiv"},
+    {src:"https://images.unsplash.com/photo-1753529179550-c6aff1b76e6e?w=800&q=80",city:"Sofia",desc:"Alexander Nevsky Cathedral"},
+    {src:"https://images.unsplash.com/photo-1414187976819-32a4deaae820?w=800&q=80",city:"Plovdiv",desc:"Old Town Plovdiv"},
     {src:"https://images.unsplash.com/photo-1720959622076-a2a09dc4afbc?w=800&q=80",city:"Bansko",desc:"Pirin Mountains"},
     {src:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",city:"Black Sea",desc:"Sunny Beach"},
     {src:"https://images.unsplash.com/photo-1722447145262-3ff87e068c95?w=800&q=80",city:"Rila",desc:"Rila Monastery"},
-    {src:"https://images.unsplash.com/photo-1611606798809-588933b6dd0a?w=800&q=80",city:"Nessebar",desc:"Ancient City"},
+    {src:"https://images.unsplash.com/photo-1661274905127-2e61d00bb97c?w=800&q=80",city:"Nessebar",desc:"Ancient City on the Black Sea"},
   ]
   const titles={en:"Discover Bulgaria",fr:"Découvrez la Bulgarie",es:"Descubre Bulgaria",de:"Entdecke Bulgarien",nl:"Ontdek Bulgarije"}
   const subs={en:"From mountain peaks to ancient cities and sun-soaked beaches",fr:"Des sommets montagneux aux villes antiques et plages ensoleillées",es:"De picos montañosos a ciudades antiguas y playas soleadas",de:"Von Berggipfeln zu antiken Städten und sonnigen Stränden",nl:"Van bergtoppen tot oude steden en zonnige stranden"}
