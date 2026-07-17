@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, Fragment } from "react"
 import { signUp as sbSignUp, signIn as sbSignIn, signOut as sbSignOut, getCurrentUser as sbGetCurrentUser, resetPassword as sbResetPassword, getProfile as sbGetProfile, updateProfile as sbUpdateProfile, uploadAvatar as sbUploadAvatar, listProfiles as sbListProfiles } from "./supabase"
 import heroImg1 from "./assets/hero-rila-lake.jpg"
 import nessebar from "./assets/nessebar.jpg"
+import plovdiv from "./assets/plovdiv.jpg"
 import heroImg2 from "./assets/hero-sunny-beach.jpg"
 import heroImg3 from "./assets/hero-ivan-vazov.jpg"
 import connectHeroImg from "./assets/connect-hero.png"
@@ -1443,7 +1444,7 @@ function QuickFacts({t}){
 function PhotoGallery({setView,lang}){
   const photos=[
     {src:"https://images.unsplash.com/photo-1753529179550-c6aff1b76e6e?w=800&q=80",city:"Sofia",desc:"Alexander Nevsky Cathedral"},
-    {src:"https://images.unsplash.com/photo-1414187976819-32a4deaae820?w=800&q=80",city:"Plovdiv",desc:"Old Town Plovdiv"},
+    {src:plovdiv,city:"Plovdiv",desc:"Old Town Plovdiv"},
     {src:"https://images.unsplash.com/photo-1720959622076-a2a09dc4afbc?w=800&q=80",city:"Bansko",desc:"Pirin Mountains"},
     {src:"https://images.unsplash.com/photo-1683653417751-ea68aa8bc289?w=800&q=80",city:"Black Sea",desc:"Sunny Beach"},
     {src:"https://images.unsplash.com/photo-1722447145262-3ff87e068c95?w=800&q=80",city:"Rila",desc:"Rila Monastery"},
@@ -5997,10 +5998,10 @@ const TRAVEL_GUIDE = {
   "plovdiv": {
     name: "Plovdiv",
     tagline: "Older than Rome — cobblestones, culture and great coffee",
-    hero: "https://images.unsplash.com/photo-1414187976819-32a4deaae820?w=1200&q=80",
+    hero: plovdiv,
     intro: "Bulgaria's second city and a growing expat favourite. The cobblestone Old Town (Stari Grad) sits above a Roman amphitheatre still used for concerts. Rents are 25–35% below Sofia.",
     cities: [
-      { id:"plovdiv-old-town", name:"Old Town", tagline:"Cobblestones & Roman ruins", hero:"https://images.unsplash.com/photo-1414187976819-32a4deaae820?w=1200&q=80",
+      { id:"plovdiv-old-town", name:"Old Town", tagline:"Cobblestones & Roman ruins", hero:plovdiv,
         intro:"The hilltop Old Town is Plovdiv's showpiece — restored Revival-era houses, galleries and the Roman theatre. The flat Kapana district below is the creative hub.",
         places:[
           {name:"Add a place",type:"attraction",desc:"Add real places from Plovdiv here.",img:"",area:"Old Town"},
