@@ -1341,7 +1341,7 @@ function PhotoGallery({setView,lang}){
     {src:"https://images.unsplash.com/photo-1753529179550-c6aff1b76e6e?w=800&q=80",city:"Sofia",desc:"Alexander Nevsky Cathedral"},
     {src:"https://images.unsplash.com/photo-1414187976819-32a4deaae820?w=800&q=80",city:"Plovdiv",desc:"Old Town Plovdiv"},
     {src:"https://images.unsplash.com/photo-1720959622076-a2a09dc4afbc?w=800&q=80",city:"Bansko",desc:"Pirin Mountains"},
-    {src:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",city:"Black Sea",desc:"Sunny Beach"},
+    {src:"https://images.unsplash.com/photo-1683653417751-ea68aa8bc289?w=800&q=80",city:"Black Sea",desc:"Sunny Beach"},
     {src:"https://images.unsplash.com/photo-1722447145262-3ff87e068c95?w=800&q=80",city:"Rila",desc:"Rila Monastery"},
     {src:nessebar,city:"Nessebar",desc:"Ancient Windmill"},
   ]
@@ -5817,14 +5817,14 @@ const TRAVEL_GUIDE = {
   "black-sea": {
     name: "Black Sea Coast",
     tagline: "Bulgaria's beaches, resorts and seaside towns",
-    hero: "https://images.unsplash.com/photo-1567021208000-e2b69c42c910?w=1200&q=80",
+    hero: "https://images.unsplash.com/photo-1683653417751-ea68aa8bc289?w=1200&q=80",
     intro: "Bulgaria's Black Sea coast stretches from Romania to Turkey, with sandy beaches, lively resorts and ancient seaside towns. Pick a destination below.",
     cities: [
       {
         id: "sunny-beach",
         name: "Sunny Beach",
         tagline: "Bulgaria's biggest party resort",
-        hero: "https://images.unsplash.com/photo-1567021208000-e2b69c42c910?w=1200&q=80",
+        hero: "https://images.unsplash.com/photo-1683653417751-ea68aa8bc289?w=1200&q=80",
         intro: "Sunny Beach (Slanchev Bryag) is Bulgaria's largest and liveliest seaside resort — 8 km of sandy beach, endless bars and clubs, and budget-friendly nightlife. Busiest June–September.",
         places: [
           // ── PLACEHOLDERS — replace with real venues you know ──
@@ -5844,10 +5844,10 @@ const TRAVEL_GUIDE = {
   "sofia": {
     name: "Sofia",
     tagline: "Bulgaria's capital — culture, mountains and expat life",
-    hero: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=1200&q=80",
+    hero: "https://images.unsplash.com/photo-1753529179550-c6aff1b76e6e?w=1200&q=80",
     intro: "Sofia is the cheapest EU capital and one of Europe's most underrated cities. Mountains 30 minutes from the center, a buzzing café culture, and a fast-growing expat community.",
     cities: [
-      { id:"sofia-center", name:"Sofia Center", tagline:"Embassies, cafés, nightlife", hero:"https://images.unsplash.com/photo-1555993539-1732b0258235?w=1200&q=80",
+      { id:"sofia-center", name:"Sofia Center", tagline:"Embassies, cafés, nightlife", hero:"https://images.unsplash.com/photo-1753529179550-c6aff1b76e6e?w=1200&q=80",
         intro:"The heart of Sofia — walkable, vibrant, close to everything. Home to Alexander Nevsky Cathedral, Vitosha Blvd and most expat-friendly services.",
         places:[
           {name:"Add a place",type:"attraction",desc:"Tap 'Edit' in your code to add real places here.",img:"",area:"Center"},
@@ -5857,10 +5857,10 @@ const TRAVEL_GUIDE = {
   "plovdiv": {
     name: "Plovdiv",
     tagline: "Older than Rome — cobblestones, culture and great coffee",
-    hero: "https://images.unsplash.com/photo-1593804423029-5e3e0d2df7a5?w=1200&q=80",
+    hero: "https://images.unsplash.com/photo-1414187976819-32a4deaae820?w=1200&q=80",
     intro: "Bulgaria's second city and a growing expat favourite. The cobblestone Old Town (Stari Grad) sits above a Roman amphitheatre still used for concerts. Rents are 25–35% below Sofia.",
     cities: [
-      { id:"plovdiv-old-town", name:"Old Town", tagline:"Cobblestones & Roman ruins", hero:"https://images.unsplash.com/photo-1593804423029-5e3e0d2df7a5?w=1200&q=80",
+      { id:"plovdiv-old-town", name:"Old Town", tagline:"Cobblestones & Roman ruins", hero:"https://images.unsplash.com/photo-1414187976819-32a4deaae820?w=1200&q=80",
         intro:"The hilltop Old Town is Plovdiv's showpiece — restored Revival-era houses, galleries and the Roman theatre. The flat Kapana district below is the creative hub.",
         places:[
           {name:"Add a place",type:"attraction",desc:"Add real places from Plovdiv here.",img:"",area:"Old Town"},
@@ -5870,10 +5870,10 @@ const TRAVEL_GUIDE = {
   "varna": {
     name: "Varna",
     tagline: "Bulgaria's sea capital — beaches, nightlife and sea views",
-    hero: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80",
+    hero: "https://images.unsplash.com/photo-1683653417751-ea68aa8bc289?w=1200&q=80",
     intro: "Varna is Bulgaria's third city and Black Sea capital. Larger and more sophisticated than Sunny Beach — a proper city with beaches, the Sea Garden park, and a lively summer scene. Rents are seasonal.",
     cities: [
-      { id:"varna-center", name:"Varna Center", tagline:"Sea Garden, beach & city life", hero:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80",
+      { id:"varna-center", name:"Varna Center", tagline:"Sea Garden, beach & city life", hero:"https://images.unsplash.com/photo-1683653417751-ea68aa8bc289?w=1200&q=80",
         intro:"Varna's center runs from the Cathedral down to the famous Sea Garden and beach. The Briz and Chayka districts are popular with expats for their sea views.",
         places:[
           {name:"Add a place",type:"beach",desc:"Add real Varna places here.",img:"",area:"Sea Garden"},
@@ -5883,10 +5883,10 @@ const TRAVEL_GUIDE = {
   "burgas": {
     name: "Burgas",
     tagline: "Underrated Black Sea city — lakes, beaches and low rents",
-    hero: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80",
+    hero: "https://images.unsplash.com/photo-1683653417751-ea68aa8bc289?w=1200&q=80",
     intro: "Burgas is the most affordable of Bulgaria's main cities. Its flat center is easy to walk, and it's surrounded by four lakes. A relaxed base for exploring the Southern Black Sea coast.",
     cities: [
-      { id:"burgas-center", name:"Burgas Center", tagline:"Lakes, beach and a relaxed vibe", hero:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80",
+      { id:"burgas-center", name:"Burgas Center", tagline:"Lakes, beach and a relaxed vibe", hero:"https://images.unsplash.com/photo-1683653417751-ea68aa8bc289?w=1200&q=80",
         intro:"Burgas is flat, walkable and unpretentious. The pedestrian Aleko Bogoridi street is the main artery. The beach is a 10-minute walk from the center.",
         places:[
           {name:"Add a place",type:"beach",desc:"Add real Burgas places here.",img:"",area:"Center"},
@@ -5896,10 +5896,10 @@ const TRAVEL_GUIDE = {
   "bansko": {
     name: "Bansko",
     tagline: "Bulgaria's top ski resort — and a great year-round base",
-    hero: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=80",
+    hero: "https://images.unsplash.com/photo-1720959622076-a2a09dc4afbc?w=1200&q=80",
     intro: "Bansko is a small mountain town at the foot of the Pirin Mountains. World-class skiing Dec–Mar, hiking and biking in summer. A strong expat and digital nomad community has built up here.",
     cities: [
-      { id:"bansko-center", name:"Bansko Town", tagline:"Ski, hike and après",hero:"https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=80",
+      { id:"bansko-center", name:"Bansko Town", tagline:"Ski, hike and après",hero:"https://images.unsplash.com/photo-1720959622076-a2a09dc4afbc?w=1200&q=80",
         intro:"The old cobblestone town meets a modern ski resort. The gondola is walkable from the center, and the main strip has dozens of mehanas (taverns) and bars.",
         places:[
           {name:"Add a place",type:"bar",desc:"Add real Bansko places here.",img:"",area:"Center"},
