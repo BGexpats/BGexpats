@@ -1201,7 +1201,7 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
         </button>
         {/* Dropdowns live OUTSIDE nav-links (which has overflow:auto) so their
             panels aren't clipped. Same fix as the user menu. */}
-        <div style={{display:"flex",alignItems:"center",gap:2,flexShrink:0}}>
+        <div className="bg-nav-desktop" style={{display:"flex",alignItems:"center",gap:2,flexShrink:0}}>
           {/* ── Explore dropdown ───────────────────── */}
           <NavDropdown
             label={clean(t.nav?.explore)||"Explore"}
@@ -1246,6 +1246,33 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
               <NavIcon d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" d2="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/>
               {clean(t.nav?.upgrade)||"Upgrade"}
             </button>
+          )}
+        </div>
+        {/* ── Hamburger (mobile only) ─────────────── */}
+        <div className="bg-nav-mobile" style={{position:"relative",flexShrink:0}}>
+          <button onClick={()=>setMob(m=>!m)} aria-label="Menu" style={{background:"rgba(255,255,255,0.12)",border:"1px solid rgba(255,255,255,0.2)",color:"#fff",width:38,height:38,borderRadius:10,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",padding:0}}>
+            <svg width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" d={mob?"M6 6l12 12M6 18L18 6":"M4 7h16M4 12h16M4 17h16"}/></svg>
+          </button>
+          {mob&&(
+            <div style={{position:"absolute",right:0,top:46,background:C.primary,border:`1px solid ${C.primaryDark}`,borderRadius:12,boxShadow:"0 8px 28px rgba(0,0,0,0.35)",minWidth:210,zIndex:9999,overflow:"hidden",padding:"4px 0"}}>
+              {[
+                {label:aiLabel[lang]||"AI",view:"chat"},
+                {label:clean(t.nav?.tools)||"Tools",view:"tools"},
+                {label:clean(t.nav?.map)||"Map",view:"map"},
+                {label:clean(t.nav?.apps)||"Apps",view:"apps"},
+                {label:"Pricing",view:"pricing"},
+                {label:clean(t.nav?.community)||"Community",view:"community"},
+                {label:clean(t.nav?.connect)||"Connect",view:"connect"},
+                {label:clean(t.nav?.partners)||"Advertise",view:"advertise"},
+                {label:"Real Estate Agents",view:"agents"},
+                ...(user&&!subscription?[{label:clean(t.nav?.upgrade)||"Upgrade",view:"pricing"}]:[]),
+              ].map((item,i)=>(
+                <button key={i} onClick={()=>{setView(item.view);setMob(false)}}
+                  style={{width:"100%",background:view===item.view?"rgba(255,255,255,0.15)":"transparent",border:"none",padding:"12px 18px",cursor:"pointer",textAlign:"left",fontSize:14,color:"rgba(255,255,255,0.92)",fontWeight:view===item.view?700:400}}>
+                  {item.label}
+                </button>
+              ))}
+            </div>
           )}
         </div>
         {/* User menu lives OUTSIDE the scrolling nav-links container — a parent with
@@ -4777,7 +4804,8 @@ export default function App(){
         .rg-thumbs::-webkit-scrollbar{display:none}
         /* Page padding that shrinks on mobile */
         .rp{padding:52px 20px}
-        @media(max-width:768px){
+        .bg-nav-mobile{display:none}
+@media(max-width:768px){
           .rg-2{grid-template-columns:1fr}
           .rg-3{grid-template-columns:1fr}
           .rg-pricing{grid-template-columns:1fr}
@@ -4791,7 +4819,8 @@ export default function App(){
           .bg-article-wrap{padding:20px 14px 40px !important}
           /* Chat bubbles full width on mobile */
           .bg-chat-bubble{max-width:95% !important} /* Upgrade lives in the Explore menu on mobile to avoid banner overflow */
-          .bg-nav-upgrade{display:none !important}
+          .bg-nav-upgrade{display:none !important} /* Mobile nav: hide desktop dropdowns, show hamburger */
+          .bg-nav-desktop{display:none !important} .bg-nav-mobile{display:block !important}
         }
         @media(max-width:480px){
           .rg-pricing{grid-template-columns:1fr}
