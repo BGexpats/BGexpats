@@ -1194,7 +1194,7 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
   return(
     <nav style={{background:C.primary,position:"sticky",top:0,zIndex:100,borderBottom:`1px solid ${C.primaryDark}`}}>
       <div style={{maxWidth:1100,margin:"0 auto",padding:"0 12px",height:58,display:"flex",alignItems:"center",justifyContent:"space-between",gap:8}}>
-        <button onClick={()=>setView("home")} style={{background:"none",border:"none",cursor:"pointer",display:"flex",alignItems:"center",gap:8,padding:0,flexShrink:0}}>
+        <button onClick={()=>setView("home")} className="bg-nav-logo" style={{background:"none",border:"none",cursor:"pointer",display:"flex",alignItems:"center",gap:8,padding:0,flexShrink:0}}>
           <img src={LOGO_ICON} alt="BGexpats" style={{height:24,width:24}}/>
           <span className="bg-nav-wordmark" style={{color:"#fff",fontSize:16,fontWeight:700,letterSpacing:"-0.3px"}}>BGexpats</span>
           {subscription&&<span style={{background:"#f0c060",color:"#1a3a20",fontSize:10,padding:"2px 8px",borderRadius:10,fontWeight:700,marginLeft:4}}>{subscription.plan.toUpperCase()}</span>}
@@ -3079,12 +3079,15 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
         {isMobile ? (
           /* MOBILE: dropdown selector, then the tool at full screen width */
           <>
-            <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:14,padding:"12px 14px",marginBottom:12,boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
-              <label style={{display:"block",fontSize:11,fontWeight:600,color:C.muted,letterSpacing:"0.05em",marginBottom:6}}>CHOOSE A TOOL</label>
+            <div style={{background:`linear-gradient(135deg,${C.primaryLight},${C.surface})`,border:`1px solid ${C.primary}22`,borderRadius:16,padding:"14px 16px",marginBottom:14,boxShadow:"0 4px 16px rgba(30,94,63,0.10)"}}>
+              <label style={{display:"flex",alignItems:"center",gap:6,fontSize:11,fontWeight:700,color:C.primary,letterSpacing:"0.08em",marginBottom:9}}>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={C.primary} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                CHOOSE A TOOL
+</label>
               <select
                 value={active}
                 onChange={e=>{setActive(e.target.value);trackEvent("tool",e.target.value)}}
-                style={{width:"100%",padding:"11px 12px",fontSize:15,fontWeight:600,color:C.primary,background:C.primaryLight,border:`1px solid ${C.border}`,borderRadius:10,cursor:"pointer",appearance:"none",WebkitAppearance:"none",backgroundImage:"url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e5e3f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",backgroundRepeat:"no-repeat",backgroundPosition:"right 10px center",backgroundSize:"18px",paddingRight:36}}>
+                style={{width:"100%",padding:"14px 16px",fontSize:16,fontWeight:700,color:C.primary,background:"#fff",border:`1.5px solid ${C.primary}33`,borderRadius:12,cursor:"pointer",appearance:"none",WebkitAppearance:"none",boxShadow:"0 1px 3px rgba(0,0,0,0.04)",backgroundImage:"url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e5e3f' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",backgroundRepeat:"no-repeat",backgroundPosition:"right 14px center",backgroundSize:"20px",paddingRight:44}}>
                 <optgroup label="Free tools">
                   {TOOLS_LIST.filter(t=>!t.divider&&!t.premium).map(t=>(
                     <option key={t.id} value={t.id}>{t.label}</option>
@@ -4820,7 +4823,7 @@ export default function App(){
           /* Chat bubbles full width on mobile */
           .bg-chat-bubble{max-width:95% !important} /* Upgrade lives in the Explore menu on mobile to avoid banner overflow */
           .bg-nav-upgrade{display:none !important} /* Mobile nav: hide desktop dropdowns, show hamburger */
-          .bg-nav-desktop{display:none !important} .bg-nav-mobile{display:block !important}
+          .bg-nav-desktop{display:none !important} .bg-nav-mobile{display:block !important;order:-1} .bg-nav-logo{order:-2} 
         }
         @media(max-width:480px){
           .rg-pricing{grid-template-columns:1fr}
