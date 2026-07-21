@@ -3045,6 +3045,7 @@ const TOOLS_LIST=[
 
 function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
   const [active,setActive]=useState("cost")
+  const [toolMenu,setToolMenu]=useState(false)
   const [isMobile,setIsMobile]=useState(typeof window!=="undefined"&&window.innerWidth<=768)
   useEffect(()=>{
     const onResize=()=>setIsMobile(window.innerWidth<=768)
@@ -3085,21 +3086,29 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={C.primary} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
                 CHOOSE A TOOL
               </label>
-              <select
-                value={active}
-                onChange={e=>{setActive(e.target.value);trackEvent("tool",e.target.value)}}
-                style={{width:"100%",padding:"14px 16px",fontSize:16,fontWeight:700,color:C.primary,background:"#fff",border:`1.5px solid ${C.primary}33`,borderRadius:12,cursor:"pointer",appearance:"none",WebkitAppearance:"none",boxShadow:"0 1px 3px rgba(0,0,0,0.04)",backgroundImage:"url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e5e3f' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\")",backgroundRepeat:"no-repeat",backgroundPosition:"right 14px center",backgroundSize:"20px",paddingRight:44}}>
-                <optgroup label="Free tools">
+              <button onClick={()=>setToolMenu(o=>!o)}
+                style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",gap:8,padding:"14px 16px",fontSize:16,fontWeight:700,color:C.primary,background:"#fff",border:`1.5px solid ${C.primary}33`,borderRadius:12,cursor:"pointer",boxShadow:"0 1px 3px rgba(0,0,0,0.04)",textAlign:"left"}}>
+                <span style={{minWidth:0,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{tool?tool.label:"Select a tool"}{tool&&tool.premium?" (PRO)":""}</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.primary} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,transform:toolMenu?"rotate(180deg)":"none",transition:"transform 0.2s"}}><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              {toolMenu&&(
+                <div style={{marginTop:8,background:C.primary,border:`1px solid ${C.primaryDark}`,borderRadius:12,boxShadow:"0 8px 28px rgba(0,0,0,0.25)",overflow:"hidden",padding:"4px 0"}}>
+                  <div style={{padding:"8px 16px 4px",fontSize:10,fontWeight:700,color:"rgba(255,255,255,0.55)",letterSpacing:"0.08em"}}>FREE TOOLS</div>
                   {TOOLS_LIST.filter(t=>!t.divider&&!t.premium).map(t=>(
-                    <option key={t.id} value={t.id}>{t.label}</option>
+                    <button key={t.id} onClick={()=>{setActive(t.id);setToolMenu(false);trackEvent("tool",t.id)}}
+                      style={{width:"100%",background:active===t.id?"rgba(255,255,255,0.15)":"transparent",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:15,color:"rgba(255,255,255,0.92)",fontWeight:active===t.id?700:400}}>
+                      {t.label}
+                    </button>
                   ))}
-                </optgroup>
-                <optgroup label="Premium tools">
+                  <div style={{padding:"10px 16px 4px",fontSize:10,fontWeight:700,color:"rgba(255,255,255,0.55)",letterSpacing:"0.08em",borderTop:"1px solid rgba(255,255,255,0.12)",marginTop:4}}>PREMIUM TOOLS</div>
                   {TOOLS_LIST.filter(t=>!t.divider&&t.premium).map(t=>(
-                    <option key={t.id} value={t.id}>{t.label} (PRO)</option>
+                    <button key={t.id} onClick={()=>{setActive(t.id);setToolMenu(false);trackEvent("tool",t.id)}}
+                      style={{width:"100%",background:active===t.id?"rgba(255,255,255,0.15)":"transparent",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:15,color:"rgba(255,255,255,0.92)",fontWeight:active===t.id?700:400,display:"flex",alignItems:"center",gap:6}}>
+                      {t.label}<span style={{fontSize:9,background:"#f0c060",color:"#1a3a20",padding:"1px 5px",borderRadius:5,fontWeight:700}}>PRO</span>
+                    </button>
                   ))}
-                </optgroup>
-              </select>
+                </div>
+              )}
             </div>
             <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:14,padding:"16px 14px",boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
               <div style={{display:"flex",alignItems:"center",gap:9,marginBottom:14,paddingBottom:12,borderBottom:`1px solid ${C.border}`}}>
