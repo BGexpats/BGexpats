@@ -1144,6 +1144,14 @@ function LangBanner({lang,setLang}){
 
 function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}){
   const [mob,setMob]=useState(false)
+  const mobRef=useRef(null)
+  useEffect(()=>{
+    if(!mob)return
+    const onDocClick=e=>{ if(mobRef.current&&!mobRef.current.contains(e.target))setMob(false) }
+    document.addEventListener("mousedown",onDocClick)
+    document.addEventListener("touchstart",onDocClick)
+    return()=>{ document.removeEventListener("mousedown",onDocClick); document.removeEventListener("touchstart",onDocClick) }
+  },[mob])
   const aiLabel={en:"Ask AI",fr:"IA",es:"IA",de:"KI",nl:"AI"}
   const [userMenu,setUserMenu]=useState(false)
   const clean = s => (s||"").replace(/^[^\p{L}]+/u,"")
@@ -1249,7 +1257,7 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
           )}
         </div>
         {/* ── Hamburger (mobile only) ─────────────── */}
-        <div className="bg-nav-mobile" style={{position:"relative",flexShrink:0}}>
+        <div ref={mobRef} className="bg-nav-mobile" style={{position:"relative",flexShrink:0}}>
           <button onClick={()=>setMob(m=>!m)} aria-label="Menu" style={{background:"rgba(255,255,255,0.12)",border:"1px solid rgba(255,255,255,0.2)",color:"#fff",width:38,height:38,borderRadius:10,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",padding:0}}>
             <svg width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" d={mob?"M6 6l12 12M6 18L18 6":"M4 7h16M4 12h16M4 17h16"}/></svg>
           </button>
