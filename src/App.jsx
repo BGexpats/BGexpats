@@ -580,7 +580,7 @@ All legally resident children (EU and non-EU) have the right to free public educ
       {titles:{en:"Top places to visit in Bulgaria",fr:"Les incontournables de la Bulgarie",es:"Los mejores lugares para visitar en Bulgaria",de:"Top-Sehenswürdigkeiten in Bulgarien",nl:"Topbestemmingen in Bulgarije"},
        body:`Bulgaria is one of Europe's most underrated destinations.\n\n**[[travel-sofia|Sofia]]** — the capital. Must-see: Alexander Nevsky Cathedral (free), Vitosha Mountain (15 min from center), Boyana Church (UNESCO), Vitosha Blvd for shopping and coffee.\n\n**[[travel-plovdiv|Plovdiv]]** — older than Rome. Cobblestone Old Town (Stari Grad) with a working Roman amphitheater. 2 hours from Sofia. Very walkable.\n\n**[[travel-bansko|Bansko]]** — best ski resort in Bulgaria (Pirin Mountains). Excellent skiing (Dec–Mar) and hiking (summer). Great restaurants and nightlife.\n\n**[[travel-black-sea|Black Sea]]** — Varna city is beautiful. Sunny Beach is the big resort. Golden Sands is more pleasant. 👉 Tap to explore the coast, its resorts and top places.\n\n**Rila Monastery** — UNESCO site, one of the most beautiful monasteries in the Balkans. Easy day trip from Sofia.\n\n**Veliko Tarnovo** — dramatic medieval capital on a hilltop. Tsarevets Fortress has a famous sound-and-light show.\n\n💡 Best time to visit: May–June or September–October. Warm, not crowded.`},
       {titles:{en:"Getting around Bulgaria",fr:"Se déplacer en Bulgarie",es:"Moverse por Bulgaria",de:"In Bulgarien unterwegs",nl:"Vervoer in Bulgarije",ru:"Передвижение по Болгарии",uk:"Пересування Болгарією",tr:"Bulgaristan'da ulaşım",bg:"Придвижване в България"},
-       body:`**By bus (recommended):**\n• Sofia → Plovdiv: 1h45m, €6\n• Sofia → Varna: 6h, €15\n• Book at bus stations or avtogara.bg\n\n**By train:**\n• Sofia → Plovdiv: €5, ~2.5h. Slower but scenic.\n• Book at bdz.bg (English available)\n\n**By car:**\n• Motorway vignette required: €8/week or €15/month\n\n### Parking in Bulgaria\nParking relies on municipal blue and green zones paid via local SMS, mobile apps, or parking meters, with strict towing for illegal stops.\n\n**Blue Zones:** High-intensity central areas, roughly €1/hour in cities like Sofia ([[https://www.visitsofia.bg|visitsofia.bg]]) and Burgas ([[https://transportburgas.bg|transportburgas.bg]]). Max stay 2 hours.\n**Green Zones:** Wider peripheral central areas, about €0.50/hour. Max stay 4 hours.\n**Payment:** Local SIMs use SMS shortcodes shown on zone signs. Visitors with foreign numbers use municipal apps like [[https://urbo.bg|URBO]] or Sofia Plus, park meters, or kiosks.\n\n**Enforcement:** Illegally parked cars or those over their paid limit are clamped or towed to municipal impound lots.\n**Prohibited:** No parking on yellow-marked subscription slots (Служебен абонамент), across transit or tram paths, or in accessible spaces without a valid permit.\n\n**Sofia (capital):**\n• Blue Zone: ~€1.79/hour, Mon–Sat 08:30–20:00, max 2h. SMS: send plate to 1302 (Bulgarian networks only)\n• Green Zone: ~€1.28/hour, Mon–Fri 08:30–19:30, max 4h. SMS: send plate to 1303\n• Sundays: free parking in both zones\n• Foreign drivers: pay via the Sofia Plus app ([[https://sofiatraffic.bg|sofiatraffic.bg]]), QR codes on signage, or physical ticket kiosks\n\n**Varna (sea capital):**\nVarna runs a centralized coastal/city zone structure.\n• Blue Zone: ~€0.50/hour, Mon–Sun 09:00–20:00 (incl. weekends; free only on national holidays), max 3h. SMS: send plate to 1392\n• Green Zone: peripheral neighborhoods, variable hourly rates set locally\n• Foreign drivers: the official Varna Parking app ([[https://varnaparking.bg|varnaparking.bg]]) takes card registration, bypassing the SMS requirement\n\n**Burgas (southern coast hub):**\nBurgas charges matching fees for its city center and seaside sectors.\n• Blue Zone (city center & business core): ~€1.00/hour, Mon–Sun 09:00–19:00, max 3h. SMS: send plate to 1356\n• Green Zone (Sea Garden strip & Lazur district):(~€1.00)/hour, Mon–Sun 09:00–19:00 (daily through summer), max 3h. SMS: send plate to 1357\n• Foreign drivers: use the MPARK app or buy tickets from street parking meters (Паркинг автомати) with coins. Info: [[https://transportburgas.bg|transportburgas.bg]]\n\n**In Sofia:**\n• Metro, trams, buses — ticket €0.80, day pass €2\n• Sofia Traffic app for routes\n\n**Taxis:**\n• Use Bolt or Yandex Go apps — cheaper and safer than street taxis\n• Avoid unmarked taxis at airports\n\n💡 Buses are usually faster than trains and similarly priced.`},
+       body:`**By bus (recommended):**\n• Sofia → Plovdiv: 1h45m, €6\n• Sofia → Varna: 6h, €15\n• Book at bus stations or avtogara.bg\n\n**By train:**\n• Sofia → Plovdiv: €5, ~2.5h. Slower but scenic.\n• Book at bdz.bg (English available)\n\n**By car:**\n• Motorway vignette required: €8/week or €15/month\n\n### Parking in Bulgaria\nParking relies on municipal blue and green zones paid via local SMS, mobile apps, or parking meters, with strict towing for illegal stops.\n\n**Blue Zones:** High-intensity central areas, roughly €1/hour in cities like Sofia ([[https://www.visitsofia.bg|visitsofia.bg]]) and Burgas ([[https://transportburgas.bg|transportburgas.bg]]). Max stay 2 hours.\n**Green Zones:** Wider peripheral central areas, about €0.50/hour. Max stay 4 hours.\n**Payment:** Local SIMs use SMS shortcodes shown on zone signs. Visitors with foreign numbers use municipal apps like [[https://urbo.bg|URBO]] or Sofia Plus, park meters, or kiosks.\n\n**Enforcement:** Illegally parked cars or those over their paid limit are clamped or towed to municipal impound lots.\n**Prohibited:** No parking on yellow-marked subscription slots (Служебен абонамент), across transit or tram paths, or in accessible spaces without a valid permit.\n\n**Sofia (capital):**\n• Blue Zone: ~€1.79/hour, Mon–Sat 08:30–20:00, max 2h. SMS: send plate to 1302 (Bulgarian networks only)\n• Green Zone: ~€1.28/hour, Mon–Fri 08:30–19:30, max 4h. SMS: send plate to 1303\n• Sundays: free parking in both zones\n• Foreign drivers: pay via the Sofia Plus app ([[https://sofiatraffic.bg|sofiatraffic.bg]]), QR codes on signage, or physical ticket kiosks\n\n**Varna (sea capital):**\nVarna runs a centralized coastal/city zone structure.\n• Blue Zone: ~€0.50/hour, Mon–Sun 09:00–20:00 (incl. weekends; free only on national holidays), max 3h. SMS: send plate to 1392\n• Green Zone: peripheral neighborhoods, variable hourly rates set locally\n• Foreign drivers: the official Varna Parking app ([[https://varnaparking.bg|varnaparking.bg]]) takes card registration, bypassing the SMS requirement\n\n**Burgas (southern coast hub):**\nBurgas charges matching fees for its city center and seaside sectors.\n• Blue Zone (city center & business core): ~€1.00/hour, Mon–Sun 09:00–19:00, max 3h. SMS: send plate to 1356\n• Green Zone (Sea Garden strip & Lazur district): ~€1.00/hour, Mon–Sun 09:00–19:00 (daily through summer), max 3h. SMS: send plate to 1357\n• Foreign drivers: use the MPARK app or buy tickets from street parking meters (Паркинг автомати) with coins. Info: [[https://transportburgas.bg|transportburgas.bg]]\n\n**In Sofia:**\n• Metro, trams, buses — ticket €0.80, day pass €2\n• Sofia Traffic app for routes\n\n**Taxis:**\n• Use Bolt or Yandex Go apps — cheaper and safer than street taxis\n• Avoid unmarked taxis at airports\n\n💡 Buses are usually faster than trains and similarly priced.`},
     ]
   },
   {
@@ -1606,6 +1606,7 @@ function CategoryPage({catId,setView,lang,t,cache,setCache,user,reviews,setRevie
       setCache(prev=>({...prev,[key]:body}))
     }
   }
+
   // Auto-translate all articles in background when page opens or language changes
   useEffect(()=>{
     if(lang==="en")return
@@ -3083,7 +3084,7 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
               <label style={{display:"flex",alignItems:"center",gap:6,fontSize:11,fontWeight:700,color:C.primary,letterSpacing:"0.08em",marginBottom:9}}>
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={C.primary} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
                 CHOOSE A TOOL
-</label>
+              </label>
               <select
                 value={active}
                 onChange={e=>{setActive(e.target.value);trackEvent("tool",e.target.value)}}
@@ -4808,7 +4809,7 @@ export default function App(){
         /* Page padding that shrinks on mobile */
         .rp{padding:52px 20px}
         .bg-nav-mobile{display:none}
-@media(max-width:768px){
+        @media(max-width:768px){
           .rg-2{grid-template-columns:1fr}
           .rg-3{grid-template-columns:1fr}
           .rg-pricing{grid-template-columns:1fr}
@@ -4821,9 +4822,13 @@ export default function App(){
           /* Article padding on mobile */
           .bg-article-wrap{padding:20px 14px 40px !important}
           /* Chat bubbles full width on mobile */
-          .bg-chat-bubble{max-width:95% !important} /* Upgrade lives in the Explore menu on mobile to avoid banner overflow */
-          .bg-nav-upgrade{display:none !important} /* Mobile nav: hide desktop dropdowns, show hamburger */
-          .bg-nav-desktop{display:none !important} .bg-nav-mobile{display:block !important;order:-1} .bg-nav-logo{order:-2} 
+          .bg-chat-bubble{max-width:95% !important}
+          /* Upgrade lives in the Explore menu on mobile to avoid banner overflow */
+          .bg-nav-upgrade{display:none !important}
+          /* Mobile nav: hide desktop dropdowns, show hamburger */
+          .bg-nav-desktop{display:none !important}
+          .bg-nav-mobile{display:block !important;order:-1}
+          .bg-nav-logo{order:-2}
         }
         @media(max-width:480px){
           .rg-pricing{grid-template-columns:1fr}
