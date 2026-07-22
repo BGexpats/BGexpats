@@ -6070,7 +6070,7 @@ const TRAVEL_GUIDE = {
     name: "Sofia",
     tagline: "Bulgaria's capital — culture, mountains and expat life",
     hero: "https://images.unsplash.com/photo-1753529179550-c6aff1b76e6e?w=1200&q=80",
-    intro: "Sofia is the cheapest EU capital and one of Europe's most underrated cities. Mountains 30 minutes from the center, a buzzing café culture, and a fast-growing expat community.",
+    intro: "Sofia sits in a valley at the foot of Mount Vitosha and is one of Europe's oldest cities. Founded by the Thracian Serdi tribe in the 8th century BCE, it became Roman Serdica, passed through Byzantium and the Bulgarian state, fell to the Ottomans in 1382, and was named capital in 1879 after liberation. Long a crossroads between Europe and the Middle East, it mixes Roman ruins, Orthodox churches and communist-era landmarks with modern boulevards — and still feels relaxed and authentic. It's also the cheapest EU capital, with mountains 30 minutes from the center and a fast-growing expat community.",
     cities: [
       { id:"sofia-center", name:"Sofia Center", tagline:"Embassies, cafés, nightlife", hero:"https://images.unsplash.com/photo-1753529179550-c6aff1b76e6e?w=1200&q=80",
         intro:"The heart of Sofia — walkable, vibrant, close to everything. Home to Alexander Nevsky Cathedral, Vitosha Blvd and most expat-friendly services.",
