@@ -70,7 +70,7 @@ const T = {
     h1a:"Everything expats need",h1b:"to live well in Bulgaria",
     sub:"Visas, healthcare, banking, housing and more — all in plain English. Plus an AI assistant available 24/7.",
     askBtn:"Ask the AI assistant",stats:["Topics covered","AI assistant","Free to use"],
-    browse:"Browse topics",browseSub:"Everything you need to know, organized by topic",
+    browse:"Browse topics",browseSub:"Everything you need to know, organized by topic",searchPlaceholder:"Search guides, places, keywords…",searchGuide:"Guide",searchPlace:"Place",searchResult:"result",searchResults:"results",searchNone:"No matches. Try a different keyword — e.g. visa, rent, tax, doctor, beach.",searchFor:"result(s) for",
     facts:"Quick facts about Bulgaria",
     factsList:[
       ["💰","10% flat income tax — one of the lowest in the EU"],
@@ -95,7 +95,7 @@ const T = {
     h1a:"Tout ce dont les expatriés ont besoin",h1b:"pour vivre bien en Bulgarie",
     sub:"Visas, santé, banque, logement et plus — tout clairement expliqué. Plus un assistant IA disponible 24h/24.",
     askBtn:"Demander à l'assistant IA",stats:["Sujets couverts","Assistant IA","Entièrement gratuit"],
-    browse:"Parcourir les sujets",browseSub:"Tout ce que vous devez savoir, organisé par sujet",
+    browse:"Parcourir les sujets",browseSub:"Tout ce que vous devez savoir, organisé par sujet",searchPlaceholder:"Rechercher guides, lieux, mots-clés…",searchGuide:"Guide",searchPlace:"Lieu",searchResult:"résultat",searchResults:"résultats",searchNone:"Aucun résultat. Essayez un autre mot-clé — p.ex. visa, loyer, impôt, médecin, plage.",searchFor:"résultat(s) pour",
     facts:"Faits essentiels sur la Bulgarie",
     factsList:[
       ["💰","Impôt sur le revenu de 10% — l'un des plus bas de l'UE"],
@@ -120,7 +120,7 @@ const T = {
     h1a:"Todo lo que los expatriados necesitan",h1b:"para vivir bien en Bulgaria",
     sub:"Visados, sanidad, banca, vivienda y más — todo explicado claramente. Más un asistente de IA disponible 24/7.",
     askBtn:"Preguntar al asistente IA",stats:["Temas cubiertos","Asistente IA","Totalmente gratis"],
-    browse:"Explorar temas",browseSub:"Todo lo que necesitas saber, organizado por tema",
+    browse:"Explorar temas",browseSub:"Todo lo que necesitas saber, organizado por tema",searchPlaceholder:"Buscar guías, lugares, palabras clave…",searchGuide:"Guía",searchPlace:"Lugar",searchResult:"resultado",searchResults:"resultados",searchNone:"Sin resultados. Prueba otra palabra clave — p.ej. visado, alquiler, impuesto, médico, playa.",searchFor:"resultado(s) para",
     facts:"Datos clave sobre Bulgaria",
     factsList:[
       ["💰","IRPF del 10% — uno de los más bajos de la UE"],
@@ -145,7 +145,7 @@ const T = {
     h1a:"Alles, was Expats brauchen,",h1b:"um gut in Bulgarien zu leben",
     sub:"Visa, Gesundheit, Banking, Wohnen und mehr — klar erklärt. Plus ein KI-Assistent rund um die Uhr verfügbar.",
     askBtn:"KI-Assistent fragen",stats:["Themen abgedeckt","KI-Assistent","Kostenlos"],
-    browse:"Themen durchsuchen",browseSub:"Alles, was Sie wissen müssen, nach Thema geordnet",
+    browse:"Themen durchsuchen",browseSub:"Alles, was Sie wissen müssen, nach Thema geordnet",searchPlaceholder:"Guides, Orte, Stichwörter suchen…",searchGuide:"Ratgeber",searchPlace:"Ort",searchResult:"Ergebnis",searchResults:"Ergebnisse",searchNone:"Keine Treffer. Versuchen Sie ein anderes Stichwort — z.B. Visum, Miete, Steuer, Arzt, Strand.",searchFor:"Ergebnis(se) für",
     facts:"Wichtige Fakten über Bulgarien",
     factsList:[
       ["💰","10% Einkommensteuer — einer der niedrigsten in der EU"],
@@ -171,7 +171,7 @@ const T = {
     h1a:"Alles wat expats nodig hebben",h1b:"om goed te leven in Bulgarije",
     sub:"Visa's, gezondheidszorg, bankieren, wonen en meer — duidelijk uitgelegd. Plus een AI-assistent beschikbaar 24/7.",
     askBtn:"Vraag de AI-assistent",stats:["Onderwerpen","AI-assistent","Gratis"],
-    browse:"Onderwerpen bekijken",browseSub:"Alles wat u moet weten, per onderwerp georganiseerd",
+    browse:"Onderwerpen bekijken",browseSub:"Alles wat u moet weten, per onderwerp georganiseerd",searchPlaceholder:"Zoek gidsen, plaatsen, trefwoorden…",searchGuide:"Gids",searchPlace:"Plaats",searchResult:"resultaat",searchResults:"resultaten",searchNone:"Geen resultaten. Probeer een ander trefwoord — bijv. visum, huur, belasting, arts, strand.",searchFor:"resultaat/resultaten voor",
     facts:"Feiten over Bulgarije",
     factsList:[
       ["💰","10% vlak inkomstenbelasting — een van de laagste in de EU"],
@@ -196,7 +196,7 @@ const T = {
     h1a:"Всё необходимое для экспатов",h1b:"чтобы хорошо жить в Болгарии",
     sub:"Визы, здравоохранение, банки, жильё и многое другое — на понятном языке. Плюс ИИ-ассистент 24/7.",
     askBtn:"Задать вопрос ИИ-ассистенту",stats:["Тем охвачено","ИИ-ассистент","Бесплатно"],
-    browse:"Просмотр тем",browseSub:"Всё, что нужно знать — организовано по темам",
+    browse:"Просмотр тем",browseSub:"Всё, что нужно знать — организовано по темам",searchPlaceholder:"Поиск гидов, мест, ключевых слов…",searchGuide:"Гид",searchPlace:"Место",searchResult:"результат",searchResults:"результаты",searchNone:"Ничего не найдено. Попробуйте другое слово — напр. виза, аренда, налог, врач, пляж.",searchFor:"результат(ов) по",
     facts:"Факты о Болгарии",
     factsList:[
       ["💰","Подоходный налог 10% — один из самых низких в ЕС"],
@@ -221,7 +221,7 @@ const T = {
     h1a:"Все необхідне для експатів",h1b:"щоб добре жити в Болгарії",
     sub:"Візи, охорона здоров'я, банки, житло та багато іншого — зрозумілою мовою. Плюс ШІ-асистент 24/7.",
     askBtn:"Запитати ШІ-асистента",stats:["Тем охоплено","ШІ-асистент","Безкоштовно"],
-    browse:"Перегляд тем",browseSub:"Все, що потрібно знати — організовано за темами",
+    browse:"Перегляд тем",browseSub:"Все, що потрібно знати — організовано за темами",searchPlaceholder:"Пошук гідів, місць, ключових слів…",searchGuide:"Гід",searchPlace:"Місце",searchResult:"результат",searchResults:"результати",searchNone:"Нічого не знайдено. Спробуйте інше слово — напр. віза, оренда, податок, лікар, пляж.",searchFor:"результат(ів) за",
     facts:"Факти про Болгарію",
     factsList:[
       ["💰","Прибутковий податок 10% — один з найнижчих у ЄС"],
@@ -246,7 +246,7 @@ const T = {
     h1a:"Всичко, което експатите имат нужда",h1b:"за добър живот в България",
     sub:"Визи, здравеопазване, банки, жилища и още — на разбираем език. Плюс ИИ асистент 24/7.",
     askBtn:"Попитай ИИ асистента",stats:["Теми","ИИ асистент","Безплатно"],
-    browse:"Разгледай темите",browseSub:"Всичко, което трябва да знаете — организирано по теми",
+    browse:"Разгледай темите",browseSub:"Всичко, което трябва да знаете — организирано по теми",searchPlaceholder:"Търсене на гидове, места, ключови думи…",searchGuide:"Гид",searchPlace:"Място",searchResult:"резултат",searchResults:"резултата",searchNone:"Няма резултати. Опитайте друга дума — напр. виза, наем, данък, лекар, плаж.",searchFor:"резултат(а) за",
     facts:"Бързи факти за България",
     factsList:[
       ["💰","Плосък данък 10% — един от най-ниските в ЕС"],
@@ -271,7 +271,7 @@ const T = {
     h1a:"Expatların ihtiyaç duyduğu her şey",h1b:"Bulgaristan'da iyi yaşamak için",
     sub:"Vizeler, sağlık, bankacılık, konut ve daha fazlası — sade bir dille. Ayrıca 7/24 yapay zeka asistanı.",
     askBtn:"Yapay zeka asistanına sor",stats:["Konu başlığı","Yapay zeka asistanı","Ücretsiz"],
-    browse:"Konulara göz at",browseSub:"Bilmeniz gereken her şey, konulara göre düzenlenmiş",
+    browse:"Konulara göz at",browseSub:"Bilmeniz gereken her şey, konulara göre düzenlenmiş",searchPlaceholder:"Rehber, yer, anahtar kelime ara…",searchGuide:"Rehber",searchPlace:"Yer",searchResult:"sonuç",searchResults:"sonuç",searchNone:"Sonuç yok. Farklı bir kelime deneyin — ör. vize, kira, vergi, doktor, plaj.",searchFor:"sonuç:",
     facts:"Bulgaristan hakkında hızlı gerçekler",
     factsList:[
       ["💰","Düz %10 gelir vergisi — AB'nin en düşüklerinden"],
@@ -1343,10 +1343,66 @@ function TopicIcon({id,size=20,color="#1e5e3f"}){
 
 function CategoryGrid({setView,t,lang}){
   useScrollReveal()
+  const [q,setQ]=useState("")
+  const query=q.trim().toLowerCase()
+  const results=(()=>{
+    if(query.length<2)return null
+    const out=[]
+    for(const cat of CATEGORIES){
+      const lb=cat.labels[lang]||cat.labels.en
+      for(const art of cat.articles){
+        const title=(art.titles[lang]||art.titles.en||"")
+        const hay=(title+" "+(art.body||"")).toLowerCase()
+        if(hay.includes(query)){
+          out.push({kind:"guide",label:title,sub:lb.label,view:cat.id})
+        }
+      }
+    }
+    for(const regionId of Object.keys(TRAVEL_GUIDE)){
+      const region=TRAVEL_GUIDE[regionId]
+      for(const city of (region.cities||[])){
+        for(const p of (city.places||[])){
+          const hay=((p.name||"")+" "+(p.desc||"")).toLowerCase()
+          if(hay.includes(query)){
+            out.push({kind:"place",label:p.name,sub:`${city.name} · ${region.name}`,view:`travel-${regionId}-${city.id}`})
+          }
+        }
+      }
+    }
+    const seen=new Set()
+    return out.filter(r=>{const k=r.label+"|"+r.view;if(seen.has(k))return false;seen.add(k);return true})
+  })()
   return(
     <div style={{maxWidth:1100,margin:"0 auto",padding:"52px 20px"}}>
       <h2 className="reveal serif" style={{fontSize:"clamp(26px,4vw,38px)",fontWeight:400,color:C.text,margin:"0 0 8px"}}>{t.browse}</h2>
-      <p className="reveal" style={{color:C.muted,margin:"0 0 32px",fontSize:16,fontWeight:300}}>{t.browseSub}</p>
+      <p className="reveal" style={{color:C.muted,margin:"0 0 24px",fontSize:16,fontWeight:300}}>{t.browseSub}</p>
+      <div className="reveal" style={{position:"relative",marginBottom:32,maxWidth:520}}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={C.muted} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{position:"absolute",left:16,top:"50%",transform:"translateY(-50%)",pointerEvents:"none"}}><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input value={q} onChange={e=>setQ(e.target.value)} placeholder={t.searchPlaceholder||"Search guides, places, keywords…"}
+          style={{width:"100%",padding:"14px 44px 14px 44px",fontSize:15,color:C.text,background:C.surface,border:`1.5px solid ${C.border}`,borderRadius:14,boxShadow:"0 1px 3px rgba(0,0,0,0.04)",outline:"none",boxSizing:"border-box"}}/>
+        {q&&<button onClick={()=>setQ("")} style={{position:"absolute",right:12,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",cursor:"pointer",color:C.muted,fontSize:18,lineHeight:1,padding:4}}>×</button>}
+      </div>
+      {results?(
+        <div>
+          <p style={{color:C.muted,fontSize:13,margin:"0 0 14px"}}>{results.length} {t.searchFor||"result(s) for"} “{q.trim()}”</p>
+          {results.length===0?(
+            <p style={{color:C.muted,fontSize:15}}>{t.searchNone||"No matches. Try a different keyword."}</p>
+          ):(
+            <div style={{display:"flex",flexDirection:"column",gap:8}}>
+              {results.map((r,i)=>(
+                <button key={i} onClick={()=>setView(r.view)}
+                  style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,width:"100%",background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,padding:"14px 16px",cursor:"pointer",textAlign:"left",boxShadow:"0 1px 3px rgba(0,0,0,0.04)"}}>
+                  <span style={{minWidth:0}}>
+                    <span style={{display:"block",fontWeight:600,fontSize:14,color:C.text,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{r.label}</span>
+                    <span style={{display:"block",fontSize:12,color:C.muted,marginTop:2}}>{r.kind==="guide"?(t.searchGuide||"Guide"):(t.searchPlace||"Place")} · {r.sub}</span>
+                  </span>
+                  <span style={{color:C.primary,fontSize:16,flexShrink:0}}>→</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      ):(
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))",gap:16}}>
         {CATEGORIES.map(cat=>{
           const lb=cat.labels[lang]||cat.labels.en
@@ -1375,6 +1431,7 @@ function CategoryGrid({setView,t,lang}){
           )
         })}
       </div>
+      )}
     </div>
   )
 }
