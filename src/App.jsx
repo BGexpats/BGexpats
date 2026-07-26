@@ -25,6 +25,12 @@ import cuboImg from "./assets/cubo.jpg"
 import dolceAmaroImg from "./assets/dolce-amaro.jpg"
 import gardenBarImg from "./assets/garden-bar.jpg"
 import barDeRougeImg from "./assets/bar-de-rouge.webp"
+import vaultBarImg from "./assets/vault-bar.jpg"
+import mentholImg from "./assets/menthol.jpg"
+import theBrickImg from "./assets/the-brick.jpg"
+import goldenSandsImg from "./assets/golden-sands.webp"
+import cathedralImg from "./assets/cathedral-square.webp"
+import seaGardenImg from "./assets/sea-garden.jpg"
 import svetivlasImg from "./assets/sveti-vlas.jpg"
 import sozopolImg from "./assets/sozopol.jpg"
 import sunnyBeachImg from "./assets/sunny-beach.jpg"
@@ -5987,12 +5993,12 @@ const TRAVEL_GUIDE = {
           {name:"Dolce Amaro SEAPORT",type:"cafe",desc:"Multi-floor bar and café at the port with comfortable seating, good service and excellent desserts.",img:dolceAmaroImg,url:"https://dolceamaro.bg/",area:"Port"},
           {name:"The Garden Bar",type:"bar",desc:"A green, tucked-away spot in the middle of the city on Otets Paisiy — lush surroundings and a sociable crowd.",img:gardenBarImg,url:"https://gardenbar-bg.com/en/",area:"Center"},
           {name:"Bar de Rouge",type:"bar",desc:"Right by the entrance to the Sea Garden, with a sun-trap terrace. Easy place to sit with a drink before dinner. Odesos, bul. 'Slivnitsa' 2, 9002 Varna.",img:barDeRougeImg,area:"Sea Garden"},
-          {name:"The Vault Bar",type:"bar",desc:"Cocktail bar in the Greek Neighbourhood mixing local flavours into creative drinks.",img:"",area:"Greek Quarter"},
-          {name:"Beach Bar Menthol",type:"bar",desc:"Beach bar known for sunsets and sea views — a classic summer-evening stop on the Varna strip.",img:"",area:"Beach"},
-          {name:"The Brick Port",type:"bar",desc:"Striking industrial venue with a retractable roof, live music and sunset views over Varna Bay. More concert space than quiet lounge — expect it loud and busy.",img:"",area:"Port"},
-          {name:"Golden Sands Strip",type:"club",desc:"The dedicated resort nightlife strip 18km north of the city, where most of the big clubbing happens in summer. Taxi or bus out, and plan how you're getting back.",img:"",area:"Golden Sands"},
-          {name:"Cathedral Square bars",type:"club",desc:"The city's main evening gathering point — outdoor cafés that fill up after dark and a more sophisticated scene than the resort strip.",img:"",area:"Center"},
-          {name:"Sea Garden (Morska Gradina)",type:"attraction",desc:"Varna's famous seaside park, laid out in the late 19th century. Promenades, gardens, a zoo, restaurants and sea views — locals walk here daily.",img:"",area:"Sea Garden"},
+          {name:"The Vault Bar",type:"bar",desc:"Cocktail bar in the Greek Neighbourhood mixing local flavours into creative drinks. Varna, ul. 'Musala' 7.",img:vaultBarImg,area:"Greek Quarter"},
+          {name:"Beach Bar Menthol",type:"bar",desc:"Beach bar known for sunsets and sea views — a classic summer-evening stop on the Varna strip. Primorski, Odesos, ul. 'Kapitan Georgi Georgiev', 9000 Varna.",img:mentholImg,area:"Beach"},
+          {name:"The Brick Port",type:"bar",desc:"Striking industrial venue with a retractable roof, live music and sunset views over Varna Bay. More concert space than quiet lounge — expect it loud and busy.",img:theBrickImg,url:"https://thebrick.bg/",area:"Port"},
+          {name:"Golden Sands Strip",type:"club",desc:"The dedicated resort nightlife strip 18km north of the city, where most of the big clubbing happens in summer. Taxi or bus out, and plan how you're getting back.",img:goldenSandsImg,url:"https://www.goldensands-bg.com/",area:"Golden Sands"},
+          {name:"Cathedral Square bars",type:"club",desc:"The city's main evening gathering point — outdoor cafés that fill up after dark and a more sophisticated scene than the resort strip.",img:cathedralImg,area:"Center"},
+          {name:"Sea Garden (Morska Gradina)",type:"attraction",desc:"Varna's famous seaside park, laid out in the late 19th century. Promenades, gardens, a zoo, restaurants and sea views — locals walk here daily.",img:seaGardenImg,url:"https://visit.varna.bg/en/Sea_Garden.html",area:"Sea Garden"},
           {name:"Dormition of the Mother of God Cathedral",type:"attraction",desc:"Varna's landmark Orthodox cathedral with gilded domes, stained glass and extensive frescoes. The second-largest cathedral in Bulgaria.",img:"",area:"Center"},
           {name:"Varna Archaeological Museum",type:"attraction",desc:"Home to the Varna Gold Treasure — the oldest processed gold in the world, dating back over 6,000 years. The single most important thing to see in the city.",img:"",area:"Center"},
           {name:"Varna Aquarium",type:"attraction",desc:"Bulgaria's only marine biological station, showing Black Sea marine life. Small but worth an hour, especially with children.",img:"",area:"Sea Garden"},
@@ -6174,12 +6180,12 @@ const TRAVEL_GUIDE = {
           {name:"Dolce Amaro SEAPORT",type:"cafe",desc:"Multi-floor bar and café at the port with comfortable seating, good service and excellent desserts.",img:dolceAmaroImg,url:"https://dolceamaro.bg/",area:"Port"},
           {name:"The Garden Bar",type:"bar",desc:"A green, tucked-away spot in the middle of the city on Otets Paisiy — lush surroundings and a sociable crowd.",img:gardenBarImg,url:"https://gardenbar-bg.com/en/",area:"Center"},
           {name:"Bar de Rouge",type:"bar",desc:"Right by the entrance to the Sea Garden, with a sun-trap terrace. Easy place to sit with a drink before dinner. Odesos, bul. 'Slivnitsa' 2, 9002 Varna.",img:barDeRougeImg,area:"Sea Garden"},
-          {name:"The Vault Bar",type:"bar",desc:"Cocktail bar in the Greek Neighbourhood mixing local flavours into creative drinks.",img:"",area:"Greek Quarter"},
-          {name:"Beach Bar Menthol",type:"bar",desc:"Beach bar known for sunsets and sea views — a classic summer-evening stop on the Varna strip.",img:"",area:"Beach"},
-          {name:"The Brick Port",type:"bar",desc:"Striking industrial venue with a retractable roof, live music and sunset views over Varna Bay. More concert space than quiet lounge — expect it loud and busy.",img:"",area:"Port"},
-          {name:"Golden Sands Strip",type:"club",desc:"The dedicated resort nightlife strip 18km north of the city, where most of the big clubbing happens in summer. Taxi or bus out, and plan how you're getting back.",img:"",area:"Golden Sands"},
-          {name:"Cathedral Square bars",type:"club",desc:"The city's main evening gathering point — outdoor cafés that fill up after dark and a more sophisticated scene than the resort strip.",img:"",area:"Center"},
-          {name:"Sea Garden (Morska Gradina)",type:"attraction",desc:"Varna's famous seaside park, laid out in the late 19th century. Promenades, gardens, a zoo, restaurants and sea views — locals walk here daily.",img:"",area:"Sea Garden"},
+          {name:"The Vault Bar",type:"bar",desc:"Cocktail bar in the Greek Neighbourhood mixing local flavours into creative drinks. Varna, ul. 'Musala' 7.",img:vaultBarImg,area:"Greek Quarter"},
+          {name:"Beach Bar Menthol",type:"bar",desc:"Beach bar known for sunsets and sea views — a classic summer-evening stop on the Varna strip. Primorski, Odesos, ul. 'Kapitan Georgi Georgiev', 9000 Varna.",img:mentholImg,area:"Beach"},
+          {name:"The Brick Port",type:"bar",desc:"Striking industrial venue with a retractable roof, live music and sunset views over Varna Bay. More concert space than quiet lounge — expect it loud and busy.",img:theBrickImg,url:"https://thebrick.bg/",area:"Port"},
+          {name:"Golden Sands Strip",type:"club",desc:"The dedicated resort nightlife strip 18km north of the city, where most of the big clubbing happens in summer. Taxi or bus out, and plan how you're getting back.",img:goldenSandsImg,url:"https://www.goldensands-bg.com/",area:"Golden Sands"},
+          {name:"Cathedral Square bars",type:"club",desc:"The city's main evening gathering point — outdoor cafés that fill up after dark and a more sophisticated scene than the resort strip.",img:cathedralImg,area:"Center"},
+          {name:"Sea Garden (Morska Gradina)",type:"attraction",desc:"Varna's famous seaside park, laid out in the late 19th century. Promenades, gardens, a zoo, restaurants and sea views — locals walk here daily.",img:seaGardenImg,url:"https://visit.varna.bg/en/Sea_Garden.html",area:"Sea Garden"},
           {name:"Dormition of the Mother of God Cathedral",type:"attraction",desc:"Varna's landmark Orthodox cathedral with gilded domes, stained glass and extensive frescoes. The second-largest cathedral in Bulgaria.",img:"",area:"Center"},
           {name:"Varna Archaeological Museum",type:"attraction",desc:"Home to the Varna Gold Treasure — the oldest processed gold in the world, dating back over 6,000 years. The single most important thing to see in the city.",img:"",area:"Center"},
           {name:"Varna Aquarium",type:"attraction",desc:"Bulgaria's only marine biological station, showing Black Sea marine life. Small but worth an hour, especially with children.",img:"",area:"Sea Garden"},
