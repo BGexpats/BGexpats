@@ -18,6 +18,7 @@ import elKapanImg from "./assets/el-kapan.jpg"
 import diwineImg from "./assets/diwine.jpg"
 import villaBurovImg from "./assets/villa-burov.webp"
 import mehanaImg from "./assets/mehana-kashtata.webp"
+import marmaladImg from "./assets/marmalad-port.jpg"
 import svetivlasImg from "./assets/sveti-vlas.jpg"
 import sozopolImg from "./assets/sozopol.jpg"
 import sunnyBeachImg from "./assets/sunny-beach.jpg"
@@ -5973,7 +5974,7 @@ const TRAVEL_GUIDE = {
           {name:"DiWine",type:"restaurant",desc:"Elegant restaurant and wine cellar in a beautiful old building by the Cathedral, spread over several floors. Extensive Bulgarian wine list.",img:diwineImg,url:"https://timeforwine.bg/en",area:"Center"},
           {name:"Villa Burov",type:"restaurant",desc:"Fish and BBQ garden restaurant in one of the prettiest corners of the Sea Garden.",img:villaBurovImg,url:"https://www.villaburov.bg/",area:"Sea Garden"},
           {name:"Mehana Kashtata",type:"restaurant",desc:"Traditional Bulgarian tavern — the place to go for grilled meats, salads and local classics in a rustic setting. Odesos, ul. '8-mi noemvri' 9, 9000 Varna.",img:mehanaImg,area:"Center"},
-          {name:"Marmalad Port",type:"restaurant",desc:"Greek restaurant down at Varna Port — good for a meal with a harbour view.",img:"",area:"Port"},
+          {name:"Marmalad Port",type:"restaurant",desc:"Greek restaurant down at Varna Port — good for a meal with a harbour view. Pristanishten kompleks, 9000 Varna.",img:marmaladImg,area:"Port"},
           {name:"Orient Turkish Restaurant",type:"restaurant",desc:"Well-regarded spot for grilled meats and Turkish dishes, popular with locals.",img:"",area:"Center"},
           {name:"Graffiti Café",type:"cafe",desc:"Something of a local point of pride — an unusual, much-photographed space that Varna residents will tell you is the most beautiful bar in the world.",img:"",area:"Center"},
           {name:"Cubo",type:"cafe",desc:"The quintessential beachfront bar-café. Relaxed by day, livelier at night, and the sort of place you start recognising faces after a few visits.",img:"",area:"Beach"},
@@ -6160,7 +6161,7 @@ const TRAVEL_GUIDE = {
           {name:"DiWine",type:"restaurant",desc:"Elegant restaurant and wine cellar in a beautiful old building by the Cathedral, spread over several floors. Extensive Bulgarian wine list.",img:diwineImg,url:"https://timeforwine.bg/en",area:"Center"},
           {name:"Villa Burov",type:"restaurant",desc:"Fish and BBQ garden restaurant in one of the prettiest corners of the Sea Garden.",img:villaBurovImg,url:"https://www.villaburov.bg/",area:"Sea Garden"},
           {name:"Mehana Kashtata",type:"restaurant",desc:"Traditional Bulgarian tavern — the place to go for grilled meats, salads and local classics in a rustic setting. Odesos, ul. '8-mi noemvri' 9, 9000 Varna.",img:mehanaImg,area:"Center"},
-          {name:"Marmalad Port",type:"restaurant",desc:"Greek restaurant down at Varna Port — good for a meal with a harbour view.",img:"",area:"Port"},
+          {name:"Marmalad Port",type:"restaurant",desc:"Greek restaurant down at Varna Port — good for a meal with a harbour view. Pristanishten kompleks, 9000 Varna.",img:marmaladImg,area:"Port"},
           {name:"Orient Turkish Restaurant",type:"restaurant",desc:"Well-regarded spot for grilled meats and Turkish dishes, popular with locals.",img:"",area:"Center"},
           {name:"Graffiti Café",type:"cafe",desc:"Something of a local point of pride — an unusual, much-photographed space that Varna residents will tell you is the most beautiful bar in the world.",img:"",area:"Center"},
           {name:"Cubo",type:"cafe",desc:"The quintessential beachfront bar-café. Relaxed by day, livelier at night, and the sort of place you start recognising faces after a few visits.",img:"",area:"Beach"},
