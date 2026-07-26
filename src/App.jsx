@@ -70,7 +70,7 @@ const T = {
     h1a:"Everything expats need",h1b:"to live well in Bulgaria",
     sub:"Visas, healthcare, banking, housing and more — all in plain English. Plus an AI assistant available 24/7.",
     askBtn:"Ask the AI assistant",stats:["Topics covered","AI assistant","Free to use"],
-    browse:"Browse topics",browseSub:"Everything you need to know, organized by topic",searchPlaceholder:"Search guides, places, keywords…",searchGuide:"Guide",searchPlace:"Place",searchResult:"result",searchResults:"results",searchNone:"No matches. Try a different keyword — e.g. visa, rent, tax, doctor, beach.",searchFor:"result(s) for",
+    browse:"Browse topics",browseSub:"Everything you need to know, organized by topic",searchPlaceholder:"Search guides, places, keywords…",searchGuide:"Guide",searchPlace:"Place",searchResult:"result",searchResults:"results",searchNone:"No matches. Try a different keyword — e.g. visa, rent, tax, doctor, beach.",searchFor:"result(s) for",searchBack:"Back to topics",
     facts:"Quick facts about Bulgaria",
     factsList:[
       ["💰","10% flat income tax — one of the lowest in the EU"],
@@ -95,7 +95,7 @@ const T = {
     h1a:"Tout ce dont les expatriés ont besoin",h1b:"pour vivre bien en Bulgarie",
     sub:"Visas, santé, banque, logement et plus — tout clairement expliqué. Plus un assistant IA disponible 24h/24.",
     askBtn:"Demander à l'assistant IA",stats:["Sujets couverts","Assistant IA","Entièrement gratuit"],
-    browse:"Parcourir les sujets",browseSub:"Tout ce que vous devez savoir, organisé par sujet",searchPlaceholder:"Rechercher guides, lieux, mots-clés…",searchGuide:"Guide",searchPlace:"Lieu",searchResult:"résultat",searchResults:"résultats",searchNone:"Aucun résultat. Essayez un autre mot-clé — p.ex. visa, loyer, impôt, médecin, plage.",searchFor:"résultat(s) pour",
+    browse:"Parcourir les sujets",browseSub:"Tout ce que vous devez savoir, organisé par sujet",searchPlaceholder:"Rechercher guides, lieux, mots-clés…",searchGuide:"Guide",searchPlace:"Lieu",searchResult:"résultat",searchResults:"résultats",searchNone:"Aucun résultat. Essayez un autre mot-clé — p.ex. visa, loyer, impôt, médecin, plage.",searchFor:"résultat(s) pour",searchBack:"Retour aux sujets",
     facts:"Faits essentiels sur la Bulgarie",
     factsList:[
       ["💰","Impôt sur le revenu de 10% — l'un des plus bas de l'UE"],
@@ -120,7 +120,7 @@ const T = {
     h1a:"Todo lo que los expatriados necesitan",h1b:"para vivir bien en Bulgaria",
     sub:"Visados, sanidad, banca, vivienda y más — todo explicado claramente. Más un asistente de IA disponible 24/7.",
     askBtn:"Preguntar al asistente IA",stats:["Temas cubiertos","Asistente IA","Totalmente gratis"],
-    browse:"Explorar temas",browseSub:"Todo lo que necesitas saber, organizado por tema",searchPlaceholder:"Buscar guías, lugares, palabras clave…",searchGuide:"Guía",searchPlace:"Lugar",searchResult:"resultado",searchResults:"resultados",searchNone:"Sin resultados. Prueba otra palabra clave — p.ej. visado, alquiler, impuesto, médico, playa.",searchFor:"resultado(s) para",
+    browse:"Explorar temas",browseSub:"Todo lo que necesitas saber, organizado por tema",searchPlaceholder:"Buscar guías, lugares, palabras clave…",searchGuide:"Guía",searchPlace:"Lugar",searchResult:"resultado",searchResults:"resultados",searchNone:"Sin resultados. Prueba otra palabra clave — p.ej. visado, alquiler, impuesto, médico, playa.",searchFor:"resultado(s) para",searchBack:"Volver a los temas",
     facts:"Datos clave sobre Bulgaria",
     factsList:[
       ["💰","IRPF del 10% — uno de los más bajos de la UE"],
@@ -145,7 +145,7 @@ const T = {
     h1a:"Alles, was Expats brauchen,",h1b:"um gut in Bulgarien zu leben",
     sub:"Visa, Gesundheit, Banking, Wohnen und mehr — klar erklärt. Plus ein KI-Assistent rund um die Uhr verfügbar.",
     askBtn:"KI-Assistent fragen",stats:["Themen abgedeckt","KI-Assistent","Kostenlos"],
-    browse:"Themen durchsuchen",browseSub:"Alles, was Sie wissen müssen, nach Thema geordnet",searchPlaceholder:"Guides, Orte, Stichwörter suchen…",searchGuide:"Ratgeber",searchPlace:"Ort",searchResult:"Ergebnis",searchResults:"Ergebnisse",searchNone:"Keine Treffer. Versuchen Sie ein anderes Stichwort — z.B. Visum, Miete, Steuer, Arzt, Strand.",searchFor:"Ergebnis(se) für",
+    browse:"Themen durchsuchen",browseSub:"Alles, was Sie wissen müssen, nach Thema geordnet",searchPlaceholder:"Guides, Orte, Stichwörter suchen…",searchGuide:"Ratgeber",searchPlace:"Ort",searchResult:"Ergebnis",searchResults:"Ergebnisse",searchNone:"Keine Treffer. Versuchen Sie ein anderes Stichwort — z.B. Visum, Miete, Steuer, Arzt, Strand.",searchFor:"Ergebnis(se) für",searchBack:"Zurück zu den Themen",
     facts:"Wichtige Fakten über Bulgarien",
     factsList:[
       ["💰","10% Einkommensteuer — einer der niedrigsten in der EU"],
@@ -171,7 +171,7 @@ const T = {
     h1a:"Alles wat expats nodig hebben",h1b:"om goed te leven in Bulgarije",
     sub:"Visa's, gezondheidszorg, bankieren, wonen en meer — duidelijk uitgelegd. Plus een AI-assistent beschikbaar 24/7.",
     askBtn:"Vraag de AI-assistent",stats:["Onderwerpen","AI-assistent","Gratis"],
-    browse:"Onderwerpen bekijken",browseSub:"Alles wat u moet weten, per onderwerp georganiseerd",searchPlaceholder:"Zoek gidsen, plaatsen, trefwoorden…",searchGuide:"Gids",searchPlace:"Plaats",searchResult:"resultaat",searchResults:"resultaten",searchNone:"Geen resultaten. Probeer een ander trefwoord — bijv. visum, huur, belasting, arts, strand.",searchFor:"resultaat/resultaten voor",
+    browse:"Onderwerpen bekijken",browseSub:"Alles wat u moet weten, per onderwerp georganiseerd",searchPlaceholder:"Zoek gidsen, plaatsen, trefwoorden…",searchGuide:"Gids",searchPlace:"Plaats",searchResult:"resultaat",searchResults:"resultaten",searchNone:"Geen resultaten. Probeer een ander trefwoord — bijv. visum, huur, belasting, arts, strand.",searchFor:"resultaat/resultaten voor",searchBack:"Terug naar onderwerpen",
     facts:"Feiten over Bulgarije",
     factsList:[
       ["💰","10% vlak inkomstenbelasting — een van de laagste in de EU"],
@@ -196,7 +196,7 @@ const T = {
     h1a:"Всё необходимое для экспатов",h1b:"чтобы хорошо жить в Болгарии",
     sub:"Визы, здравоохранение, банки, жильё и многое другое — на понятном языке. Плюс ИИ-ассистент 24/7.",
     askBtn:"Задать вопрос ИИ-ассистенту",stats:["Тем охвачено","ИИ-ассистент","Бесплатно"],
-    browse:"Просмотр тем",browseSub:"Всё, что нужно знать — организовано по темам",searchPlaceholder:"Поиск гидов, мест, ключевых слов…",searchGuide:"Гид",searchPlace:"Место",searchResult:"результат",searchResults:"результаты",searchNone:"Ничего не найдено. Попробуйте другое слово — напр. виза, аренда, налог, врач, пляж.",searchFor:"результат(ов) по",
+    browse:"Просмотр тем",browseSub:"Всё, что нужно знать — организовано по темам",searchPlaceholder:"Поиск гидов, мест, ключевых слов…",searchGuide:"Гид",searchPlace:"Место",searchResult:"результат",searchResults:"результаты",searchNone:"Ничего не найдено. Попробуйте другое слово — напр. виза, аренда, налог, врач, пляж.",searchFor:"результат(ов) по",searchBack:"Назад к темам",
     facts:"Факты о Болгарии",
     factsList:[
       ["💰","Подоходный налог 10% — один из самых низких в ЕС"],
@@ -221,7 +221,7 @@ const T = {
     h1a:"Все необхідне для експатів",h1b:"щоб добре жити в Болгарії",
     sub:"Візи, охорона здоров'я, банки, житло та багато іншого — зрозумілою мовою. Плюс ШІ-асистент 24/7.",
     askBtn:"Запитати ШІ-асистента",stats:["Тем охоплено","ШІ-асистент","Безкоштовно"],
-    browse:"Перегляд тем",browseSub:"Все, що потрібно знати — організовано за темами",searchPlaceholder:"Пошук гідів, місць, ключових слів…",searchGuide:"Гід",searchPlace:"Місце",searchResult:"результат",searchResults:"результати",searchNone:"Нічого не знайдено. Спробуйте інше слово — напр. віза, оренда, податок, лікар, пляж.",searchFor:"результат(ів) за",
+    browse:"Перегляд тем",browseSub:"Все, що потрібно знати — організовано за темами",searchPlaceholder:"Пошук гідів, місць, ключових слів…",searchGuide:"Гід",searchPlace:"Місце",searchResult:"результат",searchResults:"результати",searchNone:"Нічого не знайдено. Спробуйте інше слово — напр. віза, оренда, податок, лікар, пляж.",searchFor:"результат(ів) за",searchBack:"Назад до тем",
     facts:"Факти про Болгарію",
     factsList:[
       ["💰","Прибутковий податок 10% — один з найнижчих у ЄС"],
@@ -246,7 +246,7 @@ const T = {
     h1a:"Всичко, което експатите имат нужда",h1b:"за добър живот в България",
     sub:"Визи, здравеопазване, банки, жилища и още — на разбираем език. Плюс ИИ асистент 24/7.",
     askBtn:"Попитай ИИ асистента",stats:["Теми","ИИ асистент","Безплатно"],
-    browse:"Разгледай темите",browseSub:"Всичко, което трябва да знаете — организирано по теми",searchPlaceholder:"Търсене на гидове, места, ключови думи…",searchGuide:"Гид",searchPlace:"Място",searchResult:"резултат",searchResults:"резултата",searchNone:"Няма резултати. Опитайте друга дума — напр. виза, наем, данък, лекар, плаж.",searchFor:"резултат(а) за",
+    browse:"Разгледай темите",browseSub:"Всичко, което трябва да знаете — организирано по теми",searchPlaceholder:"Търсене на гидове, места, ключови думи…",searchGuide:"Гид",searchPlace:"Място",searchResult:"резултат",searchResults:"резултата",searchNone:"Няма резултати. Опитайте друга дума — напр. виза, наем, данък, лекар, плаж.",searchFor:"резултат(а) за",searchBack:"Назад към темите",
     facts:"Бързи факти за България",
     factsList:[
       ["💰","Плосък данък 10% — един от най-ниските в ЕС"],
@@ -271,7 +271,7 @@ const T = {
     h1a:"Expatların ihtiyaç duyduğu her şey",h1b:"Bulgaristan'da iyi yaşamak için",
     sub:"Vizeler, sağlık, bankacılık, konut ve daha fazlası — sade bir dille. Ayrıca 7/24 yapay zeka asistanı.",
     askBtn:"Yapay zeka asistanına sor",stats:["Konu başlığı","Yapay zeka asistanı","Ücretsiz"],
-    browse:"Konulara göz at",browseSub:"Bilmeniz gereken her şey, konulara göre düzenlenmiş",searchPlaceholder:"Rehber, yer, anahtar kelime ara…",searchGuide:"Rehber",searchPlace:"Yer",searchResult:"sonuç",searchResults:"sonuç",searchNone:"Sonuç yok. Farklı bir kelime deneyin — ör. vize, kira, vergi, doktor, plaj.",searchFor:"sonuç:",
+    browse:"Konulara göz at",browseSub:"Bilmeniz gereken her şey, konulara göre düzenlenmiş",searchPlaceholder:"Rehber, yer, anahtar kelime ara…",searchGuide:"Rehber",searchPlace:"Yer",searchResult:"sonuç",searchResults:"sonuç",searchNone:"Sonuç yok. Farklı bir kelime deneyin — ör. vize, kira, vergi, doktor, plaj.",searchFor:"sonuç:",searchBack:"Konulara dön",
     facts:"Bulgaristan hakkında hızlı gerçekler",
     factsList:[
       ["💰","Düz %10 gelir vergisi — AB'nin en düşüklerinden"],
@@ -1401,6 +1401,7 @@ function CategoryGrid({setView,t,lang}){
               ))}
             </div>
           )}
+          <button onClick={()=>setQ("")} style={{marginTop:20,background:"none",border:`1px solid ${C.border}`,color:C.primary,padding:"10px 20px",borderRadius:10,cursor:"pointer",fontSize:13,fontWeight:600}}>← {t.searchBack||"Back to topics"}</button>
         </div>
       ):(
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))",gap:16}}>
