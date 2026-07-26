@@ -19,6 +19,12 @@ import diwineImg from "./assets/diwine.jpg"
 import villaBurovImg from "./assets/villa-burov.webp"
 import mehanaImg from "./assets/mehana-kashtata.webp"
 import marmaladImg from "./assets/marmalad-port.jpg"
+import orientImg from "./assets/orient.jpg"
+import graffitiImg from "./assets/graffiti-cafe.jpg"
+import cuboImg from "./assets/cubo.jpg"
+import dolceAmaroImg from "./assets/dolce-amaro.jpg"
+import gardenBarImg from "./assets/garden-bar.jpg"
+import barDeRougeImg from "./assets/bar-de-rouge.webp"
 import svetivlasImg from "./assets/sveti-vlas.jpg"
 import sozopolImg from "./assets/sozopol.jpg"
 import sunnyBeachImg from "./assets/sunny-beach.jpg"
@@ -5975,12 +5981,12 @@ const TRAVEL_GUIDE = {
           {name:"Villa Burov",type:"restaurant",desc:"Fish and BBQ garden restaurant in one of the prettiest corners of the Sea Garden.",img:villaBurovImg,url:"https://www.villaburov.bg/",area:"Sea Garden"},
           {name:"Mehana Kashtata",type:"restaurant",desc:"Traditional Bulgarian tavern — the place to go for grilled meats, salads and local classics in a rustic setting. Odesos, ul. '8-mi noemvri' 9, 9000 Varna.",img:mehanaImg,area:"Center"},
           {name:"Marmalad Port",type:"restaurant",desc:"Greek restaurant down at Varna Port — good for a meal with a harbour view. Pristanishten kompleks, 9000 Varna.",img:marmaladImg,area:"Port"},
-          {name:"Orient Turkish Restaurant",type:"restaurant",desc:"Well-regarded spot for grilled meats and Turkish dishes, popular with locals.",img:"",area:"Center"},
-          {name:"Graffiti Café",type:"cafe",desc:"Something of a local point of pride — an unusual, much-photographed space that Varna residents will tell you is the most beautiful bar in the world.",img:"",area:"Center"},
-          {name:"Cubo",type:"cafe",desc:"The quintessential beachfront bar-café. Relaxed by day, livelier at night, and the sort of place you start recognising faces after a few visits.",img:"",area:"Beach"},
-          {name:"Dolce Amaro SEAPORT",type:"cafe",desc:"Multi-floor bar and café at the port with comfortable seating, good service and excellent desserts.",img:"",area:"Port"},
-          {name:"The Garden Bar",type:"bar",desc:"A green, tucked-away spot in the middle of the city on Otets Paisiy — lush surroundings and a sociable crowd.",img:"",area:"Center"},
-          {name:"Bar de Rouge",type:"bar",desc:"Right by the entrance to the Sea Garden, with a sun-trap terrace. Easy place to sit with a drink before dinner.",img:"",area:"Sea Garden"},
+          {name:"Orient Turkish Restaurant",type:"restaurant",desc:"Well-regarded spot for grilled meats and Turkish dishes, popular with locals.",img:orientImg,url:"https://orientbg.com/en/",area:"Center"},
+          {name:"Graffiti Café",type:"cafe",desc:"Something of a local point of pride — an unusual, much-photographed space that Varna residents will tell you is the most beautiful bar in the world.",img:graffitiImg,url:"https://graffiticafe.bg/",area:"Center"},
+          {name:"Cubo",type:"cafe",desc:"The quintessential beachfront bar-café. Relaxed by day, livelier at night, and the sort of place you start recognising faces after a few visits. Central Beach (Primorski/First Alley), 9000 Varna.",img:cuboImg,area:"Beach"},
+          {name:"Dolce Amaro SEAPORT",type:"cafe",desc:"Multi-floor bar and café at the port with comfortable seating, good service and excellent desserts.",img:dolceAmaroImg,url:"https://dolceamaro.bg/",area:"Port"},
+          {name:"The Garden Bar",type:"bar",desc:"A green, tucked-away spot in the middle of the city on Otets Paisiy — lush surroundings and a sociable crowd.",img:gardenBarImg,url:"https://gardenbar-bg.com/en/",area:"Center"},
+          {name:"Bar de Rouge",type:"bar",desc:"Right by the entrance to the Sea Garden, with a sun-trap terrace. Easy place to sit with a drink before dinner. Odesos, bul. 'Slivnitsa' 2, 9002 Varna.",img:barDeRougeImg,area:"Sea Garden"},
           {name:"The Vault Bar",type:"bar",desc:"Cocktail bar in the Greek Neighbourhood mixing local flavours into creative drinks.",img:"",area:"Greek Quarter"},
           {name:"Beach Bar Menthol",type:"bar",desc:"Beach bar known for sunsets and sea views — a classic summer-evening stop on the Varna strip.",img:"",area:"Beach"},
           {name:"The Brick Port",type:"bar",desc:"Striking industrial venue with a retractable roof, live music and sunset views over Varna Bay. More concert space than quiet lounge — expect it loud and busy.",img:"",area:"Port"},
@@ -6162,12 +6168,12 @@ const TRAVEL_GUIDE = {
           {name:"Villa Burov",type:"restaurant",desc:"Fish and BBQ garden restaurant in one of the prettiest corners of the Sea Garden.",img:villaBurovImg,url:"https://www.villaburov.bg/",area:"Sea Garden"},
           {name:"Mehana Kashtata",type:"restaurant",desc:"Traditional Bulgarian tavern — the place to go for grilled meats, salads and local classics in a rustic setting. Odesos, ul. '8-mi noemvri' 9, 9000 Varna.",img:mehanaImg,area:"Center"},
           {name:"Marmalad Port",type:"restaurant",desc:"Greek restaurant down at Varna Port — good for a meal with a harbour view. Pristanishten kompleks, 9000 Varna.",img:marmaladImg,area:"Port"},
-          {name:"Orient Turkish Restaurant",type:"restaurant",desc:"Well-regarded spot for grilled meats and Turkish dishes, popular with locals.",img:"",area:"Center"},
-          {name:"Graffiti Café",type:"cafe",desc:"Something of a local point of pride — an unusual, much-photographed space that Varna residents will tell you is the most beautiful bar in the world.",img:"",area:"Center"},
-          {name:"Cubo",type:"cafe",desc:"The quintessential beachfront bar-café. Relaxed by day, livelier at night, and the sort of place you start recognising faces after a few visits.",img:"",area:"Beach"},
-          {name:"Dolce Amaro SEAPORT",type:"cafe",desc:"Multi-floor bar and café at the port with comfortable seating, good service and excellent desserts.",img:"",area:"Port"},
-          {name:"The Garden Bar",type:"bar",desc:"A green, tucked-away spot in the middle of the city on Otets Paisiy — lush surroundings and a sociable crowd.",img:"",area:"Center"},
-          {name:"Bar de Rouge",type:"bar",desc:"Right by the entrance to the Sea Garden, with a sun-trap terrace. Easy place to sit with a drink before dinner.",img:"",area:"Sea Garden"},
+          {name:"Orient Turkish Restaurant",type:"restaurant",desc:"Well-regarded spot for grilled meats and Turkish dishes, popular with locals.",img:orientImg,url:"https://orientbg.com/en/",area:"Center"},
+          {name:"Graffiti Café",type:"cafe",desc:"Something of a local point of pride — an unusual, much-photographed space that Varna residents will tell you is the most beautiful bar in the world.",img:graffitiImg,url:"https://graffiticafe.bg/",area:"Center"},
+          {name:"Cubo",type:"cafe",desc:"The quintessential beachfront bar-café. Relaxed by day, livelier at night, and the sort of place you start recognising faces after a few visits. Central Beach (Primorski/First Alley), 9000 Varna.",img:cuboImg,area:"Beach"},
+          {name:"Dolce Amaro SEAPORT",type:"cafe",desc:"Multi-floor bar and café at the port with comfortable seating, good service and excellent desserts.",img:dolceAmaroImg,url:"https://dolceamaro.bg/",area:"Port"},
+          {name:"The Garden Bar",type:"bar",desc:"A green, tucked-away spot in the middle of the city on Otets Paisiy — lush surroundings and a sociable crowd.",img:gardenBarImg,url:"https://gardenbar-bg.com/en/",area:"Center"},
+          {name:"Bar de Rouge",type:"bar",desc:"Right by the entrance to the Sea Garden, with a sun-trap terrace. Easy place to sit with a drink before dinner. Odesos, bul. 'Slivnitsa' 2, 9002 Varna.",img:barDeRougeImg,area:"Sea Garden"},
           {name:"The Vault Bar",type:"bar",desc:"Cocktail bar in the Greek Neighbourhood mixing local flavours into creative drinks.",img:"",area:"Greek Quarter"},
           {name:"Beach Bar Menthol",type:"bar",desc:"Beach bar known for sunsets and sea views — a classic summer-evening stop on the Varna strip.",img:"",area:"Beach"},
           {name:"The Brick Port",type:"bar",desc:"Striking industrial venue with a retractable roof, live music and sunset views over Varna Bay. More concert space than quiet lounge — expect it loud and busy.",img:"",area:"Port"},
