@@ -13,6 +13,7 @@ import magernitsaImg from "./assets/magernitsa.webp"
 import izbiteImg from "./assets/izbite.png"
 import nomadImg from "./assets/digital-nomad.jpg"
 import varnaHeroImg from "./assets/varna.jpg"
+import mrBabaImg from "./assets/mr-baba.webp"
 import svetivlasImg from "./assets/sveti-vlas.jpg"
 import sozopolImg from "./assets/sozopol.jpg"
 import sunnyBeachImg from "./assets/sunny-beach.jpg"
@@ -5960,10 +5961,10 @@ const TRAVEL_GUIDE = {
     hero: "https://images.unsplash.com/photo-1683653417751-ea68aa8bc289?w=1200&q=80",
     intro: "Bulgaria's Black Sea coast stretches from Romania to Turkey, with sandy beaches, lively resorts and ancient seaside towns. Pick a destination below.",
     cities: [
-      { id:"varna-city", name:"Varna Center", tagline:"Sea Garden, beach & city life", hero:varnaHeroImg,
+      { id:"varna-city", name:"Varna", tagline:"Sea Garden, beach & city life", hero:varnaHeroImg,
         intro:"Varna's center runs from the Cathedral down to the famous Sea Garden and beach. The Briz and Chayka districts are popular with expats for their sea views.",
         places:[
-          {name:"Mr. Baba",type:"restaurant",desc:"Seafood restaurant built inside a replica 16th-century galleon on the southern beach — a Varna landmark as much as a place to eat.",img:"",area:"Beach"},
+          {name:"Mr. Baba",type:"restaurant",desc:"Seafood restaurant built inside a replica 16th-century galleon on the southern beach — a Varna landmark as much as a place to eat.",img:mrBabaImg,url:"https://mrbaba.bg/en",area:"Beach"},
           {name:"El Kapan",type:"restaurant",desc:"Beachfront restaurant with indoor dining and outdoor tables looking onto the Black Sea. A favourite for a long lunch by the water.",img:"",area:"Beach"},
           {name:"DiWine",type:"restaurant",desc:"Elegant restaurant and wine cellar in a beautiful old building by the Cathedral, spread over several floors. Extensive Bulgarian wine list.",img:"",area:"Center"},
           {name:"Villa Burov",type:"restaurant",desc:"Fish and BBQ garden restaurant in one of the prettiest corners of the Sea Garden.",img:"",area:"Sea Garden"},
@@ -6148,10 +6149,10 @@ const TRAVEL_GUIDE = {
     hero: "https://images.unsplash.com/photo-1683653417751-ea68aa8bc289?w=1200&q=80",
     intro: "Varna is Bulgaria's third city and Black Sea capital. Larger and more sophisticated than Sunny Beach — a proper city with beaches, the Sea Garden park, and a lively summer scene. Rents are seasonal.",
     cities: [
-      { id:"varna-center", name:"Varna Center", tagline:"Sea Garden, beach & city life", hero:varnaHeroImg,
+      { id:"varna-center", name:"Varna", tagline:"Sea Garden, beach & city life", hero:varnaHeroImg,
         intro:"Varna's center runs from the Cathedral down to the famous Sea Garden and beach. The Briz and Chayka districts are popular with expats for their sea views.",
         places:[
-          {name:"Mr. Baba",type:"restaurant",desc:"Seafood restaurant built inside a replica 16th-century galleon on the southern beach — a Varna landmark as much as a place to eat.",img:"",area:"Beach"},
+          {name:"Mr. Baba",type:"restaurant",desc:"Seafood restaurant built inside a replica 16th-century galleon on the southern beach — a Varna landmark as much as a place to eat.",img:mrBabaImg,url:"https://mrbaba.bg/en",area:"Beach"},
           {name:"El Kapan",type:"restaurant",desc:"Beachfront restaurant with indoor dining and outdoor tables looking onto the Black Sea. A favourite for a long lunch by the water.",img:"",area:"Beach"},
           {name:"DiWine",type:"restaurant",desc:"Elegant restaurant and wine cellar in a beautiful old building by the Cathedral, spread over several floors. Extensive Bulgarian wine list.",img:"",area:"Center"},
           {name:"Villa Burov",type:"restaurant",desc:"Fish and BBQ garden restaurant in one of the prettiest corners of the Sea Garden.",img:"",area:"Sea Garden"},
