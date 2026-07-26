@@ -74,7 +74,7 @@ const T = {
     facts:"Quick facts about Bulgaria",
     factsList:[
       ["💰","10% flat income tax — one of the lowest in the EU"],
-      ["💶","Bulgaria uses the Euro (€) since 2025 — fixed rate"],
+      ["💶","Bulgaria uses the Euro (€) since 2026 — fixed rate"],
       ["🚑","Emergency: 112 (police, fire, ambulance)"],
       ["🇪🇺","EU member since 2007 — free movement for EU citizens"],
       ["🏔️","2nd cheapest cost of living in the EU"],
@@ -594,7 +594,7 @@ All legally resident children (EU and non-EU) have the right to free public educ
       {titles:{en:"Bulgarian tax system explained simply",fr:"Le système fiscal bulgare expliqué simplement",es:"El sistema fiscal búlgaro explicado de forma sencilla",de:"Das bulgarische Steuersystem einfach erklärt",nl:"Het Bulgaarse belastingsysteem eenvoudig uitgelegd"},
        body:`Bulgaria has one of the most attractive tax systems in the EU.\n\n**Personal income tax:** 10% flat — everyone pays the same rate, no brackets.\n\n**Corporate tax (EOOD):** 10% flat on company profits.\n\n**Dividend tax:** 5% — when you pay yourself from your company.\n\n**Total effective tax as company owner:** ~14.5%\n\n**VAT:** 20% standard (9% for hotels, restaurants, tourist services).\n\n**Social & health contributions (self-employed, 2024):** ~€65–100/month.\n\n**Tax residency:** 183+ days/year in Bulgaria = Bulgarian tax resident.\n\n**Filing deadline:** April 30 for the previous calendar year.\n\n💡 Always hire a local accountant (€75–150/month). Best investment you can make.`},
       {titles:{en:"Sending money to Bulgaria — best options",fr:"Envoyer de l'argent en Bulgarie — meilleures options",es:"Enviar dinero a Bulgaria — mejores opciones",de:"Geld nach Bulgarien senden — beste Optionen",nl:"Geld naar Bulgarije sturen — beste opties"},
-       body:`Bulgaria joined the Eurozone and uses the Euro (€) as its official currency since 2025.\n\n**Best transfer services:**\n\n**Wise** — best exchange rates, low fees, fast. Most expats' first choice for international transfers.\n\n**Revolut** — great for daily spending and transfers. Get a card as soon as you arrive.\n\n**Bank SWIFT** — works but fees are high (€5–13 per transfer). Avoid for regular use.\n\n**ATMs:** Very common. Use Wise or Revolut card to withdraw Euros. Always pay in local currency — never let the ATM convert for you.\n\n💡 Bulgaria is now in the Eurozone and uses the Euro.`},
+       body:`Bulgaria joined the Eurozone and uses the Euro (€) as its official currency since 2026.\n\n**Best transfer services:**\n\n**Wise** — best exchange rates, low fees, fast. Most expats' first choice for international transfers.\n\n**Revolut** — great for daily spending and transfers. Get a card as soon as you arrive.\n\n**Bank SWIFT** — works but fees are high (€5–13 per transfer). Avoid for regular use.\n\n**ATMs:** Very common. Use Wise or Revolut card to withdraw Euros. Always pay in local currency — never let the ATM convert for you.\n\n💡 Bulgaria is now in the Eurozone and uses the Euro.`},
     ]
   },
   {
