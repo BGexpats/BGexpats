@@ -14,6 +14,10 @@ import izbiteImg from "./assets/izbite.png"
 import nomadImg from "./assets/digital-nomad.jpg"
 import varnaHeroImg from "./assets/varna.jpg"
 import mrBabaImg from "./assets/mr-baba.webp"
+import elKapanImg from "./assets/el-kapan.jpg"
+import diwineImg from "./assets/diwine.jpg"
+import villaBurovImg from "./assets/villa-burov.webp"
+import mehanaImg from "./assets/mehana-kashtata.webp"
 import svetivlasImg from "./assets/sveti-vlas.jpg"
 import sozopolImg from "./assets/sozopol.jpg"
 import sunnyBeachImg from "./assets/sunny-beach.jpg"
@@ -2217,7 +2221,7 @@ const NEIGHBOURHOODS=[
   {name:"Asparuhovo",rent:380,safety:6,expat:4,transport:7,restaurants:5,desc:"Most affordable Varna neighbourhood. Local feel, away from tourist areas.",city:"varna"},
   {name:"Golden Sands Area",rent:600,safety:8,expat:8,transport:5,restaurants:8,desc:"Resort living year-round. Quieter in winter. Beach on your doorstep.",city:"varna"},
   // ── BURGAS ─────────────────────────────────────────────────────
-  {name:"Burgas Center",rent:450,safety:7,expat:7,transport:9,restaurants:8,desc:"Pedestrian zone, sea garden nearby. Best location in Burgas for expats.",city:"burgas"},
+  {name:"Burgas",rent:450,safety:7,expat:7,transport:9,restaurants:8,desc:"Pedestrian zone, sea garden nearby. Best location in Burgas for expats.",city:"burgas"},
   {name:"Sea Garden (Burgas)",rent:500,safety:8,expat:7,transport:7,restaurants:8,desc:"Along the beautiful seafront park. Walking distance to beach and marina.",city:"burgas"},
   {name:"Slaveykov",rent:380,safety:7,expat:5,transport:8,restaurants:6,desc:"Residential area with good amenities. Mix of locals and some expats.",city:"burgas"},
   {name:"Izgrev",rent:340,safety:7,expat:4,transport:7,restaurants:5,desc:"Quieter residential quarter. Affordable, local feel.",city:"burgas"},
@@ -5965,10 +5969,10 @@ const TRAVEL_GUIDE = {
         intro:"Varna's center runs from the Cathedral down to the famous Sea Garden and beach. The Briz and Chayka districts are popular with expats for their sea views.",
         places:[
           {name:"Mr. Baba",type:"restaurant",desc:"Seafood restaurant built inside a replica 16th-century galleon on the southern beach — a Varna landmark as much as a place to eat.",img:mrBabaImg,url:"https://mrbaba.bg/en",area:"Beach"},
-          {name:"El Kapan",type:"restaurant",desc:"Beachfront restaurant with indoor dining and outdoor tables looking onto the Black Sea. A favourite for a long lunch by the water.",img:"",area:"Beach"},
-          {name:"DiWine",type:"restaurant",desc:"Elegant restaurant and wine cellar in a beautiful old building by the Cathedral, spread over several floors. Extensive Bulgarian wine list.",img:"",area:"Center"},
-          {name:"Villa Burov",type:"restaurant",desc:"Fish and BBQ garden restaurant in one of the prettiest corners of the Sea Garden.",img:"",area:"Sea Garden"},
-          {name:"Mehana Kashtata",type:"restaurant",desc:"Traditional Bulgarian tavern — the place to go for grilled meats, salads and local classics in a rustic setting.",img:"",area:"Center"},
+          {name:"El Kapan",type:"restaurant",desc:"Beachfront restaurant with indoor dining and outdoor tables looking onto the Black Sea. A favourite for a long lunch by the water.",img:elKapanImg,url:"https://www.elkapan.com/en/",area:"Beach"},
+          {name:"DiWine",type:"restaurant",desc:"Elegant restaurant and wine cellar in a beautiful old building by the Cathedral, spread over several floors. Extensive Bulgarian wine list.",img:diwineImg,url:"https://timeforwine.bg/en",area:"Center"},
+          {name:"Villa Burov",type:"restaurant",desc:"Fish and BBQ garden restaurant in one of the prettiest corners of the Sea Garden.",img:villaBurovImg,url:"https://www.villaburov.bg/",area:"Sea Garden"},
+          {name:"Mehana Kashtata",type:"restaurant",desc:"Traditional Bulgarian tavern — the place to go for grilled meats, salads and local classics in a rustic setting. Odesos, ul. "8-mi noemvri" 9, 9000 Varna.",img:mehanaImg,area:"Center"},
           {name:"Club of Architects",type:"restaurant",desc:"Historic building in the town centre with an indoor dining room and a large beer garden. Diverse Bulgarian menu, friendly service.",img:"",area:"Center"},
           {name:"Marmalad Port",type:"restaurant",desc:"Greek restaurant down at Varna Port — good for a meal with a harbour view.",img:"",area:"Port"},
           {name:"Orient Turkish Restaurant",type:"restaurant",desc:"Well-regarded spot for grilled meats and Turkish dishes, popular with locals.",img:"",area:"Center"},
@@ -5991,7 +5995,7 @@ const TRAVEL_GUIDE = {
           {name:"Varna Beach & promenade",type:"beach",desc:"The long city beach below the Sea Garden. Beach bars, restaurants and open-air seating steps from the sand; in summer the strip runs with DJs into the night.",img:"",area:"Beach"},
           {name:"Golden Sands (Zlatni Pyasatsi)",type:"beach",desc:"Major resort beach 18km north — wide sand, mineral springs and the busiest nightlife on this stretch of coast.",img:"",area:"Golden Sands"},
         ]},
-      { id:"burgas-city", name:"Burgas Center", tagline:"Lakes, beach and a relaxed vibe", hero:"https://images.unsplash.com/photo-1683653417751-ea68aa8bc289?w=1200&q=80",
+      { id:"burgas-city", name:"Burgas", tagline:"Lakes, beach and a relaxed vibe", hero:"https://images.unsplash.com/photo-1683653417751-ea68aa8bc289?w=1200&q=80",
         intro:"Burgas is flat, walkable and unpretentious. The pedestrian Aleko Bogoridi street is the main artery. The beach is a 10-minute walk from the center.",
         places:[
           {name:"Maison's Premium",type:"restaurant",desc:"One of the highest-rated restaurants on the whole Bulgarian coast — refined cooking and a serious wine list. Book ahead in season.",img:"",area:"Center"},
@@ -6153,10 +6157,10 @@ const TRAVEL_GUIDE = {
         intro:"Varna's center runs from the Cathedral down to the famous Sea Garden and beach. The Briz and Chayka districts are popular with expats for their sea views.",
         places:[
           {name:"Mr. Baba",type:"restaurant",desc:"Seafood restaurant built inside a replica 16th-century galleon on the southern beach — a Varna landmark as much as a place to eat.",img:mrBabaImg,url:"https://mrbaba.bg/en",area:"Beach"},
-          {name:"El Kapan",type:"restaurant",desc:"Beachfront restaurant with indoor dining and outdoor tables looking onto the Black Sea. A favourite for a long lunch by the water.",img:"",area:"Beach"},
-          {name:"DiWine",type:"restaurant",desc:"Elegant restaurant and wine cellar in a beautiful old building by the Cathedral, spread over several floors. Extensive Bulgarian wine list.",img:"",area:"Center"},
-          {name:"Villa Burov",type:"restaurant",desc:"Fish and BBQ garden restaurant in one of the prettiest corners of the Sea Garden.",img:"",area:"Sea Garden"},
-          {name:"Mehana Kashtata",type:"restaurant",desc:"Traditional Bulgarian tavern — the place to go for grilled meats, salads and local classics in a rustic setting.",img:"",area:"Center"},
+          {name:"El Kapan",type:"restaurant",desc:"Beachfront restaurant with indoor dining and outdoor tables looking onto the Black Sea. A favourite for a long lunch by the water.",img:elKapanImg,url:"https://www.elkapan.com/en/",area:"Beach"},
+          {name:"DiWine",type:"restaurant",desc:"Elegant restaurant and wine cellar in a beautiful old building by the Cathedral, spread over several floors. Extensive Bulgarian wine list.",img:diwineImg,url:"https://timeforwine.bg/en",area:"Center"},
+          {name:"Villa Burov",type:"restaurant",desc:"Fish and BBQ garden restaurant in one of the prettiest corners of the Sea Garden.",img:villaBurovImg,url:"https://www.villaburov.bg/",area:"Sea Garden"},
+          {name:"Mehana Kashtata",type:"restaurant",desc:"Traditional Bulgarian tavern — the place to go for grilled meats, salads and local classics in a rustic setting. Odesos, ul. "8-mi noemvri" 9, 9000 Varna.",img:mehanaImg,area:"Center"},
           {name:"Club of Architects",type:"restaurant",desc:"Historic building in the town centre with an indoor dining room and a large beer garden. Diverse Bulgarian menu, friendly service.",img:"",area:"Center"},
           {name:"Marmalad Port",type:"restaurant",desc:"Greek restaurant down at Varna Port — good for a meal with a harbour view.",img:"",area:"Port"},
           {name:"Orient Turkish Restaurant",type:"restaurant",desc:"Well-regarded spot for grilled meats and Turkish dishes, popular with locals.",img:"",area:"Center"},
@@ -6187,7 +6191,7 @@ const TRAVEL_GUIDE = {
     hero: "https://images.unsplash.com/photo-1683653417751-ea68aa8bc289?w=1200&q=80",
     intro: "Burgas is the most affordable of Bulgaria's main cities. Its flat center is easy to walk, and it's surrounded by four lakes. A relaxed base for exploring the Southern Black Sea coast.",
     cities: [
-      { id:"burgas-center", name:"Burgas Center", tagline:"Lakes, beach and a relaxed vibe", hero:"https://images.unsplash.com/photo-1683653417751-ea68aa8bc289?w=1200&q=80",
+      { id:"burgas-center", name:"Burgas", tagline:"Lakes, beach and a relaxed vibe", hero:"https://images.unsplash.com/photo-1683653417751-ea68aa8bc289?w=1200&q=80",
         intro:"Burgas is flat, walkable and unpretentious. The pedestrian Aleko Bogoridi street is the main artery. The beach is a 10-minute walk from the center.",
         places:[
           {name:"Maison's Premium",type:"restaurant",desc:"One of the highest-rated restaurants on the whole Bulgarian coast — refined cooking and a serious wine list. Book ahead in season.",img:"",area:"Center"},
