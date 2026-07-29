@@ -4385,8 +4385,13 @@ function TravelCityPage({regionId,cityId,setView}){
   },[])
   if(!city)return<div style={{padding:40,textAlign:"center",color:C.muted}}>Place not found.</div>
 
-  const typesPresent=[...new Set(city.places.map(p=>p.type))]
-  const shown=filter==="all"?city.places:city.places.filter(p=>p.type===filter)
+  // Travel pages show only touristic content. Food/nightlife (restaurant, bar,
+  // club, cafe) stays in the data for reference but is hidden here — it belongs
+  // in the Map section.
+  const TOURISTIC_TYPES=["attraction","beach","hotel"]
+  const touristPlaces=city.places.filter(p=>TOURISTIC_TYPES.includes(p.type))
+  const typesPresent=[...new Set(touristPlaces.map(p=>p.type))]
+  const shown=filter==="all"?touristPlaces:touristPlaces.filter(p=>p.type===filter)
 
   return(
     <div style={{minHeight:"100vh",background:C.page}}>
