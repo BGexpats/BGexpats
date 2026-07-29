@@ -480,110 +480,13 @@ Get it apostilled before leaving your home country.
   },
   {
     id:"healthcare",icon:"🏥",bg:"#e4f2ec",
-    labels:{en:{label:"Healthcare",sub:"Doctors, hospitals, insurance"},fr:{label:"Santé",sub:"Médecins, hôpitaux, assurance"},es:{label:"Sanidad",sub:"Médicos, hospitales, seguro"},de:{label:"Gesundheit",sub:"Ärzte, Krankenhäuser, Versicherung"},nl:{label:"Gezondheidszorg",sub:"Artsen, ziekenhuizen, verzekering"},ru:{label:"Здравоохранение",sub:"Врачи, страховка, больницы"},uk:{label:"Охорона здоров'я",sub:"Лікарі, страховка, лікарні"},tr:{label:"Sağlık",sub:"Doktorlar, sigorta, hastaneler"},bg:{label:"Здравеопазване",sub:"Лекари, застраховки, болници"}},
+    labels:{en:{label:"Healthcare & Medical",sub:"Doctors, hospitals, insurance"},fr:{label:"Santé & Médical",sub:"Médecins, hôpitaux, assurance"},es:{label:"Sanidad y Medicina",sub:"Médicos, hospitales, seguro"},de:{label:"Gesundheit & Medizin",sub:"Ärzte, Krankenhäuser, Versicherung"},nl:{label:"Gezondheid & Zorg",sub:"Artsen, ziekenhuizen, verzekering"},ru:{label:"Здоровье и медицина",sub:"Врачи, страховка, больницы"},uk:{label:"Здоров'я та медицина",sub:"Лікарі, страховка, лікарні"},tr:{label:"Sağlık ve Tıp",sub:"Doktorlar, sigorta, hastaneler"},bg:{label:"Здраве и медицина",sub:"Лекари, застраховки, болници"}},
     articles:[
       {titles:{en:"The Bulgarian public health system (NHIF)",fr:"Le système de santé public bulgare (NHIF)",es:"El sistema sanitario público búlgaro (NHIF)",de:"Das bulgarische Gesundheitssystem (NHIF)",nl:"Het Bulgaarse gezondheidsstelsel (NHIF)"},
        body:`Bulgaria's public health insurance is called NHIF (НЗОК in Bulgarian).\n\n**If employed:** Employer registers you and pays contributions automatically.\n\n**If self-employed/company owner:** You pay ~€16/month yourself.\n\n**EU visitors:** Your EHIC card gives you access on the same terms as Bulgarian citizens.\n\n**What NHIF covers:**\n• GP visits (free with registration)\n• Hospital treatment (co-pay: €1/day)\n• Specialist visits (with GP referral)\n• Maternity care and emergency treatment\n\n**Not covered:** Most dental, private clinics, most medicines.\n\n💡 Register with a local GP near your address — required for referrals in the public system.`},
-      {titles:{en:"English-speaking doctors in Sofia",fr:"Médecins anglophones à Sofia",es:"Médicos angloparlantes en Sofía",de:"Englischsprachige Ärzte in Sofia",nl:"Engelstalige artsen in Sofia"},
-       body:`Finding English-speaking care is easier than expected, especially in Sofia.\n\n**Private hospitals with English staff:**\n\n**Tokuda Hospital** — excellent, many English-speaking specialists. Tel: +359 2 403 4000\n\n**Acibadem City Clinic** — international standard, well-equipped, English service.\n\n**Vita Private Hospital** — popular with expats, good emergency department.\n\n**Consultation costs:**\n• GP: €25–40\n• Specialist: €40–75\n• Blood panel: €15–40\n\n**Emergency:** Dial 112. Many operators speak English.\n\n💡 Always confirm the doctor speaks English before your appointment.`},
-      {titles:{en:"International schools & education in Bulgaria",fr:"\u00c9coles internationales et \u00e9ducation en Bulgarie",es:"Colegios internacionales y educaci\u00f3n en Bulgaria",de:"Internationale Schulen & Bildung in Bulgarien",nl:"Internationale scholen & onderwijs in Bulgarije",ru:"Международные школы и образование в Болгарии",uk:"Міжнародні школи та освіта в Болгарії",tr:"Bulgaristan'da uluslararası okullar ve eğitim",bg:"Международни училища и образование в България"},
-       body:`Education is the number one question for expat families. Bulgaria has excellent options — from free public schools to world-class international institutions.
-
-## Public schools — free for all residents
-
-All legally resident children (EU and non-EU) have the right to free public education in Bulgaria.
-
-**The reality for expat children:**
-• Instruction is entirely in Bulgarian
-• Children typically adapt within 6–12 months — language immersion works remarkably well for young children
-• Schools are academically rigorous by European standards
-• Class sizes: 20–28 students
-• School year: mid-September to May
-
-**Enrol at:** Your local neighbourhood school (районно училище). Bring: residence certificate, child's ID/passport, apostilled birth certificate with Bulgarian translation.
-
----
-
-## International schools in Sofia
-
-### Anglo-American School of Sofia
-• **Curriculum:** US-accredited (NEASC), IB Diploma (grades 9–12)
-• **Ages:** Pre-K through Grade 12
-• **Language:** English
-• **Fees:** €12,000–16,000/year
-• **Location:** Simeonovo, Sofia
-• **Strength:** Largest international school, strong university placement
-• Website: aas-sofia.org
-
-### The British School of Sofia
-• **Curriculum:** British National Curriculum, IGCSE, A-Levels
-• **Ages:** 3–18
-• **Language:** English
-• **Fees:** €9,000–13,000/year
-• **Location:** Dragalevtsi, Sofia
-• **Strength:** Strong academic tradition, small class sizes
-• Website: britishschool.bg
-
-### Deutsche Schule Sofia (German School)
-• **Curriculum:** German curriculum, DSD German language certification
-• **Ages:** 6–18
-• **Language:** German (some English)
-• **Fees:** €6,000–9,000/year (subsidised by German government)
-• **Location:** Central Sofia
-• **Strength:** Most affordable international school, excellent for German speakers
-
-### Sofia International School
-• **Curriculum:** Mixed international + Bulgarian
-• **Ages:** 4–18
-• **Language:** English and Bulgarian
-• **Fees:** €7,000–10,000/year
-• **Location:** Krastova Vada, Sofia
-• **Strength:** Bilingual education, strong Bulgarian cultural integration
-
-### Le Lycée Victor Hugo
-• **Curriculum:** French CNED/AEFE curriculum
-• **Ages:** Pre-school to Baccalauréat
-• **Language:** French
-• **Fees:** €5,000–8,000/year
-• **Location:** Central Sofia
-• **Strength:** Official French accreditation, strong Franco-Bulgarian community
-
----
-
-## International school in Varna
-
-### International School of Varna
-• **Curriculum:** British curriculum, IGCSE
-• **Ages:** 4–18
-• **Language:** English
-• **Fees:** €7,000–10,000/year
-• **Location:** Varna city
-• Website: isv.bg
-
----
-
-## Choosing between public and international school
-
-| | Public school | International school |
-|---|---|---|
-| Cost | Free | €6,000–16,000/year |
-| Language | Bulgarian | English/German/French |
-| Integration | Full Bulgarian immersion | International community |
-| Continuity | Curriculum changes if you move | Global curriculum continuity |
-| Academics | Rigorous, exam-focused | Balanced, project-based |
-
-**Many expat families choose public school** — especially if they plan to stay 3+ years. Children aged 5–12 adapt astonishingly quickly. It's free, builds real Bulgarian language skills, and creates genuine local friendships.
-
----
-
-## Practical tips
-
-• **Apply 6–12 months in advance** for international schools — spaces fill quickly, especially at Anglo-American and British School
-• **Financial aid:** Most international schools offer needs-based bursaries — always ask
-• **University prep:** Anglo-American and British School both have strong records of students accepted at UK, US and European universities
-• **Nurseries & kindergarten:** Plenty of private English-language nurseries in Sofia for ages 0–5, from €300/month
-
-💡 **Tip:** Join the Facebook group "Parents at [school name]" for honest, current reviews from actual families. Far more useful than official school marketing.`}]
+      {titles:{en:"English-speaking doctors in Bulgaria",fr:"Médecins anglophones à Sofia",es:"Médicos angloparlantes en Sofía",de:"Englischsprachige Ärzte in Sofia",nl:"Engelstalige artsen in Sofia"},
+       body:`Finding English-speaking care in Bulgaria is easier than expected — especially in the big cities, where most younger doctors speak good English.\n\n**Sofia — private hospitals with English staff:**\n\n**Tokuda Hospital (Acibadem City Clinic Tokuda)** — the largest private hospital in the country, many English-speaking specialists. A consultation is around €30. Tel: +359 2 403 4000\n\n**Acibadem City Clinic** — international standard, well-equipped, English service.\n\n**Vita Private Hospital** — popular with expats, good emergency department.\n\n**Plovdiv:**\n• Large private hospitals and clinics have English-speaking specialists, with appointments usually available within a few days. Consultations are inexpensive — typically €25–75 depending on the specialty. Students and expats are common here, so younger doctors almost always speak good English.\n\n**Varna:**\n• St. Marina University Hospital is the largest in the northeast, with a 24/7 emergency department. Private clinics such as those in the city centre have English-speaking, expat-friendly doctors. Ask for a specialist by name where you can — recommendations circulate in Varna expat groups.\n\n**Burgas & the coast:**\n• Most medical professionals under 40 speak English. For anything specialised, head into Burgas rather than relying on a village clinic. Appointments are quick and fees are low (a full cardiology work-up can be as little as €25).\n\n**Finding a doctor anywhere in Bulgaria:**\n• [[https://blsbg.eu/en/medics/search|Bulgarian Medical Association register]] — search licensed doctors by region and specialty\n• [[https://superdoc.bg|SuperDoc]] — the main online booking platform; you can filter and book appointments (Bulgarian, but easy to navigate)\n• Teleconsultation services offer video appointments with Bulgarian doctors in English for quick advice or prescription renewals\n\n**Consultation costs (nationwide):**\n• GP: €25–40\n• Specialist: €40–75\n• Blood panel: €15–40\n\n**Emergency:** Dial 112. Many operators speak English.\n\n💡 Always confirm the doctor speaks English before your appointment. Almost all doctors under 40 do.`},
+    ]
   },
   {
     id:"banking",icon:"🏦",bg:"#fdf3e3",
@@ -1019,6 +922,112 @@ No customs duty on EU-origin vehicles. Process:
        body:`Bulgaria is one of Europe's most attractive bases for remote workers: a 10% flat income tax, EU and Schengen membership, the euro since January 2026, and a cost of living well below Western Europe.\n\n## The digital nomad residence permit (new)\n\nBulgaria opened applications for a dedicated digital nomad residence permit on 20 December 2025. It allows remote workers to live here for up to 1 year, renewable for a second year.\n\n**Who qualifies (non-EU/EEA/Swiss citizens only) — one of three categories:**\n• Remote employees of a company registered outside the EU/EEA/Switzerland\n• Owners holding at least 25% of a foreign-registered company serving non-Bulgarian markets\n• Freelancers with at least 1 year serving foreign clients, with no Bulgarian clients\n\n**Income requirement:** roughly €31,000/year — calculated as 50× the Bulgarian minimum monthly wage. Bulgaria's threshold is among the lowest in the EU.\n\n**You will also need:** health insurance covering Bulgaria and the EU/Schengen area, proof of accommodation, and a clean criminal record. All foreign documents must be apostilled and translated into Bulgarian by a sworn translator.\n\n**The process:** two stages, roughly 3–4 months in total. First apply for a Type D long-stay visa at a Bulgarian embassy or consulate (fee around €100, processing 4–10 weeks). Then, once in Bulgaria, apply for the residence permit at the Migration Directorate — do this at least 14 days before your visa expires.\n\n**Important limits:** you may not work for Bulgarian employers or clients at all. The permit is capped at 2 years and does not lead to permanent residency. Family members can join through family reunification.\n\n---\n\n## Alternative: start a Bulgarian EOOD\n\nFor many people this remains the better long-term route, and it is open to EU citizens too.\n\n• Corporate tax 10%, dividends 5% — total effective tax around 14.5%, among the lowest in the EU\n• Registration takes 3–7 days, roughly €50–150 in state fees plus notary\n• You will need a local accountant (~€75–150/month) — essential and worth every euro\n• Unlike the nomad permit, an EOOD lets you serve Bulgarian clients and can lead to long-term residency\n\n---\n\n## Tax — the part people get wrong\n\nThe visa itself does not determine your tax position; the number of days you spend here does.\n\n• **More than 183 days in any 12-month period** → you become a Bulgarian tax resident, and Bulgaria taxes your worldwide income at the flat 10%\n• **183 days or fewer** → non-resident, taxed only on Bulgarian-source income, which generally excludes remote work for foreign clients\n\n💡 The Facebook groups "Sofia Digital Nomads" and "Expats in Sofia" are active and helpful for on-the-ground questions.\n\n⚠️ Rules and thresholds change — confirm current requirements with the Migration Directorate or a Bulgarian immigration lawyer before applying.`},
       {titles:{en:"Setting up an EOOD — your Bulgarian company",fr:"Créer une EOOD — votre société bulgare",es:"Crear una EOOD — su empresa búlgara",de:"Eine EOOD gründen — Ihre bulgarische Firma",nl:"Een EOOD oprichten — uw Bulgaars bedrijf"},
        body:`An EOOD is a single-person limited liability company — the most popular structure for expat entrepreneurs.\n\n**Why EOOD?**\n• 10% corporate tax\n• 5% dividend tax when you pay yourself\n• Total effective tax: ~14.5% (one of lowest in EU)\n• Full EU company — invoice anyone in the world\n• Foreigners can own 100%\n\n**Requirements:**\n• Minimum capital: €1 (literally two lev!)\n• Registered address in Bulgaria\n• You can be both owner and manager\n\n**How to register:**\n1. Choose a company name (check at brra.bg)\n2. Articles of association (notarized)\n3. Open company bank account, deposit capital\n4. Register with BRRA (Commercial Register)\n5. Register with NRA (Tax Authority)\n\n**Cost:** €102–500 in fees + €153–600 if using a lawyer.\n**Time:** 3–7 business days.\n\n**Monthly costs:** Accountant €75–150/month (essential). Health insurance ~€16/month.\n\n💡 Ask expat Facebook groups for accountant recommendations — a good one is worth everything.`},
+    ]
+  },
+  {
+    id:"family",icon:"👨‍👩‍👧",bg:"#f3f7fe",
+    labels:{en:{label:"Family & Living",sub:"Schools, daily life, working"},fr:{label:"Famille & Vie quotidienne",sub:"Écoles, vie quotidienne, travail"},es:{label:"Familia y Vida",sub:"Escuelas, vida diaria, trabajo"},de:{label:"Familie & Leben",sub:"Schulen, Alltag, Arbeit"},nl:{label:"Gezin & Leven",sub:"Scholen, dagelijks leven, werk"},ru:{label:"Семья и быт",sub:"Школы, быт, работа"},uk:{label:"Сім'я та побут",sub:"Школи, побут, робота"},tr:{label:"Aile ve Yaşam",sub:"Okullar, günlük yaşam, çalışma"},bg:{label:"Семейство и живот",sub:"Училища, ежедневие, работа"}},
+    articles:[
+      {titles:{en:"International schools & education in Bulgaria",fr:"\u00c9coles internationales et \u00e9ducation en Bulgarie",es:"Colegios internacionales y educaci\u00f3n en Bulgaria",de:"Internationale Schulen & Bildung in Bulgarien",nl:"Internationale scholen & onderwijs in Bulgarije",ru:"Международные школы и образование в Болгарии",uk:"Міжнародні школи та освіта в Болгарії",tr:"Bulgaristan'da uluslararası okullar ve eğitim",bg:"Международни училища и образование в България"},
+       body:`Education is the number one question for expat families. Bulgaria has excellent options — from free public schools to world-class international institutions.
+
+## Public schools — free for all residents
+
+All legally resident children (EU and non-EU) have the right to free public education in Bulgaria.
+
+**The reality for expat children:**
+• Instruction is entirely in Bulgarian
+• Children typically adapt within 6–12 months — language immersion works remarkably well for young children
+• Schools are academically rigorous by European standards
+• Class sizes: 20–28 students
+• School year: mid-September to May
+
+**Enrol at:** Your local neighbourhood school (районно училище). Bring: residence certificate, child's ID/passport, apostilled birth certificate with Bulgarian translation.
+
+---
+
+## International schools in Sofia
+
+### Anglo-American School of Sofia
+• **Curriculum:** US-accredited (NEASC), IB Diploma (grades 9–12)
+• **Ages:** Pre-K through Grade 12
+• **Language:** English
+• **Fees:** €12,000–16,000/year
+• **Location:** Simeonovo, Sofia
+• **Strength:** Largest international school, strong university placement
+• Website: aas-sofia.org
+
+### The British School of Sofia
+• **Curriculum:** British National Curriculum, IGCSE, A-Levels
+• **Ages:** 3–18
+• **Language:** English
+• **Fees:** €9,000–13,000/year
+• **Location:** Dragalevtsi, Sofia
+• **Strength:** Strong academic tradition, small class sizes
+• Website: britishschool.bg
+
+### Deutsche Schule Sofia (German School)
+• **Curriculum:** German curriculum, DSD German language certification
+• **Ages:** 6–18
+• **Language:** German (some English)
+• **Fees:** €6,000–9,000/year (subsidised by German government)
+• **Location:** Central Sofia
+• **Strength:** Most affordable international school, excellent for German speakers
+
+### Sofia International School
+• **Curriculum:** Mixed international + Bulgarian
+• **Ages:** 4–18
+• **Language:** English and Bulgarian
+• **Fees:** €7,000–10,000/year
+• **Location:** Krastova Vada, Sofia
+• **Strength:** Bilingual education, strong Bulgarian cultural integration
+
+### Le Lycée Victor Hugo
+• **Curriculum:** French CNED/AEFE curriculum
+• **Ages:** Pre-school to Baccalauréat
+• **Language:** French
+• **Fees:** €5,000–8,000/year
+• **Location:** Central Sofia
+• **Strength:** Official French accreditation, strong Franco-Bulgarian community
+
+---
+
+## International school in Varna
+
+### International School of Varna
+• **Curriculum:** British curriculum, IGCSE
+• **Ages:** 4–18
+• **Language:** English
+• **Fees:** €7,000–10,000/year
+• **Location:** Varna city
+• Website: isv.bg
+
+---
+
+## Choosing between public and international school
+
+| | Public school | International school |
+|---|---|---|
+| Cost | Free | €6,000–16,000/year |
+| Language | Bulgarian | English/German/French |
+| Integration | Full Bulgarian immersion | International community |
+| Continuity | Curriculum changes if you move | Global curriculum continuity |
+| Academics | Rigorous, exam-focused | Balanced, project-based |
+
+**Many expat families choose public school** — especially if they plan to stay 3+ years. Children aged 5–12 adapt astonishingly quickly. It's free, builds real Bulgarian language skills, and creates genuine local friendships.
+
+---
+
+## Practical tips
+
+• **Apply 6–12 months in advance** for international schools — spaces fill quickly, especially at Anglo-American and British School
+• **Financial aid:** Most international schools offer needs-based bursaries — always ask
+• **University prep:** Anglo-American and British School both have strong records of students accepted at UK, US and European universities
+• **Nurseries & kindergarten:** Plenty of private English-language nurseries in Sofia for ages 0–5, from €300/month
+
+💡 **Tip:** Join the Facebook group "Parents at [school name]" for honest, current reviews from actual families. Far more useful than official school marketing.`},
+
+      
     ]
   },
 ]
