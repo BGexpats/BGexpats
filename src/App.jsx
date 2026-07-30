@@ -89,7 +89,7 @@ const T = {
     greeting:"👋 Hi! I'm your BGexpats assistant.\n\nAsk me anything about living in or visiting Bulgaria — visas, healthcare, banking, housing, taxes, or local tips. I'm here to help!",
     suggestions:["How do I get a residency permit?","What's the cost of living in Sofia?","How to open a bank account as a foreigner?","How to register an EOOD company?","Best neighbourhoods in Sofia for expats?"],
     placeholder:"Ask anything about life in Bulgaria...",
-    translating:"Translating...",home:"← Home",translateBtn:"Translate this guide",nav:{explore:"Explore",partners:"Partners",tools:"🛠️ Tools",map:"🗺️ Map",advertise:"📢 Advertise",pricing:"⭐ Pricing",community:"💬 Community",connect:"💑 Connect",apps:"📱 Apps",deadlines:"📅 Deadlines",upgrade:"⭐ Upgrade",login:"👤 Login",signout:"Sign out",profile:"My profile"},
+    translating:"Translating...",home:"← Home",translateBtn:"Translate this guide",nav:{explore:"Explore",partners:"Partners",tools:"🛠️ Tools",map:"🗺️ Maps",advertise:"📢 Advertise",pricing:"⭐ Pricing",community:"💬 Community",connect:"💑 Connect",apps:"📱 Apps",deadlines:"📅 Deadlines",upgrade:"⭐ Upgrade",login:"👤 Login",signout:"Sign out",profile:"My profile"},
   },
   fr:{
     badge:"Votre guide complet pour vivre en Bulgarie",
@@ -1156,7 +1156,7 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
             items={[
               {label:aiLabel[lang]||"AI",            view:"chat",      d:"M12 2l1.8 4.6L18 8l-4.2 1.9L12 15l-1.8-5.1L6 8l4.2-1.4z"},
               {label:clean(t.nav?.tools)||"Tools",   view:"tools",     d:"M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"},
-              {label:clean(t.nav?.map)||"Map",       view:"map",       d:"M12 21s7-7.5 7-12a7 7 0 10-14 0c0 4.5 7 12 7 12z"},
+              {label:clean(t.nav?.map)||"Maps",       view:"map",       d:"M12 21s7-7.5 7-12a7 7 0 10-14 0c0 4.5 7 12 7 12z"},
               {label:clean(t.nav?.apps)||"Apps",     view:"apps",      d:"M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z"},
               {label:"Pricing",                      view:"pricing",   d:"M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17.1 5.9 20.5l1.5-6.8-5.2-4.7 6.9-.7z"},
               {label:clean(t.nav?.upgrade)||"Upgrade",view:"pricing",  d:"M13 2L4 14h6l-1 8 9-12h-6l1-8z"},
@@ -1205,7 +1205,7 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
               {[
                 {label:aiLabel[lang]||"AI",view:"chat"},
                 {label:clean(t.nav?.tools)||"Tools",view:"tools"},
-                {label:clean(t.nav?.map)||"Map",view:"map"},
+                {label:clean(t.nav?.map)||"Maps",view:"map"},
                 {label:clean(t.nav?.apps)||"Apps",view:"apps"},
                 {label:"Pricing",view:"pricing"},
                 {label:clean(t.nav?.community)||"Community",view:"community"},
@@ -3629,25 +3629,28 @@ const MAP_CITIES=[
 
 const MAP_CATS=[
   {id:"all",     label:"All",              icon:"🗺️", color:"#1e5e3f"},
+  // ── Free (always visible) ──
   {id:"health",  label:"Healthcare",       icon:"🏥", color:"#16a34a"},
   {id:"bank",    label:"Banking",          icon:"🏦", color:"#1d4ed8"},
   {id:"legal",   label:"Legal",            icon:"⚖️", color:"#7c3aed"},
+  {id:"hood",    label:"Neighbourhoods",   icon:"🏠", color:"#db2777"},
+  // ── Basic ──
   {id:"work",    label:"Coworking",        icon:"💼", color:"#b8792a"},
-  {id:"car",     label:"Car Rental",       icon:"🚗", color:"#dc2626"},
-  {id:"jobs",    label:"Work & Jobs",      icon:"👔", color:"#0891b2"},
-  {id:"art",     label:"Art & Galleries",  icon:"🎨", color:"#7c3aed"},
   {id:"dining",  label:"Dining",           icon:"🍽️", color:"#b45309"},
   {id:"party",   label:"Party & Clubs",    icon:"🎉", color:"#dc2626"},
-  {id:"festival",label:"Festivals",        icon:"🎪", color:"#059669"},
+  {id:"hotel",   label:"Hotels",           icon:"🏨", color:"#6b7280"},
   {id:"summer",  label:"Summer Activities",icon:"🏄", color:"#0891b2"},
   {id:"winter",  label:"Winter Activities",icon:"⛷️", color:"#1d4ed8"},
-  {id:"hotel",   label:"Hotels",           icon:"🏨", color:"#6b7280"},
+  {id:"art",     label:"Art & Galleries",  icon:"🎨", color:"#7c3aed"},
   {id:"cultural",label:"Cultural Sites",   icon:"🏛️", color:"#92400e"},
+  {id:"festival",label:"Festivals",        icon:"🎪", color:"#059669"},
   {id:"tradfest",label:"Traditional Fests",icon:"🎭", color:"#065f46"},
   {id:"wine",    label:"Wine Tourism",     icon:"🍷", color:"#7c2d12"},
   {id:"disco",   label:"Discotheques",     icon:"🪩", color:"#9333ea"},
   {id:"piano",   label:"Piano Bars",       icon:"🎹", color:"#1f2937"},
-  {id:"hood",    label:"Neighbourhoods",   icon:"🏠", color:"#db2777"},
+  // ── Premium ──
+  {id:"car",     label:"Car Rental",       icon:"🚗", color:"#dc2626"},
+  {id:"jobs",    label:"Work & Jobs",      icon:"👔", color:"#0891b2"},
 ]
 
 // ── MapPage ───────────────────────────────────────────────────────
@@ -3676,7 +3679,7 @@ function MapPage({user,setView,subscription,openCheckout}){
   // Car rental + jobs = Premium only
   const PREMIUM_CATS = ["car","jobs"]
   // Coworking = Basic+
-  const BASIC_CATS   = ["work","dining","party","hotel","summer","winter","art","culture","fest"]
+  const BASIC_CATS   = ["work","dining","party","hotel","summer","winter","art","cultural","festival","tradfest","wine","disco","piano"]
 
   const canSeeCategory = (cat) => {
     if(PREMIUM_CATS.includes(cat)) return isPremium
