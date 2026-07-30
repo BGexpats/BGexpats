@@ -3702,7 +3702,10 @@ function MapPage({user,setView,subscription,openCheckout}){
     return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a))
   }
   // Subscription tier access
-  const tier = (subscription&&subscription.plan) || "free"
+  const isDevAccount = !!(user && user.email === "bgexpats.info@gmail.com")
+  const [devTierOverride,setDevTierOverride] = useState(null) // null|"free"|"basic"|"premium"
+  const effectiveSubscription = (isDevAccount && devTierOverride) ? {plan:devTierOverride} : subscription
+  const tier = (effectiveSubscription&&effectiveSubscription.plan) || "free"
   const isBasic   = tier==="basic"   || tier==="premium"
   const isPremium = tier==="premium"
   // Car rental + jobs = Premium only
@@ -4013,6 +4016,23 @@ function MapPage({user,setView,subscription,openCheckout}){
           )}
         </div>
       </div>
+
+      {/* Private dev tier switcher — visible only when logged in as the dev account.
+          Lets you preview Free/Basic/Premium map features without real checkout. */}
+      {isDevAccount&&(
+        <div style={{position:"fixed",bottom:16,right:16,zIndex:9999,background:"#1a1a1a",border:"1px solid #444",borderRadius:12,padding:"10px 12px",boxShadow:"0 4px 20px rgba(0,0,0,0.4)",display:"flex",alignItems:"center",gap:8}}>
+          <span style={{fontSize:11,color:"#aaa",fontWeight:600}}>🔧 DEV VIEW:</span>
+          {["free","basic","premium"].map(t=>(
+            <button key={t} onClick={()=>setDevTierOverride(t===tier&&devTierOverride?null:t)}
+              style={{padding:"5px 10px",borderRadius:7,border:"none",cursor:"pointer",fontSize:11,fontWeight:700,textTransform:"uppercase",
+                background:tier===t?(t==="premium"?"#f0c060":t==="basic"?"#1e5e3f":"#555"):"#2a2a2a",
+                color:tier===t?(t==="premium"?"#1a3a20":"#fff"):"#999"}}>
+              {t}
+            </button>
+          ))}
+          {devTierOverride&&<button onClick={()=>setDevTierOverride(null)} style={{background:"none",border:"none",color:"#888",cursor:"pointer",fontSize:11,marginLeft:4}}>reset</button>}
+        </div>
+      )}
     </div>
   )
 }
