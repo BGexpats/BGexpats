@@ -3680,9 +3680,14 @@ function MapPage({user,setView,subscription,openCheckout}){
     try{ return JSON.parse(localStorage.getItem("bg_map_favorites")||"[]") }catch(e){ return [] }
   })
   const [showFavesOnly,setShowFavesOnly]=useState(false)
-  const toggleFavorite=(locId)=>{
+  // MAP_LOCATIONS has some duplicate numeric ids across different venues (data quality
+  // issue) — use a composite key wherever we need a guaranteed-unique identity for a
+  // location: React list keys, favorites, and the selected-row highlight.
+  const locKey=(loc)=>loc?`${loc.id}-${loc.city}-${loc.cat}-${loc.name}`:null
+  const toggleFavorite=(loc)=>{
+    const key=locKey(loc)
     setFavorites(prev=>{
-      const next=prev.includes(locId)?prev.filter(id=>id!==locId):[...prev,locId]
+      const next=prev.includes(key)?prev.filter(k=>k!==key):[...prev,key]
       try{ localStorage.setItem("bg_map_favorites",JSON.stringify(next)) }catch(e){}
       return next
     })
@@ -3828,7 +3833,7 @@ function MapPage({user,setView,subscription,openCheckout}){
   }
   // Favorites-only filter (Basic+)
   if(isBasic && showFavesOnly){
-    sidebarList = sidebarList.filter(l=>favorites.includes(l.id))
+    sidebarList = sidebarList.filter(l=>favorites.includes(locKey(l)))
   }
   // Near-me sort (Basic+)
   if(isBasic && nearMe){
@@ -3978,7 +3983,7 @@ function MapPage({user,setView,subscription,openCheckout}){
               {sidebarList.length===0?(
                 <div style={{padding:"20px 14px",textAlign:"center",color:C.muted,fontSize:13}}>No locations match. Try clearing the search or the Saved filter.</div>
               ):sidebarList.map(loc=>(
-                <div key={loc.id} style={{display:"flex",alignItems:"stretch",borderBottom:`1px solid ${C.border}`,background:(selected&&selected.id)===loc.id?C.primaryLight:"transparent"}}>
+                <div key={locKey(loc)} style={{display:"flex",alignItems:"stretch",borderBottom:`1px solid ${C.border}`,background:locKey(selected)===locKey(loc)?C.primaryLight:"transparent"}}>
                   <button onClick={()=>{setSelected(loc);mapInst.current&&mapInst.current.setView([loc.lat,loc.lng],15);if(isMobile&&mapRef.current)mapRef.current.scrollIntoView({behavior:"smooth",block:"center"})}}
                     style={{flex:1,minWidth:0,background:"none",border:"none",padding:"11px 6px 11px 14px",cursor:"pointer",textAlign:"left",display:"flex",gap:10,alignItems:"flex-start"}}>
                     <span style={{fontSize:16,flexShrink:0}}>{loc.icon}</span>
@@ -3992,9 +3997,9 @@ function MapPage({user,setView,subscription,openCheckout}){
                     </div>
                   </button>
                   {isBasic&&(
-                    <button onClick={()=>toggleFavorite(loc.id)} aria-label="Save location"
-                      style={{background:"none",border:"none",cursor:"pointer",padding:"0 12px",fontSize:17,color:favorites.includes(loc.id)?"#f0c060":C.border,flexShrink:0}}>
-                      {favorites.includes(loc.id)?"★":"☆"}
+                    <button onClick={()=>toggleFavorite(loc)} aria-label="Save location"
+                      style={{background:"none",border:"none",cursor:"pointer",padding:"0 12px",fontSize:17,color:favorites.includes(locKey(loc))?"#f0c060":C.border,flexShrink:0}}>
+                      {favorites.includes(locKey(loc))?"★":"☆"}
                     </button>
                   )}
                 </div>
