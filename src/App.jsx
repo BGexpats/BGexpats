@@ -3672,6 +3672,35 @@ function MapPage({user,setView,subscription,openCheckout}){
     return()=>window.removeEventListener("resize",onResize)
   },[])
   const FREE_LIMIT=3
+  // ── Search, near-me, favorites (Basic+ tools) ──
+  const [mapQuery,setMapQuery]=useState("")
+  const [nearMe,setNearMe]=useState(null) // {lat,lng} once granted
+  const [nearMeStatus,setNearMeStatus]=useState("idle") // idle|locating|denied
+  const [favorites,setFavorites]=useState(()=>{
+    try{ return JSON.parse(localStorage.getItem("bg_map_favorites")||"[]") }catch(e){ return [] }
+  })
+  const [showFavesOnly,setShowFavesOnly]=useState(false)
+  const toggleFavorite=(locId)=>{
+    setFavorites(prev=>{
+      const next=prev.includes(locId)?prev.filter(id=>id!==locId):[...prev,locId]
+      try{ localStorage.setItem("bg_map_favorites",JSON.stringify(next)) }catch(e){}
+      return next
+    })
+  }
+  const requestNearMe=()=>{
+    if(!navigator.geolocation){ setNearMeStatus("denied"); return }
+    setNearMeStatus("locating")
+    navigator.geolocation.getCurrentPosition(
+      pos=>{ setNearMe({lat:pos.coords.latitude,lng:pos.coords.longitude}); setNearMeStatus("granted") },
+      ()=>{ setNearMeStatus("denied") },
+      {timeout:8000}
+    )
+  }
+  const distanceKm=(lat1,lng1,lat2,lng2)=>{
+    const R=6371, dLat=(lat2-lat1)*Math.PI/180, dLng=(lng2-lng1)*Math.PI/180
+    const a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2
+    return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a))
+  }
   // Subscription tier access
   const tier = (subscription&&subscription.plan) || "free"
   const isBasic   = tier==="basic"   || tier==="premium"
@@ -3788,7 +3817,22 @@ function MapPage({user,setView,subscription,openCheckout}){
 
   const allCityLocs=(filter==="all"?MAP_LOCATIONS:MAP_LOCATIONS.filter(l=>l.cat===filter)).filter(l=>l.city===city||!l.city)
   const visible = allCityLocs.filter(l => !user ? (!PREMIUM_CATS.includes(l.cat)&&!BASIC_CATS.includes(l.cat)) : canSeeCategory(l.cat))
-  const sidebarList = !user ? visible.slice(0,FREE_LIMIT) : visible
+  let sidebarList = !user ? visible.slice(0,FREE_LIMIT) : visible
+  // Search: name/address match (Basic+)
+  if(isBasic && mapQuery.trim().length>=2){
+    const q=mapQuery.trim().toLowerCase()
+    sidebarList = sidebarList.filter(l=>(l.name||"").toLowerCase().includes(q)||(l.addr||"").toLowerCase().includes(q))
+  }
+  // Favorites-only filter (Basic+)
+  if(isBasic && showFavesOnly){
+    sidebarList = sidebarList.filter(l=>favorites.includes(l.id))
+  }
+  // Near-me sort (Basic+)
+  if(isBasic && nearMe){
+    sidebarList = [...sidebarList].sort((a,b)=>
+      distanceKm(nearMe.lat,nearMe.lng,a.lat,a.lng) - distanceKm(nearMe.lat,nearMe.lng,b.lat,b.lng)
+    )
+  }
 
   return(
     <div style={{minHeight:"100vh",background:C.page}}>
@@ -3895,30 +3939,70 @@ function MapPage({user,setView,subscription,openCheckout}){
             </div>
           )}
 
+          {/* Search, near-me, favorites toolbar — Basic+ tool */}
+          {isBasic?(
+            <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:14,padding:10,display:"flex",flexDirection:"column",gap:8}}>
+              <div style={{position:"relative"}}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.muted} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",pointerEvents:"none"}}><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                <input value={mapQuery} onChange={e=>setMapQuery(e.target.value)} placeholder="Search this list…"
+                  style={{width:"100%",padding:"8px 10px 8px 30px",fontSize:13,border:`1px solid ${C.border}`,borderRadius:9,outline:"none",boxSizing:"border-box",color:C.text,background:C.page}}/>
+              </div>
+              <div style={{display:"flex",gap:6}}>
+                <button onClick={requestNearMe} disabled={nearMeStatus==="locating"}
+                  style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",gap:5,padding:"7px 8px",fontSize:12,fontWeight:600,borderRadius:8,border:`1px solid ${nearMe?C.primary:C.border}`,background:nearMe?`${C.primary}15`:"transparent",color:nearMe?C.primary:C.text,cursor:"pointer"}}>
+                  📍 {nearMeStatus==="locating"?"Locating…":nearMe?"Sorted by distance":"Near me"}
+                </button>
+                <button onClick={()=>setShowFavesOnly(v=>!v)}
+                  style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",gap:5,padding:"7px 8px",fontSize:12,fontWeight:600,borderRadius:8,border:`1px solid ${showFavesOnly?"#f0c060":C.border}`,background:showFavesOnly?"#f0c06020":"transparent",color:showFavesOnly?"#b8860b":C.text,cursor:"pointer"}}>
+                  {showFavesOnly?"★":"☆"} Saved ({favorites.length})
+                </button>
+              </div>
+              {nearMeStatus==="denied"&&<p style={{fontSize:11,color:C.muted,margin:0}}>Location access denied — enable it in your browser to sort by distance.</p>}
+            </div>
+          ):user&&(
+            <div style={{background:C.surface,border:`1px dashed ${C.border}`,borderRadius:14,padding:"12px 14px",textAlign:"center"}}>
+              <p style={{fontSize:12,color:C.muted,margin:"0 0 8px"}}>🔍 Search, near-me sort & saved pins are Basic tools</p>
+              <button onClick={()=>openCheckout&&openCheckout("basic")} style={{background:C.primary,border:"none",color:"#fff",padding:"7px 16px",borderRadius:8,cursor:"pointer",fontSize:12,fontWeight:700}}>Upgrade to Basic →</button>
+            </div>
+          )}
+
           {/* Location list */}
           <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:14,overflow:"hidden"}}>
             <div style={{padding:"10px 14px",borderBottom:`1px solid ${C.border}`,fontSize:12,fontWeight:600,color:C.muted,letterSpacing:"0.04em"}}>
-              {(MAP_CITIES.find(c=>c.id===city)&&MAP_CITIES.find(c=>c.id===city).icon)} {(MAP_CITIES.find(c=>c.id===city)&&MAP_CITIES.find(c=>c.id===city).label).toUpperCase()} — {visible.length} {!user?"(free preview)":isPremium?"(premium)":isBasic?"(basic)":"(free)"}
+              {(MAP_CITIES.find(c=>c.id===city)&&MAP_CITIES.find(c=>c.id===city).icon)} {(MAP_CITIES.find(c=>c.id===city)&&MAP_CITIES.find(c=>c.id===city).label).toUpperCase()} — {sidebarList.length} {!user?"(free preview)":isPremium?"(premium)":isBasic?"(basic)":"(free)"}
             </div>
             <div style={{maxHeight:360,overflowY:"auto"}}>
-              {sidebarList.map(loc=>(
-                <button key={loc.id} onClick={()=>{setSelected(loc);mapInst.current&&mapInst.current.setView([loc.lat,loc.lng],15);if(isMobile&&mapRef.current)mapRef.current.scrollIntoView({behavior:"smooth",block:"center"})}}
-                  style={{width:"100%",background:(selected&&selected.id)===loc.id?C.primaryLight:"transparent",border:"none",borderBottom:`1px solid ${C.border}`,padding:"11px 14px",cursor:"pointer",textAlign:"left",display:"flex",gap:10,alignItems:"flex-start",transition:"background 0.15s"}}>
-                  <span style={{fontSize:16,flexShrink:0}}>{loc.icon}</span>
-                  <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:13,fontWeight:600,color:C.text,marginBottom:1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{loc.name}</div>
-                    <div style={{fontSize:11,color:C.muted}}>{loc.addr}</div>
-                    {loc.english&&<div style={{fontSize:10,color:"#16a34a",marginTop:2,fontWeight:600}}>🇬🇧 English spoken</div>}
-                  </div>
-                </button>
+              {sidebarList.length===0?(
+                <div style={{padding:"20px 14px",textAlign:"center",color:C.muted,fontSize:13}}>No locations match. Try clearing the search or the Saved filter.</div>
+              ):sidebarList.map(loc=>(
+                <div key={loc.id} style={{display:"flex",alignItems:"stretch",borderBottom:`1px solid ${C.border}`,background:(selected&&selected.id)===loc.id?C.primaryLight:"transparent"}}>
+                  <button onClick={()=>{setSelected(loc);mapInst.current&&mapInst.current.setView([loc.lat,loc.lng],15);if(isMobile&&mapRef.current)mapRef.current.scrollIntoView({behavior:"smooth",block:"center"})}}
+                    style={{flex:1,minWidth:0,background:"none",border:"none",padding:"11px 6px 11px 14px",cursor:"pointer",textAlign:"left",display:"flex",gap:10,alignItems:"flex-start"}}>
+                    <span style={{fontSize:16,flexShrink:0}}>{loc.icon}</span>
+                    <div style={{flex:1,minWidth:0}}>
+                      <div style={{fontSize:13,fontWeight:600,color:C.text,marginBottom:1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{loc.name}</div>
+                      <div style={{fontSize:11,color:C.muted}}>{loc.addr}</div>
+                      <div style={{display:"flex",gap:8,alignItems:"center",marginTop:2}}>
+                        {loc.english&&<div style={{fontSize:10,color:"#16a34a",fontWeight:600}}>🇬🇧 English spoken</div>}
+                        {isBasic&&nearMe&&<div style={{fontSize:10,color:C.primary,fontWeight:600}}>{distanceKm(nearMe.lat,nearMe.lng,loc.lat,loc.lng).toFixed(1)} km away</div>}
+                      </div>
+                    </div>
+                  </button>
+                  {isBasic&&(
+                    <button onClick={()=>toggleFavorite(loc.id)} aria-label="Save location"
+                      style={{background:"none",border:"none",cursor:"pointer",padding:"0 12px",fontSize:17,color:favorites.includes(loc.id)?"#f0c060":C.border,flexShrink:0}}>
+                      {favorites.includes(loc.id)?"★":"☆"}
+                    </button>
+                  )}
+                </div>
               ))}
             </div>
           </div>
         </div>
 
         {/* Map */}
-        <div style={{borderRadius:16,overflow:"hidden",border:`1px solid ${C.border}`,boxShadow:"0 4px 20px rgba(0,0,0,0.08)",position:isMobile?"relative":"sticky",top:isMobile?0:80,order:isMobile?1:2}}>
-          <div ref={mapRef} style={{height:isMobile?"60vh":"calc(100vh - 220px)",minHeight:isMobile?340:500,width:"100%",background:"#e8f0eb"}}/>
+        <div style={{borderRadius:16,overflow:"hidden",border:`1px solid ${C.border}`,boxShadow:"0 4px 20px rgba(0,0,0,0.08)",position:"sticky",top:isMobile?0:80,zIndex:isMobile?5:"auto",order:isMobile?1:2}}>
+          <div ref={mapRef} style={{height:isMobile?"42vh":"calc(100vh - 220px)",minHeight:isMobile?280:500,width:"100%",background:"#e8f0eb"}}/>
           {!loaded&&(
             <div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",background:"#e8f0eb",borderRadius:16}}>
               <div style={{textAlign:"center"}}>
