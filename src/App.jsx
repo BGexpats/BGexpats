@@ -3248,6 +3248,7 @@ const MAP_LOCATIONS = [
 
   // ── NESSEBAR ──────────────────────────────────────────────────
   {id:49,cat:"hood",icon:"🏛️",name:"Nessebar Old Town (UNESCO)",desc:"Ancient city on a peninsula. UNESCO World Heritage. One of Bulgaria's gems.",addr:"Old Town, Nessebar",english:true,lat:42.6597,lng:27.7355,city:"nessebar"},
+  {id:9001,cat:"dining",icon:"🍽️",name:"Old Nessebar Tavern",desc:"Traditional Bulgarian tavern in Nessebar's historic old town.",addr:"Old Town, Nessebar",english:true,lat:42.657744,lng:27.734126,city:"nessebar"},
   {id:50,cat:"health",icon:"🏥",name:"Medical Center Nessebar",desc:"Year-round medical center serving Nessebar and surroundings.",addr:"Nessebar Port Area",phone:"+359 554 46 500",english:true,lat:42.6600,lng:27.7340,city:"nessebar"},
   {id:51,cat:"hood",icon:"⚓",name:"Nessebar New Town",desc:"Modern residential area next to the old town. Quieter, more local life.",addr:"New Nessebar",english:false,lat:42.6620,lng:27.7300,city:"nessebar"},
 
@@ -4099,7 +4100,7 @@ function MapPage({user,setView,subscription,openCheckout}){
                 <input value={mapQuery} onChange={e=>setMapQuery(e.target.value)} placeholder="Search this list…"
                   style={{width:"100%",padding:"8px 10px 8px 30px",fontSize:13,border:`1px solid ${C.border}`,borderRadius:9,outline:"none",boxSizing:"border-box",color:C.text,background:C.page}}/>
               </div>
-              <div style={{display:"flex",gap:6}}>
+              <div style={{display:"flex",gap:6,alignItems:"center"}}>
                 <button onClick={requestNearMe} disabled={nearMeStatus==="locating"}
                   style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",gap:5,padding:"7px 8px",fontSize:12,fontWeight:600,borderRadius:8,border:`1px solid ${nearMe?C.primary:C.border}`,background:nearMe?`${C.primary}15`:"transparent",color:nearMe?C.primary:C.text,cursor:"pointer"}}>
                   📍 {nearMeStatus==="locating"?"Locating…":nearMe?"Sorted by distance":"Near me"}
@@ -4108,8 +4109,10 @@ function MapPage({user,setView,subscription,openCheckout}){
                   style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",gap:5,padding:"7px 8px",fontSize:12,fontWeight:600,borderRadius:8,border:`1px solid ${showFavesOnly?"#f0c060":C.border}`,background:showFavesOnly?"#f0c06020":"transparent",color:showFavesOnly?"#b8860b":C.text,cursor:"pointer"}}>
                   {showFavesOnly?"★":"☆"} Saved ({favorites.length})
                 </button>
+                <span title={`For official venues already on your map (restaurants, hospitals, banks, etc.). Tap the star on any listing to bookmark it, then tap "★ Saved (N)" to filter the list down to just your bookmarks.`}
+                  style={{flexShrink:0,width:18,height:18,borderRadius:"50%",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,color:C.muted,cursor:"help",fontStyle:"italic",fontWeight:700}}>i</span>
               </div>
-              <div style={{display:"flex",gap:6}}>
+              <div style={{display:"flex",gap:6,alignItems:"center"}}>
                 <button onClick={()=>setAddingPin(v=>!v)}
                   style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",gap:5,padding:"7px 8px",fontSize:12,fontWeight:600,borderRadius:8,border:`1px solid ${addingPin?"#dc2626":C.border}`,background:addingPin?"#dc262615":"transparent",color:addingPin?"#dc2626":C.text,cursor:"pointer"}}>
                   📍 {addingPin?"Tap the map…":"Add a pin"}
@@ -4118,6 +4121,8 @@ function MapPage({user,setView,subscription,openCheckout}){
                   style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",gap:5,padding:"7px 8px",fontSize:12,fontWeight:600,borderRadius:8,border:`1px solid ${pinsOnlyView?"#f0c060":C.border}`,background:pinsOnlyView?"#f0c06020":"transparent",color:pinsOnlyView?"#b8860b":customPins.length===0?C.muted:C.text,cursor:customPins.length===0?"default":"pointer",opacity:customPins.length===0?0.6:1}}>
                   🔎 {pinsOnlyView?"Showing my pins":`Overview (${customPins.length})`}
                 </button>
+                <span title={`For custom locations you can drop your pin anywhere on the map (your apartment, gym, etc.), with your own label.`}
+                  style={{flexShrink:0,width:18,height:18,borderRadius:"50%",border:`1px solid ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,color:C.muted,cursor:"help",fontStyle:"italic",fontWeight:700}}>i</span>
               </div>
               {pinError&&<p style={{fontSize:11,color:"#dc2626",margin:0}}>⚠️ {pinError}</p>}
               {nearMeStatus==="denied"&&<p style={{fontSize:11,color:C.muted,margin:0}}>Location access denied — enable it in your browser to sort by distance.</p>}
@@ -4132,11 +4137,16 @@ function MapPage({user,setView,subscription,openCheckout}){
           {/* Location list — hidden while viewing "only my pins" overview */}
           {!pinsOnlyView&&(
           <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:14,overflow:"hidden"}}>
-            <div style={{padding:"10px 14px",borderBottom:`1px solid ${C.border}`,fontSize:12,fontWeight:600,color:C.muted,letterSpacing:"0.04em"}}>
-              {showFavesOnly
+            <div style={{padding:"10px 14px",borderBottom:`1px solid ${C.border}`,fontSize:12,fontWeight:600,color:C.muted,letterSpacing:"0.04em",display:"flex",alignItems:"center",justifyContent:"space-between",gap:8}}>
+              <span>{showFavesOnly
                 ? `★ ALL SAVED PLACES — ${sidebarList.length} across Bulgaria`
                 : `${(MAP_CITIES.find(c=>c.id===city)&&MAP_CITIES.find(c=>c.id===city).icon)||""} ${(MAP_CITIES.find(c=>c.id===city)&&MAP_CITIES.find(c=>c.id===city).label||"").toUpperCase()} — ${sidebarList.length} ${!user?"(free preview)":isPremium?"(premium)":isBasic?"(basic)":"(free)"}`
-              }
+              }</span>
+              {showFavesOnly&&(
+                <button onClick={()=>setShowFavesOnly(false)} style={{flexShrink:0,background:"none",border:`1px solid ${C.border}`,color:C.primary,padding:"4px 10px",borderRadius:7,cursor:"pointer",fontSize:11,fontWeight:700,letterSpacing:"normal",textTransform:"none"}}>
+                  ← Back to overview
+                </button>
+              )}
             </div>
             <div style={{maxHeight:360,overflowY:"auto"}}>
               {sidebarList.length===0?(
