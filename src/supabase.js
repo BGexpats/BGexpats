@@ -151,6 +151,19 @@ export async function savePin(userId, lat, lng, label) {
   return { data, error }
 }
 
+// Update one of the signed-in user's own pins — used to rename its label
+// and/or move it to new coordinates after dragging on the map. RLS blocks
+// updating anyone else's pin, same as deletePin below.
+export async function updatePin(pinId, fields) {
+  const { data, error } = await supabase
+    .from('map_pins')
+    .update(fields)
+    .eq('id', pinId)
+    .select()
+    .single()
+  return { data, error }
+}
+
 // Delete one of the signed-in user's own pins. RLS blocks deleting anyone else's.
 export async function deletePin(pinId) {
   const { error } = await supabase
