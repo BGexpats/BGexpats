@@ -3240,7 +3240,7 @@ const MAP_LOCATIONS = [
 
   // ── STARA ZAGORA ───────────────────────────────────────────────
   {id:41,cat:"health",icon:"🏥",name:"UMBAL Prof. Dr. Stoyan Kirkovich",desc:"University hospital Stara Zagora. Full emergency services.",addr:"2 Ivan Armeyski St, Stara Zagora",phone:"+359 42 664 400",english:false,lat:42.424771,lng:25.611525,city:"stara_zagora"},
-  {id:42,cat:"bank",icon:"🏦",name:"DSK Bank — Stara Zagora",desc:"Main branch. Standard services for expats.",addr:"61 General Gurko St, Stara Zagora",phone:"+359 42 690 100",english:false,lat:42.4278,lng:25.6344,city:"stara_zagora"},
+  {id:42,cat:"bank",icon:"🏦",name:"DSK Bank — Stara Zagora",desc:"Main branch. Standard services for expats.",addr:"кв. Гео Милев, bul. \"Tsar Simeon Veliki\" 114, 6000 Stara Zagora",phone:"+359 42 690 100",english:false,lat:42.424718,lng:25.630739,city:"stara_zagora"},
   {id:43,cat:"legal",icon:"⚖️",name:"Migration Directorate Stara Zagora",desc:"Residence registration for Stara Zagora region.",addr:"Stara Zagora Centre, ul. \"Graf Ignatiev\" 16, 6000 Stara Zagora",phone:"042 602 805",english:false,lat:42.427571,lng:25.631691,city:"stara_zagora"},
   {id:44,cat:"hood",icon:"🌳",name:"Stara Zagora Center",desc:"City of linden trees. Well-planned streets, good quality of life, affordable.",addr:"Center, Stara Zagora",english:false,lat:42.4278,lng:25.6344,city:"stara_zagora"},
 
