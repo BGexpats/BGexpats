@@ -3022,6 +3022,10 @@ const MAP_ICON_MAP={
   hood:"M4 21V10l5-4 5 4v11M14 21V6l4 3v12M4 21h16",
 }
 const MAP_PIN_D="M12 21s7-7.5 7-12a7 7 0 10-14 0c0 4.5 7 12 7 12zM12 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"
+// Custom pin-shaped cursor shown over the map while the user is placing a new pin,
+// so the map reads "tap to drop a pin" instead of the default grab/hand cursor.
+// The hotspot (18,24) is set to the tip of the pin so it lands exactly where clicked.
+const ADD_PIN_CURSOR=`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='32' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s7-7.5 7-12a7 7 0 10-14 0c0 4.5 7 12 7 12zM12 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z' fill='%23dc2626' stroke='white' stroke-width='1'/%3E%3C/svg%3E") 12 21, crosshair`
 const COMMUNITY_ICON_MAP={
   all:{d:MAP_ICON_MAP.all,accent:"#1e5e3f"},
   general:{d:"M4 4h16v12H7l-3 3V4z",accent:"#6b7280"},
@@ -4207,7 +4211,7 @@ function MapPage({user,setView,subscription,openCheckout}){
 
         {/* Map */}
         <div style={{borderRadius:16,overflow:"hidden",border:`1px solid ${C.border}`,boxShadow:"0 4px 20px rgba(0,0,0,0.08)",position:"sticky",top:isMobile?0:80,zIndex:isMobile?5:"auto",order:isMobile?1:2}}>
-          <div ref={mapRef} style={{height:isMobile?"42vh":"calc(100vh - 220px)",minHeight:isMobile?280:500,width:"100%",background:"#e8f0eb"}}/>
+          <div ref={mapRef} style={{height:isMobile?"42vh":"calc(100vh - 220px)",minHeight:isMobile?280:500,width:"100%",background:"#e8f0eb",cursor:addingPin?ADD_PIN_CURSOR:""}}/>
           {!loaded&&(
             <div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",background:"#e8f0eb",borderRadius:16}}>
               <div style={{textAlign:"center"}}>
@@ -7804,6 +7808,5 @@ function AnalyticsPage({liveEvents,user}){
     </div>
   )
 }
-
 
 
