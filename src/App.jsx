@@ -2399,7 +2399,7 @@ function ToolGate({user,setView,children,name}){
       <div style={{position:"absolute",inset:0,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",background:"rgba(247,243,236,0.92)",borderRadius:12,textAlign:"center",padding:20}}>
         <div style={{fontSize:26,marginBottom:8}}>🔒</div>
         <div style={{fontSize:14,fontWeight:600,color:C.primary,margin:"0 0 4px"}}>Sign in to use {name}</div>
-        <p style={{fontSize:13,color:C.muted,margin:"0 0 14px"}}>Free account — unlock all 7 tools instantly</p>
+        <p style={{fontSize:13,color:C.muted,margin:"0 0 14px"}}>Free account — unlock all 4 free tools instantly</p>
         <button onClick={()=>setView("login")} style={{background:C.primary,border:"none",color:"#fff",padding:"9px 22px",borderRadius:8,cursor:"pointer",fontSize:13,fontWeight:600}}>Create free account →</button>
       </div>
     </div>
@@ -2559,7 +2559,7 @@ function CostCalcTool({user,setView,subscription}){
   )
 }
 
-function TaxCalcTool({user,setView}){
+function TaxCalcTool({user,setView,subscription}){
   const [mode,setMode]=useState("employee")
   const [gross,setGross]=useState(3000)
   const inEUR=gross
@@ -2588,6 +2588,7 @@ function TaxCalcTool({user,setView}){
         <span style={{padding:"10px 14px",fontSize:15,fontWeight:700,color:C.primary}}>€ EUR</span>
       </div>
       <ToolGate user={user} setView={setView} name="Tax Calculator">
+      <BasicGate subscription={subscription} setView={setView} tool="Tax Calculator">
         <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,overflow:"hidden"}}>
           {(mode==="employee"?[
             ["💼 Gross income",inEUR,C.text,false],
@@ -2615,6 +2616,7 @@ function TaxCalcTool({user,setView}){
         <div style={{background:C.primaryLight,borderRadius:10,padding:"10px 14px",marginTop:10,fontSize:13,color:C.primary}}>
           Effective tax rate: ~{mode==="employee"?effEmp:effEOOD}% — vs 35-45% in Western Europe
         </div>
+      </BasicGate>
       </ToolGate>
     </div>
   )
@@ -2829,7 +2831,7 @@ function CurrencyTool(){
   )
 }
 
-function ChecklistTool({user,setView}){
+function ChecklistTool({user,setView,subscription}){
   const [nat,setNat]=useState("eu")
   const [checked,setChecked]=useState({})
   const toggle=id=>setChecked(p=>({...p,[id]:!p[id]}))
@@ -2881,6 +2883,7 @@ function ChecklistTool({user,setView}){
         <span style={{fontSize:13,fontWeight:600,color:C.primary,flexShrink:0}}>{done}/{allItems.length}</span>
       </div>
       <ToolGate user={user} setView={setView} name="Moving Checklist">
+      <BasicGate subscription={subscription} setView={setView} tool="Moving Checklist">
         <div style={{display:"flex",flexDirection:"column",gap:12}}>
           {phases.map(phase=>(
             <div key={phase.title} style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,overflow:"hidden"}}>
@@ -2896,18 +2899,21 @@ function ChecklistTool({user,setView}){
             </div>
           ))}
         </div>
+      </BasicGate>
       </ToolGate>
     </div>
   )
 }
 
-function PhraseTool(){
+function PhraseTool({user,setView,subscription}){
   const [cat,setCat]=useState("basics")
   const [q,setQ]=useState("")
   const cats=[{v:"basics",l:"Basics"},{v:"bank",l:"Banking"},{v:"health",l:"Health"},{v:"transport",l:"Transport"},{v:"emergency",l:"Emergency"}]
   const list=PHRASES[cat]||[]
   const filtered=q?Object.values(PHRASES).flat().filter(p=>p.en.toLowerCase().includes(q.toLowerCase())||p.ph.toLowerCase().includes(q.toLowerCase())):list
   return(
+    <ToolGate user={user} setView={setView} name="Bulgarian Phrases">
+    <BasicGate subscription={subscription} setView={setView} tool="Bulgarian Phrases">
     <div>
       <input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search phrases in English..." style={{width:"100%",border:`1.5px solid ${C.border}`,borderRadius:10,padding:"10px 14px",fontSize:14,outline:"none",color:C.text,background:C.page,marginBottom:12,boxSizing:"border-box"}}/>
       {!q&&(
@@ -2926,6 +2932,8 @@ function PhraseTool(){
         {filtered.length===0&&<p style={{color:C.muted,textAlign:"center",padding:"20px",fontSize:14}}>No phrases found.</p>}
       </div>
     </div>
+    </BasicGate>
+    </ToolGate>
   )
 }
 
@@ -3039,13 +3047,22 @@ const COMMUNITY_ICON_MAP={
 const CONNECT_ICON_D="M12 20.5s-7-4.3-9.3-8.7C1.4 8.7 2.8 5.5 6 5.5c1.9 0 3.2 1.2 6 3.7 2.8-2.5 4.1-3.7 6-3.7 3.2 0 4.6 3.2 3.3 6.3-2.3 4.4-9.3 8.7-9.3 8.7z"
 
 const TOOLS_LIST=[
+  // FREE (4) — kept deliberately to the tools someone needs before they've even
+  // decided to commit: a one-time yes/no decision (visa), a commodity utility
+  // (currency), and the two tools that already have their own free "preview +
+  // Basic unlocks more" split built in (cost of living, neighbourhoods).
   {id:"cost",icon:"💰",label:"Cost of living",desc:"Budget + compare 8 cities"},
-  {id:"tax",icon:"📊",label:"Tax calculator",desc:"Net income under Bulgarian tax"},
   {id:"visa",icon:"🛂",label:"Visa checker",desc:"Which visa do you need?"},
-  {id:"hood",icon:"🏙️",label:"Neighbourhoods",desc:"Sofia, Plovdiv, Varna areas"},
   {id:"fx",icon:"💱",label:"Currency converter",desc:"EUR to any currency"},
-  {id:"checklist",icon:"✅",label:"Moving checklist",desc:"Your personalised plan"},
-  {id:"phrases",icon:"🗣️",label:"Bulgarian phrases",desc:"Essential language guide"},
+  {id:"hood",icon:"🏙️",label:"Neighbourhoods",desc:"Sofia, Plovdiv, Varna areas"},
+  {id:"divider",divider:true,label:"── BASIC TOOLS ──"},
+  // BASIC (3) — moved here deliberately: these three reward someone who's
+  // actually planning a move (personalised tax number, a checklist they'll
+  // return to over weeks, a phrase guide that pairs with the paid Language
+  // Coach in Premium), so the upgrade ask lands on people already committed.
+  {id:"tax",icon:"📊",label:"Tax calculator",desc:"Net income under Bulgarian tax",basic:true},
+  {id:"checklist",icon:"✅",label:"Moving checklist",desc:"Your personalised plan",basic:true},
+  {id:"phrases",icon:"🗣️",label:"Bulgarian phrases",desc:"Essential language guide",basic:true},
   {id:"divider",divider:true,label:"── PREMIUM TOOLS ──"},
   {id:"docgen",icon:"📄",label:"Document Generator",desc:"AI legal docs in minutes",premium:true},
   {id:"relocate",icon:"🗺️",label:"Relocation Planner",desc:"Your personal moving plan",premium:true},
@@ -3055,6 +3072,64 @@ const TOOLS_LIST=[
   {id:"langcoach",icon:"🇧🇬",label:"Language Coach",desc:"Learn Bulgarian with AI",premium:true},
   {id:"budget",icon:"📊",label:"Budget Planner",desc:"Personal finance tracker",premium:true},
 ]
+
+// ── Tools tier overview ──────────────────────────────────────────
+// A compact, collapsible 3-column comparison of what Free / Basic / Premium
+// unlock specifically within the Expat Tools section (not the whole site —
+// see PricingPage for the full-site breakdown). Kept in sync manually with
+// TOOLS_LIST's `premium` flags and the isBasic checks inside CostCalcTool /
+// NeighbourhoodTool above.
+function ToolsTierOverview({currentTier,setView}){
+  const [open,setOpen]=useState(false)
+  const cols=[
+    {id:"free",label:"Free",price:"€0",accentBg:C.surface,accentBorder:C.border,headBg:C.page,headColor:C.text,
+      items:["Cost of living — single city","Visa checker","Currency converter","Neighbourhoods — your city"]},
+    {id:"basic",label:"Basic",price:`€${PLANS.basic.monthly}/mo`,accentBg:C.surface,accentBorder:C.primary,headBg:C.primaryLight,headColor:C.primary,
+      items:["Everything in Free","Tax calculator — net income breakdown","Moving checklist — your personalised plan","Bulgarian phrases guide","Compare cost of living across all 8 cities","Compare neighbourhoods across every city"]},
+    {id:"premium",label:"Premium",price:`€${PLANS.premium.monthly}/mo`,accentBg:C.primary,accentBorder:C.primaryDark,headBg:"rgba(255,255,255,0.12)",headColor:"#fff",
+      items:["Everything in Basic","Document Generator","Relocation Planner","Property ROI calculator","Deadline Tracker","Neighbourhood Match","Language Coach","Budget Planner"]},
+  ]
+  return(
+    <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,marginBottom:20,overflow:"hidden",boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
+      <button onClick={()=>setOpen(v=>!v)} style={{width:"100%",background:"none",border:"none",cursor:"pointer",padding:"14px 18px",display:"flex",alignItems:"center",justifyContent:"space-between",textAlign:"left"}}>
+        <div style={{display:"flex",alignItems:"center",gap:8}}>
+          <span style={{fontSize:15}}>🔑</span>
+          <span style={{fontSize:14,fontWeight:600,color:C.text}}>What's included in each plan</span>
+        </div>
+        <span style={{fontSize:12,color:C.muted,transform:open?"rotate(180deg)":"none",transition:"transform 0.15s"}}>▾</span>
+      </button>
+      {open&&(
+        <div style={{padding:"0 16px 16px",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:12}}>
+          {cols.map(col=>(
+            <div key={col.id} style={{background:col.accentBg,border:`1.5px solid ${col.accentBorder}`,borderRadius:12,overflow:"hidden"}}>
+              <div style={{background:col.headBg,padding:"10px 14px",display:"flex",alignItems:"baseline",justifyContent:"space-between"}}>
+                <span style={{fontSize:13,fontWeight:700,color:col.headColor}}>{col.label}</span>
+                <span style={{fontSize:11,color:col.headColor,opacity:0.8}}>{col.price}</span>
+              </div>
+              <ul style={{listStyle:"none",margin:0,padding:"10px 14px 12px",display:"flex",flexDirection:"column",gap:6}}>
+                {col.items.map((it,i)=>(
+                  <li key={i} style={{fontSize:12,color:col.id==="premium"?"rgba(255,255,255,0.92)":C.text,display:"flex",gap:6,alignItems:"flex-start"}}>
+                    <span style={{color:col.id==="premium"?"#f0c060":C.primary,flexShrink:0}}>✓</span>{it}
+                  </li>
+                ))}
+              </ul>
+              {col.id==="basic"&&currentTier==="free"&&(
+                <button onClick={()=>setView("pricing")} style={{margin:"0 14px 14px",background:"none",border:`1px solid ${col.accentBorder}`,color:col.headColor,borderRadius:8,padding:"6px 10px",fontSize:11,fontWeight:600,cursor:"pointer",width:"calc(100% - 28px)"}}>
+                  Upgrade to Basic
+                </button>
+              )}
+              {col.id==="premium"&&currentTier!=="premium"&&(
+                <button onClick={()=>setView("pricing")} style={{margin:"0 14px 14px",background:"#f0c060",border:"none",color:"#1a3a20",borderRadius:8,padding:"7px 10px",fontSize:11,fontWeight:700,cursor:"pointer",width:"calc(100% - 28px)"}}>
+                  Go Premium
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
 
 function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
   const [active,setActive]=useState("cost")
@@ -3083,12 +3158,12 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
   const tool=TOOLS_LIST.find(t=>t.id===active)
   const render=()=>{
     if(active==="cost")return<CostCalcTool user={user} setView={setView} subscription={effectiveSubscription}/>
-    if(active==="tax")return<TaxCalcTool user={user} setView={setView}/>
+    if(active==="tax")return<TaxCalcTool user={user} setView={setView} subscription={effectiveSubscription}/>
     if(active==="visa")return<VisaCheckerTool user={user} setView={setView}/>
     if(active==="hood")return<NeighbourhoodTool user={user} setView={setView} subscription={effectiveSubscription}/>
     if(active==="fx")return<CurrencyTool/>
-    if(active==="checklist")return<ChecklistTool user={user} setView={setView}/>
-    if(active==="phrases")return<PhraseTool/>
+    if(active==="checklist")return<ChecklistTool user={user} setView={setView} subscription={effectiveSubscription}/>
+    if(active==="phrases")return<PhraseTool user={user} setView={setView} subscription={effectiveSubscription}/>
     if(active==="docgen")return<DocGenerator subscription={effectiveSubscription} setView={setView}/>
     if(active==="relocate")return<RelocationPlanner subscription={effectiveSubscription} setView={setView}/>
     if(active==="property")return<PropertyROI subscription={effectiveSubscription} setView={setView}/>
@@ -3106,6 +3181,7 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
         </div>
       </div>
       <div style={{maxWidth:1100,margin:isMobile?"-24px auto 32px":"-24px auto 48px",padding:isMobile?"0 12px":"0 20px"}}>
+        <ToolsTierOverview currentTier={currentTier} setView={setView}/>
         {isMobile ? (
           /* MOBILE: dropdown selector, then the tool at full screen width */
           <>
@@ -3116,16 +3192,23 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
               </label>
               <button onClick={()=>setToolMenu(o=>!o)}
                 style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",gap:8,padding:"14px 16px",fontSize:16,fontWeight:700,color:C.primary,background:"#fff",border:`1.5px solid ${C.primary}33`,borderRadius:12,cursor:"pointer",boxShadow:"0 1px 3px rgba(0,0,0,0.04)",textAlign:"left"}}>
-                <span style={{minWidth:0,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{tool?tool.label:"Select a tool"}{tool&&tool.premium?" (PRO)":""}</span>
+                <span style={{minWidth:0,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{tool?tool.label:"Select a tool"}{tool&&tool.premium?" (PRO)":tool&&tool.basic?" (BASIC)":""}</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.primary} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,transform:toolMenu?"rotate(180deg)":"none",transition:"transform 0.2s"}}><polyline points="6 9 12 15 18 9"/></svg>
               </button>
               {toolMenu&&(
                 <div style={{marginTop:8,background:C.primary,border:`1px solid ${C.primaryDark}`,borderRadius:12,boxShadow:"0 8px 28px rgba(0,0,0,0.25)",overflow:"hidden",padding:"4px 0"}}>
                   <div style={{padding:"8px 16px 4px",fontSize:10,fontWeight:700,color:"rgba(255,255,255,0.55)",letterSpacing:"0.08em"}}>FREE TOOLS</div>
-                  {TOOLS_LIST.filter(t=>!t.divider&&!t.premium).map(t=>(
+                  {TOOLS_LIST.filter(t=>!t.divider&&!t.premium&&!t.basic).map(t=>(
                     <button key={t.id} onClick={()=>{setActive(t.id);setToolMenu(false);trackEvent("tool",t.id)}}
                       style={{width:"100%",background:active===t.id?"rgba(255,255,255,0.15)":"transparent",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:15,color:"rgba(255,255,255,0.92)",fontWeight:active===t.id?700:400}}>
                       {t.label}
+                    </button>
+                  ))}
+                  <div style={{padding:"10px 16px 4px",fontSize:10,fontWeight:700,color:"rgba(255,255,255,0.55)",letterSpacing:"0.08em",borderTop:"1px solid rgba(255,255,255,0.12)",marginTop:4}}>BASIC TOOLS</div>
+                  {TOOLS_LIST.filter(t=>!t.divider&&t.basic).map(t=>(
+                    <button key={t.id} onClick={()=>{setActive(t.id);setToolMenu(false);trackEvent("tool",t.id)}}
+                      style={{width:"100%",background:active===t.id?"rgba(255,255,255,0.15)":"transparent",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:15,color:"rgba(255,255,255,0.92)",fontWeight:active===t.id?700:400,display:"flex",alignItems:"center",gap:6}}>
+                      {t.label}<span style={{fontSize:9,background:"#fff",color:C.primary,padding:"1px 5px",borderRadius:5,fontWeight:700}}>BASIC</span>
                     </button>
                   ))}
                   <div style={{padding:"10px 16px 4px",fontSize:10,fontWeight:700,color:"rgba(255,255,255,0.55)",letterSpacing:"0.08em",borderTop:"1px solid rgba(255,255,255,0.12)",marginTop:4}}>PREMIUM TOOLS</div>
@@ -3145,6 +3228,7 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
                   <h2 className="serif" style={{fontSize:17,fontWeight:400,color:C.text,margin:0,display:"flex",alignItems:"center",gap:6}}>
                     {(tool&&tool.label)}
                     {tool&&tool.premium&&<span style={{fontSize:9,background:"#fef3c7",color:"#92400e",padding:"1px 5px",borderRadius:5,fontWeight:700}}>PRO</span>}
+                    {tool&&tool.basic&&<span style={{fontSize:9,background:C.primaryLight,color:C.primary,padding:"1px 5px",borderRadius:5,fontWeight:700}}>BASIC</span>}
                   </h2>
                   <p style={{fontSize:12,color:C.muted,margin:0}}>{(tool&&tool.desc)}</p>
                 </div>
@@ -3166,6 +3250,7 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
                       <div style={{fontSize:12,fontWeight:active===t.id?600:400,color:active===t.id?C.primary:C.text,display:"flex",alignItems:"center",gap:5}}>
                         {t.label}
                         {t.premium&&<span style={{fontSize:9,background:"#fef3c7",color:"#92400e",padding:"1px 5px",borderRadius:5,fontWeight:700}}>PRO</span>}
+                        {t.basic&&<span style={{fontSize:9,background:C.primaryLight,color:C.primary,padding:"1px 5px",borderRadius:5,fontWeight:700}}>BASIC</span>}
                       </div>
                       <div style={{fontSize:11,color:C.muted,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{t.desc}</div>
                     </div>
@@ -5694,6 +5779,22 @@ const callClaude = async (system, prompt) => {
 }
 
 // ── Premium gate wrapper ──────────────────────────────────────────
+function BasicGate({subscription,setView,children,tool}){
+  const tier=(subscription&&subscription.plan)||"free"
+  const isBasic = tier==="basic"||tier==="premium"
+  if(isBasic) return children
+  return(
+    <div style={{textAlign:"center",padding:"40px 20px"}}>
+      <div style={{fontSize:48,marginBottom:12}}>🔒</div>
+      <h3 style={{fontSize:20,fontWeight:700,color:C.text,margin:"0 0 8px"}}>{tool} is a Basic tool</h3>
+      <p style={{color:C.muted,fontSize:14,margin:"0 0 20px",lineHeight:1.6}}>Upgrade to Basic (€{PLANS.basic.monthly}/month) to unlock this and 2 more tools</p>
+      <button onClick={()=>setView("pricing")} style={{background:C.primary,border:"none",color:"#fff",padding:"13px 32px",borderRadius:12,cursor:"pointer",fontSize:15,fontWeight:700}}>
+        Upgrade to Basic →
+      </button>
+    </div>
+  )
+}
+
 function PremiumGate({subscription,setView,children,tool}){
   const isPremium = (subscription&&subscription.plan)==="premium"
   if(isPremium) return children
