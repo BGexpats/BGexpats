@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, Fragment } from "react"
-import { signUp as sbSignUp, signIn as sbSignIn, signOut as sbSignOut, getCurrentUser as sbGetCurrentUser, resetPassword as sbResetPassword, getProfile as sbGetProfile, updateProfile as sbUpdateProfile, uploadAvatar as sbUploadAvatar, listProfiles as sbListProfiles, getPins as sbGetPins, savePin as sbSavePin, deletePin as sbDeletePin } from "./supabase"
+import { signUp as sbSignUp, signIn as sbSignIn, signOut as sbSignOut, getCurrentUser as sbGetCurrentUser, resetPassword as sbResetPassword, getProfile as sbGetProfile, updateProfile as sbUpdateProfile, uploadAvatar as sbUploadAvatar, listProfiles as sbListProfiles, getPins as sbGetPins, savePin as sbSavePin, deletePin as sbDeletePin, updatePin as sbUpdatePin } from "./supabase"
 import heroImg1 from "./assets/hero-rila-lake.jpg"
 import nessebar from "./assets/nessebar.jpg"
 import plovdiv from "./assets/plovdiv.jpg"
@@ -3723,6 +3723,9 @@ function MapPage({user,setView,subscription,openCheckout}){
   // every pin the user has saved across every city, so they can see them all at once.
   const [pinsOnlyView,setPinsOnlyView]=useState(false)
   const [pinLabelInput,setPinLabelInput]=useState("")
+  // Editing an existing pin: rename its label and/or drag it to a new spot.
+  const [editingPin,setEditingPin]=useState(null) // the pin object currently being renamed
+  const [editLabelInput,setEditLabelInput]=useState("")
 
   // Load the account's pins whenever a user is signed in. One-time migration:
   // if this browser has pins saved from before the sync upgrade (localStorage),
@@ -3758,6 +3761,19 @@ function MapPage({user,setView,subscription,openCheckout}){
     if(error){ console.error("Failed to save pin:",error); setPinError(error.message||"Could not save this pin."); return false }
     if(data) setCustomPins(prev=>[data,...prev])
     return true
+  }
+  // Rename a pin's label and/or move it to new coordinates (used both by the
+  // rename modal and by dragging a pin marker to reposition it). Optimistic,
+  // like deleteCustomPin below — reverts from the server if the save fails.
+  const updateCustomPin=async(id,fields)=>{
+    setPinError(null)
+    setCustomPins(cur=>cur.map(p=>p.id===id?{...p,...fields}:p)) // optimistic
+    const {error}=await sbUpdatePin(id,fields)
+    if(error){
+      console.error("Failed to update pin:",error)
+      setPinError(error.message||"Could not update this pin.")
+      const {data}=await sbGetPins(); setCustomPins(data||[]) // revert on failure
+    }
   }
   const deleteCustomPin=async(id)=>{
     setPinError(null)
@@ -3919,7 +3935,11 @@ function MapPage({user,setView,subscription,openCheckout}){
   // are raw HTML, not React — window.__bgDeletePinFromPopup is defined below.
   useEffect(()=>{
     window.__bgDeletePinFromPopup=(id)=>deleteCustomPin(id)
-    return()=>{ delete window.__bgDeletePinFromPopup }
+    window.__bgEditPinFromPopup=(id)=>{
+      const p=customPins.find(x=>x.id===id)
+      if(p){ setEditingPin(p); setEditLabelInput(p.label) }
+    }
+    return()=>{ delete window.__bgDeletePinFromPopup; delete window.__bgEditPinFromPopup }
   },[customPins])
 
   useEffect(()=>{
@@ -3931,11 +3951,17 @@ function MapPage({user,setView,subscription,openCheckout}){
     const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")
     customPins.forEach(p=>{
       const icon=L.divIcon({
-        html:`<div style="width:30px;height:30px;background:#f0c060;border:2.5px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center"><span style="transform:rotate(45deg);font-size:13px">📍</span></div>`,
+        html:`<div style="width:30px;height:30px;background:#f0c060;border:2.5px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;cursor:grab"><span style="transform:rotate(45deg);font-size:13px">📍</span></div>`,
         className:"",iconSize:[30,30],iconAnchor:[15,30]
       })
-      const popupHtml=`<div style="min-width:150px;font-family:inherit"><b>${esc(p.label)}</b><br/><button onclick="window.__bgDeletePinFromPopup&&window.__bgDeletePinFromPopup('${p.id}')" style="margin-top:8px;background:#dc2626;color:#fff;border:none;padding:5px 10px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600">Delete pin</button></div>`
-      const marker=L.marker([p.lat,p.lng],{icon}).addTo(mapInst.current).bindPopup(popupHtml)
+      const popupHtml=`<div style="min-width:150px;font-family:inherit"><b>${esc(p.label)}</b><br/><div style="margin-top:8px;display:flex;gap:6px"><button onclick="window.__bgEditPinFromPopup&&window.__bgEditPinFromPopup('${p.id}')" style="background:${C.primary};color:#fff;border:none;padding:5px 10px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600">Rename</button><button onclick="window.__bgDeletePinFromPopup&&window.__bgDeletePinFromPopup('${p.id}')" style="background:#dc2626;color:#fff;border:none;padding:5px 10px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600">Delete</button></div><div style="margin-top:6px;font-size:11px;color:#888">Drag the pin to move it</div></div>`
+      // draggable so a misplaced pin can be dragged to the right spot; saves the
+      // new coordinates on drop, same optimistic-save pattern as renaming.
+      const marker=L.marker([p.lat,p.lng],{icon,draggable:true}).addTo(mapInst.current).bindPopup(popupHtml)
+      marker.on("dragend",e=>{
+        const np=e.target.getLatLng()
+        updateCustomPin(p.id,{lat:np.lat,lng:np.lng})
+      })
       customMarkersRef.current.push(marker)
     })
   },[customPins,loaded,isBasic])
@@ -4200,8 +4226,10 @@ function MapPage({user,setView,subscription,openCheckout}){
                       <span style={{fontSize:13,fontWeight:600,color:C.text,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{p.label}</span>
                       {nearMe&&<span style={{fontSize:10,color:C.primary,fontWeight:600,flexShrink:0,marginLeft:"auto"}}>{distanceKm(nearMe.lat,nearMe.lng,p.lat,p.lng).toFixed(1)} km</span>}
                     </button>
+                    <button onClick={()=>{setEditingPin(p);setEditLabelInput(p.label)}} aria-label="Rename pin"
+                      style={{background:"none",border:"none",cursor:"pointer",padding:"0 8px",fontSize:14,color:C.muted,flexShrink:0}}>✏️</button>
                     <button onClick={()=>deleteCustomPin(p.id)} aria-label="Delete pin"
-                      style={{background:"none",border:"none",cursor:"pointer",padding:"0 12px",fontSize:15,color:C.muted,flexShrink:0}}>✕</button>
+                      style={{background:"none",border:"none",cursor:"pointer",padding:"0 12px 0 4px",fontSize:15,color:C.muted,flexShrink:0}}>✕</button>
                   </div>
                 ))}
               </div>
@@ -4280,6 +4308,27 @@ function MapPage({user,setView,subscription,openCheckout}){
               <button onClick={()=>{setPendingPin(null);setPinLabelInput("");setPinError(null)}} style={{flex:1,background:"none",border:`1px solid ${C.border}`,color:C.text,padding:"9px 12px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:600}}>Cancel</button>
               <button onClick={async()=>{if(pinLabelInput.trim()){const ok=await saveCustomPin(pendingPin.lat,pendingPin.lng,pinLabelInput.trim());if(ok){setPendingPin(null);setPinLabelInput("")}}}}
                 style={{flex:1,background:C.primary,border:"none",color:"#fff",padding:"9px 12px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:700}}>Save pin</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Rename an existing pin — opened from the sidebar pencil icon or the
+          map popup's Rename button. Repositioning happens by dragging the pin
+          on the map directly, not through this modal. */}
+      {editingPin&&(
+        <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.4)",zIndex:10000,display:"flex",alignItems:"center",justifyContent:"center",padding:20}} onClick={()=>{setEditingPin(null);setEditLabelInput("");setPinError(null)}}>
+          <div onClick={e=>e.stopPropagation()} style={{background:C.surface,borderRadius:16,padding:20,width:"100%",maxWidth:320,boxShadow:"0 8px 30px rgba(0,0,0,0.3)"}}>
+            <div style={{fontSize:15,fontWeight:700,color:C.text,marginBottom:4}}>✏️ Rename pin</div>
+            <p style={{fontSize:12,color:C.muted,margin:"0 0 12px"}}>Tip: you can also drag the pin on the map to move it.</p>
+            <input autoFocus value={editLabelInput} onChange={e=>setEditLabelInput(e.target.value)}
+              onKeyDown={async e=>{if(e.key==="Enter"&&editLabelInput.trim()){await updateCustomPin(editingPin.id,{label:editLabelInput.trim().slice(0,60)});setEditingPin(null);setEditLabelInput("")}}}
+              placeholder="Pin label" style={{width:"100%",padding:"10px 12px",fontSize:14,border:`1px solid ${pinError?"#dc2626":C.border}`,borderRadius:9,outline:"none",boxSizing:"border-box",marginBottom:pinError?6:12}}/>
+            {pinError&&<p style={{fontSize:12,color:"#dc2626",margin:"0 0 12px"}}>⚠️ {pinError}</p>}
+            <div style={{display:"flex",gap:8}}>
+              <button onClick={()=>{setEditingPin(null);setEditLabelInput("");setPinError(null)}} style={{flex:1,background:"none",border:`1px solid ${C.border}`,color:C.text,padding:"9px 12px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:600}}>Cancel</button>
+              <button onClick={async()=>{if(editLabelInput.trim()){await updateCustomPin(editingPin.id,{label:editLabelInput.trim().slice(0,60)});setEditingPin(null);setEditLabelInput("")}}}
+                style={{flex:1,background:C.primary,border:"none",color:"#fff",padding:"9px 12px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:700}}>Save changes</button>
             </div>
           </div>
         </div>
