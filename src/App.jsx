@@ -3714,6 +3714,9 @@ function MapPage({user,setView,subscription,openCheckout}){
   const [pinError,setPinError]=useState(null)
   const [addingPin,setAddingPin]=useState(false)
   const [pendingPin,setPendingPin]=useState(null) // {lat,lng} awaiting a label
+  // "Show only my pins" overview — hides official venues, zooms the map to fit
+  // every pin the user has saved across every city, so they can see them all at once.
+  const [pinsOnlyView,setPinsOnlyView]=useState(false)
   const [pinLabelInput,setPinLabelInput]=useState("")
 
   // Load the account's pins whenever a user is signed in. One-time migration:
@@ -3852,14 +3855,19 @@ function MapPage({user,setView,subscription,openCheckout}){
     if(!L||!mapInst.current)return
     markersRef.current.forEach(m=>m.remove())
     markersRef.current=[]
-    const allForCity=(filter==="all"?MAP_LOCATIONS:MAP_LOCATIONS.filter(l=>l.cat===filter)).filter(l=>l.city===city||!l.city)
+    if(pinsOnlyView)return // official venues hidden while viewing "only my pins"
+    // "Saved" shows favorites from every city — mirror that on the map pins too,
+    // so clicking a saved place from another city actually has a marker to show.
+    const allForCity=(filter==="all"?MAP_LOCATIONS:MAP_LOCATIONS.filter(l=>l.cat===filter))
+      .filter(l=>showFavesOnly||l.city===city||!l.city)
     const visible = allForCity.filter(l => {
       if(!user) return true // will be sliced below
       return canSeeCategory(l.cat)
     })
-    const toShow = !user
+    let toShow = !user
       ? visible.filter(l=>!PREMIUM_CATS.includes(l.cat)&&!BASIC_CATS.includes(l.cat)).slice(0,FREE_LIMIT)
       : visible
+    if(isBasic&&showFavesOnly) toShow=toShow.filter(l=>favorites.includes(locKey(l)))
     const catCol=(MAP_CATS.find(c=>c.id===filter)&&MAP_CATS.find(c=>c.id===filter).color)||"#1e5e3f"
     toShow.forEach(loc=>{
       const icon=L.divIcon({
@@ -3887,7 +3895,7 @@ function MapPage({user,setView,subscription,openCheckout}){
     }
   },[city,loaded])
 
-  useEffect(()=>{ if(loaded)updateMarkers() },[filter,city,loaded,user,adminEditMode])
+  useEffect(()=>{ if(loaded)updateMarkers() },[filter,city,loaded,user,adminEditMode,pinsOnlyView,showFavesOnly,favorites])
 
   // Tap the map to drop a custom pin (Basic+) while addingPin is active
   useEffect(()=>{
@@ -3902,23 +3910,56 @@ function MapPage({user,setView,subscription,openCheckout}){
 
   // Render the user's own saved pins as a distinct gold marker, separate from the
   // official venue markers so they survive filter/city redraws independently.
+  // The popup's delete button calls a global bridge function since Leaflet popups
+  // are raw HTML, not React — window.__bgDeletePinFromPopup is defined below.
+  useEffect(()=>{
+    window.__bgDeletePinFromPopup=(id)=>deleteCustomPin(id)
+    return()=>{ delete window.__bgDeletePinFromPopup }
+  },[customPins])
+
   useEffect(()=>{
     const L=window.L
     if(!L||!mapInst.current)return
     customMarkersRef.current.forEach(m=>m.remove())
     customMarkersRef.current=[]
     if(!isBasic)return
+    const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")
     customPins.forEach(p=>{
       const icon=L.divIcon({
         html:`<div style="width:30px;height:30px;background:#f0c060;border:2.5px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center"><span style="transform:rotate(45deg);font-size:13px">📍</span></div>`,
         className:"",iconSize:[30,30],iconAnchor:[15,30]
       })
-      const marker=L.marker([p.lat,p.lng],{icon}).addTo(mapInst.current).bindPopup(`<b>${p.label}</b>`)
+      const popupHtml=`<div style="min-width:150px;font-family:inherit"><b>${esc(p.label)}</b><br/><button onclick="window.__bgDeletePinFromPopup&&window.__bgDeletePinFromPopup('${p.id}')" style="margin-top:8px;background:#dc2626;color:#fff;border:none;padding:5px 10px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600">Delete pin</button></div>`
+      const marker=L.marker([p.lat,p.lng],{icon}).addTo(mapInst.current).bindPopup(popupHtml)
       customMarkersRef.current.push(marker)
     })
   },[customPins,loaded,isBasic])
 
-  const allCityLocs=(filter==="all"?MAP_LOCATIONS:MAP_LOCATIONS.filter(l=>l.cat===filter)).filter(l=>l.city===city||!l.city)
+  // When the overview toggle turns on (or the pin list changes while it's on),
+  // zoom/pan the map so every saved pin is visible at once, regardless of city.
+  useEffect(()=>{
+    const L=window.L
+    if(!L||!mapInst.current||!pinsOnlyView)return
+    if(customPins.length===0)return
+    const bounds=L.latLngBounds(customPins.map(p=>[p.lat,p.lng]))
+    mapInst.current.fitBounds(bounds,{padding:[50,50],maxZoom:14})
+  },[pinsOnlyView,customPins,loaded])
+
+  // Same idea for "★ Saved" — when it's turned on, zoom out to fit every saved
+  // official venue across all cities, so the map matches the sidebar overview.
+  useEffect(()=>{
+    if(!mapInst.current||!showFavesOnly||!isBasic)return
+    const saved=MAP_LOCATIONS.filter(l=>favorites.includes(locKey(l)))
+    if(saved.length===0)return
+    const L=window.L
+    const bounds=L.latLngBounds(saved.map(l=>[l.lat,l.lng]))
+    mapInst.current.fitBounds(bounds,{padding:[50,50],maxZoom:14})
+  },[showFavesOnly,favorites,loaded,isBasic])
+
+  // "Saved" shows favorites from every city at once (an overview, like the pins
+  // Overview) — so when it's active, skip the city restriction entirely.
+  const allCityLocs=(filter==="all"?MAP_LOCATIONS:MAP_LOCATIONS.filter(l=>l.cat===filter))
+    .filter(l=>showFavesOnly||l.city===city||!l.city)
   const visible = allCityLocs.filter(l => !user ? (!PREMIUM_CATS.includes(l.cat)&&!BASIC_CATS.includes(l.cat)) : canSeeCategory(l.cat))
   let sidebarList = !user ? visible.slice(0,FREE_LIMIT) : visible
   // Search: name/address match (Basic+)
@@ -3926,7 +3967,7 @@ function MapPage({user,setView,subscription,openCheckout}){
     const q=mapQuery.trim().toLowerCase()
     sidebarList = sidebarList.filter(l=>(l.name||"").toLowerCase().includes(q)||(l.addr||"").toLowerCase().includes(q))
   }
-  // Favorites-only filter (Basic+)
+  // Favorites-only filter (Basic+) — across all cities, see comment above
   if(isBasic && showFavesOnly){
     sidebarList = sidebarList.filter(l=>favorites.includes(locKey(l)))
   }
@@ -4017,7 +4058,15 @@ function MapPage({user,setView,subscription,openCheckout}){
             <div style={{background:C.surface,border:`2px solid ${(MAP_CATS.find(c=>c.id===selected.cat)&&MAP_CATS.find(c=>c.id===selected.cat).color)||C.primary}`,borderRadius:14,padding:"16px",boxShadow:"0 4px 20px rgba(0,0,0,0.08)"}}>
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:8}}>
                 <div style={{fontSize:20}}>{selected.icon}</div>
-                <button onClick={()=>setSelected(null)} style={{background:"none",border:"none",color:C.muted,cursor:"pointer",fontSize:18,padding:0,lineHeight:1}}>×</button>
+                <div style={{display:"flex",alignItems:"center",gap:10}}>
+                  {isBasic&&(
+                    <button onClick={()=>toggleFavorite(selected)} aria-label="Save location"
+                      style={{background:"none",border:"none",cursor:"pointer",fontSize:20,padding:0,lineHeight:1,color:favorites.includes(locKey(selected))?"#f0c060":C.border}}>
+                      {favorites.includes(locKey(selected))?"★":"☆"}
+                    </button>
+                  )}
+                  <button onClick={()=>setSelected(null)} style={{background:"none",border:"none",color:C.muted,cursor:"pointer",fontSize:18,padding:0,lineHeight:1}}>×</button>
+                </div>
               </div>
               <div style={{fontSize:15,fontWeight:700,color:C.text,marginBottom:4}}>{selected.name}</div>
               <p style={{fontSize:13,color:C.muted,margin:"0 0 12px",lineHeight:1.55}}>{selected.desc}</p>
@@ -4060,10 +4109,16 @@ function MapPage({user,setView,subscription,openCheckout}){
                   {showFavesOnly?"★":"☆"} Saved ({favorites.length})
                 </button>
               </div>
-              <button onClick={()=>setAddingPin(v=>!v)}
-                style={{display:"flex",alignItems:"center",justifyContent:"center",gap:5,padding:"7px 8px",fontSize:12,fontWeight:600,borderRadius:8,border:`1px solid ${addingPin?"#dc2626":C.border}`,background:addingPin?"#dc262615":"transparent",color:addingPin?"#dc2626":C.text,cursor:"pointer"}}>
-                📍 {addingPin?"Tap the map to place it…":`My Pins (${customPins.length})`}
-              </button>
+              <div style={{display:"flex",gap:6}}>
+                <button onClick={()=>setAddingPin(v=>!v)}
+                  style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",gap:5,padding:"7px 8px",fontSize:12,fontWeight:600,borderRadius:8,border:`1px solid ${addingPin?"#dc2626":C.border}`,background:addingPin?"#dc262615":"transparent",color:addingPin?"#dc2626":C.text,cursor:"pointer"}}>
+                  📍 {addingPin?"Tap the map…":"Add a pin"}
+                </button>
+                <button onClick={()=>setPinsOnlyView(v=>!v)} disabled={customPins.length===0}
+                  style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",gap:5,padding:"7px 8px",fontSize:12,fontWeight:600,borderRadius:8,border:`1px solid ${pinsOnlyView?"#f0c060":C.border}`,background:pinsOnlyView?"#f0c06020":"transparent",color:pinsOnlyView?"#b8860b":customPins.length===0?C.muted:C.text,cursor:customPins.length===0?"default":"pointer",opacity:customPins.length===0?0.6:1}}>
+                  🔎 {pinsOnlyView?"Showing my pins":`Overview (${customPins.length})`}
+                </button>
+              </div>
               {pinError&&<p style={{fontSize:11,color:"#dc2626",margin:0}}>⚠️ {pinError}</p>}
               {nearMeStatus==="denied"&&<p style={{fontSize:11,color:C.muted,margin:0}}>Location access denied — enable it in your browser to sort by distance.</p>}
             </div>
@@ -4074,10 +4129,14 @@ function MapPage({user,setView,subscription,openCheckout}){
             </div>
           )}
 
-          {/* Location list */}
+          {/* Location list — hidden while viewing "only my pins" overview */}
+          {!pinsOnlyView&&(
           <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:14,overflow:"hidden"}}>
             <div style={{padding:"10px 14px",borderBottom:`1px solid ${C.border}`,fontSize:12,fontWeight:600,color:C.muted,letterSpacing:"0.04em"}}>
-              {(MAP_CITIES.find(c=>c.id===city)&&MAP_CITIES.find(c=>c.id===city).icon)} {(MAP_CITIES.find(c=>c.id===city)&&MAP_CITIES.find(c=>c.id===city).label).toUpperCase()} — {sidebarList.length} {!user?"(free preview)":isPremium?"(premium)":isBasic?"(basic)":"(free)"}
+              {showFavesOnly
+                ? `★ ALL SAVED PLACES — ${sidebarList.length} across Bulgaria`
+                : `${(MAP_CITIES.find(c=>c.id===city)&&MAP_CITIES.find(c=>c.id===city).icon)||""} ${(MAP_CITIES.find(c=>c.id===city)&&MAP_CITIES.find(c=>c.id===city).label||"").toUpperCase()} — ${sidebarList.length} ${!user?"(free preview)":isPremium?"(premium)":isBasic?"(basic)":"(free)"}`
+              }
             </div>
             <div style={{maxHeight:360,overflowY:"auto"}}>
               {sidebarList.length===0?(
@@ -4089,7 +4148,7 @@ function MapPage({user,setView,subscription,openCheckout}){
                     <span style={{fontSize:16,flexShrink:0}}>{loc.icon}</span>
                     <div style={{flex:1,minWidth:0}}>
                       <div style={{fontSize:13,fontWeight:600,color:C.text,marginBottom:1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{loc.name}</div>
-                      <div style={{fontSize:11,color:C.muted}}>{loc.addr}</div>
+                      <div style={{fontSize:11,color:C.muted}}>{loc.addr}{showFavesOnly&&(MAP_CITIES.find(c=>c.id===loc.city))&&<span style={{color:C.primary,fontWeight:600}}> · {MAP_CITIES.find(c=>c.id===loc.city).label}</span>}</div>
                       <div style={{display:"flex",gap:8,alignItems:"center",marginTop:2}}>
                         {loc.english&&<div style={{fontSize:10,color:"#16a34a",fontWeight:600}}>🇬🇧 English spoken</div>}
                         {isBasic&&nearMe&&<div style={{fontSize:10,color:C.primary,fontWeight:600}}>{distanceKm(nearMe.lat,nearMe.lng,loc.lat,loc.lng).toFixed(1)} km away</div>}
@@ -4106,15 +4165,20 @@ function MapPage({user,setView,subscription,openCheckout}){
               ))}
             </div>
           </div>
+          )}
 
-          {/* My Pins — custom locations the user dropped themselves (Basic+) */}
-          {isBasic&&customPins.length>0&&(
+          {/* My Pins — custom locations the user dropped themselves (Basic+).
+              Also shows (with an empty state) whenever the overview toggle is on,
+              even if the user has no pins yet, so "Overview" never looks blank. */}
+          {isBasic&&(customPins.length>0||pinsOnlyView)&&(
             <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:14,overflow:"hidden"}}>
               <div style={{padding:"10px 14px",borderBottom:`1px solid ${C.border}`,fontSize:12,fontWeight:600,color:C.muted,letterSpacing:"0.04em"}}>
                 📍 MY PINS — {customPins.length} {pinsLoading?"(syncing…)":"(synced to your account)"}
               </div>
               <div style={{maxHeight:220,overflowY:"auto"}}>
-                {customPins.map(p=>(
+                {customPins.length===0?(
+                  <div style={{padding:"18px 14px",textAlign:"center",color:C.muted,fontSize:13}}>No pins yet. Tap "Add a pin" and drop one anywhere on the map.</div>
+                ):customPins.map(p=>(
                   <div key={p.id} style={{display:"flex",alignItems:"center",borderBottom:`1px solid ${C.border}`}}>
                     <button onClick={()=>mapInst.current&&mapInst.current.setView([p.lat,p.lng],16)}
                       style={{flex:1,minWidth:0,background:"none",border:"none",padding:"10px 6px 10px 14px",cursor:"pointer",textAlign:"left",display:"flex",gap:8,alignItems:"center"}}>
