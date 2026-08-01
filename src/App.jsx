@@ -3060,6 +3060,13 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
   const [active,setActive]=useState("cost")
   const [toolMenu,setToolMenu]=useState(false)
   const toolMenuRef=useRef(null)
+  // Dev/admin override — same account and pattern as the map page's tier
+  // switcher, so the site owner can preview Basic/Premium tools without a
+  // real subscription. Only ever active for this one account.
+  const isDevAccount=!!(user&&user.email==="bgexpats.info@gmail.com")
+  const [devTierOverride,setDevTierOverride]=useState(null) // null|"free"|"basic"|"premium"
+  const effectiveSubscription=(isDevAccount&&devTierOverride)?{plan:devTierOverride}:subscription
+  const currentTier=(effectiveSubscription&&effectiveSubscription.plan)||"free"
   useEffect(()=>{
     if(!toolMenu)return
     const onDocClick=e=>{ if(toolMenuRef.current&&!toolMenuRef.current.contains(e.target))setToolMenu(false) }
@@ -3075,20 +3082,20 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
   },[])
   const tool=TOOLS_LIST.find(t=>t.id===active)
   const render=()=>{
-    if(active==="cost")return<CostCalcTool user={user} setView={setView} subscription={subscription}/>
+    if(active==="cost")return<CostCalcTool user={user} setView={setView} subscription={effectiveSubscription}/>
     if(active==="tax")return<TaxCalcTool user={user} setView={setView}/>
     if(active==="visa")return<VisaCheckerTool user={user} setView={setView}/>
-    if(active==="hood")return<NeighbourhoodTool user={user} setView={setView} subscription={subscription}/>
+    if(active==="hood")return<NeighbourhoodTool user={user} setView={setView} subscription={effectiveSubscription}/>
     if(active==="fx")return<CurrencyTool/>
     if(active==="checklist")return<ChecklistTool user={user} setView={setView}/>
     if(active==="phrases")return<PhraseTool/>
-    if(active==="docgen")return<DocGenerator subscription={subscription} setView={setView}/>
-    if(active==="relocate")return<RelocationPlanner subscription={subscription} setView={setView}/>
-    if(active==="property")return<PropertyROI subscription={subscription} setView={setView}/>
-    if(active==="deadlines")return<DeadlineTrackerTool subscription={subscription} setView={setView}/>
-    if(active==="hoodmatch")return<HoodMatcher subscription={subscription} setView={setView}/>
-    if(active==="langcoach")return<LangCoach subscription={subscription} setView={setView}/>
-    if(active==="budget")return<BudgetPlanner subscription={subscription} setView={setView}/>
+    if(active==="docgen")return<DocGenerator subscription={effectiveSubscription} setView={setView}/>
+    if(active==="relocate")return<RelocationPlanner subscription={effectiveSubscription} setView={setView}/>
+    if(active==="property")return<PropertyROI subscription={effectiveSubscription} setView={setView}/>
+    if(active==="deadlines")return<DeadlineTrackerTool subscription={effectiveSubscription} setView={setView}/>
+    if(active==="hoodmatch")return<HoodMatcher subscription={effectiveSubscription} setView={setView}/>
+    if(active==="langcoach")return<LangCoach subscription={effectiveSubscription} setView={setView}/>
+    if(active==="budget")return<BudgetPlanner subscription={effectiveSubscription} setView={setView}/>
   }
   return(
     <div style={{minHeight:"100vh",background:C.page}}>
@@ -3179,6 +3186,24 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
           </div>
         )}
       </div>
+
+      {/* Private dev tier switcher — visible only when logged in as the dev
+          account. Lets you preview Free/Basic/Premium tools without a real
+          checkout. Same account + pattern as the map page's switcher. */}
+      {isDevAccount&&(
+        <div style={{position:"fixed",bottom:16,right:16,zIndex:9999,background:"#1a1a1a",border:"1px solid #444",borderRadius:12,padding:"10px 12px",boxShadow:"0 4px 20px rgba(0,0,0,0.4)",display:"flex",alignItems:"center",gap:8}}>
+          <span style={{fontSize:11,color:"#aaa",fontWeight:600}}>🔧 DEV VIEW:</span>
+          {["free","basic","premium"].map(t=>(
+            <button key={t} onClick={()=>setDevTierOverride(t===currentTier&&devTierOverride?null:t)}
+              style={{padding:"5px 10px",borderRadius:7,border:"none",cursor:"pointer",fontSize:11,fontWeight:700,textTransform:"uppercase",
+                background:currentTier===t?(t==="premium"?"#f0c060":t==="basic"?"#1e5e3f":"#555"):"#2a2a2a",
+                color:currentTier===t?(t==="premium"?"#1a3a20":"#fff"):"#999"}}>
+              {t}
+            </button>
+          ))}
+          {devTierOverride&&<button onClick={()=>setDevTierOverride(null)} style={{background:"none",border:"none",color:"#888",cursor:"pointer",fontSize:11,marginLeft:4}}>reset</button>}
+        </div>
+      )}
     </div>
   )
 }
