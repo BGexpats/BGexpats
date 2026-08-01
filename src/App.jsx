@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, Fragment } from "react"
-import { signUp as sbSignUp, signIn as sbSignIn, signOut as sbSignOut, getCurrentUser as sbGetCurrentUser, resetPassword as sbResetPassword, getProfile as sbGetProfile, updateProfile as sbUpdateProfile, uploadAvatar as sbUploadAvatar, listProfiles as sbListProfiles } from "./supabase"
+import { signUp as sbSignUp, signIn as sbSignIn, signOut as sbSignOut, getCurrentUser as sbGetCurrentUser, resetPassword as sbResetPassword, getProfile as sbGetProfile, updateProfile as sbUpdateProfile, uploadAvatar as sbUploadAvatar, listProfiles as sbListProfiles, getPins as sbGetPins, savePin as sbSavePin, deletePin as sbDeletePin } from "./supabase"
 import heroImg1 from "./assets/hero-rila-lake.jpg"
 import nessebar from "./assets/nessebar.jpg"
 import plovdiv from "./assets/plovdiv.jpg"
@@ -3658,6 +3658,7 @@ function MapPage({user,setView,subscription,openCheckout}){
   const mapRef=useRef(null)
   const mapInst=useRef(null)
   const markersRef=useRef([])
+  const customMarkersRef=useRef([])
   const [city,setCity]=useState("sofia")
   const [filter,setFilter]=useState("all")
   const [selected,setSelected]=useState(null)
@@ -3706,9 +3707,54 @@ function MapPage({user,setView,subscription,openCheckout}){
     const a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2
     return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a))
   }
+  // ── Custom user pins (Basic+) — synced to the account via Supabase, so they
+  // follow the subscriber across every device they log into. ──
+  const [customPins,setCustomPins]=useState([])
+  const [pinsLoading,setPinsLoading]=useState(false)
+  const [addingPin,setAddingPin]=useState(false)
+  const [pendingPin,setPendingPin]=useState(null) // {lat,lng} awaiting a label
+  const [pinLabelInput,setPinLabelInput]=useState("")
+
+  // Load the account's pins whenever a user is signed in. One-time migration:
+  // if this browser has pins saved from before the sync upgrade (localStorage),
+  // upload them to the account, then clear the local copy so it never re-runs.
+  useEffect(()=>{
+    if(!user){ setCustomPins([]); return }
+    let cancelled=false
+    ;(async()=>{
+      setPinsLoading(true)
+      try{
+        const old=JSON.parse(localStorage.getItem("bg_map_custom_pins")||"[]")
+        if(old.length){
+          for(const p of old){ await sbSavePin(user.id,p.lat,p.lng,p.label) }
+          localStorage.removeItem("bg_map_custom_pins")
+        }
+      }catch(e){ /* ignore malformed local data */ }
+      const {data}=await sbGetPins()
+      if(!cancelled) setCustomPins(data||[])
+      setPinsLoading(false)
+    })()
+    return()=>{ cancelled=true }
+  },[user&&user.id])
+
+  const saveCustomPin=async(lat,lng,label)=>{
+    if(!user)return
+    const {data,error}=await sbSavePin(user.id,lat,lng,(label||"My pin").slice(0,60))
+    if(!error&&data) setCustomPins(prev=>[data,...prev])
+  }
+  const deleteCustomPin=async(id)=>{
+    setCustomPins(prev=>prev.filter(p=>p.id!==id)) // optimistic
+    const {error}=await sbDeletePin(id)
+    if(error){ const {data}=await sbGetPins(); setCustomPins(data||[]) } // revert on failure
+  }
   // Subscription tier access
   const isDevAccount = !!(user && user.email === "bgexpats.info@gmail.com")
   const [devTierOverride,setDevTierOverride] = useState(null) // null|"free"|"basic"|"premium"
+  // Admin pin correction — drag a marker on the real map to get its exact new
+  // coordinates. This does NOT save automatically (no database) — it shows you the
+  // corrected lat/lng to copy and send over so the source data can be updated.
+  const [adminEditMode,setAdminEditMode] = useState(false)
+  const [editedCoords,setEditedCoords] = useState(null)
   const effectiveSubscription = (isDevAccount && devTierOverride) ? {plan:devTierOverride} : subscription
   const tier = (effectiveSubscription&&effectiveSubscription.plan) || "free"
   const isBasic   = tier==="basic"   || tier==="premium"
@@ -3803,12 +3849,18 @@ function MapPage({user,setView,subscription,openCheckout}){
     const catCol=(MAP_CATS.find(c=>c.id===filter)&&MAP_CATS.find(c=>c.id===filter).color)||"#1e5e3f"
     toShow.forEach(loc=>{
       const icon=L.divIcon({
-        html:`<div style="width:36px;height:36px;background:${catCol};border:2.5px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.25);cursor:pointer">${loc.icon}</div>`,
+        html:`<div style="width:36px;height:36px;background:${catCol};border:2.5px solid ${adminEditMode?"#dc2626":"#fff"};border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.25);cursor:${adminEditMode?"grab":"pointer"}">${loc.icon}</div>`,
         className:"",iconSize:[36,36],iconAnchor:[18,18]
       })
-      const marker=L.marker([loc.lat,loc.lng],{icon})
+      const marker=L.marker([loc.lat,loc.lng],{icon,draggable:isDevAccount&&adminEditMode})
         .addTo(mapInst.current)
-        .on("click",()=>setSelected(loc))
+        .on("click",()=>{ if(!adminEditMode) setSelected(loc) })
+      if(isDevAccount&&adminEditMode){
+        marker.on("dragend",e=>{
+          const p=e.target.getLatLng()
+          setEditedCoords({name:loc.name,cat:loc.cat,city:loc.city,oldLat:loc.lat,oldLng:loc.lng,newLat:p.lat,newLng:p.lng})
+        })
+      }
       markersRef.current.push(marker)
     })
   }
@@ -3821,7 +3873,36 @@ function MapPage({user,setView,subscription,openCheckout}){
     }
   },[city,loaded])
 
-  useEffect(()=>{ if(loaded)updateMarkers() },[filter,city,loaded,user])
+  useEffect(()=>{ if(loaded)updateMarkers() },[filter,city,loaded,user,adminEditMode])
+
+  // Tap the map to drop a custom pin (Basic+) while addingPin is active
+  useEffect(()=>{
+    if(!loaded||!mapInst.current)return
+    const map=mapInst.current
+    const onMapClick=e=>{
+      if(addingPin){ setPendingPin({lat:e.latlng.lat,lng:e.latlng.lng}); setAddingPin(false) }
+    }
+    map.on("click",onMapClick)
+    return()=>map.off("click",onMapClick)
+  },[addingPin,loaded])
+
+  // Render the user's own saved pins as a distinct gold marker, separate from the
+  // official venue markers so they survive filter/city redraws independently.
+  useEffect(()=>{
+    const L=window.L
+    if(!L||!mapInst.current)return
+    customMarkersRef.current.forEach(m=>m.remove())
+    customMarkersRef.current=[]
+    if(!isBasic)return
+    customPins.forEach(p=>{
+      const icon=L.divIcon({
+        html:`<div style="width:30px;height:30px;background:#f0c060;border:2.5px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center"><span style="transform:rotate(45deg);font-size:13px">📍</span></div>`,
+        className:"",iconSize:[30,30],iconAnchor:[15,30]
+      })
+      const marker=L.marker([p.lat,p.lng],{icon}).addTo(mapInst.current).bindPopup(`<b>${p.label}</b>`)
+      customMarkersRef.current.push(marker)
+    })
+  },[customPins,loaded,isBasic])
 
   const allCityLocs=(filter==="all"?MAP_LOCATIONS:MAP_LOCATIONS.filter(l=>l.cat===filter)).filter(l=>l.city===city||!l.city)
   const visible = allCityLocs.filter(l => !user ? (!PREMIUM_CATS.includes(l.cat)&&!BASIC_CATS.includes(l.cat)) : canSeeCategory(l.cat))
@@ -3965,6 +4046,10 @@ function MapPage({user,setView,subscription,openCheckout}){
                   {showFavesOnly?"★":"☆"} Saved ({favorites.length})
                 </button>
               </div>
+              <button onClick={()=>setAddingPin(v=>!v)}
+                style={{display:"flex",alignItems:"center",justifyContent:"center",gap:5,padding:"7px 8px",fontSize:12,fontWeight:600,borderRadius:8,border:`1px solid ${addingPin?"#dc2626":C.border}`,background:addingPin?"#dc262615":"transparent",color:addingPin?"#dc2626":C.text,cursor:"pointer"}}>
+                📍 {addingPin?"Tap the map to place it…":`My Pins (${customPins.length})`}
+              </button>
               {nearMeStatus==="denied"&&<p style={{fontSize:11,color:C.muted,margin:0}}>Location access denied — enable it in your browser to sort by distance.</p>}
             </div>
           ):user&&(
@@ -4006,6 +4091,29 @@ function MapPage({user,setView,subscription,openCheckout}){
               ))}
             </div>
           </div>
+
+          {/* My Pins — custom locations the user dropped themselves (Basic+) */}
+          {isBasic&&customPins.length>0&&(
+            <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:14,overflow:"hidden"}}>
+              <div style={{padding:"10px 14px",borderBottom:`1px solid ${C.border}`,fontSize:12,fontWeight:600,color:C.muted,letterSpacing:"0.04em"}}>
+                📍 MY PINS — {customPins.length} {pinsLoading?"(syncing…)":"(synced to your account)"}
+              </div>
+              <div style={{maxHeight:220,overflowY:"auto"}}>
+                {customPins.map(p=>(
+                  <div key={p.id} style={{display:"flex",alignItems:"center",borderBottom:`1px solid ${C.border}`}}>
+                    <button onClick={()=>mapInst.current&&mapInst.current.setView([p.lat,p.lng],16)}
+                      style={{flex:1,minWidth:0,background:"none",border:"none",padding:"10px 6px 10px 14px",cursor:"pointer",textAlign:"left",display:"flex",gap:8,alignItems:"center"}}>
+                      <span style={{fontSize:15}}>📍</span>
+                      <span style={{fontSize:13,fontWeight:600,color:C.text,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{p.label}</span>
+                      {nearMe&&<span style={{fontSize:10,color:C.primary,fontWeight:600,flexShrink:0,marginLeft:"auto"}}>{distanceKm(nearMe.lat,nearMe.lng,p.lat,p.lng).toFixed(1)} km</span>}
+                    </button>
+                    <button onClick={()=>deleteCustomPin(p.id)} aria-label="Delete pin"
+                      style={{background:"none",border:"none",cursor:"pointer",padding:"0 12px",fontSize:15,color:C.muted,flexShrink:0}}>✕</button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Map */}
@@ -4036,6 +4144,50 @@ function MapPage({user,setView,subscription,openCheckout}){
             </button>
           ))}
           {devTierOverride&&<button onClick={()=>setDevTierOverride(null)} style={{background:"none",border:"none",color:"#888",cursor:"pointer",fontSize:11,marginLeft:4}}>reset</button>}
+          <span style={{width:1,height:18,background:"#444",margin:"0 2px"}}/>
+          <button onClick={()=>{setAdminEditMode(v=>!v);setEditedCoords(null)}}
+            style={{padding:"5px 10px",borderRadius:7,border:"none",cursor:"pointer",fontSize:11,fontWeight:700,
+              background:adminEditMode?"#dc2626":"#2a2a2a",color:adminEditMode?"#fff":"#999"}}>
+            ✏️ {adminEditMode?"Editing pins":"Edit pins"}
+          </button>
+        </div>
+      )}
+
+      {/* Admin: shows the corrected coordinates after dragging an official pin.
+          Doesn't save anywhere — copy these and send them over so the source data
+          gets updated and redeployed. */}
+      {isDevAccount&&editedCoords&&(
+        <div style={{position:"fixed",bottom:70,right:16,zIndex:9999,background:"#1a1a1a",border:"1px solid #dc2626",borderRadius:12,padding:14,boxShadow:"0 4px 20px rgba(0,0,0,0.4)",width:280}}>
+          <div style={{fontSize:12,fontWeight:700,color:"#fff",marginBottom:6}}>📍 {editedCoords.name}</div>
+          <div style={{fontSize:11,color:"#888",marginBottom:8}}>cat: {editedCoords.cat} · city: {editedCoords.city}</div>
+          <div style={{background:"#111",borderRadius:8,padding:"8px 10px",fontFamily:"monospace",fontSize:12,color:"#4ade80",marginBottom:10,userSelect:"all"}}>
+            lat:{editedCoords.newLat.toFixed(6)},lng:{editedCoords.newLng.toFixed(6)}
+          </div>
+          <div style={{display:"flex",gap:6}}>
+            <button onClick={()=>{navigator.clipboard&&navigator.clipboard.writeText(`lat:${editedCoords.newLat.toFixed(6)},lng:${editedCoords.newLng.toFixed(6)}`)}}
+              style={{flex:1,background:"#2a2a2a",border:"none",color:"#fff",padding:"7px 10px",borderRadius:7,cursor:"pointer",fontSize:11,fontWeight:600}}>
+              Copy coordinates
+            </button>
+            <button onClick={()=>setEditedCoords(null)} style={{background:"none",border:"none",color:"#888",cursor:"pointer",fontSize:11}}>✕</button>
+          </div>
+        </div>
+      )}
+
+      {/* Label prompt after a Basic+ user drops a custom pin on the map */}
+      {pendingPin&&(
+        <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.4)",zIndex:10000,display:"flex",alignItems:"center",justifyContent:"center",padding:20}} onClick={()=>{setPendingPin(null);setPinLabelInput("")}}>
+          <div onClick={e=>e.stopPropagation()} style={{background:C.surface,borderRadius:16,padding:20,width:"100%",maxWidth:320,boxShadow:"0 8px 30px rgba(0,0,0,0.3)"}}>
+            <div style={{fontSize:15,fontWeight:700,color:C.text,marginBottom:4}}>📍 Name this pin</div>
+            <p style={{fontSize:12,color:C.muted,margin:"0 0 12px"}}>Saved on this device — e.g. "My apartment", "Gym", "Kids' school".</p>
+            <input autoFocus value={pinLabelInput} onChange={e=>setPinLabelInput(e.target.value)}
+              onKeyDown={e=>{if(e.key==="Enter"&&pinLabelInput.trim()){saveCustomPin(pendingPin.lat,pendingPin.lng,pinLabelInput.trim());setPendingPin(null);setPinLabelInput("")}}}
+              placeholder="Pin label" style={{width:"100%",padding:"10px 12px",fontSize:14,border:`1px solid ${C.border}`,borderRadius:9,outline:"none",boxSizing:"border-box",marginBottom:12}}/>
+            <div style={{display:"flex",gap:8}}>
+              <button onClick={()=>{setPendingPin(null);setPinLabelInput("")}} style={{flex:1,background:"none",border:`1px solid ${C.border}`,color:C.text,padding:"9px 12px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:600}}>Cancel</button>
+              <button onClick={()=>{if(pinLabelInput.trim()){saveCustomPin(pendingPin.lat,pendingPin.lng,pinLabelInput.trim());setPendingPin(null);setPinLabelInput("")}}}
+                style={{flex:1,background:C.primary,border:"none",color:"#fff",padding:"9px 12px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:700}}>Save pin</button>
+            </div>
+          </div>
         </div>
       )}
     </div>

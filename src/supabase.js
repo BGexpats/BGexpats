@@ -125,3 +125,37 @@ export async function listProfiles() {
     .order('created_at', { ascending: false })
   return { data, error }
 }
+
+// ─── Map pins (Basic+ subscribers' custom saved pins) ─────────────────
+// Synced to the account via the map_pins table (RLS-protected — each user can
+// only ever read/write their own rows). Replaces the old localStorage-only version.
+
+// Fetch all pins saved by the signed-in user, newest first.
+export async function getPins() {
+  const { data, error } = await supabase
+    .from('map_pins')
+    .select('*')
+    .order('created_at', { ascending: false })
+  return { data, error }
+}
+
+// Save a new custom pin for the signed-in user.
+// user_id is set explicitly (not inferred) so RLS's "with check" can verify it
+// matches the caller's own auth.uid().
+export async function savePin(userId, lat, lng, label) {
+  const { data, error } = await supabase
+    .from('map_pins')
+    .insert({ user_id: userId, lat, lng, label })
+    .select()
+    .single()
+  return { data, error }
+}
+
+// Delete one of the signed-in user's own pins. RLS blocks deleting anyone else's.
+export async function deletePin(pinId) {
+  const { error } = await supabase
+    .from('map_pins')
+    .delete()
+    .eq('id', pinId)
+  return { error }
+}
