@@ -3711,6 +3711,7 @@ function MapPage({user,setView,subscription,openCheckout}){
   // follow the subscriber across every device they log into. ──
   const [customPins,setCustomPins]=useState([])
   const [pinsLoading,setPinsLoading]=useState(false)
+  const [pinError,setPinError]=useState(null)
   const [addingPin,setAddingPin]=useState(false)
   const [pendingPin,setPendingPin]=useState(null) // {lat,lng} awaiting a label
   const [pinLabelInput,setPinLabelInput]=useState("")
@@ -3723,14 +3724,19 @@ function MapPage({user,setView,subscription,openCheckout}){
     let cancelled=false
     ;(async()=>{
       setPinsLoading(true)
+      setPinError(null)
       try{
         const old=JSON.parse(localStorage.getItem("bg_map_custom_pins")||"[]")
         if(old.length){
-          for(const p of old){ await sbSavePin(user.id,p.lat,p.lng,p.label) }
+          for(const p of old){
+            const {error:migErr}=await sbSavePin(user.id,p.lat,p.lng,p.label)
+            if(migErr) console.error("Pin migration failed:",migErr)
+          }
           localStorage.removeItem("bg_map_custom_pins")
         }
-      }catch(e){ /* ignore malformed local data */ }
-      const {data}=await sbGetPins()
+      }catch(e){ console.error("Pin migration parse error:",e) }
+      const {data,error}=await sbGetPins()
+      if(error){ console.error("Failed to load pins:",error); if(!cancelled) setPinError(error.message||"Could not load your pins.") }
       if(!cancelled) setCustomPins(data||[])
       setPinsLoading(false)
     })()
@@ -3738,14 +3744,22 @@ function MapPage({user,setView,subscription,openCheckout}){
   },[user&&user.id])
 
   const saveCustomPin=async(lat,lng,label)=>{
-    if(!user)return
+    if(!user)return false
+    setPinError(null)
     const {data,error}=await sbSavePin(user.id,lat,lng,(label||"My pin").slice(0,60))
-    if(!error&&data) setCustomPins(prev=>[data,...prev])
+    if(error){ console.error("Failed to save pin:",error); setPinError(error.message||"Could not save this pin."); return false }
+    if(data) setCustomPins(prev=>[data,...prev])
+    return true
   }
   const deleteCustomPin=async(id)=>{
+    setPinError(null)
     setCustomPins(prev=>prev.filter(p=>p.id!==id)) // optimistic
     const {error}=await sbDeletePin(id)
-    if(error){ const {data}=await sbGetPins(); setCustomPins(data||[]) } // revert on failure
+    if(error){
+      console.error("Failed to delete pin:",error)
+      setPinError(error.message||"Could not delete this pin.")
+      const {data}=await sbGetPins(); setCustomPins(data||[]) // revert on failure
+    }
   }
   // Subscription tier access
   const isDevAccount = !!(user && user.email === "bgexpats.info@gmail.com")
@@ -4050,6 +4064,7 @@ function MapPage({user,setView,subscription,openCheckout}){
                 style={{display:"flex",alignItems:"center",justifyContent:"center",gap:5,padding:"7px 8px",fontSize:12,fontWeight:600,borderRadius:8,border:`1px solid ${addingPin?"#dc2626":C.border}`,background:addingPin?"#dc262615":"transparent",color:addingPin?"#dc2626":C.text,cursor:"pointer"}}>
                 📍 {addingPin?"Tap the map to place it…":`My Pins (${customPins.length})`}
               </button>
+              {pinError&&<p style={{fontSize:11,color:"#dc2626",margin:0}}>⚠️ {pinError}</p>}
               {nearMeStatus==="denied"&&<p style={{fontSize:11,color:C.muted,margin:0}}>Location access denied — enable it in your browser to sort by distance.</p>}
             </div>
           ):user&&(
@@ -4175,16 +4190,17 @@ function MapPage({user,setView,subscription,openCheckout}){
 
       {/* Label prompt after a Basic+ user drops a custom pin on the map */}
       {pendingPin&&(
-        <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.4)",zIndex:10000,display:"flex",alignItems:"center",justifyContent:"center",padding:20}} onClick={()=>{setPendingPin(null);setPinLabelInput("")}}>
+        <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.4)",zIndex:10000,display:"flex",alignItems:"center",justifyContent:"center",padding:20}} onClick={()=>{setPendingPin(null);setPinLabelInput("");setPinError(null)}}>
           <div onClick={e=>e.stopPropagation()} style={{background:C.surface,borderRadius:16,padding:20,width:"100%",maxWidth:320,boxShadow:"0 8px 30px rgba(0,0,0,0.3)"}}>
             <div style={{fontSize:15,fontWeight:700,color:C.text,marginBottom:4}}>📍 Name this pin</div>
-            <p style={{fontSize:12,color:C.muted,margin:"0 0 12px"}}>Saved on this device — e.g. "My apartment", "Gym", "Kids' school".</p>
+            <p style={{fontSize:12,color:C.muted,margin:"0 0 12px"}}>Synced to your account — e.g. "My apartment", "Gym", "Kids' school".</p>
             <input autoFocus value={pinLabelInput} onChange={e=>setPinLabelInput(e.target.value)}
-              onKeyDown={e=>{if(e.key==="Enter"&&pinLabelInput.trim()){saveCustomPin(pendingPin.lat,pendingPin.lng,pinLabelInput.trim());setPendingPin(null);setPinLabelInput("")}}}
-              placeholder="Pin label" style={{width:"100%",padding:"10px 12px",fontSize:14,border:`1px solid ${C.border}`,borderRadius:9,outline:"none",boxSizing:"border-box",marginBottom:12}}/>
+              onKeyDown={async e=>{if(e.key==="Enter"&&pinLabelInput.trim()){const ok=await saveCustomPin(pendingPin.lat,pendingPin.lng,pinLabelInput.trim());if(ok){setPendingPin(null);setPinLabelInput("")}}}}
+              placeholder="Pin label" style={{width:"100%",padding:"10px 12px",fontSize:14,border:`1px solid ${pinError?"#dc2626":C.border}`,borderRadius:9,outline:"none",boxSizing:"border-box",marginBottom:pinError?6:12}}/>
+            {pinError&&<p style={{fontSize:12,color:"#dc2626",margin:"0 0 12px"}}>⚠️ {pinError}</p>}
             <div style={{display:"flex",gap:8}}>
-              <button onClick={()=>{setPendingPin(null);setPinLabelInput("")}} style={{flex:1,background:"none",border:`1px solid ${C.border}`,color:C.text,padding:"9px 12px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:600}}>Cancel</button>
-              <button onClick={()=>{if(pinLabelInput.trim()){saveCustomPin(pendingPin.lat,pendingPin.lng,pinLabelInput.trim());setPendingPin(null);setPinLabelInput("")}}}
+              <button onClick={()=>{setPendingPin(null);setPinLabelInput("");setPinError(null)}} style={{flex:1,background:"none",border:`1px solid ${C.border}`,color:C.text,padding:"9px 12px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:600}}>Cancel</button>
+              <button onClick={async()=>{if(pinLabelInput.trim()){const ok=await saveCustomPin(pendingPin.lat,pendingPin.lng,pinLabelInput.trim());if(ok){setPendingPin(null);setPinLabelInput("")}}}}
                 style={{flex:1,background:C.primary,border:"none",color:"#fff",padding:"9px 12px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:700}}>Save pin</button>
             </div>
           </div>
