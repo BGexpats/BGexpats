@@ -86,6 +86,7 @@ const T = {
     ctaBtn:"Start chatting →",guide:"guide",guides:"guides",
     stillQ:"Still have questions?",askLink:"Ask the AI →",
     chatTitle:"BGexpats AI",chatSub:"Expert on expat life in Bulgaria",
+    pricingTitle:"Simple, honest pricing",pricingSub:"Join thousands of expats navigating life in Bulgaria",
     greeting:"👋 Hi! I'm your BGexpats assistant.\n\nAsk me anything about living in or visiting Bulgaria — visas, healthcare, banking, housing, taxes, or local tips. I'm here to help!",
     suggestions:["How do I get a residency permit?","What's the cost of living in Sofia?","How to open a bank account as a foreigner?","How to register an EOOD company?","Best neighbourhoods in Sofia for expats?"],
     placeholder:"Ask anything about life in Bulgaria...",
@@ -111,6 +112,7 @@ const T = {
     ctaBtn:"Commencer à chatter →",guide:"guide",guides:"guides",
     stillQ:"Vous avez encore des questions ?",askLink:"Demander à l'IA →",
     chatTitle:"Assistant IA BGexpats",chatSub:"Expert sur la vie d'expatrié en Bulgarie",
+    pricingTitle:"Des tarifs simples et transparents",pricingSub:"Rejoignez des milliers d'expatriés qui vivent en Bulgarie",
     greeting:"👋 Bonjour ! Je suis votre assistant guide pour la Bulgarie.\n\nPosez-moi n'importe quelle question sur la vie en Bulgarie — visas, santé, banque, logement, impôts ou conseils locaux. Je suis là pour vous aider !",
     suggestions:["Comment obtenir un permis de résidence ?","Quel est le coût de la vie à Sofia ?","Comment ouvrir un compte bancaire en tant qu'étranger ?","Comment créer une société EOOD ?","Meilleurs quartiers de Sofia pour les expatriés ?"],
     placeholder:"Posez n'importe quelle question sur la vie en Bulgarie...",
@@ -136,6 +138,7 @@ const T = {
     ctaBtn:"Empezar a chatear →",guide:"guía",guides:"guías",
     stillQ:"¿Tienes más preguntas?",askLink:"Preguntar al IA →",
     chatTitle:"Asistente IA BGexpats",chatSub:"Experto en vida de expatriado en Bulgaria",
+    pricingTitle:"Precios simples y honestos",pricingSub:"Únete a miles de expatriados que viven en Bulgaria",
     greeting:"👋 ¡Hola! Soy tu asistente guía para Bulgaria.\n\nPregúntame lo que quieras sobre vivir o visitar Bulgaria — visados, sanidad, banca, vivienda, impuestos o consejos locales. ¡Estoy aquí para ayudarte!",
     suggestions:["¿Cómo obtengo un permiso de residencia?","¿Cuál es el coste de vida en Sofía?","¿Cómo abro una cuenta bancaria como extranjero?","¿Cómo registro una empresa EOOD?","¿Mejores barrios de Sofía para expatriados?"],
     placeholder:"Pregunta cualquier cosa sobre la vida en Bulgaria...",
@@ -161,6 +164,7 @@ const T = {
     ctaBtn:"Chat starten →",guide:"Leitfaden",guides:"Leitfäden",
     stillQ:"Noch Fragen?",askLink:"KI fragen →",
     chatTitle:"BGexpats KI",chatSub:"Experte für Expat-Leben in Bulgarien",
+    pricingTitle:"Einfache, faire Preise",pricingSub:"Schließen Sie sich Tausenden von Expats an, die in Bulgarien leben",
     greeting:"👋 Hallo! Ich bin Ihr Bulgarien-Reiseführer-Assistent.\n\nFragen Sie mich alles über das Leben in oder den Besuch Bulgariens — Visa, Gesundheit, Banking, Wohnen, Steuern oder lokale Tipps. Ich helfe Ihnen gerne!",
     suggestions:["Wie bekomme ich eine Aufenthaltserlaubnis?","Wie sind die Lebenshaltungskosten in Sofia?","Wie eröffne ich ein Bankkonto als Ausländer?","Wie registriere ich eine EOOD-Firma?","Beste Viertel in Sofia für Expats?"],
     placeholder:"Stellen Sie eine Frage über das Leben in Bulgarien...",
@@ -187,6 +191,7 @@ const T = {
     ctaBtn:"Begin met chatten →",guide:"gids",guides:"gidsen",
     stillQ:"Heeft u nog vragen?",askLink:"Vraag de AI →",
     chatTitle:"BGexpats AI",chatSub:"Expert in expatleven in Bulgarije",
+    pricingTitle:"Eenvoudige, eerlijke prijzen",pricingSub:"Sluit je aan bij duizenden expats die in Bulgarije leven",
     greeting:"👋 Hallo! Ik ben uw gids-assistent voor Bulgarije.\n\nStel me alles over leven in of bezoeken van Bulgarije — visa's, gezondheidszorg, bankieren, wonen, belastingen of lokale tips. Ik help u graag!",
     suggestions:["Hoe krijg ik een verblijfsvergunning?","Wat zijn de kosten van levensonderhoud in Sofia?","Hoe open ik een bankrekening als buitenlander?","Hoe registreer ik een EOOD-bedrijf?","Beste wijken in Sofia voor expats?"],
     placeholder:"Stel een vraag over het leven in Bulgarije...",
@@ -212,6 +217,7 @@ const T = {
     ctaBtn:"Начать чат →",guide:"гид",guides:"гиды",
     stillQ:"Остались вопросы?",askLink:"Спросить ИИ →",
     chatTitle:"BGexpats ИИ",chatSub:"Эксперт по жизни экспатов в Болгарии",
+    pricingTitle:"Простые, честные цены",pricingSub:"Присоединяйтесь к тысячам экспатов, живущих в Болгарии",
     greeting:"👋 Привет! Я ваш ассистент BGexpats.\n\nЗадайте любой вопрос о жизни или туризме в Болгарии — визы, здравоохранение, банки, жильё, налоги или местные советы. Я здесь, чтобы помочь!",
     suggestions:["Как получить вид на жительство?","Какова стоимость жизни в Софии?","Как открыть банковский счёт иностранцу?","Как зарегистрировать компанию ЭООД?","Лучшие районы Софии для экспатов?"],
     placeholder:"Задайте вопрос о жизни в Болгарии...",
@@ -237,6 +243,7 @@ const T = {
     ctaBtn:"Почати чат →",guide:"гід",guides:"гіди",
     stillQ:"Залишилися питання?",askLink:"Запитати ШІ →",
     chatTitle:"BGexpats ШІ",chatSub:"Експерт з життя експатів у Болгарії",
+    pricingTitle:"Прості, чесні ціни",pricingSub:"Приєднуйтесь до тисяч експатів, які живуть у Болгарії",
     greeting:"👋 Привіт! Я ваш асистент BGexpats.\n\nЗадайте будь-яке питання про життя або туризм у Болгарії — візи, охорона здоров'я, банки, житло, податки або місцеві поради. Я тут, щоб допомогти!",
     suggestions:["Як отримати посвідку на проживання?","Яка вартість життя в Софії?","Як відкрити банківський рахунок іноземцю?","Як зареєструвати компанію ЕООД?","Найкращі райони Софії для експатів?"],
     placeholder:"Задайте питання про життя в Болгарії...",
@@ -262,6 +269,7 @@ const T = {
     ctaBtn:"Започни чат →",guide:"наръчник",guides:"наръчници",
     stillQ:"Имате още въпроси?",askLink:"Попитай ИИ →",
     chatTitle:"BGexpats ИИ",chatSub:"Експерт по живота на експати в България",
+    pricingTitle:"Прости, честни цени",pricingSub:"Присъединете се към хиляди чужденци, живеещи в България",
     greeting:"👋 Здравейте! Аз съм вашият BGexpats асистент.\n\nЗадайте всякакви въпроси за живота или туризма в България — визи, здравеопазване, банки, жилища, данъци или местни съвети. Тук съм, за да помогна!",
     suggestions:["Как да получа разрешение за пребиваване?","Какви са разходите за живот в София?","Как да открия банкова сметка като чужденец?","Как да регистрирам ЕООД?","Най-добрите квартали в София за експати?"],
     placeholder:"Задайте въпрос за живота в България...",
@@ -287,6 +295,7 @@ const T = {
     ctaBtn:"Sohbete başla →",guide:"rehber",guides:"rehberler",
     stillQ:"Hâlâ sorularınız mı var?",askLink:"Yapay zekaya sor →",
     chatTitle:"BGexpats Yapay Zeka",chatSub:"Bulgaristan expat yaşamı uzmanı",
+    pricingTitle:"Basit, dürüst fiyatlandırma",pricingSub:"Bulgaristan'da yaşayan binlerce yabancıya katılın",
     greeting:"👋 Merhaba! Ben BGexpats asistanınızım.\n\nBulgaristan'da yaşam veya turizm hakkında her şeyi sorabilirsiniz — vizeler, sağlık, bankacılık, konut, vergiler veya yerel ipuçları. Yardımcı olmak için buradayım!",
     suggestions:["Oturma izni nasıl alınır?","Sofya'da yaşam maliyeti nedir?","Yabancı olarak banka hesabı nasıl açılır?","EOOD şirketi nasıl kurulur?","Expatlar için Sofya'nın en iyi mahalleleri?"],
     placeholder:"Bulgaristan'da yaşam hakkında bir şeyler sorun...",
@@ -4504,11 +4513,25 @@ const PLANS = {
   basic:   { name:"Basic",   monthly:4.99, yearly:3.49, yearlyTotal:41.92 },
   premium: { name:"Premium", monthly:7.99, yearly:5.59, yearlyTotal:67.12 },
 }
+// One-time Premium passes for short-term visitors (tourists on a trip, not
+// residents) who'd never buy a monthly subscription. Priced so stacking short
+// passes is always worse value than a real subscription — 4 day-passes
+// (€11.96) costs more than a full month of Premium (€7.99) — which protects
+// the monthly/yearly plans from being undercut by repeat pass purchases.
+// NOTE: like the rest of the subscription system right now, a purchased pass
+// grants Premium access for the current session only — it is not yet
+// persisted with a real expiry (see the persistence TODO near `subscription`
+// state below). Treat this as pricing/UI groundwork, not full pass expiry
+// enforcement, until that's built.
+const PASSES = {
+  day:  { name:"Day Pass",  price:2.99, duration:"24 hours", blurb:"Full Premium access for one day" },
+  week: { name:"Week Pass", price:6.99, duration:"7 days",   blurb:"Full Premium access for one week" },
+}
 
 // ── Pricing Page ─────────────────────────────────────────────────
-function PricingPage({user,setView,lang,openCheckout=()=>{}}){
+function PricingPage({user,setView,lang,t,openCheckout=()=>{}}){
   const [billing,setBilling]=useState("monthly")
-  const labels={en:{monthly:"Monthly",yearly:"Yearly",save:"Save 33%",mo:"/month",yr:"/year",getfree:"Get started free",getbasic:"Start Basic",getpremium:"Go Premium",popular:"Most popular",billed:"billed annually",permonth:"/month"},fr:{monthly:"Mensuel",yearly:"Annuel",save:"33% d'économie",mo:"/mois",yr:"/an",getfree:"Commencer gratuitement",getbasic:"Choisir Basic",getpremium:"Choisir Premium",popular:"Le plus populaire",billed:"facturé annuellement",permonth:"/mois",features_free:[{ok:true,text:"Articles de base (légal, logement, impôts)"},{ok:true,text:"5 questions IA par jour"},{ok:true,text:"Infos pratiques & urgences"},{ok:true,text:"8 langues"},{ok:false,text:"Communauté — publier, aimer, répondre"},{ok:false,text:"Tous les outils & calculateurs"},{ok:false,text:"Guides & modèles premium"}],features_basic:[{ok:true,text:"Tout du plan Gratuit"},{ok:true,text:"Accès complet à la communauté"},{ok:true,text:"Chat IA illimité"},{ok:true,text:"4 outils de planification (Budget, Déménagement, Quartier, Coach linguistique)"},{ok:true,text:"Toutes les catégories de carte (restaurants, culture, hôtels & plus)"},{ok:true,text:"Newsletter hebdomadaire"},{ok:false,text:"Outils, guides & modèles premium"}],features_premium:[{ok:true,text:"Tout du plan Basic",gold:true},{ok:true,text:"3 outils pro : Générateur de documents, ROI immobilier, Suivi des délais",gold:true},{ok:true,text:"Guides juridiques & fiscaux premium",gold:true},{ok:true,text:"Modèles PDF téléchargeables",gold:true},{ok:true,text:"Annuaire de services vérifiés",gold:true},{ok:true,text:"IA prioritaire — réponses approfondies",gold:true},{ok:true,text:"Badge membre vérifié",gold:true},{ok:true,text:"Accès anticipé aux nouvelles fonctionnalités",gold:true}]},es:{monthly:"Mensual",yearly:"Anual",save:"Ahorra 33%",mo:"/mes",yr:"/año",getfree:"Empezar gratis",getbasic:"Elegir Basic",getpremium:"Elegir Premium",popular:"El más popular",billed:"facturado anualmente",permonth:"/mes",features_free:[{ok:true,text:"Artículos básicos (legal, vivienda, impuestos)"},{ok:true,text:"5 preguntas de chat IA por día"},{ok:true,text:"Datos rápidos e información de emergencia"},{ok:true,text:"8 idiomas"},{ok:false,text:"Comunidad — publicar, dar me gusta, responder"},{ok:false,text:"Todas las herramientas y calculadoras"},{ok:false,text:"Guías y plantillas premium"}],features_basic:[{ok:true,text:"Todo del plan Gratuito"},{ok:true,text:"Acceso completo a la comunidad"},{ok:true,text:"Chat IA ilimitado"},{ok:true,text:"4 herramientas de planificación (Presupuesto, Reubicación, Barrio, Coach de idiomas)"},{ok:true,text:"Todas las categorías del mapa (restaurantes, cultura, hoteles y más)"},{ok:true,text:"Boletín semanal"},{ok:false,text:"Herramientas, guías y plantillas premium"}],features_premium:[{ok:true,text:"Todo del plan Basic",gold:true},{ok:true,text:"3 herramientas pro: Generador de documentos, ROI inmobiliario, Seguimiento de plazos",gold:true},{ok:true,text:"Guías legales y fiscales premium",gold:true},{ok:true,text:"Plantillas PDF descargables",gold:true},{ok:true,text:"Directorio de servicios verificados",gold:true},{ok:true,text:"IA prioritaria — respuestas más profundas",gold:true},{ok:true,text:"Insignia de miembro verificado",gold:true},{ok:true,text:"Acceso anticipado a nuevas funciones",gold:true}]},de:{monthly:"Monatlich",yearly:"Jährlich",save:"33% sparen",mo:"/Monat",yr:"/Jahr",getfree:"Kostenlos starten",getbasic:"Basic wählen",getpremium:"Premium wählen",popular:"Am beliebtesten",billed:"jährlich abgerechnet",permonth:"/Monat",features_free:[{ok:true,text:"Grundlegende Artikel (Recht, Wohnen, Steuern)"},{ok:true,text:"5 KI-Chatfragen pro Tag"},{ok:true,text:"Schnelle Fakten & Notfallinformationen"},{ok:true,text:"8 Sprachen"},{ok:false,text:"Community — posten, liken, antworten"},{ok:false,text:"Alle Tools & Rechner"},{ok:false,text:"Premium-Guides & Vorlagen"}],features_basic:[{ok:true,text:"Alles aus Free"},{ok:true,text:"Voller Community-Zugang"},{ok:true,text:"Unbegrenzter KI-Chat"},{ok:true,text:"4 Planungstools (Budget, Umzug, Stadtviertel, Sprachcoach)"},{ok:true,text:"Alle Kartenkategorien (Restaurants, Kultur, Hotels & mehr)"},{ok:true,text:"Wöchentlicher Newsletter"},{ok:false,text:"Premium-Tools, Guides & Vorlagen"}],features_premium:[{ok:true,text:"Alles aus Basic",gold:true},{ok:true,text:"3 Profi-Tools: Dokumentengenerator, Immobilien-ROI, Fristentracker",gold:true},{ok:true,text:"Premium-Rechts- & Steuerguides",gold:true},{ok:true,text:"Herunterladbare PDF-Vorlagen",gold:true},{ok:true,text:"Geprüftes Dienstleistungsverzeichnis",gold:true},{ok:true,text:"Prioritäts-KI — tiefere Antworten",gold:true},{ok:true,text:"Verifiziertes Mitgliederabzeichen",gold:true},{ok:true,text:"Früher Zugang zu neuen Funktionen",gold:true}]},nl:{monthly:"Maandelijks",yearly:"Jaarlijks",save:"33% besparen",mo:"/maand",yr:"/jaar",getfree:"Gratis beginnen",getbasic:"Basic kiezen",getpremium:"Premium kiezen",popular:"Meest populair",billed:"jaarlijks gefactureerd",permonth:"/maand",features_free:[{ok:true,text:"Basisartikelen (juridisch, wonen, belasting)"},{ok:true,text:"5 AI-chatvragen per dag"},{ok:true,text:"Snelle feiten & noodinformatie"},{ok:true,text:"8 talen"},{ok:false,text:"Community — posten, liken, reageren"},{ok:false,text:"Alle tools & rekenmachines"},{ok:false,text:"Premium gidsen & sjablonen"}],features_basic:[{ok:true,text:"Alles uit Gratis"},{ok:true,text:"Volledige toegang tot community"},{ok:true,text:"Onbeperkte AI-chat"},{ok:true,text:"4 planningstools (Budget, Verhuizing, Buurt, Taalcoach)"},{ok:true,text:"Alle kaartcategorieën (eten, cultuur, hotels & meer)"},{ok:true,text:"Wekelijkse nieuwsbrief"},{ok:false,text:"Premium tools, gidsen & sjablonen"}],features_premium:[{ok:true,text:"Alles uit Basic",gold:true},{ok:true,text:"3 pro-tools: Documentgenerator, Vastgoed-ROI, Deadlinetracker",gold:true},{ok:true,text:"Premium juridische & belastinggidsen",gold:true},{ok:true,text:"Downloadbare PDF-sjablonen",gold:true},{ok:true,text:"Geverifieerde servicegids",gold:true},{ok:true,text:"Prioriteit AI — diepere antwoorden",gold:true},{ok:true,text:"Geverifieerd ledenbadge",gold:true},{ok:true,text:"Vroege toegang tot nieuwe functies",gold:true}]},ru:{monthly:"Ежемесячно",yearly:"Ежегодно",save:"Скидка 33%",mo:"/месяц",yr:"/год",getfree:"Начать бесплатно",getbasic:"Выбрать Basic",getpremium:"Выбрать Premium",popular:"Самый популярный",billed:"оплата ежегодно",permonth:"/месяц",features_free:[{ok:true,text:"Базовые статьи (юридические, жильё, налоги)"},{ok:true,text:"5 вопросов к ИИ в день"},{ok:true,text:"Быстрые факты и экстренная информация"},{ok:true,text:"8 языков"},{ok:false,text:"Сообщество — публикации, лайки, ответы"},{ok:false,text:"Все инструменты и калькуляторы"},{ok:false,text:"Премиум-руководства и шаблоны"}],features_basic:[{ok:true,text:"Всё из бесплатного плана"},{ok:true,text:"Полный доступ к сообществу"},{ok:true,text:"Безлимитный чат с ИИ"},{ok:true,text:"4 инструмента планирования (Бюджет, Переезд, Район, Языковой коуч)"},{ok:true,text:"Все категории карты (рестораны, культура, отели и др.)"},{ok:true,text:"Еженедельная рассылка"},{ok:false,text:"Премиум-инструменты, руководства и шаблоны"}],features_premium:[{ok:true,text:"Всё из Basic",gold:true},{ok:true,text:"3 про-инструмента: Генератор документов, ROI недвижимости, Трекер дедлайнов",gold:true},{ok:true,text:"Премиум юридические и налоговые руководства",gold:true},{ok:true,text:"Загружаемые PDF-шаблоны",gold:true},{ok:true,text:"Каталог проверенных сервисов",gold:true},{ok:true,text:"Приоритетный ИИ — углублённые ответы",gold:true},{ok:true,text:"Значок верифицированного участника",gold:true},{ok:true,text:"Ранний доступ к новым функциям",gold:true}]},uk:{monthly:"Щомісячно",yearly:"Щорічно",save:"Знижка 33%",mo:"/місяць",yr:"/рік",getfree:"Почати безкоштовно",getbasic:"Вибрати Basic",getpremium:"Вибрати Premium",popular:"Найпопулярніший",billed:"оплата щорічно",permonth:"/місяць",features_free:[{ok:true,text:"Базові статті (юридичні, житло, податки)"},{ok:true,text:"5 запитань до ШІ на день"},{ok:true,text:"Швидкі факти та екстрена інформація"},{ok:true,text:"8 мов"},{ok:false,text:"Спільнота — публікації, лайки, відповіді"},{ok:false,text:"Всі інструменти та калькулятори"},{ok:false,text:"Преміум-посібники та шаблони"}],features_basic:[{ok:true,text:"Все з безкоштовного плану"},{ok:true,text:"Повний доступ до спільноти"},{ok:true,text:"Безлімітний чат зі ШІ"},{ok:true,text:"4 інструменти планування (Бюджет, Переїзд, Район, Мовний коуч)"},{ok:true,text:"Всі категорії карти (ресторани, культура, готелі та ін.)"},{ok:true,text:"Щотижнева розсилка"},{ok:false,text:"Преміум-інструменти, посібники та шаблони"}],features_premium:[{ok:true,text:"Все з Basic",gold:true},{ok:true,text:"3 про-інструменти: Генератор документів, ROI нерухомості, Трекер дедлайнів",gold:true},{ok:true,text:"Преміум юридичні та податкові посібники",gold:true},{ok:true,text:"Завантажувані PDF-шаблони",gold:true},{ok:true,text:"Каталог перевірених сервісів",gold:true},{ok:true,text:"Пріоритетний ШІ — поглиблені відповіді",gold:true},{ok:true,text:"Значок верифікованого учасника",gold:true},{ok:true,text:"Ранній доступ до нових функцій",gold:true}]},tr:{monthly:"Aylık",yearly:"Yıllık",save:"33% tasarruf",mo:"/ay",yr:"/yıl",getfree:"Ücretsiz başla",getbasic:"Basic seç",getpremium:"Premium seç",popular:"En popüler",billed:"yıllık faturalandırılır",permonth:"/ay",features_free:[{ok:true,text:"Temel makaleler (hukuki, konut, vergi)"},{ok:true,text:"Günde 5 yapay zeka sohbet sorusu"},{ok:true,text:"Hızlı bilgiler ve acil durum bilgileri"},{ok:true,text:"8 dil"},{ok:false,text:"Topluluk — gönderi, beğeni, yanıt"},{ok:false,text:"Tüm araçlar ve hesaplayıcılar"},{ok:false,text:"Premium rehberler ve şablonlar"}],features_basic:[{ok:true,text:"Ücretsiz plandaki her şey"},{ok:true,text:"Tam topluluk erişimi"},{ok:true,text:"Sınırsız yapay zeka sohbeti"},{ok:true,text:"4 planlama aracı (Bütçe, Taşınma, Mahalle, Dil Koçu)"},{ok:true,text:"Tüm harita kategorileri (yemek, kültür, oteller ve daha fazlası)"},{ok:true,text:"Haftalık bülten"},{ok:false,text:"Premium araçlar, rehberler ve şablonlar"}],features_premium:[{ok:true,text:"Basic plandaki her şey",gold:true},{ok:true,text:"3 pro araç: Belge Oluşturucu, Mülk ROI, Süre Takibi",gold:true},{ok:true,text:"Premium hukuki ve vergi rehberleri",gold:true},{ok:true,text:"İndirilebilir PDF şablonları",gold:true},{ok:true,text:"Doğrulanmış hizmetler dizini",gold:true},{ok:true,text:"Öncelikli yapay zeka — daha derin yanıtlar",gold:true},{ok:true,text:"Doğrulanmış üye rozeti",gold:true},{ok:true,text:"Yeni özelliklere erken erişim",gold:true}]},bg:{monthly:"Месечно",yearly:"Годишно",save:"33% отстъпка",mo:"/месец",yr:"/година",getfree:"Започни безплатно",getbasic:"Избери Basic",getpremium:"Избери Premium",popular:"Най-популярен",billed:"таксувано годишно",permonth:"/месец",features_free:[{ok:true,text:"Основни статии (правни, жилище, данъци)"},{ok:true,text:"5 въпроса към ИИ на ден"},{ok:true,text:"Бързи факти и спешна информация"},{ok:true,text:"8 езика"},{ok:false,text:"Общност — публикации, харесвания, отговори"},{ok:false,text:"Всички инструменти и калкулатори"},{ok:false,text:"Премиум наръчници и шаблони"}],features_basic:[{ok:true,text:"Всичко от безплатния план"},{ok:true,text:"Пълен достъп до общността"},{ok:true,text:"Неограничен чат с ИИ"},{ok:true,text:"4 инструмента за планиране (Бюджет, Преместване, Квартал, Езиков коуч)"},{ok:true,text:"Всички категории на картата (ресторанти, култура, хотели и др.)"},{ok:true,text:"Седмичен бюлетин"},{ok:false,text:"Премиум инструменти, наръчници и шаблони"}],features_premium:[{ok:true,text:"Всичко от Basic",gold:true},{ok:true,text:"3 про инструмента: Генератор на документи, ROI на имоти, Проследяване на срокове",gold:true},{ok:true,text:"Премиум правни и данъчни наръчници",gold:true},{ok:true,text:"Изтегляеми PDF шаблони",gold:true},{ok:true,text:"Каталог с проверени услуги",gold:true},{ok:true,text:"Приоритетен ИИ — задълбочени отговори",gold:true},{ok:true,text:"Значка на верифициран член",gold:true},{ok:true,text:"Ранен достъп до нови функции",gold:true}]}}
+  const labels={en:{monthly:"Monthly",yearly:"Yearly",save:"Save 30%",mo:"/month",yr:"/year",getfree:"Get started free",getbasic:"Start Basic",getpremium:"Go Premium",popular:"Most popular",billed:"billed annually",permonth:"/month"},fr:{monthly:"Mensuel",yearly:"Annuel",save:"30% d'économie",mo:"/mois",yr:"/an",getfree:"Commencer gratuitement",getbasic:"Choisir Basic",getpremium:"Choisir Premium",popular:"Le plus populaire",billed:"facturé annuellement",permonth:"/mois",features_free:[{ok:true,text:"Articles de base (légal, logement, impôts)"},{ok:true,text:"3 questions IA par jour"},{ok:true,text:"Infos pratiques & urgences"},{ok:true,text:"8 langues"},{ok:false,text:"Communauté — publier, aimer, répondre"},{ok:false,text:"Tous les outils & calculateurs"},{ok:false,text:"Guides & modèles premium"}],features_basic:[{ok:true,text:"Tout du plan Gratuit"},{ok:true,text:"Accès complet à la communauté"},{ok:true,text:"Chat IA illimité"},{ok:true,text:"4 outils de planification (Budget, Déménagement, Quartier, Coach linguistique)"},{ok:true,text:"Toutes les catégories de carte (restaurants, culture, hôtels & plus)"},{ok:true,text:"Newsletter hebdomadaire"},{ok:false,text:"Outils, guides & modèles premium"}],features_premium:[{ok:true,text:"Tout du plan Basic",gold:true},{ok:true,text:"3 outils pro : Générateur de documents, ROI immobilier, Suivi des délais",gold:true},{ok:true,text:"Guides juridiques & fiscaux premium",gold:true},{ok:true,text:"Modèles PDF téléchargeables",gold:true},{ok:true,text:"Annuaire de services vérifiés",gold:true},{ok:true,text:"IA prioritaire — réponses approfondies",gold:true},{ok:true,text:"Badge membre vérifié",gold:true},{ok:true,text:"Accès anticipé aux nouvelles fonctionnalités",gold:true}]},es:{monthly:"Mensual",yearly:"Anual",save:"Ahorra 30%",mo:"/mes",yr:"/año",getfree:"Empezar gratis",getbasic:"Elegir Basic",getpremium:"Elegir Premium",popular:"El más popular",billed:"facturado anualmente",permonth:"/mes",features_free:[{ok:true,text:"Artículos básicos (legal, vivienda, impuestos)"},{ok:true,text:"3 preguntas de chat IA por día"},{ok:true,text:"Datos rápidos e información de emergencia"},{ok:true,text:"8 idiomas"},{ok:false,text:"Comunidad — publicar, dar me gusta, responder"},{ok:false,text:"Todas las herramientas y calculadoras"},{ok:false,text:"Guías y plantillas premium"}],features_basic:[{ok:true,text:"Todo del plan Gratuito"},{ok:true,text:"Acceso completo a la comunidad"},{ok:true,text:"Chat IA ilimitado"},{ok:true,text:"4 herramientas de planificación (Presupuesto, Reubicación, Barrio, Coach de idiomas)"},{ok:true,text:"Todas las categorías del mapa (restaurantes, cultura, hoteles y más)"},{ok:true,text:"Boletín semanal"},{ok:false,text:"Herramientas, guías y plantillas premium"}],features_premium:[{ok:true,text:"Todo del plan Basic",gold:true},{ok:true,text:"3 herramientas pro: Generador de documentos, ROI inmobiliario, Seguimiento de plazos",gold:true},{ok:true,text:"Guías legales y fiscales premium",gold:true},{ok:true,text:"Plantillas PDF descargables",gold:true},{ok:true,text:"Directorio de servicios verificados",gold:true},{ok:true,text:"IA prioritaria — respuestas más profundas",gold:true},{ok:true,text:"Insignia de miembro verificado",gold:true},{ok:true,text:"Acceso anticipado a nuevas funciones",gold:true}]},de:{monthly:"Monatlich",yearly:"Jährlich",save:"30% sparen",mo:"/Monat",yr:"/Jahr",getfree:"Kostenlos starten",getbasic:"Basic wählen",getpremium:"Premium wählen",popular:"Am beliebtesten",billed:"jährlich abgerechnet",permonth:"/Monat",features_free:[{ok:true,text:"Grundlegende Artikel (Recht, Wohnen, Steuern)"},{ok:true,text:"3 KI-Chatfragen pro Tag"},{ok:true,text:"Schnelle Fakten & Notfallinformationen"},{ok:true,text:"8 Sprachen"},{ok:false,text:"Community — posten, liken, antworten"},{ok:false,text:"Alle Tools & Rechner"},{ok:false,text:"Premium-Guides & Vorlagen"}],features_basic:[{ok:true,text:"Alles aus Free"},{ok:true,text:"Voller Community-Zugang"},{ok:true,text:"Unbegrenzter KI-Chat"},{ok:true,text:"4 Planungstools (Budget, Umzug, Stadtviertel, Sprachcoach)"},{ok:true,text:"Alle Kartenkategorien (Restaurants, Kultur, Hotels & mehr)"},{ok:true,text:"Wöchentlicher Newsletter"},{ok:false,text:"Premium-Tools, Guides & Vorlagen"}],features_premium:[{ok:true,text:"Alles aus Basic",gold:true},{ok:true,text:"3 Profi-Tools: Dokumentengenerator, Immobilien-ROI, Fristentracker",gold:true},{ok:true,text:"Premium-Rechts- & Steuerguides",gold:true},{ok:true,text:"Herunterladbare PDF-Vorlagen",gold:true},{ok:true,text:"Geprüftes Dienstleistungsverzeichnis",gold:true},{ok:true,text:"Prioritäts-KI — tiefere Antworten",gold:true},{ok:true,text:"Verifiziertes Mitgliederabzeichen",gold:true},{ok:true,text:"Früher Zugang zu neuen Funktionen",gold:true}]},nl:{monthly:"Maandelijks",yearly:"Jaarlijks",save:"30% besparen",mo:"/maand",yr:"/jaar",getfree:"Gratis beginnen",getbasic:"Basic kiezen",getpremium:"Premium kiezen",popular:"Meest populair",billed:"jaarlijks gefactureerd",permonth:"/maand",features_free:[{ok:true,text:"Basisartikelen (juridisch, wonen, belasting)"},{ok:true,text:"3 AI-chatvragen per dag"},{ok:true,text:"Snelle feiten & noodinformatie"},{ok:true,text:"8 talen"},{ok:false,text:"Community — posten, liken, reageren"},{ok:false,text:"Alle tools & rekenmachines"},{ok:false,text:"Premium gidsen & sjablonen"}],features_basic:[{ok:true,text:"Alles uit Gratis"},{ok:true,text:"Volledige toegang tot community"},{ok:true,text:"Onbeperkte AI-chat"},{ok:true,text:"4 planningstools (Budget, Verhuizing, Buurt, Taalcoach)"},{ok:true,text:"Alle kaartcategorieën (eten, cultuur, hotels & meer)"},{ok:true,text:"Wekelijkse nieuwsbrief"},{ok:false,text:"Premium tools, gidsen & sjablonen"}],features_premium:[{ok:true,text:"Alles uit Basic",gold:true},{ok:true,text:"3 pro-tools: Documentgenerator, Vastgoed-ROI, Deadlinetracker",gold:true},{ok:true,text:"Premium juridische & belastinggidsen",gold:true},{ok:true,text:"Downloadbare PDF-sjablonen",gold:true},{ok:true,text:"Geverifieerde servicegids",gold:true},{ok:true,text:"Prioriteit AI — diepere antwoorden",gold:true},{ok:true,text:"Geverifieerd ledenbadge",gold:true},{ok:true,text:"Vroege toegang tot nieuwe functies",gold:true}]},ru:{monthly:"Ежемесячно",yearly:"Ежегодно",save:"Скидка 30%",mo:"/месяц",yr:"/год",getfree:"Начать бесплатно",getbasic:"Выбрать Basic",getpremium:"Выбрать Premium",popular:"Самый популярный",billed:"оплата ежегодно",permonth:"/месяц",features_free:[{ok:true,text:"Базовые статьи (юридические, жильё, налоги)"},{ok:true,text:"3 вопроса к ИИ в день"},{ok:true,text:"Быстрые факты и экстренная информация"},{ok:true,text:"8 языков"},{ok:false,text:"Сообщество — публикации, лайки, ответы"},{ok:false,text:"Все инструменты и калькуляторы"},{ok:false,text:"Премиум-руководства и шаблоны"}],features_basic:[{ok:true,text:"Всё из бесплатного плана"},{ok:true,text:"Полный доступ к сообществу"},{ok:true,text:"Безлимитный чат с ИИ"},{ok:true,text:"4 инструмента планирования (Бюджет, Переезд, Район, Языковой коуч)"},{ok:true,text:"Все категории карты (рестораны, культура, отели и др.)"},{ok:true,text:"Еженедельная рассылка"},{ok:false,text:"Премиум-инструменты, руководства и шаблоны"}],features_premium:[{ok:true,text:"Всё из Basic",gold:true},{ok:true,text:"3 про-инструмента: Генератор документов, ROI недвижимости, Трекер дедлайнов",gold:true},{ok:true,text:"Премиум юридические и налоговые руководства",gold:true},{ok:true,text:"Загружаемые PDF-шаблоны",gold:true},{ok:true,text:"Каталог проверенных сервисов",gold:true},{ok:true,text:"Приоритетный ИИ — углублённые ответы",gold:true},{ok:true,text:"Значок верифицированного участника",gold:true},{ok:true,text:"Ранний доступ к новым функциям",gold:true}]},uk:{monthly:"Щомісячно",yearly:"Щорічно",save:"Знижка 30%",mo:"/місяць",yr:"/рік",getfree:"Почати безкоштовно",getbasic:"Вибрати Basic",getpremium:"Вибрати Premium",popular:"Найпопулярніший",billed:"оплата щорічно",permonth:"/місяць",features_free:[{ok:true,text:"Базові статті (юридичні, житло, податки)"},{ok:true,text:"3 запитання до ШІ на день"},{ok:true,text:"Швидкі факти та екстрена інформація"},{ok:true,text:"8 мов"},{ok:false,text:"Спільнота — публікації, лайки, відповіді"},{ok:false,text:"Всі інструменти та калькулятори"},{ok:false,text:"Преміум-посібники та шаблони"}],features_basic:[{ok:true,text:"Все з безкоштовного плану"},{ok:true,text:"Повний доступ до спільноти"},{ok:true,text:"Безлімітний чат зі ШІ"},{ok:true,text:"4 інструменти планування (Бюджет, Переїзд, Район, Мовний коуч)"},{ok:true,text:"Всі категорії карти (ресторани, культура, готелі та ін.)"},{ok:true,text:"Щотижнева розсилка"},{ok:false,text:"Преміум-інструменти, посібники та шаблони"}],features_premium:[{ok:true,text:"Все з Basic",gold:true},{ok:true,text:"3 про-інструменти: Генератор документів, ROI нерухомості, Трекер дедлайнів",gold:true},{ok:true,text:"Преміум юридичні та податкові посібники",gold:true},{ok:true,text:"Завантажувані PDF-шаблони",gold:true},{ok:true,text:"Каталог перевірених сервісів",gold:true},{ok:true,text:"Пріоритетний ШІ — поглиблені відповіді",gold:true},{ok:true,text:"Значок верифікованого учасника",gold:true},{ok:true,text:"Ранній доступ до нових функцій",gold:true}]},tr:{monthly:"Aylık",yearly:"Yıllık",save:"30% tasarruf",mo:"/ay",yr:"/yıl",getfree:"Ücretsiz başla",getbasic:"Basic seç",getpremium:"Premium seç",popular:"En popüler",billed:"yıllık faturalandırılır",permonth:"/ay",features_free:[{ok:true,text:"Temel makaleler (hukuki, konut, vergi)"},{ok:true,text:"Günde 3 yapay zeka sohbet sorusu"},{ok:true,text:"Hızlı bilgiler ve acil durum bilgileri"},{ok:true,text:"8 dil"},{ok:false,text:"Topluluk — gönderi, beğeni, yanıt"},{ok:false,text:"Tüm araçlar ve hesaplayıcılar"},{ok:false,text:"Premium rehberler ve şablonlar"}],features_basic:[{ok:true,text:"Ücretsiz plandaki her şey"},{ok:true,text:"Tam topluluk erişimi"},{ok:true,text:"Sınırsız yapay zeka sohbeti"},{ok:true,text:"4 planlama aracı (Bütçe, Taşınma, Mahalle, Dil Koçu)"},{ok:true,text:"Tüm harita kategorileri (yemek, kültür, oteller ve daha fazlası)"},{ok:true,text:"Haftalık bülten"},{ok:false,text:"Premium araçlar, rehberler ve şablonlar"}],features_premium:[{ok:true,text:"Basic plandaki her şey",gold:true},{ok:true,text:"3 pro araç: Belge Oluşturucu, Mülk ROI, Süre Takibi",gold:true},{ok:true,text:"Premium hukuki ve vergi rehberleri",gold:true},{ok:true,text:"İndirilebilir PDF şablonları",gold:true},{ok:true,text:"Doğrulanmış hizmetler dizini",gold:true},{ok:true,text:"Öncelikli yapay zeka — daha derin yanıtlar",gold:true},{ok:true,text:"Doğrulanmış üye rozeti",gold:true},{ok:true,text:"Yeni özelliklere erken erişim",gold:true}]},bg:{monthly:"Месечно",yearly:"Годишно",save:"30% отстъпка",mo:"/месец",yr:"/година",getfree:"Започни безплатно",getbasic:"Избери Basic",getpremium:"Избери Premium",popular:"Най-популярен",billed:"таксувано годишно",permonth:"/месец",features_free:[{ok:true,text:"Основни статии (правни, жилище, данъци)"},{ok:true,text:"3 въпроса към ИИ на ден"},{ok:true,text:"Бързи факти и спешна информация"},{ok:true,text:"8 езика"},{ok:false,text:"Общност — публикации, харесвания, отговори"},{ok:false,text:"Всички инструменти и калкулатори"},{ok:false,text:"Премиум наръчници и шаблони"}],features_basic:[{ok:true,text:"Всичко от безплатния план"},{ok:true,text:"Пълен достъп до общността"},{ok:true,text:"Неограничен чат с ИИ"},{ok:true,text:"4 инструмента за планиране (Бюджет, Преместване, Квартал, Езиков коуч)"},{ok:true,text:"Всички категории на картата (ресторанти, култура, хотели и др.)"},{ok:true,text:"Седмичен бюлетин"},{ok:false,text:"Премиум инструменти, наръчници и шаблони"}],features_premium:[{ok:true,text:"Всичко от Basic",gold:true},{ok:true,text:"3 про инструмента: Генератор на документи, ROI на имоти, Проследяване на срокове",gold:true},{ok:true,text:"Премиум правни и данъчни наръчници",gold:true},{ok:true,text:"Изтегляеми PDF шаблони",gold:true},{ok:true,text:"Каталог с проверени услуги",gold:true},{ok:true,text:"Приоритетен ИИ — задълбочени отговори",gold:true},{ok:true,text:"Значка на верифициран член",gold:true},{ok:true,text:"Ранен достъп до нови функции",gold:true}]}}
   const L=labels[lang]||labels.en
 
   const tiers=[
@@ -4554,8 +4577,8 @@ function PricingPage({user,setView,lang,openCheckout=()=>{}}){
   return(
     <div style={{minHeight:"100vh",background:C.page}}>
       <div style={{background:`linear-gradient(135deg,${C.primary},#2a7a52)`,padding:"44px 20px 56px",textAlign:"center"}}>
-        <h1 className="serif" style={{color:"#fff",fontSize:"clamp(28px,5vw,44px)",fontWeight:400,margin:"0 0 10px"}}>Simple, honest pricing</h1>
-        <p style={{color:"rgba(255,255,255,0.75)",fontSize:16,margin:"0 0 28px",fontWeight:300}}>Join thousands of expats navigating life in Bulgaria</p>
+        <h1 className="serif" style={{color:"#fff",fontSize:"clamp(28px,5vw,44px)",fontWeight:400,margin:"0 0 10px"}}>{(t&&t.pricingTitle)||"Simple, honest pricing"}</h1>
+        <p style={{color:"rgba(255,255,255,0.75)",fontSize:16,margin:"0 0 28px",fontWeight:300}}>{(t&&t.pricingSub)||"Join thousands of expats navigating life in Bulgaria"}</p>
         <div style={{display:"inline-flex",background:"rgba(255,255,255,0.12)",borderRadius:30,padding:4,gap:4}}>
           {["monthly","yearly"].map(b=>(
             <button key={b} onClick={()=>setBilling(b)}
@@ -4615,6 +4638,34 @@ function PricingPage({user,setView,lang,openCheckout=()=>{}}){
             )
           })}
         </div>
+
+        {/* ── Short-term Premium passes for tourists ─────────────────────
+            For visitors on a trip, not residents — no monthly commitment.
+            Priced so stacking passes is always worse value than a real
+            subscription (protects the Basic/Premium plans above). */}
+        <div style={{marginTop:44,textAlign:"center"}}>
+          <div style={{fontSize:14,fontWeight:600,color:C.muted,letterSpacing:"0.03em"}}>🧳 Just visiting Bulgaria?</div>
+          <p style={{fontSize:13,color:C.muted,margin:"6px 0 20px",maxWidth:420,marginLeft:"auto",marginRight:"auto"}}>
+            Get full Premium access for your trip — no subscription, no commitment.
+          </p>
+        </div>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:16,maxWidth:520,margin:"0 auto"}}>
+          {Object.entries(PASSES).map(([id,pass])=>(
+            <div key={id} style={{background:C.surface,border:`1.5px solid ${C.border}`,borderRadius:16,padding:"20px 22px",textAlign:"left"}}>
+              <div style={{fontSize:13,fontWeight:600,color:C.text,marginBottom:2}}>{pass.name}</div>
+              <div style={{fontSize:12,color:C.muted,marginBottom:14}}>{pass.blurb}</div>
+              <div style={{display:"flex",alignItems:"baseline",gap:4,marginBottom:14}}>
+                <span style={{fontSize:26,fontWeight:700,color:C.text}}>€{pass.price.toFixed(2)}</span>
+                <span style={{fontSize:12,color:C.muted}}>one-time / {pass.duration}</span>
+              </div>
+              <button onClick={()=>openCheckout(id)}
+                style={{width:"100%",background:"none",border:`1.5px solid ${C.primary}`,color:C.primary,padding:"10px",borderRadius:10,cursor:"pointer",fontSize:13,fontWeight:600}}>
+                Get {pass.name} →
+              </button>
+            </div>
+          ))}
+        </div>
+
         <p style={{textAlign:"center",fontSize:13,color:C.muted,marginTop:20}}>
           All plans include 8 languages. Cancel anytime. Secure payment via Stripe.
         </p>
@@ -5327,7 +5378,11 @@ export default function App(){
     try{
       const p=new URLSearchParams(window.location.search)
       if(p.get("success")==="1"){
-        setSubscription({plan:p.get("plan")||"basic",billing:p.get("billing")||"monthly"})
+        const boughtPlan=p.get("plan")||"basic"
+        // Day/week passes grant full Premium access (session-only for now —
+        // see the persistence TODO near PASSES above).
+        const isPass=boughtPlan==="day"||boughtPlan==="week"
+        setSubscription({plan:isPass?"premium":boughtPlan, billing:isPass?boughtPlan:(p.get("billing")||"monthly"), isPass})
         window.history.replaceState({},"",window.location.pathname)
       }
     }catch(e){}
@@ -5526,7 +5581,7 @@ export default function App(){
       ):view==="tools"?(
         <ToolsPage user={user} setView={setView} trackEvent={trackEvent} subscription={subscription} lang={lang} setLang={setLang}/>
       ):view==="pricing"?(
-        <PricingPage user={user} setView={setView} lang={lang} openCheckout={openCheckout}/>
+        <PricingPage user={user} setView={setView} lang={lang} t={t} openCheckout={openCheckout}/>
       ):view==="community"?(
         <CommunityPage user={user} setView={setView} posts={posts} setPosts={setPosts}/>
       ):view==="chat"?(
@@ -5597,11 +5652,15 @@ const GA_ID = "G-XXXXXXXXXX" // ← Replace with your GA4 Measurement ID
 //   basic_yearly    → €41.92 / year
 //   premium_monthly → €7.99  / month
 //   premium_yearly  → €67.12 / year
+//   pass_day        → €2.99  one-time (NOT a subscription — one-time price)
+//   pass_week       → €6.99  one-time (NOT a subscription — one-time price)
 const STRIPE_LINKS = {
   basic_monthly:   "https://buy.stripe.com/REPLACE_BASIC_MONTHLY",
   basic_yearly:    "https://buy.stripe.com/REPLACE_BASIC_YEARLY",
   premium_monthly: "https://buy.stripe.com/REPLACE_PREMIUM_MONTHLY",
   premium_yearly:  "https://buy.stripe.com/REPLACE_PREMIUM_YEARLY",
+  pass_day:        "https://buy.stripe.com/REPLACE_PASS_DAY",
+  pass_week:       "https://buy.stripe.com/REPLACE_PASS_WEEK",
 }
 
 // ── Crypto payment links (Coinbase Commerce or NOWPayments) ───────
@@ -5633,11 +5692,13 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription}){
   const [payMethod,setPayMethod]=useState("stripe") // "stripe" | "crypto"
   const [cryptoStep,setCryptoStep]=useState("select") // "select" | "address" | "confirm"
   const [selectedCoin,setSelectedCoin]=useState("BTC")
+  const isPass = plan==="day"||plan==="week"
   const p = PLANS[plan]||PLANS.basic
+  const pass = PASSES[plan]
   const isYearly = billing==="yearly"
-  const price = isYearly ? p.yearlyTotal : p.monthly
+  const price = isPass ? pass.price : (isYearly ? p.yearlyTotal : p.monthly)
   const perMonth = isYearly ? p.yearly : p.monthly
-  const linkKey = `${plan}_${billing}`
+  const linkKey = isPass ? `pass_${plan}` : `${plan}_${billing}`
   const stripeUrl = STRIPE_LINKS[linkKey]||"#"
 
   const handlePay = () => {
@@ -5681,29 +5742,32 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription}){
         <div style={{background:C.surface,borderRadius:22,border:`1px solid ${C.border}`,overflow:"hidden",boxShadow:"0 12px 40px rgba(0,0,0,0.1)"}}>
 
           {/* Plan header */}
-          <div style={{background:plan==="premium"?`linear-gradient(135deg,${C.primary},#2a7a52)`:`linear-gradient(135deg,#1850a0,#2563eb)`,padding:"28px 28px 24px"}}>
+          <div style={{background:(plan==="premium"||isPass)?`linear-gradient(135deg,${C.primary},#2a7a52)`:`linear-gradient(135deg,#1850a0,#2563eb)`,padding:"28px 28px 24px"}}>
             <div style={{fontSize:12,color:"rgba(255,255,255,0.7)",fontWeight:600,letterSpacing:"0.06em",textTransform:"uppercase",marginBottom:6}}>
-              Subscribing to
+              {isPass?"Getting":"Subscribing to"}
             </div>
-            <div style={{fontSize:24,fontWeight:700,color:"#fff",marginBottom:14}}>{p.name} plan</div>
-            
-            {/* Billing toggle */}
-            <div style={{display:"inline-flex",background:"rgba(0,0,0,0.2)",borderRadius:24,padding:3,gap:2}}>
-              {["monthly","yearly"].map(b=>(
-                <button key={b} onClick={()=>setBilling(b)}
-                  style={{background:billing===b?"#fff":"transparent",border:"none",color:billing===b?(plan==="premium"?C.primary:"#1850a0"):"rgba(255,255,255,0.8)",padding:"6px 16px",borderRadius:20,cursor:"pointer",fontSize:13,fontWeight:billing===b?600:400,transition:"all 0.2s",display:"flex",alignItems:"center",gap:6}}>
-                  {b==="monthly"?"Monthly":"Yearly"}
-                  {b==="yearly"&&<span style={{background:"#f0c060",color:"#1a3a20",fontSize:9,padding:"1px 6px",borderRadius:6,fontWeight:700}}>-33%</span>}
-                </button>
-              ))}
-            </div>
+            <div style={{fontSize:24,fontWeight:700,color:"#fff",marginBottom:14}}>{isPass?pass.name:`${p.name} plan`}</div>
+            {isPass&&<div style={{fontSize:13,color:"rgba(255,255,255,0.75)",marginBottom:14}}>{pass.blurb} — full Premium access for {pass.duration}</div>}
 
-            {/* Price — always show monthly rate */}
+            {/* Billing toggle — not shown for one-time passes */}
+            {!isPass&&(
+              <div style={{display:"inline-flex",background:"rgba(0,0,0,0.2)",borderRadius:24,padding:3,gap:2}}>
+                {["monthly","yearly"].map(b=>(
+                  <button key={b} onClick={()=>setBilling(b)}
+                    style={{background:billing===b?"#fff":"transparent",border:"none",color:billing===b?(plan==="premium"?C.primary:"#1850a0"):"rgba(255,255,255,0.8)",padding:"6px 16px",borderRadius:20,cursor:"pointer",fontSize:13,fontWeight:billing===b?600:400,transition:"all 0.2s",display:"flex",alignItems:"center",gap:6}}>
+                    {b==="monthly"?"Monthly":"Yearly"}
+                    {b==="yearly"&&<span style={{background:"#f0c060",color:"#1a3a20",fontSize:9,padding:"1px 6px",borderRadius:6,fontWeight:700}}>-30%</span>}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Price — always show monthly rate (or the flat pass price) */}
             <div style={{marginTop:18,display:"flex",alignItems:"baseline",gap:6}}>
-              <span style={{fontSize:40,fontWeight:800,color:"#fff",letterSpacing:"-1px"}}>€{isYearly?p.yearly.toFixed(2):p.monthly.toFixed(2)}</span>
-              <span style={{fontSize:14,color:"rgba(255,255,255,0.7)"}}>/month</span>
+              <span style={{fontSize:40,fontWeight:800,color:"#fff",letterSpacing:"-1px"}}>€{isPass?pass.price.toFixed(2):(isYearly?p.yearly.toFixed(2):p.monthly.toFixed(2))}</span>
+              <span style={{fontSize:14,color:"rgba(255,255,255,0.7)"}}>{isPass?`one-time / ${pass.duration}`:"/month"}</span>
             </div>
-            {isYearly&&(
+            {isYearly&&!isPass&&(
               <div style={{fontSize:13,color:"rgba(255,255,255,0.65)",marginTop:3}}>
                 Billed annually at <strong style={{color:"#f0c060"}}>€{p.yearlyTotal}/year</strong> — saves €{(p.monthly*12-p.yearlyTotal).toFixed(2)}
               </div>
@@ -5713,7 +5777,7 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription}){
           {/* Features */}
           <div style={{padding:"22px 28px",borderBottom:`1px solid ${C.border}`}}>
             <div style={{fontSize:12,fontWeight:600,color:C.muted,letterSpacing:"0.05em",textTransform:"uppercase",marginBottom:12}}>What you get</div>
-            {(features[plan]||[]).map((f,i)=>(
+            {(features[isPass?"premium":plan]||[]).map((f,i)=>(
               <div key={i} style={{display:"flex",gap:10,padding:"6px 0",fontSize:13,color:C.text}}>
                 <span style={{color:"#22c55e",fontSize:14,flexShrink:0}}>✓</span>{f}
               </div>
