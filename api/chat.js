@@ -10,5 +10,12 @@ export default async function handler(req, res) {
     body: JSON.stringify(req.body)
   })
   const data = await response.json()
-  res.status(200).json(data)
+  // Forward Anthropic's real status (previously this always returned 200, even
+  // on failure, which hid errors like an invalid model name or missing API key
+  // behind a generic "Error generating response." on the frontend). Logging
+  // here means a bad request shows up in Vercel's function logs immediately.
+  if (!response.ok) {
+    console.error('Anthropic API error:', response.status, JSON.stringify(data))
+  }
+  res.status(response.status).json(data)
 }

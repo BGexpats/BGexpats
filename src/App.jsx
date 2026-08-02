@@ -1768,9 +1768,9 @@ function ChatPage({lang,t}){
     setInput("")
     setLoading(true)
     try{
-      const res=await fetch("https://api.anthropic.com/v1/messages",{
+      const res=await fetch(typeof AI_ENDPOINT !== "undefined" ? AI_ENDPOINT : "https://api.anthropic.com/v1/messages",{
         method:"POST",headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1000,system:makePrompt(LANGS[lang].name),messages:newMsgs.map(m=>({role:m.role,content:m.content}))})
+        body:JSON.stringify({model:"claude-sonnet-5",max_tokens:1000,system:makePrompt(LANGS[lang].name),messages:newMsgs.map(m=>({role:m.role,content:m.content}))})
       })
       const data=await res.json()
       const reply=((data.content&&data.content[0]&&data.content[0].text)||'')||"Sorry, try again."
@@ -5772,7 +5772,7 @@ const callClaude = async (system, prompt) => {
   const r = await fetch(typeof AI_ENDPOINT !== "undefined" ? AI_ENDPOINT : "https://api.anthropic.com/v1/messages", {
     method:"POST",
     headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1000,system,messages:[{role:"user",content:prompt}]})
+    body:JSON.stringify({model:"claude-sonnet-5",max_tokens:1000,system,messages:[{role:"user",content:prompt}]})
   })
   const d = await r.json()
   return ((d.content&&d.content[0]&&d.content[0].text)||'') || "Error generating response."
