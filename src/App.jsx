@@ -496,6 +496,8 @@ Get it apostilled before leaving your home country.
        body:`Bulgaria's public health insurance is called NHIF (НЗОК in Bulgarian).\n\n**If employed:** Employer registers you and pays contributions automatically.\n\n**If self-employed/company owner:** You pay ~€16/month yourself.\n\n**EU visitors:** Your EHIC card gives you access on the same terms as Bulgarian citizens.\n\n**What NHIF covers:**\n• GP visits (free with registration)\n• Hospital treatment (co-pay: €1/day)\n• Specialist visits (with GP referral)\n• Maternity care and emergency treatment\n\n**Not covered:** Most dental, private clinics, most medicines.\n\n💡 Register with a local GP near your address — required for referrals in the public system.`},
       {titles:{en:"English-speaking doctors in Bulgaria",fr:"Médecins anglophones à Sofia",es:"Médicos angloparlantes en Sofía",de:"Englischsprachige Ärzte in Sofia",nl:"Engelstalige artsen in Sofia"},
        body:`Finding English-speaking care in Bulgaria is easier than expected — especially in the big cities, where most younger doctors speak good English.\n\n**Sofia — private hospitals with English staff:**\n\n**Tokuda Hospital (Acibadem City Clinic Tokuda)** — the largest private hospital in the country, many English-speaking specialists. A consultation is around €30. Tel: +359 2 403 4000\n\n**Acibadem City Clinic** — international standard, well-equipped, English service.\n\n**Vita Private Hospital** — popular with expats, good emergency department.\n\n**Plovdiv:**\n• Large private hospitals and clinics have English-speaking specialists, with appointments usually available within a few days. Consultations are inexpensive — typically €25–75 depending on the specialty. Students and expats are common here, so younger doctors almost always speak good English.\n\n**Varna:**\n• St. Marina University Hospital is the largest in the northeast, with a 24/7 emergency department. Private clinics such as those in the city centre have English-speaking, expat-friendly doctors. Ask for a specialist by name where you can — recommendations circulate in Varna expat groups.\n\n**Burgas & the coast:**\n• Most medical professionals under 40 speak English. For anything specialised, head into Burgas rather than relying on a village clinic. Appointments are quick and fees are low (a full cardiology work-up can be as little as €25).\n\n**Finding a doctor anywhere in Bulgaria:**\n• [[https://blsbg.eu/en/medics/search|Bulgarian Medical Association register]] — search licensed doctors by region and specialty\n• [[https://superdoc.bg|SuperDoc]] — the main online booking platform; you can filter and book appointments (Bulgarian, but easy to navigate)\n• Teleconsultation services offer video appointments with Bulgarian doctors in English for quick advice or prescription renewals\n\n**Consultation costs (nationwide):**\n• GP: €25–40\n• Specialist: €40–75\n• Blood panel: €15–40\n\n**Emergency:** Dial 112. Many operators speak English.\n\n💡 Always confirm the doctor speaks English before your appointment. Almost all doctors under 40 do.`},
+      {titles:{en:"Public vs. private healthcare in Bulgaria: what's the difference?",fr:"Santé publique ou privée en Bulgarie : quelles différences ?",es:"Sanidad pública o privada en Bulgaria: ¿cuáles son las diferencias?",de:"Öffentliche vs. private Gesundheitsversorgung in Bulgarien: Was ist der Unterschied?",nl:"Publieke vs. private zorg in Bulgarije: wat is het verschil?",ru:"Государственная и частная медицина в Болгарии: в чём разница?",uk:"Державна та приватна медицина в Болгарії: у чому різниця?",tr:"Bulgaristan'da Kamu ve Özel Sağlık Hizmetleri: Fark Nedir?",bg:"Държавно срещу частно здравеопазване в България: каква е разликата?"},
+       body:`Bulgaria has both a public healthcare system and a growing private sector, and choosing between them mostly comes down to three things: cost, waiting time, and facility comfort. Public care is funded through mandatory insurance and keeps your out-of-pocket costs very low. Private care costs more, but gets you in faster, with newer facilities and more English-speaking staff.\n\n## Public healthcare\n\n**Funding & cost:** Financed by a compulsory 8% social insurance contribution paid into the National Health Insurance Fund (NHIF). Once you're covered, patient fees are minimal — around BGN 2.90 for a GP visit, and BGN 1 per day for hospital stays (up to 10 days).\n\n**Access & referrals:** You need to register with a primary GP first. To see a specialist or get diagnostic tests, your GP has to issue a formal referral slip — you can't book a specialist directly.\n\n**Wait times & conditions:** Non-urgent specialist appointments and elective procedures can involve longer waiting lists. Facilities and equipment at state hospitals also tend to be older and less comfortable than private alternatives.\n\n**Language:** Outside the major cities, fewer public-system doctors speak fluent English, so language barriers are more likely.\n\n## Private healthcare\n\n**Funding & cost:** Runs on a pay-per-service basis, or through optional voluntary health insurance. Prices are higher than the public system — though still well below Western European levels. Expect roughly BGN 50–100 (€25–€50) for a GP consultation, and BGN 100–200 (€50–€100) for a specialist visit.\n\n**Access & referrals:** No GP referral needed — you can book directly with a specialist.\n\n**Wait times & conditions:** Private hospitals — Acibadem City Clinic and Tokuda are well-known examples — tend to be modern and well-equipped, with shorter waits, private rooms, and a generally higher level of comfort.\n\n**Language:** Doctors and staff at private clinics are far more likely to speak fluent English.\n\n💡 Tip: Many expats use a hybrid approach — staying registered with NHIF for the safety net and low-cost basics, while paying out of pocket for private specialists when speed or English-language care matters most.`},
     ]
   },
   {
@@ -1092,10 +1094,11 @@ function LangBanner({lang,setLang}){
 
 function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}){
   const [mob,setMob]=useState(false)
+  const [mobSection,setMobSection]=useState(null) // null|"expats"|"partners" — which accordion group is open in the mobile menu
   const mobRef=useRef(null)
   useEffect(()=>{
     if(!mob)return
-    const onDocClick=e=>{ if(mobRef.current&&!mobRef.current.contains(e.target))setMob(false) }
+    const onDocClick=e=>{ if(mobRef.current&&!mobRef.current.contains(e.target)){setMob(false);setMobSection(null)} }
     document.addEventListener("mousedown",onDocClick)
     document.addEventListener("touchstart",onDocClick)
     return()=>{ document.removeEventListener("mousedown",onDocClick); document.removeEventListener("touchstart",onDocClick) }
@@ -1206,28 +1209,59 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
         </div>
         {/* ── Hamburger (mobile only) ─────────────── */}
         <div ref={mobRef} className="bg-nav-mobile" style={{position:"relative",flexShrink:0}}>
-          <button onClick={()=>setMob(m=>!m)} aria-label="Menu" style={{background:"rgba(255,255,255,0.12)",border:"1px solid rgba(255,255,255,0.2)",color:"#fff",width:38,height:38,borderRadius:10,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",padding:0}}>
+          <button onClick={()=>{setMob(m=>!m);setMobSection(null)}} aria-label="Menu" style={{background:"rgba(255,255,255,0.12)",border:"1px solid rgba(255,255,255,0.2)",color:"#fff",width:38,height:38,borderRadius:10,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",padding:0}}>
             <svg width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" d={mob?"M6 6l12 12M6 18L18 6":"M4 7h16M4 12h16M4 17h16"}/></svg>
           </button>
           {mob&&(
             <div style={{position:"fixed",left:"50%",transform:"translateX(-50%)",top:58,background:C.primary,border:`1px solid ${C.primaryDark}`,borderRadius:12,boxShadow:"0 8px 28px rgba(0,0,0,0.35)",width:"calc(100vw - 24px)",maxWidth:340,zIndex:9999,overflow:"hidden",padding:"4px 0"}}>
-              {[
-                {label:aiLabel[lang]||"AI",view:"chat"},
-                {label:clean(t.nav?.tools)||"Tools",view:"tools"},
-                {label:clean(t.nav?.map)||"Maps",view:"map"},
-                {label:clean(t.nav?.apps)||"Apps",view:"apps"},
-                {label:"Pricing",view:"pricing"},
-                {label:clean(t.nav?.community)||"Community",view:"community"},
-                {label:clean(t.nav?.connect)||"Connect",view:"connect"},
-                {label:clean(t.nav?.partners)||"Advertise",view:"advertise"},
-                {label:"Real Estate Agents",view:"agents"},
-                ...(user&&!subscription?[{label:clean(t.nav?.upgrade)||"Upgrade",view:"pricing"}]:[]),
-              ].map((item,i)=>(
-                <button key={i} onClick={()=>{setView(item.view);setMob(false)}}
-                  style={{width:"100%",background:view===item.view?"rgba(255,255,255,0.15)":"transparent",border:"none",padding:"12px 18px",cursor:"pointer",textAlign:"left",fontSize:14,color:"rgba(255,255,255,0.92)",fontWeight:view===item.view?700:400}}>
-                  {item.label}
-                </button>
-              ))}
+              {/* ── Expats group — everything for people living/moving here ── */}
+              <button onClick={()=>setMobSection(s=>s==="expats"?null:"expats")}
+                style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",background:mobSection==="expats"?"rgba(255,255,255,0.1)":"transparent",border:"none",padding:"13px 18px",cursor:"pointer",textAlign:"left",fontSize:14,color:"#fff",fontWeight:600}}>
+                <span>{clean(t.nav?.explore)||"Expats"}</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" style={{flexShrink:0,opacity:0.75,transition:"transform 0.2s",transform:mobSection==="expats"?"rotate(180deg)":"rotate(0deg)"}}>
+                  <path fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6"/>
+                </svg>
+              </button>
+              {mobSection==="expats"&&(
+                <div style={{background:"rgba(0,0,0,0.15)"}}>
+                  {[
+                    {label:aiLabel[lang]||"AI",view:"chat"},
+                    {label:clean(t.nav?.tools)||"Tools",view:"tools"},
+                    {label:clean(t.nav?.map)||"Maps",view:"map"},
+                    {label:clean(t.nav?.apps)||"Apps",view:"apps"},
+                    {label:"Pricing",view:"pricing"},
+                    {label:clean(t.nav?.community)||"Community",view:"community"},
+                    {label:clean(t.nav?.connect)||"Connect",view:"connect"},
+                    ...(user&&!subscription?[{label:clean(t.nav?.upgrade)||"Upgrade",view:"pricing"}]:[]),
+                  ].map((item,i)=>(
+                    <button key={i} onClick={()=>{setView(item.view);setMob(false);setMobSection(null)}}
+                      style={{width:"100%",background:view===item.view?"rgba(255,255,255,0.15)":"transparent",border:"none",padding:"11px 18px 11px 32px",cursor:"pointer",textAlign:"left",fontSize:13.5,color:"rgba(255,255,255,0.9)",fontWeight:view===item.view?700:400}}>
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+              {/* ── Partners group — advertisers & real estate agents ── */}
+              <button onClick={()=>setMobSection(s=>s==="partners"?null:"partners")}
+                style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",background:mobSection==="partners"?"rgba(255,255,255,0.1)":"transparent",border:"none",padding:"13px 18px",cursor:"pointer",textAlign:"left",fontSize:14,color:"#fff",fontWeight:600,borderTop:"1px solid rgba(255,255,255,0.12)"}}>
+                <span>{clean(t.nav?.partners)||"Partners"}</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" style={{flexShrink:0,opacity:0.75,transition:"transform 0.2s",transform:mobSection==="partners"?"rotate(180deg)":"rotate(0deg)"}}>
+                  <path fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6"/>
+                </svg>
+              </button>
+              {mobSection==="partners"&&(
+                <div style={{background:"rgba(0,0,0,0.15)"}}>
+                  {[
+                    {label:"Advertise",view:"advertise"},
+                    {label:"Real Estate Agents",view:"agents"},
+                  ].map((item,i)=>(
+                    <button key={i} onClick={()=>{setView(item.view);setMob(false);setMobSection(null)}}
+                      style={{width:"100%",background:view===item.view?"rgba(255,255,255,0.15)":"transparent",border:"none",padding:"11px 18px 11px 32px",cursor:"pointer",textAlign:"left",fontSize:13.5,color:"rgba(255,255,255,0.9)",fontWeight:view===item.view?700:400}}>
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </div>
