@@ -1747,11 +1747,26 @@ function CategoryPage({catId,setView,lang,t,cache,setCache,user,reviews,setRevie
   )
 }
 
-function ChatPage({lang,t}){
+function ChatPage({lang,t,user,subscription,setView}){
   const [messages,setMessages]=useState([{role:"assistant",content:t.greeting}])
   const [input,setInput]=useState("")
   const [loading,setLoading]=useState(false)
   const endRef=useScrollEnd(messages)
+  // Dev/admin override — same account + pattern as the map and tools pages,
+  // so the site owner can flip between Free/Basic/Premium and see exactly
+  // what a real user on that tier experiences here, including the daily
+  // free-chat limit below.
+  const isDevAccount=!!(user&&user.email==="bgexpats.info@gmail.com")
+  const [devTierOverride,setDevTierOverride]=useState(null) // null|"free"|"basic"|"premium"
+  const effectiveSubscription=(isDevAccount&&devTierOverride)?{plan:devTierOverride}:subscription
+  const currentTier=(effectiveSubscription&&effectiveSubscription.plan)||"free"
+  const isPaid = currentTier==="basic"||currentTier==="premium"
+  // Free-tier daily question count — Basic/Premium never hit this (matches
+  // "Unlimited AI chat" on the pricing page). Re-read on every render so the
+  // dev switcher and cross-tab usage stay in sync without extra plumbing.
+  const usedToday = isPaid ? 0 : getChatUsageToday()
+  const remainingToday = Math.max(0, AI_CHAT_FREE_DAILY_LIMIT - usedToday)
+  const limitReached = !isPaid && remainingToday<=0
 
   useEffect(()=>{
     setMessages(prev=>{
@@ -1763,10 +1778,16 @@ function ChatPage({lang,t}){
   const send=async(text)=>{
     const msg=(text||input).trim()
     if(!msg||loading)return
+    if(limitReached){
+      setMessages(prev=>[...prev,{role:"user",content:msg},{role:"assistant",content:`You've used all ${AI_CHAT_FREE_DAILY_LIMIT} free questions for today. Upgrade to Basic or Premium for unlimited AI chat, or come back tomorrow — your free questions reset daily.`}])
+      setInput("")
+      return
+    }
     const newMsgs=[...messages,{role:"user",content:msg}]
     setMessages(newMsgs)
     setInput("")
     setLoading(true)
+    if(!isPaid)incrementChatUsage()
     try{
       const res=await fetch(typeof AI_ENDPOINT !== "undefined" ? AI_ENDPOINT : "https://api.anthropic.com/v1/messages",{
         method:"POST",headers:{"Content-Type":"application/json"},
@@ -1840,15 +1861,42 @@ function ChatPage({lang,t}){
         </div>
       )}
 
+      {!isPaid&&(
+        <div style={{padding:"0 16px",background:C.surface,borderTop:messages.length===1?"none":`1px solid ${C.border}`}}>
+          <div style={{maxWidth:780,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",padding:"7px 0",fontSize:11.5,color:limitReached?"#b45309":C.muted}}>
+            <span>{limitReached?"⚠️ Daily free limit reached":`${remainingToday} of ${AI_CHAT_FREE_DAILY_LIMIT} free questions left today`}</span>
+            {setView&&<button onClick={()=>setView("pricing")} style={{background:"none",border:"none",color:C.primary,cursor:"pointer",fontSize:11.5,fontWeight:600,padding:0}}>Upgrade for unlimited →</button>}
+          </div>
+        </div>
+      )}
+
       <div style={{padding:"10px 16px 18px",background:C.surface,borderTop:`1px solid ${C.border}`}}>
         <div style={{maxWidth:780,margin:"0 auto",display:"flex",gap:9}}>
           <input value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>e.key==="Enter"&&!e.shiftKey&&send()}
-            placeholder={t.placeholder}
+            placeholder={limitReached?"Upgrade to keep chatting today, or come back tomorrow":t.placeholder}
             style={{flex:1,border:`1px solid ${C.border}`,borderRadius:10,padding:"10px 15px",fontSize:14,outline:"none",background:C.page,color:C.text}}/>
           <button onClick={()=>send()} disabled={!input.trim()||loading}
             style={{background:input.trim()&&!loading?C.primary:"#ccc",border:"none",color:"#fff",padding:"10px 16px",borderRadius:10,cursor:input.trim()&&!loading?"pointer":"default",fontSize:15,fontWeight:700,transition:"background 0.15s",minWidth:44}}>→</button>
         </div>
       </div>
+
+      {/* Private dev tier switcher — same account + pattern as the map and
+          tools pages. Lets you preview the Free daily-limit banner above,
+          or unlimited Basic/Premium chat, without a real subscription. */}
+      {isDevAccount&&(
+        <div style={{position:"fixed",bottom:16,right:16,zIndex:9999,background:"#1a1a1a",border:"1px solid #444",borderRadius:12,padding:"10px 12px",boxShadow:"0 4px 20px rgba(0,0,0,0.4)",display:"flex",alignItems:"center",gap:8}}>
+          <span style={{fontSize:11,color:"#aaa",fontWeight:600}}>🔧 DEV VIEW:</span>
+          {["free","basic","premium"].map(tt=>(
+            <button key={tt} onClick={()=>setDevTierOverride(tt===currentTier&&devTierOverride?null:tt)}
+              style={{padding:"5px 10px",borderRadius:7,border:"none",cursor:"pointer",fontSize:11,fontWeight:700,textTransform:"uppercase",
+                background:currentTier===tt?(tt==="premium"?"#f0c060":tt==="basic"?"#1e5e3f":"#555"):"#2a2a2a",
+                color:currentTier===tt?(tt==="premium"?"#1a3a20":"#fff"):"#999"}}>
+              {tt}
+            </button>
+          ))}
+          {devTierOverride&&<button onClick={()=>setDevTierOverride(null)} style={{background:"none",border:"none",color:"#888",cursor:"pointer",fontSize:11,marginLeft:4}}>reset</button>}
+        </div>
+      )}
     </div>
   )
 }
@@ -4468,7 +4516,7 @@ function PricingPage({user,setView,lang,openCheckout=()=>{}}){
       id:"free",color:C.surface,border:C.border,nameColor:C.text,subColor:C.muted,btnBg:C.page,btnColor:C.text,btnBorder:C.border,
       features:(L.features_free||[
         {ok:true,text:"Basic articles (legal, housing, tax)"},
-        {ok:true,text:"5 AI chat questions per day"},
+        {ok:true,text:"3 AI chat questions per day"},
         {ok:true,text:"Quick facts & emergency info"},
         {ok:true,text:"8 languages"},
         {ok:false,text:"Community — post, like, reply"},
@@ -5482,7 +5530,7 @@ export default function App(){
       ):view==="community"?(
         <CommunityPage user={user} setView={setView} posts={posts} setPosts={setPosts}/>
       ):view==="chat"?(
-        <ChatPage lang={lang} t={t}/>
+        <ChatPage lang={lang} t={t} user={user} subscription={subscription} setView={setView}/>
       ):view.startsWith("travel-")?(
         (()=>{
           // travel-<region>  or  travel-<region>-<city>
@@ -5518,7 +5566,29 @@ const AI_ENDPOINT =
     ? "https://api.anthropic.com/v1/messages"
     : "/api/chat"
 
-let AI_USAGE = {} // { "YYYY-MM-DD": count } — free-tier daily AI question count
+const AI_CHAT_FREE_DAILY_LIMIT = 3 // matches the "3 AI chat questions per day" promised on the pricing page
+const AI_USAGE_KEY = "bg_ai_chat_usage"
+function todayKey(){ return new Date().toISOString().slice(0,10) }
+// Reads today's free-tier chat count from localStorage. Falls back to 0 if
+// storage is unavailable (private browsing, etc.) — fails open rather than
+// blocking someone from using the chat at all.
+function getChatUsageToday(){
+  try{
+    const data = JSON.parse(localStorage.getItem(AI_USAGE_KEY) || "{}")
+    return data[todayKey()] || 0
+  }catch{ return 0 }
+}
+// Increments and returns today's count. Also prunes any old date keys so
+// this never grows unbounded in localStorage.
+function incrementChatUsage(){
+  try{
+    const data = JSON.parse(localStorage.getItem(AI_USAGE_KEY) || "{}")
+    const key = todayKey()
+    const next = (data[key]||0) + 1
+    localStorage.setItem(AI_USAGE_KEY, JSON.stringify({[key]:next}))
+    return next
+  }catch{ return 0 }
+}
 
 const GA_ID = "G-XXXXXXXXXX" // ← Replace with your GA4 Measurement ID
 
