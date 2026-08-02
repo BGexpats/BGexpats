@@ -3133,7 +3133,7 @@ function ToolsTierOverview({currentTier,setView}){
   )
 }
 
-function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
+function ToolsPage({user,setView,trackEvent=()=>{},subscription,lang,setLang}){
   const [active,setActive]=useState("cost")
   const [toolMenu,setToolMenu]=useState(false)
   const toolMenuRef=useRef(null)
@@ -3171,7 +3171,7 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription}){
     if(active==="property")return<PropertyROI subscription={effectiveSubscription} setView={setView}/>
     if(active==="deadlines")return<DeadlineTrackerTool subscription={effectiveSubscription} setView={setView}/>
     if(active==="hoodmatch")return<HoodMatcher subscription={effectiveSubscription} setView={setView}/>
-    if(active==="langcoach")return<LangCoach subscription={effectiveSubscription} setView={setView}/>
+    if(active==="langcoach")return<LangCoach subscription={effectiveSubscription} setView={setView} lang={lang} setLang={setLang}/>
     if(active==="budget")return<BudgetPlanner subscription={effectiveSubscription} setView={setView}/>
   }
   return(
@@ -5476,7 +5476,7 @@ export default function App(){
       ):view==="map"?(
         <MapPage user={user} setView={setView} subscription={subscription} openCheckout={openCheckout}/>
       ):view==="tools"?(
-        <ToolsPage user={user} setView={setView} trackEvent={trackEvent} subscription={subscription}/>
+        <ToolsPage user={user} setView={setView} trackEvent={trackEvent} subscription={subscription} lang={lang} setLang={setLang}/>
       ):view==="pricing"?(
         <PricingPage user={user} setView={setView} lang={lang} openCheckout={openCheckout}/>
       ):view==="community"?(
@@ -6213,24 +6213,48 @@ function HoodMatcher({subscription,setView}){
 
 // ══ 6. BULGARIAN LANGUAGE COACH ══════════════════════════════════
 const LANG_SCENARIOS=[
-  {id:"bank",icon:"🏦",label:"At the bank",system:"You are a Bulgarian bank teller. Speak ONLY in Bulgarian. After each response, add 'Translation:' with English translation and 'Pronunciation:' with phonetic guide. Keep sentences short and practical. Help the user open an account, make transfers, and use banking services."},
-  {id:"doctor",icon:"🏥",label:"At the doctor",system:"You are a Bulgarian doctor/receptionist. Speak ONLY in Bulgarian first, then provide Translation and Pronunciation. Help with medical appointments, describing symptoms, getting prescriptions. Use simple, clear Bulgarian."},
-  {id:"landlord",icon:"🏠",label:"With your landlord",system:"You are a Bulgarian landlord. Speak ONLY in Bulgarian first, then Translation and Pronunciation. Discuss rent, repairs, contracts, utilities, neighbours. Use everyday conversational Bulgarian."},
-  {id:"restaurant",icon:"🍽️",label:"At a restaurant",system:"You are a Bulgarian waiter in a traditional mehana. Speak ONLY in Bulgarian first, then Translation and Pronunciation. Help order food, ask about dishes, pay the bill. Be warm and helpful."},
-  {id:"shopping",icon:"🛒",label:"At the supermarket",system:"You are a Bulgarian shop assistant. Speak ONLY in Bulgarian first, then Translation and Pronunciation. Help find products, discuss prices, checkout. Use simple everyday Bulgarian."},
-  {id:"social",icon:"👋",label:"Meeting Bulgarians",system:"You are a friendly Bulgarian person meeting an expat. Speak ONLY in Bulgarian first, then Translation and Pronunciation. Casual conversation — where they're from, how they like Bulgaria, recommendations. Warm and welcoming."},
+  {id:"bank",icon:"🏦",label:"At the bank",role:"You are a Bulgarian bank teller. Help the user open an account, make transfers, and use banking services. Keep sentences short and practical."},
+  {id:"doctor",icon:"🏥",label:"At the doctor",role:"You are a Bulgarian doctor/receptionist. Help with medical appointments, describing symptoms, and getting prescriptions. Use simple, clear Bulgarian."},
+  {id:"landlord",icon:"🏠",label:"With your landlord",role:"You are a Bulgarian landlord. Discuss rent, repairs, contracts, utilities, neighbours. Use everyday conversational Bulgarian."},
+  {id:"restaurant",icon:"🍽️",label:"At a restaurant",role:"You are a Bulgarian waiter in a traditional mehana. Help order food, ask about dishes, pay the bill. Be warm and helpful."},
+  {id:"shopping",icon:"🛒",label:"At the supermarket",role:"You are a Bulgarian shop assistant. Help find products, discuss prices, checkout. Use simple everyday Bulgarian."},
+  {id:"social",icon:"👋",label:"Meeting Bulgarians",role:"You are a friendly Bulgarian person meeting an expat. Casual conversation — where they're from, how they like Bulgaria, recommendations. Warm and welcoming."},
+  // Free-form mode — no persona, no roleplay. Straight translation and language
+  // help in either direction, for whatever the user types.
+  {id:"translate",icon:"🔤",label:"Free translate",utility:true,role:"You are a direct, no-roleplay Bulgarian translation and language helper. Translate whatever the user writes between Bulgarian and their chosen explanation language, in whichever direction makes sense. If they ask a grammar or usage question, answer it clearly and concisely."},
 ]
+// Builds the final system prompt for a scenario, in the chosen explanation
+// language (defaults to English to match the original behaviour). Kept as a
+// separate function so both roleplay and free-translate modes share the same
+// "Bulgarian first, then Translation, then Pronunciation" output format.
+function buildLangSystem(sc,explainLangName){
+  const lang=explainLangName||"English"
+  if(sc.utility){
+    return `${sc.role} If the input is Bulgarian, translate/explain it in ${lang}. If the input is in ${lang} (or another language), translate it to Bulgarian. Always give: the Bulgarian text, then a line starting "Translation:" with the meaning in ${lang}, then a line starting "Pronunciation:" with a phonetic guide for the Bulgarian.`
+  }
+  return `${sc.role} Speak ONLY in Bulgarian first. After each response, add a line starting "Translation:" with the meaning in ${lang}, and a line starting "Pronunciation:" with a phonetic guide.`
+}
 
-function LangCoach({subscription,setView}){
+function LangCoach({subscription,setView,lang,setLang}){
   const [scenario,setScenario]=useState("bank")
   const [msgs,setMsgs]=useState([])
   const [input,setInput]=useState("")
   const [loading,setLoading]=useState(false)
   const sc=LANG_SCENARIOS.find(s=>s.id===scenario)
   const inputRef=useRef(null)
+  // Explanation language: falls back to "en" if this tool is ever used
+  // without the site-wide language state wired in.
+  const explainLang=lang||"en"
+  const explainLangName=(LANGS[explainLang]&&LANGS[explainLang].name)||"English"
   const startConvo=async(sc)=>{
+    if(sc.utility){
+      // Instant, no API call needed — just show instructions.
+      setMsgs([{role:"assistant",content:`Type any word, phrase or sentence in Bulgarian or ${explainLangName} below, and I'll translate it — with a pronunciation guide for any Bulgarian.`}])
+      setLoading(false)
+      return
+    }
     setMsgs([]);setLoading(true)
-    const opening=await callClaude(sc.system,"Start the conversation naturally in your role. Greet me and say something appropriate to start the interaction. Remember: Bulgarian first, then Translation and Pronunciation.")
+    const opening=await callClaude(buildLangSystem(sc,explainLangName),"Start the conversation naturally in your role. Greet me and say something appropriate to start the interaction. Remember: Bulgarian first, then Translation and Pronunciation.")
     setMsgs([{role:"assistant",content:opening}]);setLoading(false)
   }
   const send=async()=>{
@@ -6238,21 +6262,40 @@ function LangCoach({subscription,setView}){
     const userMsg={role:"user",content:input}
     const history=[...msgs,userMsg]
     setMsgs(history);setInput("");setLoading(true)
-    const context=history.map(m=>`${m.role==="user"?"Student":"You"}: ${m.content}`).join("\n")
-    const reply=await callClaude(sc.system,`Conversation so far:\n${context}\n\nContinue naturally in your role. Bulgarian first, then Translation, then Pronunciation. If the student makes a mistake in Bulgarian, gently correct them with a tip.`)
+    const system=buildLangSystem(sc,explainLangName)
+    let reply
+    if(sc.utility){
+      reply=await callClaude(system,`Translate/explain: "${input}"`)
+    }else{
+      const context=history.map(m=>`${m.role==="user"?"Student":"You"}: ${m.content}`).join("\n")
+      reply=await callClaude(system,`Conversation so far:\n${context}\n\nContinue naturally in your role. Bulgarian first, then Translation, then Pronunciation. If the student makes a mistake in Bulgarian, gently correct them with a tip.`)
+    }
     setMsgs([...history,{role:"assistant",content:reply}]);setLoading(false)
     setTimeout(()=>inputRef.current&&inputRef.current.focus(),100)
   }
   return(
     <PremiumGate subscription={subscription} setView={setView} tool="Language Coach">
       <div>
-        <div style={{display:"flex",gap:6,marginBottom:14,flexWrap:"wrap"}}>
-          {LANG_SCENARIOS.map(s=>(
-            <button key={s.id} onClick={()=>{setScenario(s.id);startConvo(s)}}
-              style={{padding:"6px 12px",borderRadius:16,border:`1.5px solid ${scenario===s.id?C.primary:C.border}`,background:scenario===s.id?C.primaryLight:"transparent",color:scenario===s.id?C.primary:C.muted,cursor:"pointer",fontSize:12,fontWeight:scenario===s.id?600:400}}>
-              {s.icon} {s.label}
-            </button>
-          ))}
+        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8,marginBottom:10,flexWrap:"wrap"}}>
+          <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
+            {LANG_SCENARIOS.map(s=>(
+              <button key={s.id} onClick={()=>{setScenario(s.id);startConvo(s)}}
+                style={{padding:"6px 12px",borderRadius:16,border:`1.5px solid ${scenario===s.id?C.primary:C.border}`,background:scenario===s.id?C.primaryLight:"transparent",color:scenario===s.id?C.primary:C.muted,cursor:"pointer",fontSize:12,fontWeight:scenario===s.id?600:400}}>
+                {s.icon} {s.label}
+              </button>
+            ))}
+          </div>
+          {setLang&&(
+            <label style={{display:"flex",alignItems:"center",gap:6,fontSize:12,color:C.muted,flexShrink:0}}>
+              Explain in:
+              <select value={explainLang} onChange={e=>setLang(e.target.value)}
+                style={{border:`1.5px solid ${C.border}`,borderRadius:8,padding:"5px 8px",fontSize:12,color:C.text,background:C.surface,cursor:"pointer"}}>
+                {Object.entries(LANGS).filter(([k])=>k!=="bg").map(([k,v])=>(
+                  <option key={k} value={k}>{v.flag} {v.name}</option>
+                ))}
+              </select>
+            </label>
+          )}
         </div>
         {msgs.length===0&&!loading&&(
           <div style={{textAlign:"center",padding:"30px"}}>
@@ -6274,7 +6317,7 @@ function LangCoach({subscription,setView}){
         </div>
         {msgs.length>0&&(
           <div style={{display:"flex",gap:8}}>
-            <input ref={inputRef} value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>e.key==="Enter"&&send()} placeholder="Type in English or try Bulgarian..." style={{flex:1,border:`1.5px solid ${C.border}`,borderRadius:10,padding:"10px 14px",fontSize:14,outline:"none",color:C.text,background:C.page}}/>
+            <input ref={inputRef} value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>e.key==="Enter"&&send()} placeholder={`Type in ${explainLangName} or try Bulgarian...`} style={{flex:1,border:`1.5px solid ${C.border}`,borderRadius:10,padding:"10px 14px",fontSize:14,outline:"none",color:C.text,background:C.page}}/>
             <button onClick={send} disabled={loading} style={{background:C.primary,border:"none",color:"#fff",padding:"10px 18px",borderRadius:10,cursor:"pointer",fontWeight:600,fontSize:14}}>Send</button>
           </div>
         )}
