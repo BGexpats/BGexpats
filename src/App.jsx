@@ -1773,7 +1773,9 @@ function ChatPage({lang,t}){
         body:JSON.stringify({model:"claude-sonnet-5",max_tokens:1000,system:makePrompt(LANGS[lang].name),messages:newMsgs.map(m=>({role:m.role,content:m.content}))})
       })
       const data=await res.json()
-      const reply=((data.content&&data.content[0]&&data.content[0].text)||'')||"Sorry, try again."
+      const textBlock=Array.isArray(data.content)?data.content.find(b=>b&&b.type==="text"&&b.text):null
+      if(!textBlock)console.error("AI chat: no text content in response",data)
+      const reply=(textBlock&&textBlock.text)||"Sorry, try again."
       setMessages([...newMsgs,{role:"assistant",content:reply}])
     }catch{
       setMessages([...newMsgs,{role:"assistant",content:"Connection error. Please try again."}])
@@ -5775,7 +5777,16 @@ const callClaude = async (system, prompt) => {
     body:JSON.stringify({model:"claude-sonnet-5",max_tokens:1000,system,messages:[{role:"user",content:prompt}]})
   })
   const d = await r.json()
-  return ((d.content&&d.content[0]&&d.content[0].text)||'') || "Error generating response."
+  // Look for the text block anywhere in content (not just index 0) — a response
+  // can include other block types first, and blindly reading content[0].text
+  // silently breaks even on a fully successful 200 response.
+  const textBlock = Array.isArray(d.content) ? d.content.find(b=>b&&b.type==="text"&&b.text) : null
+  if(textBlock) return textBlock.text
+  // Nothing usable came back — log the raw response so the real cause (a
+  // safety stop, an unexpected block type, an API error object, etc.) is
+  // visible in the browser console instead of a silent generic message.
+  console.error("callClaude: no text content in response",d)
+  return "Error generating response."
 }
 
 // ── Premium gate wrapper ──────────────────────────────────────────
