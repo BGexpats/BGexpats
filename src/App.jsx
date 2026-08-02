@@ -4229,7 +4229,7 @@ function MapPage({user,setView,subscription,openCheckout}){
             <div style={{background:"var(--bg-accent)",border:"1px solid var(--border-accent)",borderRadius:14,padding:"14px 16px",textAlign:"center"}}>
               <div style={{fontSize:18,marginBottom:6}}>💼</div>
               <p style={{color:"var(--text-accent)",fontSize:13,fontWeight:600,margin:"0 0 4px"}}>Coworking — Basic subscribers only</p>
-              <p style={{color:"var(--text-secondary)",fontSize:12,margin:"0 0 10px"}}>Upgrade to Basic (€3.99/month) to see all coworking spaces</p>
+              <p style={{color:"var(--text-secondary)",fontSize:12,margin:"0 0 10px"}}>Upgrade to Basic (€{PLANS.basic.monthly}/month) to see all coworking spaces</p>
               <button onClick={()=>openCheckout&&openCheckout("basic")} style={{background:"var(--text-accent)",border:"none",color:"#fff",padding:"8px 18px",borderRadius:8,cursor:"pointer",fontSize:13,fontWeight:700,width:"100%"}}>Upgrade to Basic →</button>
             </div>
           )}
@@ -4501,8 +4501,8 @@ function MapPage({user,setView,subscription,openCheckout}){
 // ── Pricing data ─────────────────────────────────────────────────
 const PLANS = {
   free:    { name:"Free",    monthly:0,    yearly:0,    yearlyTotal:0 },
-  basic:   { name:"Basic",   monthly:3.99, yearly:2.66, yearlyTotal:31.90 },
-  premium: { name:"Premium", monthly:6.49, yearly:4.33, yearlyTotal:51.90 },
+  basic:   { name:"Basic",   monthly:4.99, yearly:3.49, yearlyTotal:41.92 },
+  premium: { name:"Premium", monthly:7.99, yearly:5.59, yearlyTotal:67.12 },
 }
 
 // ── Pricing Page ─────────────────────────────────────────────────
@@ -4572,7 +4572,7 @@ function PricingPage({user,setView,lang,openCheckout=()=>{}}){
           {tiers.map(tier=>{
             const plan=PLANS[tier.id]
             // Always show the per-month price so users can compare like-for-like.
-            // Yearly: show monthly equivalent (e.g. €2.66/month), then total below.
+            // Yearly: show monthly equivalent (e.g. €3.49/month), then total below.
             const price=billing==="monthly"?plan.monthly:plan.yearly
             const period=L.mo  // always /month
             return(
@@ -5348,7 +5348,7 @@ export default function App(){
     connect:   {title:"Meet Expats in Bulgaria — BGexpats",desc:"Connect with Bulgarians and expats for friendship, romance and networking across Bulgaria."},
     apps:      {title:"Best Apps for Expats in Bulgaria — BGexpats",desc:"50 essential apps: Bolt, Wolt, Lidl Plus, DSK Bank, Speedy and more for life in Bulgaria."},
     chat:      {title:"AI Assistant — BGexpats",desc:"Ask anything about life in Bulgaria. Visa questions, tax advice, where to live — answered instantly in 8 languages."},
-    pricing:   {title:"BGexpats Premium — Unlock All Features",desc:"Upgrade to BGexpats Basic or Premium for the full map, all tools, document tracker and more. From €3.99/month."},
+    pricing:   {title:"BGexpats Premium — Unlock All Features",desc:`Upgrade to BGexpats Basic or Premium for the full map, all tools, document tracker and more. From €${PLANS.basic.monthly}/month.`},
   }
   useEffect(()=>{
     const seo=PAGE_SEO[view]||PAGE_SEO.home
@@ -5593,10 +5593,10 @@ function incrementChatUsage(){
 const GA_ID = "G-XXXXXXXXXX" // ← Replace with your GA4 Measurement ID
 
 // ⚠️ PRICING REMINDER — set these EXACT amounts in Stripe:
-//   basic_monthly   → €3.99  / month
-//   basic_yearly    → €31.90 / year
-//   premium_monthly → €6.49  / month
-//   premium_yearly  → €51.90 / year
+//   basic_monthly   → €4.99  / month
+//   basic_yearly    → €41.92 / year
+//   premium_monthly → €7.99  / month
+//   premium_yearly  → €67.12 / year
 const STRIPE_LINKS = {
   basic_monthly:   "https://buy.stripe.com/REPLACE_BASIC_MONTHLY",
   basic_yearly:    "https://buy.stripe.com/REPLACE_BASIC_YEARLY",
@@ -5883,7 +5883,7 @@ function PremiumGate({subscription,setView,children,tool}){
     <div style={{textAlign:"center",padding:"40px 20px"}}>
       <div style={{fontSize:48,marginBottom:12}}>👑</div>
       <h3 style={{fontSize:20,fontWeight:700,color:C.text,margin:"0 0 8px"}}>{tool} is Premium only</h3>
-      <p style={{color:C.muted,fontSize:14,margin:"0 0 20px",lineHeight:1.6}}>Upgrade to Premium (€6.49/month) to unlock all 7 advanced tools</p>
+      <p style={{color:C.muted,fontSize:14,margin:"0 0 20px",lineHeight:1.6}}>Upgrade to Premium (€{PLANS.premium.monthly}/month) to unlock all 7 advanced tools</p>
       <button onClick={()=>setView("pricing")} style={{background:"linear-gradient(135deg,#f0c060,#e8a020)",border:"none",color:"#1a3a20",padding:"13px 32px",borderRadius:12,cursor:"pointer",fontSize:15,fontWeight:700}}>
         Upgrade to Premium →
       </button>
@@ -7236,7 +7236,7 @@ function ConnectPage({user,setView,subscription}){
             <div style={{fontSize:40,marginBottom:12}}>💘</div>
             <h3 style={{fontSize:18,fontWeight:700,color:"#7c3aed",margin:"0 0 8px"}}>Dating & Romance — Premium only</h3>
             <p style={{color:"#6b21a8",fontSize:14,margin:"0 0 6px"}}>Meet expats and Bulgarians looking for a real relationship.</p>
-            <p style={{color:C.muted,fontSize:13,margin:"0 0 20px"}}>Upgrade to Premium (€6.49/month) to unlock Dating profiles, direct messages and verified matches.</p>
+            <p style={{color:C.muted,fontSize:13,margin:"0 0 20px"}}>Upgrade to Premium (€{PLANS.premium.monthly}/month) to unlock Dating profiles, direct messages and verified matches.</p>
             <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
               <button onClick={()=>setView("pricing")} style={{background:"linear-gradient(135deg,#7c3aed,#9333ea)",border:"none",color:"#fff",padding:"11px 24px",borderRadius:10,cursor:"pointer",fontSize:14,fontWeight:700}}>
                 Upgrade to Premium →
@@ -7354,14 +7354,14 @@ function ConnectPage({user,setView,subscription}){
         {user&&!isBasic&&(
           <div style={{background:"#fce7f3",border:"1px solid #f9a8d4",borderRadius:16,padding:"20px",textAlign:"center"}}>
             <div style={{fontSize:22,marginBottom:8}}>🤍 Like profiles with Basic</div>
-            <p style={{fontSize:13,color:"#9f1239",margin:"0 0 14px"}}>Upgrade to Basic (€3.99/month) to like profiles and show your interest</p>
+            <p style={{fontSize:13,color:"#9f1239",margin:"0 0 14px"}}>Upgrade to Basic (€{PLANS.basic.monthly}/month) to like profiles and show your interest</p>
             <button onClick={()=>setView("pricing")} style={{background:"#ec4899",border:"none",color:"#fff",padding:"10px 24px",borderRadius:10,cursor:"pointer",fontSize:14,fontWeight:700}}>Upgrade to Basic →</button>
           </div>
         )}
         {user&&isBasic&&!isPremium&&(
           <div style={{background:"linear-gradient(135deg,#6b21a8,#9333ea)",borderRadius:16,padding:"20px",textAlign:"center"}}>
             <div style={{fontSize:22,marginBottom:8}}>💬 Send messages with Premium</div>
-            <p style={{color:"rgba(255,255,255,0.8)",fontSize:13,margin:"0 0 14px"}}>Upgrade to Premium (€6.49/month) to send direct messages to people you connect with</p>
+            <p style={{color:"rgba(255,255,255,0.8)",fontSize:13,margin:"0 0 14px"}}>Upgrade to Premium (€{PLANS.premium.monthly}/month) to send direct messages to people you connect with</p>
             <button onClick={()=>setView("pricing")} style={{background:"#f0c060",border:"none",color:"#1a3a20",padding:"10px 24px",borderRadius:10,cursor:"pointer",fontSize:14,fontWeight:700}}>Upgrade to Premium →</button>
           </div>
         )}
@@ -7515,9 +7515,9 @@ function DeadlineTracker({user,subscription,setView}){
             ))}
           </div>
           <button onClick={()=>setView("pricing")} style={{background:`linear-gradient(135deg,${C.primary},#2a7a52)`,border:"none",color:"#fff",padding:"14px 32px",borderRadius:12,cursor:"pointer",fontSize:15,fontWeight:700,width:"100%",marginBottom:10}}>
-            Upgrade to Premium — €6.49/month →
+            Upgrade to Premium — €{PLANS.premium.monthly}/month →
           </button>
-          <p style={{fontSize:12,color:C.muted}}>or €3.33/month billed annually · Cancel anytime</p>
+          <p style={{fontSize:12,color:C.muted}}>or €{PLANS.premium.yearly}/month billed annually · Cancel anytime</p>
         </div>
       </div>
     )
