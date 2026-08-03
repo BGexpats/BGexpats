@@ -48,10 +48,23 @@ const INIT_POSTS=[
    body:"🗺️ MAP — Find hospitals, banks, car rentals, restaurants and more in 16 cities\n🛠️ TOOLS — Tax calculator, visa checker, cost comparison across 11 cities\n💑 CONNECT — Meet expats and Bulgarians\n📱 APPS — 50 essential apps for life in Bulgaria\n\nHave a question not answered in the guides? Ask below or use the AI assistant!",
    cat:"Guide",likes:0,replies:0,pinned:true},
 ]
-const C = {
+// Two palettes, same shape. C itself stays a plain mutable object (not React
+// state) because it's referenced directly as C.xxx in ~680 places across the
+// app rather than passed as a prop — mutating its values in place, then
+// letting the root App component's normal re-render pick up the new values,
+// re-themes the whole app without touching every individual style. Anything
+// that uses a hardcoded hex color instead of C.xxx (a handful of one-off
+// badges/warnings) won't automatically flip — a known limitation of this
+// first pass, not a bug, since those are original hardcoded values.
+const C_LIGHT = {
   page:"#f5f1e8",surface:"#ffffff",primary:"#1e5e3f",primaryDark:"#164530",
   primaryLight:"#e6f2eb",accent:"#b8792a",text:"#1c1c1a",muted:"#6e6b65",border:"#e0dbd0",
 }
+const C_DARK = {
+  page:"#14181a",surface:"#1c211f",primary:"#2d7a54",primaryDark:"#1c4530",
+  primaryLight:"#1f3d2c",accent:"#d99a4a",text:"#eeece6",muted:"#9a978f",border:"#333831",
+}
+const C = {...C_LIGHT}
 
 const LANGS = {
   en:{flag:"🇬🇧",name:"English",   short:"EN",cc:"gb"},
@@ -1092,7 +1105,7 @@ function LangBanner({lang,setLang}){
   )
 }
 
-function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}){
+function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{},dark,setDark}){
   const [mob,setMob]=useState(false)
   const [mobSection,setMobSection]=useState(null) // null|"expats"|"partners" — which accordion group is open in the mobile menu
   const mobRef=useRef(null)
@@ -1207,6 +1220,17 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{}}
             </button>
           )}
         </div>
+        {/* ── Dark mode toggle ─────────────────────── */}
+        {setDark&&(
+          <button onClick={()=>setDark(d=>!d)} aria-label={dark?"Switch to light mode":"Switch to night mode"}
+            style={{background:"rgba(255,255,255,0.12)",border:"1px solid rgba(255,255,255,0.2)",color:"#fff",width:38,height:38,borderRadius:10,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",padding:0,flexShrink:0}}>
+            {dark?(
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 3v2M12 19v2M4.2 12H6M18 12h1.8M6.3 6.3l1.3 1.3M16.4 16.4l1.3 1.3M6.3 17.7l1.3-1.3M16.4 7.6l1.3-1.3"/></svg>
+            ):(
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M20.5 14.5A8.5 8.5 0 019.5 3.5a8.5 8.5 0 1011 11z"/></svg>
+            )}
+          </button>
+        )}
         {/* ── Hamburger (mobile only) ─────────────── */}
         <div ref={mobRef} className="bg-nav-mobile" style={{position:"relative",flexShrink:0}}>
           <button onClick={()=>{setMob(m=>!m);setMobSection(null)}} aria-label="Menu" style={{background:"rgba(255,255,255,0.12)",border:"1px solid rgba(255,255,255,0.2)",color:"#fff",width:38,height:38,borderRadius:10,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",padding:0}}>
@@ -5315,6 +5339,26 @@ function AgentsPage({setView}){
 }
 
 export default function App(){
+  const [dark,setDark]=useState(()=>{
+    try{
+      const saved=localStorage.getItem("bg_dark_mode")
+      if(saved!=null)return saved==="1"
+    }catch{}
+    return typeof window!=="undefined"&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches
+  })
+  // Mutate the shared C object in place, synchronously, before any child
+  // component renders this pass — see the note above C_LIGHT/C_DARK for why
+  // this (rather than passing C as a prop) is the pragmatic fit here.
+  Object.assign(C, dark?C_DARK:C_LIGHT)
+  useEffect(()=>{
+    try{ localStorage.setItem("bg_dark_mode", dark?"1":"0") }catch{}
+    // Keeps the browser chrome (address bar on mobile, etc.) matching too.
+    if(typeof document!=="undefined"){
+      let meta=document.querySelector('meta[name="theme-color"]')
+      if(!meta){ meta=document.createElement("meta"); meta.name="theme-color"; document.head.appendChild(meta) }
+      meta.content=dark?C_DARK.page:C_LIGHT.page
+    }
+  },[dark])
   const [view,setViewState]=useState(()=>{
     // On first load, honour a hash like #map so refresh/shared links work.
     if(typeof window!=="undefined"&&window.location.hash){
@@ -5600,7 +5644,7 @@ export default function App(){
           </div>
         </div>
       )}
-      <Nav view={view} setView={setView} lang={lang} t={t} user={user} setUser={setUser} subscription={subscription} openCheckout={openCheckout}/>
+      <Nav view={view} setView={setView} lang={lang} t={t} user={user} setUser={setUser} subscription={subscription} openCheckout={openCheckout} dark={dark} setDark={setDark}/>
       {view==="login"?(
         <LoginPage setUser={setUser} setView={setView}/>
       ):view==="checkout"?(
