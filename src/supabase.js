@@ -172,3 +172,49 @@ export async function deletePin(pinId) {
     .eq('id', pinId)
   return { error }
 }
+
+// ─── Trip plans (Premium subscribers' saved itineraries) ───────────────
+// Synced via the trip_plans table (RLS-protected — same pattern as map_pins:
+// each user can only ever read/write their own rows). The itinerary itself
+// (days -> stops, each with a note) is stored as one JSONB column rather than
+// separate day/stop tables — simpler to version and matches how the app
+// already treats a trip as a single editable document, not relational data.
+
+// Fetch all trips saved by the signed-in user, newest first.
+export async function getTrips() {
+  const { data, error } = await supabase
+    .from('trip_plans')
+    .select('*')
+    .order('created_at', { ascending: false })
+  return { data, error }
+}
+
+// Save a new trip for the signed-in user.
+export async function saveTrip(userId, fields) {
+  const { data, error } = await supabase
+    .from('trip_plans')
+    .insert({ user_id: userId, ...fields })
+    .select()
+    .single()
+  return { data, error }
+}
+
+// Update one of the signed-in user's own trips (title, dates, or itinerary).
+export async function updateTrip(tripId, fields) {
+  const { data, error } = await supabase
+    .from('trip_plans')
+    .update(fields)
+    .eq('id', tripId)
+    .select()
+    .single()
+  return { data, error }
+}
+
+// Delete one of the signed-in user's own trips. RLS blocks deleting anyone else's.
+export async function deleteTrip(tripId) {
+  const { error } = await supabase
+    .from('trip_plans')
+    .delete()
+    .eq('id', tripId)
+  return { error }
+}

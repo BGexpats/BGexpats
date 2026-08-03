@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, Fragment } from "react"
-import { signUp as sbSignUp, signIn as sbSignIn, signOut as sbSignOut, getCurrentUser as sbGetCurrentUser, resetPassword as sbResetPassword, getProfile as sbGetProfile, updateProfile as sbUpdateProfile, uploadAvatar as sbUploadAvatar, listProfiles as sbListProfiles, getPins as sbGetPins, savePin as sbSavePin, deletePin as sbDeletePin, updatePin as sbUpdatePin } from "./supabase"
+import { signUp as sbSignUp, signIn as sbSignIn, signOut as sbSignOut, getCurrentUser as sbGetCurrentUser, resetPassword as sbResetPassword, getProfile as sbGetProfile, updateProfile as sbUpdateProfile, uploadAvatar as sbUploadAvatar, listProfiles as sbListProfiles, getPins as sbGetPins, savePin as sbSavePin, deletePin as sbDeletePin, updatePin as sbUpdatePin, getTrips as sbGetTrips, saveTrip as sbSaveTrip, updateTrip as sbUpdateTrip, deleteTrip as sbDeleteTrip } from "./supabase"
 import heroImg1 from "./assets/hero-rila-lake.jpg"
 import nessebar from "./assets/nessebar.jpg"
 import plovdiv from "./assets/plovdiv.jpg"
@@ -3171,6 +3171,7 @@ const TOOLS_LIST=[
   {id:"hoodmatch",icon:"🏘️",label:"Neighbourhood Match",desc:"Find your perfect area",premium:true},
   {id:"langcoach",icon:"🇧🇬",label:"Language Coach",desc:"Learn Bulgarian with AI",premium:true},
   {id:"budget",icon:"📊",label:"Budget Planner",desc:"Personal finance tracker",premium:true},
+  {id:"tripplanner",icon:"🧳",label:"Trip Planner",desc:"Plan trips with real local places",premium:true},
 ]
 
 // ── Tools tier overview ──────────────────────────────────────────
@@ -3271,6 +3272,7 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription,lang,setLang}){
     if(active==="hoodmatch")return<HoodMatcher subscription={effectiveSubscription} setView={setView}/>
     if(active==="langcoach")return<LangCoach subscription={effectiveSubscription} setView={setView} lang={lang} setLang={setLang}/>
     if(active==="budget")return<BudgetPlanner subscription={effectiveSubscription} setView={setView}/>
+    if(active==="tripplanner")return<TripPlanner subscription={effectiveSubscription} setView={setView} user={user}/>
   }
   return(
     <div style={{minHeight:"100vh",background:C.page}}>
@@ -6585,7 +6587,234 @@ function BudgetPlanner({subscription,setView}){
   )
 }
 
-// ── Bulgaria Apps Directory ────────────────────────────────────────
+// ── Trip Planner (Premium) ───────────────────────────────────────────
+// Phase 1: manual itinerary builder. Stops can be pulled from the app's own
+// verified location database (MAP_LOCATIONS) or from the user's own saved
+// map pins — never free-typed, so every stop is a real, findable place.
+// AI-assisted auto-suggest is planned as Phase 2, layered on top of this
+// same data model once the manual builder is proven out.
+function dayKeysBetween(start,end){
+  if(!start||!end)return[]
+  const d0=new Date(start+"T00:00:00"), d1=new Date(end+"T00:00:00")
+  if(isNaN(d0)||isNaN(d1)||d0>d1)return[]
+  const out=[]
+  let d=d0
+  while(d<=d1 && out.length<21){ // 21-day sanity cap
+    out.push(d.toISOString().slice(0,10))
+    d=new Date(d.getTime()+86400000)
+  }
+  return out
+}
+function fmtDay(iso,idx){
+  const d=new Date(iso+"T00:00:00")
+  return `Day ${idx+1} — ${d.toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"})}`
+}
+
+function TripPlanner({subscription,setView,user}){
+  const [trips,setTrips]=useState([])
+  const [customPins,setCustomPins]=useState([])
+  const [loading,setLoading]=useState(true)
+  const [editing,setEditing]=useState(null) // null = list view, else the trip object being edited
+  const [saving,setSaving]=useState(false)
+  const [error,setError]=useState(null)
+  const [pickerDay,setPickerDay]=useState(null) // which day key is showing the add-stop picker
+  const [pickerQuery,setPickerQuery]=useState("")
+
+  useEffect(()=>{
+    if(!user)return
+    (async()=>{
+      setLoading(true)
+      const [tripsRes,pinsRes]=await Promise.all([sbGetTrips(),sbGetPins()])
+      if(!tripsRes.error)setTrips(tripsRes.data||[])
+      if(!pinsRes.error)setCustomPins(pinsRes.data||[])
+      setLoading(false)
+    })()
+  },[user])
+
+  const newTrip=()=>{
+    setError(null)
+    setEditing({id:null,title:"",city:"sofia",start_date:"",end_date:"",itinerary:{}})
+  }
+
+  const saveTrip=async()=>{
+    if(!editing.title.trim()){ setError("Give your trip a title first."); return }
+    setSaving(true); setError(null)
+    const fields={title:editing.title.trim(),city:editing.city,start_date:editing.start_date||null,end_date:editing.end_date||null,itinerary:editing.itinerary}
+    const res = editing.id ? await sbUpdateTrip(editing.id,fields) : await sbSaveTrip(user.id,fields)
+    setSaving(false)
+    if(res.error){ setError(res.error.message||"Could not save this trip."); return }
+    setTrips(prev=>{
+      if(editing.id) return prev.map(t=>t.id===editing.id?res.data:t)
+      return [res.data,...prev]
+    })
+    setEditing(null)
+  }
+
+  const deleteTrip=async(id)=>{
+    const prev=trips
+    setTrips(cur=>cur.filter(t=>t.id!==id))
+    const {error}=await sbDeleteTrip(id)
+    if(error){ setError(error.message||"Could not delete this trip."); setTrips(prev) }
+    if(editing&&editing.id===id)setEditing(null)
+  }
+
+  const addStop=(dayKey,place)=>{
+    setEditing(prev=>{
+      const day=prev.itinerary[dayKey]||[]
+      const stop={stopId:`${Date.now()}_${Math.random().toString(36).slice(2,7)}`,source:place.source,sourceId:place.id,name:place.name,icon:place.icon,note:""}
+      return {...prev,itinerary:{...prev.itinerary,[dayKey]:[...day,stop]}}
+    })
+    setPickerDay(null); setPickerQuery("")
+  }
+  const removeStop=(dayKey,stopId)=>{
+    setEditing(prev=>({...prev,itinerary:{...prev.itinerary,[dayKey]:prev.itinerary[dayKey].filter(s=>s.stopId!==stopId)}}))
+  }
+  const moveStop=(dayKey,idx,dir)=>{
+    setEditing(prev=>{
+      const day=[...prev.itinerary[dayKey]]
+      const j=idx+dir
+      if(j<0||j>=day.length)return prev
+      ;[day[idx],day[j]]=[day[j],day[idx]]
+      return {...prev,itinerary:{...prev.itinerary,[dayKey]:day}}
+    })
+  }
+  const setNote=(dayKey,stopId,note)=>{
+    setEditing(prev=>({...prev,itinerary:{...prev.itinerary,[dayKey]:prev.itinerary[dayKey].map(s=>s.stopId===stopId?{...s,note}:s)}}))
+  }
+
+  const days=editing?dayKeysBetween(editing.start_date,editing.end_date):[]
+
+  const pickerResults=(()=>{
+    if(!editing)return[]
+    const q=pickerQuery.trim().toLowerCase()
+    const official=MAP_LOCATIONS.filter(l=>l.city===editing.city).map(l=>({id:l.id,source:"official",name:l.name,icon:l.icon,cat:l.cat}))
+    const pins=customPins.map(p=>({id:p.id,source:"pin",name:p.label,icon:"📍",cat:"pin"}))
+    const all=[...official,...pins]
+    return (q?all.filter(p=>p.name.toLowerCase().includes(q)):all).slice(0,40)
+  })()
+
+  if(!user){
+    return(
+      <PremiumGate subscription={subscription} setView={setView} tool="Trip Planner">
+        <div/>
+      </PremiumGate>
+    )
+  }
+
+  return(
+    <PremiumGate subscription={subscription} setView={setView} tool="Trip Planner">
+      {loading?(
+        <p style={{textAlign:"center",color:C.muted,padding:"30px"}}>Loading your trips…</p>
+      ):!editing?(
+        <div>
+          <button onClick={newTrip} style={{background:C.primary,border:"none",color:"#fff",padding:"11px 20px",borderRadius:10,cursor:"pointer",fontSize:14,fontWeight:700,marginBottom:16}}>+ New trip</button>
+          {trips.length===0&&<p style={{color:C.muted,fontSize:14,textAlign:"center",padding:"30px 0"}}>No trips yet — plan your first one above.</p>}
+          <div style={{display:"flex",flexDirection:"column",gap:10}}>
+            {trips.map(trip=>{
+              const cityInfo=MAP_CITIES.find(c=>c.id===trip.city)
+              const stopCount=Object.values(trip.itinerary||{}).reduce((n,arr)=>n+arr.length,0)
+              const dayCount=Object.keys(trip.itinerary||{}).length
+              return(
+                <div key={trip.id} style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,padding:"14px 16px",display:"flex",alignItems:"center",justifyContent:"space-between",gap:10}}>
+                  <div style={{minWidth:0}}>
+                    <div style={{fontWeight:600,fontSize:14,color:C.text}}>{cityInfo?cityInfo.icon:"📍"} {trip.title}</div>
+                    <div style={{fontSize:12,color:C.muted,marginTop:2}}>
+                      {cityInfo?cityInfo.label:trip.city}{trip.start_date?` · ${trip.start_date} → ${trip.end_date}`:""}{dayCount?` · ${stopCount} stop${stopCount===1?"":"s"}`:""}
+                    </div>
+                  </div>
+                  <div style={{display:"flex",gap:6,flexShrink:0}}>
+                    <button onClick={()=>{setError(null);setEditing(trip)}} style={{background:"none",border:`1px solid ${C.border}`,color:C.text,padding:"7px 12px",borderRadius:8,cursor:"pointer",fontSize:12,fontWeight:600}}>Edit</button>
+                    <button onClick={()=>deleteTrip(trip.id)} style={{background:"none",border:"none",color:"#dc2626",cursor:"pointer",fontSize:13,padding:"7px 8px"}}>✕</button>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      ):(
+        <div>
+          <button onClick={()=>setEditing(null)} style={{background:"none",border:"none",color:C.muted,cursor:"pointer",fontSize:13,marginBottom:14,padding:0}}>← All trips</button>
+
+          {/* Trip details */}
+          <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,padding:16,marginBottom:16,display:"flex",flexDirection:"column",gap:10}}>
+            <input value={editing.title} onChange={e=>setEditing({...editing,title:e.target.value})} placeholder="Trip title (e.g. Long weekend in Plovdiv)"
+              style={{border:`1px solid ${C.border}`,borderRadius:8,padding:"9px 12px",fontSize:14,fontWeight:600,color:C.text,outline:"none"}}/>
+            <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
+              <select value={editing.city} onChange={e=>setEditing({...editing,city:e.target.value})}
+                style={{border:`1px solid ${C.border}`,borderRadius:8,padding:"9px 12px",fontSize:13,color:C.text,background:C.page,cursor:"pointer"}}>
+                {MAP_CITIES.map(c=><option key={c.id} value={c.id}>{c.icon} {c.label}</option>)}
+              </select>
+              <input type="date" value={editing.start_date||""} onChange={e=>setEditing({...editing,start_date:e.target.value})}
+                style={{border:`1px solid ${C.border}`,borderRadius:8,padding:"9px 12px",fontSize:13,color:C.text}}/>
+              <span style={{alignSelf:"center",color:C.muted,fontSize:13}}>→</span>
+              <input type="date" value={editing.end_date||""} onChange={e=>setEditing({...editing,end_date:e.target.value})}
+                style={{border:`1px solid ${C.border}`,borderRadius:8,padding:"9px 12px",fontSize:13,color:C.text}}/>
+            </div>
+          </div>
+
+          {error&&<p style={{color:"#dc2626",fontSize:13,marginBottom:12}}>⚠️ {error}</p>}
+
+          {days.length===0?(
+            <p style={{color:C.muted,fontSize:13,textAlign:"center",padding:"20px 0"}}>Set a start and end date above to start building your day-by-day itinerary.</p>
+          ):(
+            <div style={{display:"flex",flexDirection:"column",gap:14}}>
+              {days.map(dayKey=>{
+                const idx=days.indexOf(dayKey)
+                const stops=editing.itinerary[dayKey]||[]
+                return(
+                  <div key={dayKey} style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,overflow:"hidden"}}>
+                    <div style={{background:C.page,padding:"9px 14px",fontSize:12,fontWeight:700,color:C.primary}}>{fmtDay(dayKey,idx)}</div>
+                    <div style={{padding:"8px 14px"}}>
+                      {stops.map((stop,i)=>(
+                        <div key={stop.stopId} style={{display:"flex",gap:8,alignItems:"flex-start",padding:"8px 0",borderBottom:i<stops.length-1?`1px solid ${C.border}`:"none"}}>
+                          <span style={{fontSize:15,flexShrink:0,marginTop:2}}>{stop.icon}</span>
+                          <div style={{flex:1,minWidth:0}}>
+                            <div style={{fontSize:13,fontWeight:600,color:C.text}}>{stop.name}</div>
+                            <input value={stop.note} onChange={e=>setNote(dayKey,stop.stopId,e.target.value)} placeholder="Add a note (optional)"
+                              style={{width:"100%",border:"none",borderBottom:`1px dashed ${C.border}`,fontSize:12,color:C.muted,padding:"3px 0",outline:"none",marginTop:2,background:"transparent",boxSizing:"border-box"}}/>
+                          </div>
+                          <div style={{display:"flex",flexDirection:"column",gap:2,flexShrink:0}}>
+                            <button onClick={()=>moveStop(dayKey,i,-1)} disabled={i===0} style={{background:"none",border:"none",color:i===0?"#ccc":C.muted,cursor:i===0?"default":"pointer",fontSize:11,padding:1}}>▲</button>
+                            <button onClick={()=>moveStop(dayKey,i,1)} disabled={i===stops.length-1} style={{background:"none",border:"none",color:i===stops.length-1?"#ccc":C.muted,cursor:i===stops.length-1?"default":"pointer",fontSize:11,padding:1}}>▼</button>
+                          </div>
+                          <button onClick={()=>removeStop(dayKey,stop.stopId)} style={{background:"none",border:"none",color:"#dc2626",cursor:"pointer",fontSize:13,flexShrink:0}}>✕</button>
+                        </div>
+                      ))}
+                      {pickerDay===dayKey?(
+                        <div style={{marginTop:8,border:`1px solid ${C.border}`,borderRadius:8,padding:8}}>
+                          <input autoFocus value={pickerQuery} onChange={e=>setPickerQuery(e.target.value)} placeholder="Search places…"
+                            style={{width:"100%",border:`1px solid ${C.border}`,borderRadius:6,padding:"6px 10px",fontSize:12,outline:"none",marginBottom:6,boxSizing:"border-box"}}/>
+                          <div style={{maxHeight:180,overflowY:"auto",display:"flex",flexDirection:"column",gap:2}}>
+                            {pickerResults.map(place=>(
+                              <button key={`${place.source}_${place.id}`} onClick={()=>addStop(dayKey,place)}
+                                style={{display:"flex",alignItems:"center",gap:8,background:"none",border:"none",padding:"6px 8px",cursor:"pointer",textAlign:"left",fontSize:12,color:C.text,borderRadius:6}}>
+                                <span>{place.icon}</span>{place.name}{place.source==="pin"&&<span style={{fontSize:9,color:C.muted}}>(your pin)</span>}
+                              </button>
+                            ))}
+                            {pickerResults.length===0&&<p style={{fontSize:12,color:C.muted,padding:"6px 8px"}}>No places found.</p>}
+                          </div>
+                          <button onClick={()=>{setPickerDay(null);setPickerQuery("")}} style={{marginTop:6,background:"none",border:"none",color:C.muted,cursor:"pointer",fontSize:11}}>Cancel</button>
+                        </div>
+                      ):(
+                        <button onClick={()=>setPickerDay(dayKey)} style={{marginTop:6,background:"none",border:`1px dashed ${C.border}`,color:C.primary,padding:"7px 10px",borderRadius:8,cursor:"pointer",fontSize:12,fontWeight:600,width:"100%"}}>+ Add stop</button>
+                      )}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          )}
+
+          <div style={{display:"flex",gap:10,marginTop:20}}>
+            <button onClick={saveTrip} disabled={saving} style={{flex:1,background:C.primary,border:"none",color:"#fff",padding:"12px",borderRadius:10,cursor:saving?"default":"pointer",fontSize:14,fontWeight:700,opacity:saving?0.7:1}}>{saving?"Saving…":"Save trip"}</button>
+            {editing.id&&<button onClick={()=>deleteTrip(editing.id)} style={{background:"none",border:`1px solid #dc2626`,color:"#dc2626",padding:"12px 18px",borderRadius:10,cursor:"pointer",fontSize:14,fontWeight:600}}>Delete</button>}
+          </div>
+        </div>
+      )}
+    </PremiumGate>
+  )
+}
+
 const BG_APP_CATS = [
   {id:"all",     label:"All apps",         icon:"📱"},
   {id:"taxi",    label:"Taxi & Rides",     icon:"🚕"},
