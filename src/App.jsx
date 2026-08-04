@@ -6066,6 +6066,16 @@ const DOC_GEN_TYPES = [
     {k:"price",l:"Sale price (€)",p:"8500"},
     {k:"date",l:"Date of sale",p:"01/09/2025"},
   ]},
+  {id:"property_sale",label:"Property Sale Contract",icon:"🏡",fields:[
+    {k:"seller",l:"Seller full name",p:"Ivan Petrov"},
+    {k:"buyer",l:"Buyer full name",p:"James Smith"},
+    {k:"address",l:"Property address",p:"15 Vitosha Blvd, Sofia 1000"},
+    {k:"proptype",l:"Property type",p:"Apartment"},
+    {k:"size",l:"Size (m²)",p:"85"},
+    {k:"price",l:"Sale price (€)",p:"95000"},
+    {k:"notary",l:"Notary district",p:"Sofia Region"},
+    {k:"date",l:"Date of sale",p:"01/09/2025"},
+  ]},
   {id:"eood",label:"EOOD Company Statutes",icon:"🏢",fields:[
     {k:"company",l:"Company name",p:"My Business EOOD"},
     {k:"founder",l:"Founder full name",p:"James Smith"},
