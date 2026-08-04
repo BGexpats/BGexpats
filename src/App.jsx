@@ -5677,8 +5677,8 @@ export default function App(){
         h1,h2,h3,.serif{font-family:'Bricolage Grotesque','Figtree',sans-serif;letter-spacing:-0.02em}
         button:focus-visible{outline:2px solid ${C.accent};outline-offset:2px}
         /* Map pin name labels — clean pill style instead of Leaflet's plain default tooltip */
-        .bg-loc-label{background:${C.text} !important;color:#fff !important;border:none !important;border-radius:6px !important;padding:3px 8px !important;font-size:11.5px !important;font-weight:600 !important;box-shadow:0 2px 6px rgba(0,0,0,0.25) !important}
-        .bg-loc-label::before{border-top-color:${C.text} !important}
+        .bg-loc-label{background:#1c1c1a !important;color:#fff !important;border:none !important;border-radius:6px !important;padding:3px 8px !important;font-size:11.5px !important;font-weight:600 !important;box-shadow:0 2px 6px rgba(0,0,0,0.25) !important}
+        .bg-loc-label::before{border-top-color:#1c1c1a !important}
         @media (max-width: 768px){.bg-install-fab{display:flex !important}}
         /* Nav on small screens: keep the logo AND wordmark visible, drop only the
            user's first name so the avatar button always has room. */
