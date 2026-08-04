@@ -4240,16 +4240,20 @@ function MapPage({user,setView,subscription,openCheckout}){
 
   useEffect(()=>{ if(loaded)updateMarkers() },[filter,city,loaded,user,adminEditMode,pinsOnlyView,showFavesOnly,favorites])
 
-  // Tap the map to drop a custom pin (Basic+) while addingPin is active
+  // Tap the map to drop a custom pin (Basic+) while addingPin is active, OR
+  // (for the admin) to fill in exact coordinates by clicking rather than
+  // typing them — reuses the same manualPin state/preview/panel as typing in
+  // coordinates directly, just a second way to fill it in.
   useEffect(()=>{
     if(!loaded||!mapInst.current)return
     const map=mapInst.current
     const onMapClick=e=>{
       if(addingPin){ setPendingPin({lat:e.latlng.lat,lng:e.latlng.lng}); setAddingPin(false) }
+      else if(isDevAccount&&addPinMode){ setManualPin(p=>({...p,lat:e.latlng.lat.toFixed(6),lng:e.latlng.lng.toFixed(6)})) }
     }
     map.on("click",onMapClick)
     return()=>map.off("click",onMapClick)
-  },[addingPin,loaded])
+  },[addingPin,addPinMode,isDevAccount,loaded])
 
   // Render the user's own saved pins as a distinct gold marker, separate from the
   // official venue markers so they survive filter/city redraws independently.
@@ -4553,7 +4557,7 @@ function MapPage({user,setView,subscription,openCheckout}){
 
         {/* Map */}
         <div style={{borderRadius:16,overflow:"hidden",border:`1px solid ${C.border}`,boxShadow:"0 4px 20px rgba(0,0,0,0.08)",position:"sticky",top:isMobile?0:80,zIndex:isMobile?5:"auto",order:isMobile?1:2}}>
-          <div ref={mapRef} style={{height:isMobile?"42vh":"calc(100vh - 220px)",minHeight:isMobile?280:500,width:"100%",background:"#e8f0eb",cursor:addingPin?ADD_PIN_CURSOR:""}}/>
+          <div ref={mapRef} style={{height:isMobile?"42vh":"calc(100vh - 220px)",minHeight:isMobile?280:500,width:"100%",background:"#e8f0eb",cursor:(addingPin||(isDevAccount&&addPinMode))?ADD_PIN_CURSOR:""}}/>
           {!loaded&&(
             <div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",background:"#e8f0eb",borderRadius:16}}>
               <div style={{textAlign:"center"}}>
@@ -4598,7 +4602,8 @@ function MapPage({user,setView,subscription,openCheckout}){
           copy the generated snippet and send it over to add to the source data. */}
       {isDevAccount&&addPinMode&&(
         <div style={{position:"fixed",bottom:70,right:16,zIndex:9999,background:"#1a1a1a",border:"1px solid #22c55e",borderRadius:12,padding:14,boxShadow:"0 4px 20px rgba(0,0,0,0.4)",width:300}}>
-          <div style={{fontSize:12,fontWeight:700,color:"#fff",marginBottom:10}}>📍 Add pin by coordinates</div>
+          <div style={{fontSize:12,fontWeight:700,color:"#fff",marginBottom:4}}>📍 Add pin by coordinates</div>
+          <div style={{fontSize:10.5,color:"#4ade80",marginBottom:10}}>Click anywhere on the map to fill in coordinates, or type them below</div>
           <div style={{display:"flex",gap:6,marginBottom:8}}>
             <input value={manualPin.lat} onChange={e=>setManualPin(p=>({...p,lat:e.target.value}))} placeholder="Latitude" inputMode="decimal"
               style={{flex:1,background:"#111",border:"1px solid #333",borderRadius:7,padding:"7px 9px",color:"#4ade80",fontSize:12,fontFamily:"monospace",outline:"none"}}/>
