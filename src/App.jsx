@@ -3491,6 +3491,7 @@ const MAP_LOCATIONS = [
   {id:4,city:"sofia",cat:"health",icon:"💊",name:"Pharmacy Remedium",desc:"Large central pharmacy. Some English-speaking staff.",addr:"2 Sveta Nedelya Sq",phone:"+359 2 980 0111",english:false,lat:42.6971,lng:23.3220},
   // Schools
   {id:375,city:"sofia",cat:"school",icon:"🎓",name:"British School Sofia",desc:"International school in Sofia.",addr:"Sofia",phone:"+359 88 651 0510",english:true,lat:42.646884,lng:23.328283},
+  {id:376,city:"sofia",cat:"school",icon:"🎓",name:"British School of Sofia Kindergarten",desc:"Kindergarten campus of British School of Sofia.",addr:"Sofia",phone:"+359 88 651 0510",english:true,lat:42.647632,lng:23.328752},
   // Banking
   {id:5,city:"sofia",cat:"bank",icon:"🏦",name:"DSK Bank — Vitosha",desc:"Most foreigner-friendly branch. English-speaking staff. Opens accounts for expats.",addr:"4 Vitosha Blvd",phone:"+359 2 939 9611",english:true,lat:42.6944,lng:23.3195},
   {id:6,city:"sofia",cat:"bank",icon:"🏦",name:"UniCredit Bulbank Center",desc:"International bank, English staff, great for SWIFT transfers.",addr:"7 Sveta Nedelya Sq",phone:"+359 2 923 2111",english:true,lat:42.6970,lng:23.3225},
