@@ -3171,7 +3171,6 @@ const MAP_ICON_MAP={
   dining:"M7 2v8a2 2 0 002 2v10M7 2v8M9.3 2v8M17 2c-2.2 0-3.5 3-3.5 6.5S17 15 17 15v9",
   party:"M12 2l1.2 4.4 4.4-1.2-2.6 3.8 3.8 2.6-4.4 1.2L12 17l-2.4-4.2-4.4-1.2 3.8-2.6L6.4 5.2l4.4 1.2z",
   festival:"M12 3l9 8H3zM7 11v8M17 11v8M3 19h18",
-  disco:"M12 3a9 9 0 100 18 9 9 0 000-18zM3 12h18M12 3v18M6.5 6.5l11 11M17.5 6.5l-11 11",
   piano:"M4 6h16v12H4zM7.5 6v8M11 6v8M13 6v8M16.5 6v8",
   hotel:"M3 18v-7a2 2 0 012-2h6a2 2 0 012 2v1h6a2 2 0 012 2v4M3 18h18M7 11a2 2 0 100-4 2 2 0 000 4z",
   cultural:"M4 21h16M5 21V10M9 21V10M15 21V10M19 21V10M3 10l9-6 9 6",
@@ -3862,11 +3861,11 @@ const MAP_LOCATIONS = [
   {id:363,cat:"wine",icon:"🍷",name:"Black Sea Wine — Pomorie",desc:"Unique coastal wine tradition. Local wineries produce Dimyat white wine from grapes grown near the sea. Distinct salty character.",addr:"Pomorie Wine Cellar",phone:"+359 596 22 300",english:true,lat:42.5594,lng:27.6428,city:"pomorie"},
 
   // ══ DISCOTHEQUES ══════════════════════════════════════════════
-  {id:364,cat:"disco",icon:"🪩",name:"Mask Club — Sofia",desc:"Long-running Sofia disco. Commercial and house music. Busy weekends. Popular with expats and locals alike.",addr:"7 Hristo Belchev St, Sofia",phone:"+359 88 900 7777",english:true,lat:42.6978,lng:23.3278,city:"sofia"},
-  {id:365,cat:"disco",icon:"🪩",name:"Library Club — Sofia",desc:"Unique Sofia club inside a converted building. Eclectic music policy. Art installations. Intellectual crowd.",addr:"2 Vassil Levski Blvd, Sofia",phone:"+359 88 822 2020",english:true,lat:42.6990,lng:23.3312,city:"sofia"},
-  {id:366,cat:"disco",icon:"🪩",name:"Sinatra Club — Sofia",desc:"Classic Sofia disco. Good mix of 80s, 90s and current hits. Mature crowd. Popular with expats over 35.",addr:"Sofia Center",phone:"+359 88 811 1199",english:true,lat:42.6962,lng:23.3240,city:"sofia"},
-  {id:367,cat:"disco",icon:"🪩",name:"Premier Club — Varna",desc:"Most popular disco in Varna. House and commercial music. Indoor/outdoor sections. Summer nights are legendary.",addr:"Sea Garden, Varna",phone:"+359 52 612 850",english:true,lat:42.2139,lng:27.9238,city:"varna"},
-  {id:368,cat:"disco",icon:"🪩",name:"Lazur Disco Club — Sunny Beach",desc:"Classic Sunny Beach disco. Multiple floors, variety of music. Open every night May–October.",addr:"Sunny Beach, Nessebar",phone:"+359 554 42 350",english:true,lat:42.6960,lng:27.7100,city:"sunny_beach"},
+  {id:364,cat:"party",icon:"🪩",name:"Mask Club — Sofia",desc:"Long-running Sofia disco. Commercial and house music. Busy weekends. Popular with expats and locals alike.",addr:"7 Hristo Belchev St, Sofia",phone:"+359 88 900 7777",english:true,lat:42.6978,lng:23.3278,city:"sofia"},
+  {id:365,cat:"party",icon:"🪩",name:"Library Club — Sofia",desc:"Unique Sofia club inside a converted building. Eclectic music policy. Art installations. Intellectual crowd.",addr:"2 Vassil Levski Blvd, Sofia",phone:"+359 88 822 2020",english:true,lat:42.6990,lng:23.3312,city:"sofia"},
+  {id:366,cat:"party",icon:"🪩",name:"Sinatra Club — Sofia",desc:"Classic Sofia disco. Good mix of 80s, 90s and current hits. Mature crowd. Popular with expats over 35.",addr:"Sofia Center",phone:"+359 88 811 1199",english:true,lat:42.6962,lng:23.3240,city:"sofia"},
+  {id:367,cat:"party",icon:"🪩",name:"Premier Club — Varna",desc:"Most popular disco in Varna. House and commercial music. Indoor/outdoor sections. Summer nights are legendary.",addr:"Sea Garden, Varna",phone:"+359 52 612 850",english:true,lat:42.2139,lng:27.9238,city:"varna"},
+  {id:368,cat:"party",icon:"🪩",name:"Lazur Disco Club — Sunny Beach",desc:"Classic Sunny Beach disco. Multiple floors, variety of music. Open every night May–October.",addr:"Sunny Beach, Nessebar",phone:"+359 554 42 350",english:true,lat:42.6960,lng:27.7100,city:"sunny_beach"},
 
   // ══ PIANO BARS ════════════════════════════════════════════════
   {id:369,cat:"piano",icon:"🎹",name:"Piano Bar — Grand Hotel Sofia",desc:"Elegant piano bar in Sofia's prestigious Grand Hotel. Live piano nightly. Excellent cocktails and wine selection. Sophisticated atmosphere.",addr:"1 Gurko St, Sofia",phone:"+359 2 811 0800",english:true,lat:42.6974,lng:23.3226,city:"sofia"},
@@ -3900,11 +3899,10 @@ const MAP_CATS=[
   {id:"all",     label:"All",              icon:"🗺️", color:"#1e5e3f"},
   // ── Free (always visible) ──
   {id:"health",  label:"Healthcare",       icon:"🏥", color:"#16a34a"},
-  {id:"bank",    label:"Banking",          icon:"🏦", color:"#1d4ed8"},
-  {id:"legal",   label:"Legal",            icon:"⚖️", color:"#7c3aed"},
   {id:"hood",    label:"Neighbourhoods",   icon:"🏠", color:"#db2777"},
   // ── Basic ──
-  {id:"work",    label:"Coworking",        icon:"💼", color:"#b8792a"},
+  {id:"bank",    label:"Banking",          icon:"🏦", color:"#1d4ed8"},
+  {id:"legal",   label:"Legal",            icon:"⚖️", color:"#7c3aed"},
   {id:"dining",  label:"Dining",           icon:"🍽️", color:"#b45309"},
   {id:"party",   label:"Party & Clubs",    icon:"🎉", color:"#dc2626"},
   {id:"hotel",   label:"Hotels",           icon:"🏨", color:"#6b7280"},
@@ -3915,9 +3913,9 @@ const MAP_CATS=[
   {id:"festival",label:"Festivals",        icon:"🎪", color:"#059669"},
   {id:"tradfest",label:"Traditional Fests",icon:"🎭", color:"#065f46"},
   {id:"wine",    label:"Wine Tourism",     icon:"🍷", color:"#7c2d12"},
-  {id:"disco",   label:"Discotheques",     icon:"🪩", color:"#9333ea"},
   {id:"piano",   label:"Piano Bars",       icon:"🎹", color:"#1f2937"},
   // ── Premium ──
+  {id:"work",    label:"Coworking",        icon:"💼", color:"#b8792a"},
   {id:"car",     label:"Car Rental",       icon:"🚗", color:"#dc2626"},
   {id:"jobs",    label:"Work & Jobs",      icon:"👔", color:"#0891b2"},
 ]
@@ -4061,10 +4059,11 @@ function MapPage({user,setView,subscription,openCheckout}){
   const tier = (effectiveSubscription&&effectiveSubscription.plan) || "free"
   const isBasic   = tier==="basic"   || tier==="premium"
   const isPremium = tier==="premium"
-  // Car rental + jobs = Premium only
-  const PREMIUM_CATS = ["car","jobs"]
-  // Coworking = Basic+
-  const BASIC_CATS   = ["work","dining","party","hotel","summer","winter","art","cultural","festival","tradfest","wine","disco","piano"]
+  // Car rental + jobs + coworking = Premium only
+  const PREMIUM_CATS = ["car","jobs","work"]
+  // Free tier: only Healthcare + Neighbourhoods. Everything else — including
+  // Banking and Legal, which used to be free — now requires Basic+.
+  const BASIC_CATS   = ["bank","legal","dining","party","hotel","summer","winter","art","cultural","festival","tradfest","wine","piano"]
 
   const canSeeCategory = (cat) => {
     if(PREMIUM_CATS.includes(cat)) return isPremium
@@ -4325,24 +4324,16 @@ function MapPage({user,setView,subscription,openCheckout}){
             <div style={{background:C.primary,borderRadius:14,padding:"14px 16px",textAlign:"center"}}>
               <div style={{fontSize:18,marginBottom:6}}>🔒</div>
               <p style={{color:"#fff",fontSize:13,fontWeight:600,margin:"0 0 4px"}}>Showing {FREE_LIMIT} of {allCityLocs.length} locations</p>
-              <p style={{color:"rgba(255,255,255,0.7)",fontSize:12,margin:"0 0 10px"}}>Sign in free for healthcare, banking, legal and neighbourhood pins</p>
+              <p style={{color:"rgba(255,255,255,0.7)",fontSize:12,margin:"0 0 10px"}}>Sign in free for healthcare and neighbourhood pins</p>
               <button onClick={()=>setView("login")} style={{background:"#fff",border:"none",color:C.primary,padding:"8px 18px",borderRadius:8,cursor:"pointer",fontSize:13,fontWeight:700,width:"100%"}}>Sign up free →</button>
-            </div>
-          )}
-          {user&&!isBasic&&(filter==="work")&&(
-            <div style={{background:"var(--bg-accent)",border:"1px solid var(--border-accent)",borderRadius:14,padding:"14px 16px",textAlign:"center"}}>
-              <div style={{fontSize:18,marginBottom:6}}>💼</div>
-              <p style={{color:"var(--text-accent)",fontSize:13,fontWeight:600,margin:"0 0 4px"}}>Coworking — Basic subscribers only</p>
-              <p style={{color:"var(--text-secondary)",fontSize:12,margin:"0 0 10px"}}>Upgrade to Basic (€{PLANS.basic.monthly}/month) to see all coworking spaces</p>
-              <button onClick={()=>openCheckout&&openCheckout("basic")} style={{background:"var(--text-accent)",border:"none",color:"#fff",padding:"8px 18px",borderRadius:8,cursor:"pointer",fontSize:13,fontWeight:700,width:"100%"}}>Upgrade to Basic →</button>
             </div>
           )}
           {user&&!isPremium&&(PREMIUM_CATS.includes(filter))&&(
             <div style={{background:"#1a0f00",border:"1px solid #f0c06040",borderRadius:14,padding:"14px 16px",textAlign:"center"}}>
-              <div style={{fontSize:22,marginBottom:6}}>{filter==="car"?"🚗":"👔"}</div>
-              <p style={{color:"#f0c060",fontSize:13,fontWeight:700,margin:"0 0 4px"}}>{filter==="car"?"Car Rental":"Jobs & Work"} — Premium only</p>
+              <div style={{fontSize:22,marginBottom:6}}>{filter==="car"?"🚗":filter==="jobs"?"👔":"💼"}</div>
+              <p style={{color:"#f0c060",fontSize:13,fontWeight:700,margin:"0 0 4px"}}>{filter==="car"?"Car Rental":filter==="jobs"?"Jobs & Work":"Coworking"} — Premium only</p>
               <p style={{color:"rgba(255,255,255,0.6)",fontSize:12,margin:"0 0 10px"}}>
-                {filter==="car"?"18 rental locations across Bulgaria — book instantly":"23 job opportunities across Bulgaria — only resource in English"}
+                {filter==="car"?"18 rental locations across Bulgaria — book instantly":filter==="jobs"?"23 job opportunities across Bulgaria — only resource in English":"Coworking spaces across Bulgaria — fast WiFi, community, verified locations"}
               </p>
               <button onClick={()=>openCheckout&&openCheckout("premium")} style={{background:"linear-gradient(135deg,#f0c060,#e8a020)",border:"none",color:"#1a3a20",padding:"8px 18px",borderRadius:8,cursor:"pointer",fontSize:13,fontWeight:700,width:"100%"}}>Upgrade to Premium →</button>
             </div>
