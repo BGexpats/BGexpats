@@ -967,18 +967,52 @@ No customs duty on EU-origin vehicles. Process:
     labels:{en:{label:"Family & Living",sub:"Schools, daily life, working"},fr:{label:"Famille & Vie quotidienne",sub:"Écoles, vie quotidienne, travail"},es:{label:"Familia y Vida",sub:"Escuelas, vida diaria, trabajo"},de:{label:"Familie & Leben",sub:"Schulen, Alltag, Arbeit"},nl:{label:"Gezin & Leven",sub:"Scholen, dagelijks leven, werk"},ru:{label:"Семья и быт",sub:"Школы, быт, работа"},uk:{label:"Сім'я та побут",sub:"Школи, побут, робота"},tr:{label:"Aile ve Yaşam",sub:"Okullar, günlük yaşam, çalışma"},bg:{label:"Семейство и живот",sub:"Училища, ежедневие, работа"}},
     articles:[
       {titles:{en:"International schools & education in Bulgaria",fr:"\u00c9coles internationales et \u00e9ducation en Bulgarie",es:"Colegios internacionales y educaci\u00f3n en Bulgaria",de:"Internationale Schulen & Bildung in Bulgarien",nl:"Internationale scholen & onderwijs in Bulgarije",ru:"Международные школы и образование в Болгарии",uk:"Міжнародні школи та освіта в Болгарії",tr:"Bulgaristan'da uluslararası okullar ve eğitim",bg:"Международни училища и образование в България"},
-       body:`Education is the number one question for expat families. Bulgaria has excellent options — from free public schools to world-class international institutions.
+       body:`Education is the number one question for expat families. Bulgaria runs a dual-track system: free state schools open to all legal residents, and a growing private/international sector teaching in English, German, French, or Russian.
+
+One important planning note: if your family needs internationally recognized qualifications like the IB or A-Levels for secondary school, Sofia is really the only practical base — options in other cities are far more limited.
+
+## Kindergartens and pre-school (ages 3–7)
+
+At age 6, every child — including foreigners — must attend a mandatory "preparatory group," either at a kindergarten or a primary school.
+
+**State kindergartens** are heavily subsidized, typically costing around €50–100 a month, mostly covering food. Spots are often allocated by lottery, and instruction is in Bulgarian.
+
+**Private and bilingual kindergartens** are the most common choice among expat families. In Sofia, monthly fees range from €300 to €1,500.
+
+There's also a growing **Montessori and Waldorf** scene, mostly concentrated in Sofia, for families looking for an alternative pedagogical approach.
+
+## Enrolment requirements and documentation
+
+To enroll in a Bulgarian school, families need to go through the Regional Education Inspectorate (RIO), which assigns schools based on your registered address.
+
+**You'll need:** your child's passport, a translated and apostilled birth certificate, and any previous academic transcripts.
+
+**The vaccination pitfall — the most commonly missed requirement:** your child's vaccination record has to match the Bulgarian National Vaccination Calendar. If it doesn't line up, any missing vaccines need to be administered before enrollment can be finalized — so it's worth checking this early rather than discovering it at the last step.
+
+## Estimated education costs (2026)
+
+| School type | Annual fees |
+|---|---|
+| State schools | Free |
+| Private bilingual schools | €2,000–5,000 |
+| Mid-range international (Sofia) | €6,000–9,000 |
+| Premium international (Sofia) | €8,000–18,000 |
+
+Even at the premium end, international schooling in Bulgaria still runs 30–60% cheaper than equivalent options in Western Europe — the UK or the Netherlands, for example.
 
 ## Public schools — free for all residents
 
-All legally resident children (EU and non-EU) have the right to free public education in Bulgaria.
+All legally resident children — EU and non-EU citizens alike — have the right to free public education in Bulgaria.
+
+**Stages:** Education is structured into Primary (ages 7–11), Lower Secondary (11–14), and Upper Secondary (14–18).
 
 **The reality for expat children:**
-• Instruction is entirely in Bulgarian
-• Children typically adapt within 6–12 months — language immersion works remarkably well for young children
+• Instruction is entirely in Bulgarian. Supplementary language support is provided, but younger children typically integrate more easily than teenagers — most adapt within 6–12 months through immersion
 • Schools are academically rigorous by European standards
 • Class sizes: 20–28 students
 • School year: mid-September to May
+
+**Language gymnasiums — the hidden gem of the state system:** Starting in Grade 8, specialized language gymnasiums offer intensive instruction in English, German, or French. They're free and highly competitive to get into, but for families who can't stretch to international school fees, this is genuinely the strongest free option for a language-rich secondary education.
 
 **Enrol at:** Your local neighbourhood school (районно училище). Bring: residence certificate, child's ID/passport, apostilled birth certificate with Bulgarian translation.
 
