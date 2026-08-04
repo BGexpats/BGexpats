@@ -3196,6 +3196,7 @@ const CONNECT_ICON_MAP={
 const MAP_ICON_MAP={
   all:"M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2c2.5 2.7 4 6.2 4 10s-1.5 7.3-4 10c-2.5-2.7-4-6.2-4-10s1.5-7.3 4-10z",
   health:"M12 2a10 10 0 100 20 10 10 0 000-20zm-1.2 5.5h2.4v3.8h3.8v2.4h-3.8v3.8h-2.4v-3.8H7v-2.4h3.8V7.5z",
+  school:"M12 3L2 8l10 5 10-5-10-5zM6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5M20 9v6",
   bank:"M3 10l9-6 9 6M5 10v9M10 10v9M14 10v9M19 10v9M3 21h18",
   legal:"M12 3v3M5 7l4-1M19 7l-4-1M5 7l-3 6.5a3 3 0 006 0zM19 7l-3 6.5a3 3 0 006 0zM8 21h8M12 6v15",
   work:"M4 8h16v11H4zM9 8V6a2 2 0 012-2h2a2 2 0 012 2v2",
@@ -3935,6 +3936,7 @@ const MAP_CATS=[
   {id:"health",  label:"Healthcare",       icon:"🏥", color:"#16a34a"},
   {id:"hood",    label:"Neighbourhoods",   icon:"🏠", color:"#db2777"},
   // ── Basic ──
+  {id:"school",  label:"Schools",          icon:"🎓", color:"#0369a1"},
   {id:"bank",    label:"Banking",          icon:"🏦", color:"#1d4ed8"},
   {id:"legal",   label:"Legal",            icon:"⚖️", color:"#7c3aed"},
   {id:"dining",  label:"Dining",           icon:"🍽️", color:"#b45309"},
@@ -4105,7 +4107,7 @@ function MapPage({user,setView,subscription,openCheckout}){
   const PREMIUM_CATS = ["car","jobs","work"]
   // Free tier: only Healthcare + Neighbourhoods. Everything else — including
   // Banking and Legal, which used to be free — now requires Basic+.
-  const BASIC_CATS   = ["bank","legal","dining","party","hotel","summer","winter","art","cultural","festival","tradfest","wine","piano"]
+  const BASIC_CATS   = ["school","bank","legal","dining","party","hotel","summer","winter","art","cultural","festival","tradfest","wine","piano"]
 
   const canSeeCategory = (cat) => {
     if(PREMIUM_CATS.includes(cat)) return isPremium
