@@ -100,6 +100,7 @@ const T = {
     stillQ:"Still have questions?",askLink:"Ask the AI →",
     chatTitle:"BGexpats AI",chatSub:"Expert on expat life in Bulgaria",
     pricingTitle:"Simple, honest pricing",pricingSub:"Join thousands of expats navigating life in Bulgaria",
+    mapBannerTitle:"Find real businesses & services on the BGexpats Map",mapBannerSub:"Lawyers, notaries, agencies, clinics, banks and more — verified locations you can actually visit",
     greeting:"👋 Hi! I'm your BGexpats assistant.\n\nAsk me anything about living in or visiting Bulgaria — visas, healthcare, banking, housing, taxes, or local tips. I'm here to help!",
     suggestions:["How do I get a residency permit?","What's the cost of living in Sofia?","How to open a bank account as a foreigner?","How to register an EOOD company?","Best neighbourhoods in Sofia for expats?"],
     placeholder:"Ask anything about life in Bulgaria...",
@@ -126,6 +127,7 @@ const T = {
     stillQ:"Vous avez encore des questions ?",askLink:"Demander à l'IA →",
     chatTitle:"Assistant IA BGexpats",chatSub:"Expert sur la vie d'expatrié en Bulgarie",
     pricingTitle:"Des tarifs simples et transparents",pricingSub:"Rejoignez des milliers d'expatriés qui vivent en Bulgarie",
+    mapBannerTitle:"Trouvez de vraies entreprises et services sur la carte BGexpats",mapBannerSub:"Avocats, notaires, agences, cliniques, banques et plus — des lieux vérifiés que vous pouvez réellement visiter",
     greeting:"👋 Bonjour ! Je suis votre assistant guide pour la Bulgarie.\n\nPosez-moi n'importe quelle question sur la vie en Bulgarie — visas, santé, banque, logement, impôts ou conseils locaux. Je suis là pour vous aider !",
     suggestions:["Comment obtenir un permis de résidence ?","Quel est le coût de la vie à Sofia ?","Comment ouvrir un compte bancaire en tant qu'étranger ?","Comment créer une société EOOD ?","Meilleurs quartiers de Sofia pour les expatriés ?"],
     placeholder:"Posez n'importe quelle question sur la vie en Bulgarie...",
@@ -152,6 +154,7 @@ const T = {
     stillQ:"¿Tienes más preguntas?",askLink:"Preguntar al IA →",
     chatTitle:"Asistente IA BGexpats",chatSub:"Experto en vida de expatriado en Bulgaria",
     pricingTitle:"Precios simples y honestos",pricingSub:"Únete a miles de expatriados que viven en Bulgaria",
+    mapBannerTitle:"Encuentra negocios y servicios reales en el mapa de BGexpats",mapBannerSub:"Abogados, notarios, agencias, clínicas, bancos y más — ubicaciones verificadas que puedes visitar de verdad",
     greeting:"👋 ¡Hola! Soy tu asistente guía para Bulgaria.\n\nPregúntame lo que quieras sobre vivir o visitar Bulgaria — visados, sanidad, banca, vivienda, impuestos o consejos locales. ¡Estoy aquí para ayudarte!",
     suggestions:["¿Cómo obtengo un permiso de residencia?","¿Cuál es el coste de vida en Sofía?","¿Cómo abro una cuenta bancaria como extranjero?","¿Cómo registro una empresa EOOD?","¿Mejores barrios de Sofía para expatriados?"],
     placeholder:"Pregunta cualquier cosa sobre la vida en Bulgaria...",
@@ -178,6 +181,7 @@ const T = {
     stillQ:"Noch Fragen?",askLink:"KI fragen →",
     chatTitle:"BGexpats KI",chatSub:"Experte für Expat-Leben in Bulgarien",
     pricingTitle:"Einfache, faire Preise",pricingSub:"Schließen Sie sich Tausenden von Expats an, die in Bulgarien leben",
+    mapBannerTitle:"Echte Unternehmen & Dienstleistungen auf der BGexpats-Karte finden",mapBannerSub:"Anwälte, Notare, Agenturen, Kliniken, Banken und mehr — verifizierte Orte, die Sie wirklich besuchen können",
     greeting:"👋 Hallo! Ich bin Ihr Bulgarien-Reiseführer-Assistent.\n\nFragen Sie mich alles über das Leben in oder den Besuch Bulgariens — Visa, Gesundheit, Banking, Wohnen, Steuern oder lokale Tipps. Ich helfe Ihnen gerne!",
     suggestions:["Wie bekomme ich eine Aufenthaltserlaubnis?","Wie sind die Lebenshaltungskosten in Sofia?","Wie eröffne ich ein Bankkonto als Ausländer?","Wie registriere ich eine EOOD-Firma?","Beste Viertel in Sofia für Expats?"],
     placeholder:"Stellen Sie eine Frage über das Leben in Bulgarien...",
@@ -205,6 +209,7 @@ const T = {
     stillQ:"Heeft u nog vragen?",askLink:"Vraag de AI →",
     chatTitle:"BGexpats AI",chatSub:"Expert in expatleven in Bulgarije",
     pricingTitle:"Eenvoudige, eerlijke prijzen",pricingSub:"Sluit je aan bij duizenden expats die in Bulgarije leven",
+    mapBannerTitle:"Vind echte bedrijven & diensten op de BGexpats-kaart",mapBannerSub:"Advocaten, notarissen, bureaus, klinieken, banken en meer — geverifieerde locaties die u echt kunt bezoeken",
     greeting:"👋 Hallo! Ik ben uw gids-assistent voor Bulgarije.\n\nStel me alles over leven in of bezoeken van Bulgarije — visa's, gezondheidszorg, bankieren, wonen, belastingen of lokale tips. Ik help u graag!",
     suggestions:["Hoe krijg ik een verblijfsvergunning?","Wat zijn de kosten van levensonderhoud in Sofia?","Hoe open ik een bankrekening als buitenlander?","Hoe registreer ik een EOOD-bedrijf?","Beste wijken in Sofia voor expats?"],
     placeholder:"Stel een vraag over het leven in Bulgarije...",
@@ -231,6 +236,7 @@ const T = {
     stillQ:"Остались вопросы?",askLink:"Спросить ИИ →",
     chatTitle:"BGexpats ИИ",chatSub:"Эксперт по жизни экспатов в Болгарии",
     pricingTitle:"Простые, честные цены",pricingSub:"Присоединяйтесь к тысячам экспатов, живущих в Болгарии",
+    mapBannerTitle:"Найдите реальные компании и услуги на карте BGexpats",mapBannerSub:"Юристы, нотариусы, агентства, клиники, банки и многое другое — проверенные места, которые можно посетить",
     greeting:"👋 Привет! Я ваш ассистент BGexpats.\n\nЗадайте любой вопрос о жизни или туризме в Болгарии — визы, здравоохранение, банки, жильё, налоги или местные советы. Я здесь, чтобы помочь!",
     suggestions:["Как получить вид на жительство?","Какова стоимость жизни в Софии?","Как открыть банковский счёт иностранцу?","Как зарегистрировать компанию ЭООД?","Лучшие районы Софии для экспатов?"],
     placeholder:"Задайте вопрос о жизни в Болгарии...",
@@ -257,6 +263,7 @@ const T = {
     stillQ:"Залишилися питання?",askLink:"Запитати ШІ →",
     chatTitle:"BGexpats ШІ",chatSub:"Експерт з життя експатів у Болгарії",
     pricingTitle:"Прості, чесні ціни",pricingSub:"Приєднуйтесь до тисяч експатів, які живуть у Болгарії",
+    mapBannerTitle:"Знайдіть реальні компанії та послуги на карті BGexpats",mapBannerSub:"Юристи, нотаріуси, агентства, клініки, банки та інше — перевірені місця, які можна дійсно відвідати",
     greeting:"👋 Привіт! Я ваш асистент BGexpats.\n\nЗадайте будь-яке питання про життя або туризм у Болгарії — візи, охорона здоров'я, банки, житло, податки або місцеві поради. Я тут, щоб допомогти!",
     suggestions:["Як отримати посвідку на проживання?","Яка вартість життя в Софії?","Як відкрити банківський рахунок іноземцю?","Як зареєструвати компанію ЕООД?","Найкращі райони Софії для експатів?"],
     placeholder:"Задайте питання про життя в Болгарії...",
@@ -283,6 +290,7 @@ const T = {
     stillQ:"Имате още въпроси?",askLink:"Попитай ИИ →",
     chatTitle:"BGexpats ИИ",chatSub:"Експерт по живота на експати в България",
     pricingTitle:"Прости, честни цени",pricingSub:"Присъединете се към хиляди чужденци, живеещи в България",
+    mapBannerTitle:"Намерете реални бизнеси и услуги на картата на BGexpats",mapBannerSub:"Адвокати, нотариуси, агенции, клиники, банки и още — проверени места, които можете действително да посетите",
     greeting:"👋 Здравейте! Аз съм вашият BGexpats асистент.\n\nЗадайте всякакви въпроси за живота или туризма в България — визи, здравеопазване, банки, жилища, данъци или местни съвети. Тук съм, за да помогна!",
     suggestions:["Как да получа разрешение за пребиваване?","Какви са разходите за живот в София?","Как да открия банкова сметка като чужденец?","Как да регистрирам ЕООД?","Най-добрите квартали в София за експати?"],
     placeholder:"Задайте въпрос за живота в България...",
@@ -309,6 +317,7 @@ const T = {
     stillQ:"Hâlâ sorularınız mı var?",askLink:"Yapay zekaya sor →",
     chatTitle:"BGexpats Yapay Zeka",chatSub:"Bulgaristan expat yaşamı uzmanı",
     pricingTitle:"Basit, dürüst fiyatlandırma",pricingSub:"Bulgaristan'da yaşayan binlerce yabancıya katılın",
+    mapBannerTitle:"BGexpats Haritasında gerçek işletmeleri ve hizmetleri bulun",mapBannerSub:"Avukatlar, noterler, ajanslar, klinikler, bankalar ve daha fazlası — gerçekten ziyaret edebileceğiniz doğrulanmış konumlar",
     greeting:"👋 Merhaba! Ben BGexpats asistanınızım.\n\nBulgaristan'da yaşam veya turizm hakkında her şeyi sorabilirsiniz — vizeler, sağlık, bankacılık, konut, vergiler veya yerel ipuçları. Yardımcı olmak için buradayım!",
     suggestions:["Oturma izni nasıl alınır?","Sofya'da yaşam maliyeti nedir?","Yabancı olarak banka hesabı nasıl açılır?","EOOD şirketi nasıl kurulur?","Expatlar için Sofya'nın en iyi mahalleleri?"],
     placeholder:"Bulgaristan'da yaşam hakkında bir şeyler sorun...",
@@ -1773,8 +1782,8 @@ function CategoryPage({catId,setView,lang,t,cache,setCache,user,reviews,setRevie
         <button onClick={()=>setView("map")} style={{width:"100%",display:"flex",alignItems:"center",gap:12,background:C.primaryLight,border:`1px solid ${C.primary}33`,borderRadius:14,padding:"14px 16px",marginBottom:22,cursor:"pointer",textAlign:"left"}}>
           <span style={{fontSize:22,flexShrink:0}}>🗺️</span>
           <span style={{flex:1,minWidth:0}}>
-            <span style={{display:"block",fontSize:13.5,fontWeight:700,color:C.primary}}>Find real businesses & services on the BGexpats Map</span>
-            <span style={{display:"block",fontSize:12,color:C.muted,marginTop:1}}>Lawyers, notaries, agencies, clinics, banks and more — verified locations you can actually visit</span>
+            <span style={{display:"block",fontSize:13.5,fontWeight:700,color:C.primary}}>{t.mapBannerTitle||"Find real businesses & services on the BGexpats Map"}</span>
+            <span style={{display:"block",fontSize:12,color:C.muted,marginTop:1}}>{t.mapBannerSub||"Lawyers, notaries, agencies, clinics, banks and more — verified locations you can actually visit"}</span>
           </span>
           <span style={{color:C.primary,fontSize:14,flexShrink:0}}>→</span>
         </button>
