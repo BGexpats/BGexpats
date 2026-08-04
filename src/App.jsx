@@ -6056,6 +6056,16 @@ const DOC_GEN_TYPES = [
     {k:"duration",l:"Contract duration",p:"12 months"},
     {k:"start",l:"Start date",p:"01/09/2025"},
   ]},
+  {id:"vehicle_sale",label:"Vehicle Sale Contract",icon:"🚗",fields:[
+    {k:"seller",l:"Seller full name",p:"Ivan Petrov"},
+    {k:"buyer",l:"Buyer full name",p:"James Smith"},
+    {k:"make",l:"Vehicle make & model",p:"Volkswagen Golf"},
+    {k:"year",l:"Year of manufacture",p:"2018"},
+    {k:"vin",l:"VIN / chassis number",p:"WVWZZZ1KZAW123456"},
+    {k:"plate",l:"Registration plate",p:"CA1234BH"},
+    {k:"price",l:"Sale price (€)",p:"8500"},
+    {k:"date",l:"Date of sale",p:"01/09/2025"},
+  ]},
   {id:"eood",label:"EOOD Company Statutes",icon:"🏢",fields:[
     {k:"company",l:"Company name",p:"My Business EOOD"},
     {k:"founder",l:"Founder full name",p:"James Smith"},
