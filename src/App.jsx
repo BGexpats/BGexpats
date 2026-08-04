@@ -4089,6 +4089,14 @@ function MapPage({user,setView,subscription,openCheckout}){
   // corrected lat/lng to copy and send over so the source data can be updated.
   const [adminEditMode,setAdminEditMode] = useState(false)
   const [editedCoords,setEditedCoords] = useState(null)
+  // Admin: place a preview pin by typing exact coordinates, instead of having
+  // to drag an existing pin to discover them. Shows a distinct marker on the
+  // map plus a ready-to-copy code snippet — same "doesn't save automatically"
+  // pattern as editedCoords above, since locations are hardcoded, not
+  // database-backed.
+  const [addPinMode,setAddPinMode] = useState(false)
+  const [manualPin,setManualPin] = useState({lat:"",lng:"",name:"",cat:"health",city:"sofia"})
+  const manualPinMarkerRef = useRef(null)
   const effectiveSubscription = (isDevAccount && devTierOverride) ? {plan:devTierOverride} : subscription
   const tier = (effectiveSubscription&&effectiveSubscription.plan) || "free"
   const isBasic   = tier==="basic"   || tier==="premium"
@@ -4212,6 +4220,23 @@ function MapPage({user,setView,subscription,openCheckout}){
       setSelected(null)
     }
   },[city,loaded])
+
+  // Preview marker for the admin "add pin by coordinates" panel — updates
+  // live as valid lat/lng are typed, styled distinctly (dashed green ring)
+  // from real location pins so it's obviously a not-yet-saved preview.
+  useEffect(()=>{
+    if(manualPinMarkerRef.current){ manualPinMarkerRef.current.remove(); manualPinMarkerRef.current=null }
+    if(!addPinMode||!mapInst.current)return
+    const lat=parseFloat(manualPin.lat), lng=parseFloat(manualPin.lng)
+    if(isNaN(lat)||isNaN(lng))return
+    const icon=L.divIcon({
+      html:`<div style="width:34px;height:34px;border:3px dashed #22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(34,197,94,0.15);box-shadow:0 2px 10px rgba(0,0,0,0.3)"><span style="font-size:15px">📍</span></div>`,
+      className:"",iconSize:[34,34],iconAnchor:[17,17]
+    })
+    const marker=L.marker([lat,lng],{icon}).addTo(mapInst.current)
+    manualPinMarkerRef.current=marker
+    mapInst.current.setView([lat,lng],15,{animate:true})
+  },[addPinMode,manualPin.lat,manualPin.lng])
 
   useEffect(()=>{ if(loaded)updateMarkers() },[filter,city,loaded,user,adminEditMode,pinsOnlyView,showFavesOnly,favorites])
 
@@ -4559,6 +4584,54 @@ function MapPage({user,setView,subscription,openCheckout}){
             style={{padding:"5px 10px",borderRadius:7,border:"none",cursor:"pointer",fontSize:11,fontWeight:700,
               background:adminEditMode?"#dc2626":"#2a2a2a",color:adminEditMode?"#fff":"#999"}}>
             ✏️ {adminEditMode?"Editing pins":"Edit pins"}
+          </button>
+          <button onClick={()=>setAddPinMode(v=>!v)}
+            style={{padding:"5px 10px",borderRadius:7,border:"none",cursor:"pointer",fontSize:11,fontWeight:700,
+              background:addPinMode?"#22c55e":"#2a2a2a",color:addPinMode?"#0a2e17":"#999"}}>
+            📍 {addPinMode?"Adding by coords":"Add pin by coords"}
+          </button>
+        </div>
+      )}
+
+      {/* Admin: type exact coordinates to preview a new pin on the map, instead
+          of dragging an existing one to discover them. Doesn't save anywhere —
+          copy the generated snippet and send it over to add to the source data. */}
+      {isDevAccount&&addPinMode&&(
+        <div style={{position:"fixed",bottom:70,right:16,zIndex:9999,background:"#1a1a1a",border:"1px solid #22c55e",borderRadius:12,padding:14,boxShadow:"0 4px 20px rgba(0,0,0,0.4)",width:300}}>
+          <div style={{fontSize:12,fontWeight:700,color:"#fff",marginBottom:10}}>📍 Add pin by coordinates</div>
+          <div style={{display:"flex",gap:6,marginBottom:8}}>
+            <input value={manualPin.lat} onChange={e=>setManualPin(p=>({...p,lat:e.target.value}))} placeholder="Latitude" inputMode="decimal"
+              style={{flex:1,background:"#111",border:"1px solid #333",borderRadius:7,padding:"7px 9px",color:"#4ade80",fontSize:12,fontFamily:"monospace",outline:"none"}}/>
+            <input value={manualPin.lng} onChange={e=>setManualPin(p=>({...p,lng:e.target.value}))} placeholder="Longitude" inputMode="decimal"
+              style={{flex:1,background:"#111",border:"1px solid #333",borderRadius:7,padding:"7px 9px",color:"#4ade80",fontSize:12,fontFamily:"monospace",outline:"none"}}/>
+          </div>
+          <input value={manualPin.name} onChange={e=>setManualPin(p=>({...p,name:e.target.value}))} placeholder="Location name"
+            style={{width:"100%",background:"#111",border:"1px solid #333",borderRadius:7,padding:"7px 9px",color:"#fff",fontSize:12,outline:"none",marginBottom:8,boxSizing:"border-box"}}/>
+          <div style={{display:"flex",gap:6,marginBottom:10}}>
+            <select value={manualPin.cat} onChange={e=>setManualPin(p=>({...p,cat:e.target.value}))}
+              style={{flex:1,background:"#111",border:"1px solid #333",borderRadius:7,padding:"7px 9px",color:"#fff",fontSize:11,outline:"none"}}>
+              {MAP_CATS.filter(c=>c.id!=="all").map(c=><option key={c.id} value={c.id}>{c.label}</option>)}
+            </select>
+            <select value={manualPin.city} onChange={e=>setManualPin(p=>({...p,city:e.target.value}))}
+              style={{flex:1,background:"#111",border:"1px solid #333",borderRadius:7,padding:"7px 9px",color:"#fff",fontSize:11,outline:"none"}}>
+              {MAP_CITIES.map(c=><option key={c.id} value={c.id}>{c.label}</option>)}
+            </select>
+          </div>
+          {!isNaN(parseFloat(manualPin.lat))&&!isNaN(parseFloat(manualPin.lng))&&(
+            <>
+              <div style={{fontSize:10,color:"#888",marginBottom:4}}>Ready-to-send snippet:</div>
+              <div style={{background:"#111",borderRadius:8,padding:"8px 10px",fontFamily:"monospace",fontSize:10.5,color:"#4ade80",marginBottom:10,userSelect:"all",wordBreak:"break-all",lineHeight:1.5}}>
+                {`{cat:"${manualPin.cat}",name:"${manualPin.name||"New location"}",lat:${parseFloat(manualPin.lat).toFixed(6)},lng:${parseFloat(manualPin.lng).toFixed(6)},city:"${manualPin.city}"}`}
+              </div>
+              <button onClick={()=>{navigator.clipboard&&navigator.clipboard.writeText(`{cat:"${manualPin.cat}",name:"${manualPin.name||"New location"}",lat:${parseFloat(manualPin.lat).toFixed(6)},lng:${parseFloat(manualPin.lng).toFixed(6)},city:"${manualPin.city}"}`)}}
+                style={{width:"100%",background:"#22c55e",border:"none",color:"#0a2e17",padding:"8px 10px",borderRadius:7,cursor:"pointer",fontSize:11,fontWeight:700,marginBottom:6}}>
+                Copy snippet
+              </button>
+            </>
+          )}
+          <button onClick={()=>{setAddPinMode(false);setManualPin({lat:"",lng:"",name:"",cat:"health",city:"sofia"})}}
+            style={{width:"100%",background:"none",border:"none",color:"#888",cursor:"pointer",fontSize:11}}>
+            Close
           </button>
         </div>
       )}
