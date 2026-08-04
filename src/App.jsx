@@ -3491,7 +3491,7 @@ const MAP_LOCATIONS = [
   {id:4,city:"sofia",cat:"health",icon:"💊",name:"Pharmacy Remedium",desc:"Large central pharmacy. Some English-speaking staff.",addr:"2 Sveta Nedelya Sq",phone:"+359 2 980 0111",english:false,lat:42.6971,lng:23.3220},
   // Schools
   {id:375,city:"sofia",cat:"school",icon:"🎓",name:"British School Sofia",desc:"International school in Sofia.",addr:"Sofia",phone:"+359 88 651 0510",english:true,lat:42.646884,lng:23.328283},
-  {id:376,city:"sofia",cat:"school",icon:"🎓",name:"British School of Sofia Kindergarten",desc:"Kindergarten campus of British School of Sofia.",addr:"Sofia",phone:"+359 88 651 0510",english:true,lat:42.647632,lng:23.328752},
+  {id:376,city:"sofia",cat:"school",icon:"🧸",name:"British School of Sofia Kindergarten",desc:"Kindergarten campus of British School of Sofia.",addr:"Sofia",phone:"+359 88 651 0510",english:true,lat:42.647632,lng:23.328752},
   // Banking
   {id:5,city:"sofia",cat:"bank",icon:"🏦",name:"DSK Bank — Vitosha",desc:"Most foreigner-friendly branch. English-speaking staff. Opens accounts for expats.",addr:"4 Vitosha Blvd",phone:"+359 2 939 9611",english:true,lat:42.6944,lng:23.3195},
   {id:6,city:"sofia",cat:"bank",icon:"🏦",name:"UniCredit Bulbank Center",desc:"International bank, English staff, great for SWIFT transfers.",addr:"7 Sveta Nedelya Sq",phone:"+359 2 923 2111",english:true,lat:42.6970,lng:23.3225},
@@ -4146,6 +4146,17 @@ function MapPage({user,setView,subscription,openCheckout}){
     const L=window.L
     const map=L.map(mapRef.current,{zoomControl:true,maxZoom:20}).setView([42.6977,23.3219],13)
 
+    // Show each pin's name label once zoomed in close enough (>=16) that a
+    // handful of pins are visible at once — solves "two nearby pins look
+    // identical" without permanently cluttering the map at city-wide zoom.
+    map.on("zoomend",()=>{
+      const zoomedIn=map.getZoom()>=16
+      markersRef.current.forEach(m=>{
+        if(!m.getTooltip)return
+        if(zoomedIn)m.openTooltip(); else m.closeTooltip()
+      })
+    })
+
     // Standard OpenStreetMap tiles (local Cyrillic labels) — used as fallback.
     const osmLayer=L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
       attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
@@ -4208,6 +4219,13 @@ function MapPage({user,setView,subscription,openCheckout}){
       const marker=L.marker([loc.lat,loc.lng],{icon,draggable:isDevAccount&&adminEditMode})
         .addTo(mapInst.current)
         .on("click",()=>{ if(!adminEditMode) setSelected(loc) })
+      // Name label — hidden by default (avoids clutter when zoomed out over
+      // 287 locations), auto-shown once zoomed in close enough to matter,
+      // via the zoomend listener below. This is what lets two nearby pins
+      // (e.g. a school and its kindergarten campus next door) be told apart
+      // without having to tap each one.
+      marker.bindTooltip(loc.name,{permanent:false,direction:"top",offset:[0,-20],className:"bg-loc-label"})
+      if(mapInst.current.getZoom()>=16)marker.openTooltip()
       if(isDevAccount&&adminEditMode){
         marker.on("dragend",e=>{
           const p=e.target.getLatLng()
@@ -5658,6 +5676,9 @@ export default function App(){
         body,button,input,textarea,select{font-family:'Figtree',system-ui,sans-serif}
         h1,h2,h3,.serif{font-family:'Bricolage Grotesque','Figtree',sans-serif;letter-spacing:-0.02em}
         button:focus-visible{outline:2px solid ${C.accent};outline-offset:2px}
+        /* Map pin name labels — clean pill style instead of Leaflet's plain default tooltip */
+        .bg-loc-label{background:${C.text} !important;color:#fff !important;border:none !important;border-radius:6px !important;padding:3px 8px !important;font-size:11.5px !important;font-weight:600 !important;box-shadow:0 2px 6px rgba(0,0,0,0.25) !important}
+        .bg-loc-label::before{border-top-color:${C.text} !important}
         @media (max-width: 768px){.bg-install-fab{display:flex !important}}
         /* Nav on small screens: keep the logo AND wordmark visible, drop only the
            user's first name so the avatar button always has room. */
