@@ -83,7 +83,7 @@ const T = {
     badge:"Your complete guide to life in Bulgaria",
     h1a:"Everything expats need",h1b:"to live well in Bulgaria",
     sub:"Visas, healthcare, banking, housing and more — all in plain English. Plus an AI assistant available 24/7.",
-    askBtn:"Ask the AI assistant",stats:["Topics covered","AI assistant","Free to use"],
+    askBtn:"Ask the AI assistant",stats:["Topics covered","AI assistant","Free to use","Tools available"],
     browse:"Browse topics",browseSub:"Everything you need to know, organized by topic",searchPlaceholder:"Search guides, places, keywords…",searchGuide:"Guide",searchPlace:"Place",searchResult:"result",searchResults:"results",searchNone:"No matches. Try a different keyword — e.g. visa, rent, tax, doctor, beach.",searchFor:"result(s) for",searchBack:"Back to topics",
     facts:"Quick facts about Bulgaria",
     factsList:[
@@ -114,7 +114,7 @@ const T = {
     badge:"Votre guide complet pour vivre en Bulgarie",
     h1a:"Tout ce dont les expatriés ont besoin",h1b:"pour vivre bien en Bulgarie",
     sub:"Visas, santé, banque, logement et plus — tout clairement expliqué. Plus un assistant IA disponible 24h/24.",
-    askBtn:"Demander à l'assistant IA",stats:["Sujets couverts","Assistant IA","Entièrement gratuit"],
+    askBtn:"Demander à l'assistant IA",stats:["Sujets couverts","Assistant IA","Entièrement gratuit","Outils disponibles"],
     browse:"Parcourir les sujets",browseSub:"Tout ce que vous devez savoir, organisé par sujet",searchPlaceholder:"Rechercher guides, lieux, mots-clés…",searchGuide:"Guide",searchPlace:"Lieu",searchResult:"résultat",searchResults:"résultats",searchNone:"Aucun résultat. Essayez un autre mot-clé — p.ex. visa, loyer, impôt, médecin, plage.",searchFor:"résultat(s) pour",searchBack:"Retour aux sujets",
     facts:"Faits essentiels sur la Bulgarie",
     factsList:[
@@ -145,7 +145,7 @@ const T = {
     badge:"Tu guía completa para vivir en Bulgaria",
     h1a:"Todo lo que los expatriados necesitan",h1b:"para vivir bien en Bulgaria",
     sub:"Visados, sanidad, banca, vivienda y más — todo explicado claramente. Más un asistente de IA disponible 24/7.",
-    askBtn:"Preguntar al asistente IA",stats:["Temas cubiertos","Asistente IA","Totalmente gratis"],
+    askBtn:"Preguntar al asistente IA",stats:["Temas cubiertos","Asistente IA","Totalmente gratis","Herramientas disponibles"],
     browse:"Explorar temas",browseSub:"Todo lo que necesitas saber, organizado por tema",searchPlaceholder:"Buscar guías, lugares, palabras clave…",searchGuide:"Guía",searchPlace:"Lugar",searchResult:"resultado",searchResults:"resultados",searchNone:"Sin resultados. Prueba otra palabra clave — p.ej. visado, alquiler, impuesto, médico, playa.",searchFor:"resultado(s) para",searchBack:"Volver a los temas",
     facts:"Datos clave sobre Bulgaria",
     factsList:[
@@ -176,7 +176,7 @@ const T = {
     badge:"Ihr vollständiger Leitfaden für das Leben in Bulgarien",
     h1a:"Alles, was Expats brauchen,",h1b:"um gut in Bulgarien zu leben",
     sub:"Visa, Gesundheit, Banking, Wohnen und mehr — klar erklärt. Plus ein KI-Assistent rund um die Uhr verfügbar.",
-    askBtn:"KI-Assistent fragen",stats:["Themen abgedeckt","KI-Assistent","Kostenlos"],
+    askBtn:"KI-Assistent fragen",stats:["Themen abgedeckt","KI-Assistent","Kostenlos","Verfügbare Tools"],
     browse:"Themen durchsuchen",browseSub:"Alles, was Sie wissen müssen, nach Thema geordnet",searchPlaceholder:"Guides, Orte, Stichwörter suchen…",searchGuide:"Ratgeber",searchPlace:"Ort",searchResult:"Ergebnis",searchResults:"Ergebnisse",searchNone:"Keine Treffer. Versuchen Sie ein anderes Stichwort — z.B. Visum, Miete, Steuer, Arzt, Strand.",searchFor:"Ergebnis(se) für",searchBack:"Zurück zu den Themen",
     facts:"Wichtige Fakten über Bulgarien",
     factsList:[
@@ -208,7 +208,7 @@ const T = {
     badge:"Uw complete gids voor het leven in Bulgarije",
     h1a:"Alles wat expats nodig hebben",h1b:"om goed te leven in Bulgarije",
     sub:"Visa's, gezondheidszorg, bankieren, wonen en meer — duidelijk uitgelegd. Plus een AI-assistent beschikbaar 24/7.",
-    askBtn:"Vraag de AI-assistent",stats:["Onderwerpen","AI-assistent","Gratis"],
+    askBtn:"Vraag de AI-assistent",stats:["Onderwerpen","AI-assistent","Gratis","Beschikbare tools"],
     browse:"Onderwerpen bekijken",browseSub:"Alles wat u moet weten, per onderwerp georganiseerd",searchPlaceholder:"Zoek gidsen, plaatsen, trefwoorden…",searchGuide:"Gids",searchPlace:"Plaats",searchResult:"resultaat",searchResults:"resultaten",searchNone:"Geen resultaten. Probeer een ander trefwoord — bijv. visum, huur, belasting, arts, strand.",searchFor:"resultaat/resultaten voor",searchBack:"Terug naar onderwerpen",
     facts:"Feiten over Bulgarije",
     factsList:[
@@ -239,7 +239,7 @@ const T = {
     badge:"Ваш полный путеводитель по жизни в Болгарии",
     h1a:"Всё необходимое для экспатов",h1b:"чтобы хорошо жить в Болгарии",
     sub:"Визы, здравоохранение, банки, жильё и многое другое — на понятном языке. Плюс ИИ-ассистент 24/7.",
-    askBtn:"Задать вопрос ИИ-ассистенту",stats:["Тем охвачено","ИИ-ассистент","Бесплатно"],
+    askBtn:"Задать вопрос ИИ-ассистенту",stats:["Тем охвачено","ИИ-ассистент","Бесплатно","Инструментов доступно"],
     browse:"Просмотр тем",browseSub:"Всё, что нужно знать — организовано по темам",searchPlaceholder:"Поиск гидов, мест, ключевых слов…",searchGuide:"Гид",searchPlace:"Место",searchResult:"результат",searchResults:"результаты",searchNone:"Ничего не найдено. Попробуйте другое слово — напр. виза, аренда, налог, врач, пляж.",searchFor:"результат(ов) по",searchBack:"Назад к темам",
     facts:"Факты о Болгарии",
     factsList:[
@@ -270,7 +270,7 @@ const T = {
     badge:"Ваш повний путівник по життю в Болгарії",
     h1a:"Все необхідне для експатів",h1b:"щоб добре жити в Болгарії",
     sub:"Візи, охорона здоров'я, банки, житло та багато іншого — зрозумілою мовою. Плюс ШІ-асистент 24/7.",
-    askBtn:"Запитати ШІ-асистента",stats:["Тем охоплено","ШІ-асистент","Безкоштовно"],
+    askBtn:"Запитати ШІ-асистента",stats:["Тем охоплено","ШІ-асистент","Безкоштовно","Інструментів доступно"],
     browse:"Перегляд тем",browseSub:"Все, що потрібно знати — організовано за темами",searchPlaceholder:"Пошук гідів, місць, ключових слів…",searchGuide:"Гід",searchPlace:"Місце",searchResult:"результат",searchResults:"результати",searchNone:"Нічого не знайдено. Спробуйте інше слово — напр. віза, оренда, податок, лікар, пляж.",searchFor:"результат(ів) за",searchBack:"Назад до тем",
     facts:"Факти про Болгарію",
     factsList:[
@@ -301,7 +301,7 @@ const T = {
     badge:"Вашият пълен наръчник за живота в България",
     h1a:"Всичко, което експатите имат нужда",h1b:"за добър живот в България",
     sub:"Визи, здравеопазване, банки, жилища и още — на разбираем език. Плюс ИИ асистент 24/7.",
-    askBtn:"Попитай ИИ асистента",stats:["Теми","ИИ асистент","Безплатно"],
+    askBtn:"Попитай ИИ асистента",stats:["Теми","ИИ асистент","Безплатно","Налични инструменти"],
     browse:"Разгледай темите",browseSub:"Всичко, което трябва да знаете — организирано по теми",searchPlaceholder:"Търсене на гидове, места, ключови думи…",searchGuide:"Гид",searchPlace:"Място",searchResult:"резултат",searchResults:"резултата",searchNone:"Няма резултати. Опитайте друга дума — напр. виза, наем, данък, лекар, плаж.",searchFor:"резултат(а) за",searchBack:"Назад към темите",
     facts:"Бързи факти за България",
     factsList:[
@@ -332,7 +332,7 @@ const T = {
     badge:"Bulgaristan'da yaşamın tam rehberi",
     h1a:"Expatların ihtiyaç duyduğu her şey",h1b:"Bulgaristan'da iyi yaşamak için",
     sub:"Vizeler, sağlık, bankacılık, konut ve daha fazlası — sade bir dille. Ayrıca 7/24 yapay zeka asistanı.",
-    askBtn:"Yapay zeka asistanına sor",stats:["Konu başlığı","Yapay zeka asistanı","Ücretsiz"],
+    askBtn:"Yapay zeka asistanına sor",stats:["Konu başlığı","Yapay zeka asistanı","Ücretsiz","Mevcut araçlar"],
     browse:"Konulara göz at",browseSub:"Bilmeniz gereken her şey, konulara göre düzenlenmiş",searchPlaceholder:"Rehber, yer, anahtar kelime ara…",searchGuide:"Rehber",searchPlace:"Yer",searchResult:"sonuç",searchResults:"sonuç",searchNone:"Sonuç yok. Farklı bir kelime deneyin — ör. vize, kira, vergi, doktor, plaj.",searchFor:"sonuç:",searchBack:"Konulara dön",
     facts:"Bulgaristan hakkında hızlı gerçekler",
     factsList:[
@@ -1450,7 +1450,7 @@ function Hero({setView,t,lang}){
           </button>
         </div>
         <div style={{display:"flex",justifyContent:"center",gap:36,marginTop:40}}>
-          {[["6",t.stats[0]],["24/7",t.stats[1]],["5★",t.stats[2]]].map(([n,l])=>(
+          {[[String(CATEGORIES.length),t.stats[0]],["24/7",t.stats[1]],["5★",t.stats[2]],[String(TOOLS_LIST.filter(x=>!x.divider).length),t.stats[3]]].map(([n,l])=>(
             <div key={l} style={{textAlign:"center"}}>
               <div style={{color:"#f0c060",fontSize:24,fontWeight:800}}>{n}</div>
               <div style={{color:"rgba(255,255,255,0.65)",fontSize:12}}>{l}</div>
@@ -2628,7 +2628,28 @@ function ToolGate({user,setView,children,name}){
   )
 }
 
-function CostCalcTool({user,setView,subscription}){
+function CostCalcTool({user,setView,subscription,lang}){
+  const COST_I18N = {
+    en:{singleCity:"Single city",compareCities:"Compare cities",presetBudget:"Budget",presetComfortable:"Comfortable",presetExpat:"Expat",catRent:"Rent",catGroceries:"Groceries",catTransport:"Transport",catUtilities:"Utilities",catDining:"Dining out",catHealth:"Health",
+      vibes:{sofia:"Capital city — best jobs, nightlife, international community",plovdiv:"Cultural gem — Old Town, Kapana arts district, growing fast",varna:"Black Sea coast — beach life, tech hub, large expat community",burgas:"Southern coast — quieter, port city, gateway to Sozopol",stara:"Affordable plains city — practical, less expat community",ruse:"Little Vienna — Danube views, near Romania border, charming",bansko:"Ski resort town — mountain air, tight-knit expat scene",velingrad:"Spa & thermal waters — health tourism, peaceful, very affordable",shumen:"Medieval fortress city — university town, growing, affordable",yambol:"Thracian plain city — peaceful, very affordable, authentic Bulgaria",sliven:"Balkan Mountain gateway — affordable, historic silk-weaving city"}},
+    fr:{singleCity:"Ville unique",compareCities:"Comparer les villes",presetBudget:"Économique",presetComfortable:"Confortable",presetExpat:"Expatrié",catRent:"Loyer",catGroceries:"Courses",catTransport:"Transport",catUtilities:"Charges",catDining:"Restaurants",catHealth:"Santé",
+      vibes:{sofia:"Capitale — meilleurs emplois, vie nocturne, communauté internationale",plovdiv:"Joyau culturel — vieille ville, quartier artistique de Kapana, croissance rapide",varna:"Côte de la mer Noire — vie balnéaire, pôle technologique, grande communauté d'expatriés",burgas:"Côte sud — plus calme, ville portuaire, porte d'entrée vers Sozopol",stara:"Ville abordable des plaines — pratique, moins de communauté d'expatriés",ruse:"Petite Vienne — vue sur le Danube, proche de la frontière roumaine, charmante",bansko:"Station de ski — air de montagne, communauté d'expatriés soudée",velingrad:"Spa et eaux thermales — tourisme de santé, paisible, très abordable",shumen:"Ville-forteresse médiévale — ville universitaire, en croissance, abordable",yambol:"Ville de la plaine thrace — paisible, très abordable, Bulgarie authentique",sliven:"Porte des Balkans — abordable, ville historique de la soie"}},
+    es:{singleCity:"Una ciudad",compareCities:"Comparar ciudades",presetBudget:"Económico",presetComfortable:"Cómodo",presetExpat:"Expatriado",catRent:"Alquiler",catGroceries:"Compras",catTransport:"Transporte",catUtilities:"Servicios",catDining:"Restaurantes",catHealth:"Salud",
+      vibes:{sofia:"Capital — mejores empleos, vida nocturna, comunidad internacional",plovdiv:"Joya cultural — casco antiguo, distrito artístico de Kapana, crecimiento rápido",varna:"Costa del Mar Negro — vida de playa, polo tecnológico, gran comunidad de expatriados",burgas:"Costa sur — más tranquila, ciudad portuaria, puerta de entrada a Sozopol",stara:"Ciudad económica de las llanuras — práctica, menor comunidad de expatriados",ruse:"Pequeña Viena — vistas al Danubio, cerca de la frontera con Rumanía, encantadora",bansko:"Estación de esquí — aire de montaña, comunidad de expatriados unida",velingrad:"Spa y aguas termales — turismo de salud, tranquila, muy económica",shumen:"Ciudad-fortaleza medieval — ciudad universitaria, en crecimiento, económica",yambol:"Ciudad de la llanura tracia — tranquila, muy económica, Bulgaria auténtica",sliven:"Puerta de los Balcanes — económica, ciudad histórica de la seda"}},
+    de:{singleCity:"Eine Stadt",compareCities:"Städte vergleichen",presetBudget:"Günstig",presetComfortable:"Komfortabel",presetExpat:"Expat",catRent:"Miete",catGroceries:"Lebensmittel",catTransport:"Transport",catUtilities:"Nebenkosten",catDining:"Restaurants",catHealth:"Gesundheit",
+      vibes:{sofia:"Hauptstadt — beste Jobs, Nachtleben, internationale Gemeinschaft",plovdiv:"Kulturelles Juwel — Altstadt, Kunstviertel Kapana, schnell wachsend",varna:"Schwarzmeerküste — Strandleben, Tech-Hub, große Expat-Gemeinschaft",burgas:"Südküste — ruhiger, Hafenstadt, Tor nach Sosopol",stara:"Erschwingliche Stadt in der Ebene — praktisch, kleinere Expat-Gemeinschaft",ruse:"Klein-Wien — Donaublick, nahe der rumänischen Grenze, charmant",bansko:"Skiort — Bergluft, eng verbundene Expat-Szene",velingrad:"Spa & Thermalquellen — Gesundheitstourismus, friedlich, sehr erschwinglich",shumen:"Mittelalterliche Festungsstadt — Universitätsstadt, wachsend, erschwinglich",yambol:"Stadt in der thrakischen Ebene — friedlich, sehr erschwinglich, authentisches Bulgarien",sliven:"Tor zum Balkangebirge — erschwinglich, historische Seidenweberstadt"}},
+    nl:{singleCity:"Eén stad",compareCities:"Steden vergelijken",presetBudget:"Budget",presetComfortable:"Comfortabel",presetExpat:"Expat",catRent:"Huur",catGroceries:"Boodschappen",catTransport:"Vervoer",catUtilities:"Nutsvoorzieningen",catDining:"Uit eten",catHealth:"Gezondheid",
+      vibes:{sofia:"Hoofdstad — beste banen, nachtleven, internationale gemeenschap",plovdiv:"Cultureel juweeltje — oude stad, Kapana kunstenaarswijk, snel groeiend",varna:"Zwarte Zeekust — strandleven, techhub, grote expatgemeenschap",burgas:"Zuidkust — rustiger, havenstad, poort naar Sozopol",stara:"Betaalbare vlaktestad — praktisch, kleinere expatgemeenschap",ruse:"Klein Wenen — uitzicht op de Donau, dicht bij de Roemeense grens, charmant",bansko:"Skiresort — berglucht, hechte expatgemeenschap",velingrad:"Spa & thermale wateren — gezondheidstoerisme, rustig, zeer betaalbaar",shumen:"Middeleeuwse vestingstad — universiteitsstad, groeiend, betaalbaar",yambol:"Stad op de Thracische vlakte — rustig, zeer betaalbaar, authentiek Bulgarije",sliven:"Poort naar het Balkangebergte — betaalbaar, historische zijdestad"}},
+    ru:{singleCity:"Один город",compareCities:"Сравнить города",presetBudget:"Бюджетный",presetComfortable:"Комфортный",presetExpat:"Экспат",catRent:"Аренда",catGroceries:"Продукты",catTransport:"Транспорт",catUtilities:"Коммунальные услуги",catDining:"Рестораны",catHealth:"Здоровье",
+      vibes:{sofia:"Столица — лучшая работа, ночная жизнь, международное сообщество",plovdiv:"Культурная жемчужина — старый город, арт-квартал Капана, быстрый рост",varna:"Черноморское побережье — пляжная жизнь, технологический центр, большое сообщество экспатов",burgas:"Южное побережье — спокойнее, портовый город, ворота в Созополь",stara:"Доступный равнинный город — практичный, меньше экспатов",ruse:"Маленькая Вена — виды на Дунай, рядом с границей Румынии, очаровательный",bansko:"Горнолыжный курорт — горный воздух, сплочённое сообщество экспатов",velingrad:"Спа и термальные воды — оздоровительный туризм, спокойно, очень доступно",shumen:"Средневековый город-крепость — университетский город, растёт, доступно",yambol:"Город на Фракийской равнине — спокойно, очень доступно, настоящая Болгария",sliven:"Ворота Балканских гор — доступно, исторический город шёлкоткачества"}},
+    uk:{singleCity:"Одне місто",compareCities:"Порівняти міста",presetBudget:"Бюджетний",presetComfortable:"Комфортний",presetExpat:"Експат",catRent:"Оренда",catGroceries:"Продукти",catTransport:"Транспорт",catUtilities:"Комунальні послуги",catDining:"Ресторани",catHealth:"Здоров'я",
+      vibes:{sofia:"Столиця — найкраща робота, нічне життя, міжнародна спільнота",plovdiv:"Культурна перлина — старе місто, арт-квартал Капана, швидке зростання",varna:"Узбережжя Чорного моря — пляжне життя, технологічний хаб, велика спільнота експатів",burgas:"Південне узбережжя — спокійніше, портове місто, ворота до Созополя",stara:"Доступне рівнинне місто — практичне, менше експатів",ruse:"Маленька Відень — краєвиди на Дунай, поруч з кордоном Румунії, чарівне",bansko:"Гірськолижний курорт — гірське повітря, згуртована спільнота експатів",velingrad:"Спа і термальні води — оздоровчий туризм, спокійно, дуже доступно",shumen:"Середньовічне місто-фортеця — університетське місто, зростає, доступно",yambol:"Місто на Фракійській рівнині — спокійно, дуже доступно, автентична Болгарія",sliven:"Ворота Балканських гір — доступно, історичне місто шовкоткацтва"}},
+    tr:{singleCity:"Tek şehir",compareCities:"Şehirleri karşılaştır",presetBudget:"Ekonomik",presetComfortable:"Konforlu",presetExpat:"Expat",catRent:"Kira",catGroceries:"Market",catTransport:"Ulaşım",catUtilities:"Faturalar",catDining:"Dışarıda yemek",catHealth:"Sağlık",
+      vibes:{sofia:"Başkent — en iyi işler, gece hayatı, uluslararası topluluk",plovdiv:"Kültürel mücevher — eski şehir, Kapana sanat mahallesi, hızla büyüyor",varna:"Karadeniz kıyısı — plaj hayatı, teknoloji merkezi, büyük expat topluluğu",burgas:"Güney kıyısı — daha sakin, liman şehri, Sozopol'a açılan kapı",stara:"Uygun fiyatlı ova şehri — pratik, daha az expat topluluğu",ruse:"Küçük Viyana — Tuna manzarası, Romanya sınırına yakın, cazip",bansko:"Kayak merkezi kasabası — dağ havası, sıkı bağlı expat sahnesi",velingrad:"Kaplıca ve termal sular — sağlık turizmi, huzurlu, çok uygun fiyatlı",shumen:"Ortaçağ kale şehri — üniversite kenti, büyüyen, uygun fiyatlı",yambol:"Trakya ovası şehri — huzurlu, çok uygun fiyatlı, otantik Bulgaristan",sliven:"Balkan Dağları kapısı — uygun fiyatlı, tarihi ipek dokuma şehri"}},
+    bg:{singleCity:"Един град",compareCities:"Сравни градове",presetBudget:"Икономичен",presetComfortable:"Комфортен",presetExpat:"Експат",catRent:"Наем",catGroceries:"Хранителни стоки",catTransport:"Транспорт",catUtilities:"Комунални услуги",catDining:"Хранене навън",catHealth:"Здраве",
+      vibes:{sofia:"Столица — най-добра работа, нощен живот, международна общност",plovdiv:"Културен бисер — стар град, арт квартал Капана, бързо развиващ се",varna:"Черноморско крайбрежие — плажен живот, технологичен хъб, голяма общност от чужденци",burgas:"Южно крайбрежие — по-спокоен, пристанищен град, врата към Созопол",stara:"Достъпен равнинен град — практичен, по-малка общност от чужденци",ruse:"Малката Виена — гледки към Дунав, близо до румънската граница, очарователен",bansko:"Ски курорт — планински въздух, сплотена общност от чужденци",velingrad:"СПА и минерални води — здравен туризъм, спокоен, много достъпен",shumen:"Средновековен крепостен град — университетски град, развиващ се, достъпен",yambol:"Град в Тракийската низина — спокоен, много достъпен, автентична България",sliven:"Врата към Балкана — достъпен, исторически град на копринарството"}},
+  }
+  const ci=COST_I18N[lang]||COST_I18N.en
   const tier=(subscription&&subscription.plan)||"free"
   const isBasic=tier==="basic"||tier==="premium"
   const [isMobile,setIsMobile]=useState(typeof window!=="undefined"&&window.innerWidth<=768)
@@ -2659,17 +2680,17 @@ function CostCalcTool({user,setView,subscription}){
   const total1=Object.values(v1).reduce((s,x)=>s+x,0)
   const total2=Object.values(v2).reduce((s,x)=>s+x,0)
   const euAvg=2400
-  const cats=[["rent","Rent","rent"],["food","Groceries","food"],["transport","Transport","transport"],["utilities","Utilities","utilities"],["dining","Dining out","dining"],["health","Health","health"]]
+  const cats=[["rent",ci.catRent,"rent"],["food",ci.catGroceries,"food"],["transport",ci.catTransport,"transport"],["utilities",ci.catUtilities,"utilities"],["dining",ci.catDining,"dining"],["health",ci.catHealth,"health"]]
 
   return(
     <div>
       {/* Mode toggle */}
       <div style={{display:"flex",gap:8,marginBottom:14}}>
         <button onClick={()=>setMode("single")} style={{flex:1,padding:"8px",borderRadius:10,border:`1.5px solid ${mode==="single"?C.primary:C.border}`,background:mode==="single"?C.primaryLight:"transparent",color:mode==="single"?C.primary:C.muted,cursor:"pointer",fontSize:13,fontWeight:mode==="single"?600:400}}>
-          <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d={MAP_PIN_D} accent="#1e5e3f" size={14}/>Single city</span>
+          <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d={MAP_PIN_D} accent="#1e5e3f" size={14}/>{ci.singleCity}</span>
         </button>
         <button onClick={()=>isBasic?setMode("compare"):setView("pricing")} style={{flex:1,padding:"8px",borderRadius:10,border:`1.5px solid ${mode==="compare"?C.accent:C.border}`,background:mode==="compare"?C.accentLight:"transparent",color:mode==="compare"?C.accent:C.muted,cursor:"pointer",fontSize:13,fontWeight:mode==="compare"?600:400,display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
-          <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d="M12 3v3M5 7l4-1M19 7l-4-1M5 7l-3 6.5a3 3 0 006 0zM19 7l-3 6.5a3 3 0 006 0zM8 21h8M12 6v15" accent="#b8792a" size={14}/>Compare cities</span>
+          <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d="M12 3v3M5 7l4-1M19 7l-4-1M5 7l-3 6.5a3 3 0 006 0zM19 7l-3 6.5a3 3 0 006 0zM8 21h8M12 6v15" accent="#b8792a" size={14}/>{ci.compareCities}</span>
           {!isBasic&&<span style={{fontSize:9,background:"#fef3c7",color:"#92400e",padding:"1px 5px",borderRadius:5,fontWeight:700}}>BASIC</span>}
         </button>
       </div>
@@ -2677,7 +2698,7 @@ function CostCalcTool({user,setView,subscription}){
       {/* Lifestyle preset */}
       <div style={{display:"flex",gap:8,marginBottom:14}}>
         {["budget","comfortable","expat"].map(p=>(
-          <button key={p} onClick={()=>setPreset(p)} style={{flex:1,padding:"7px",borderRadius:10,border:`1.5px solid ${preset===p?C.accent:C.border}`,background:preset===p?C.accentLight:"transparent",color:preset===p?C.accent:C.muted,cursor:"pointer",fontSize:12,fontWeight:preset===p?600:400,textTransform:"capitalize"}}>{p}</button>
+          <button key={p} onClick={()=>setPreset(p)} style={{flex:1,padding:"7px",borderRadius:10,border:`1.5px solid ${preset===p?C.accent:C.border}`,background:preset===p?C.accentLight:"transparent",color:preset===p?C.accent:C.muted,cursor:"pointer",fontSize:12,fontWeight:preset===p?600:400,textTransform:"capitalize"}}>{p==="budget"?ci.presetBudget:p==="comfortable"?ci.presetComfortable:ci.presetExpat}</button>
         ))}
       </div>
 
@@ -2693,7 +2714,7 @@ function CostCalcTool({user,setView,subscription}){
           </div>
           {/* City vibe */}
           <div style={{background:C.primaryLight,borderRadius:10,padding:"8px 12px",marginBottom:12,fontSize:12,color:C.primary}}>
-            <strong>{CITY_DATA[city]?.name}</strong> — {CITY_DATA[city]?.vibe}
+            <strong>{CITY_DATA[city]?.name}</strong> — {ci.vibes[city]||CITY_DATA[city]?.vibe}
           </div>
           {/* Breakdown */}
           <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:14}}>
@@ -2771,7 +2792,7 @@ function CostCalcTool({user,setView,subscription}){
                 <div style={{fontSize:13,fontWeight:600,color:col,marginBottom:2}}>{CITY_DATA[cid]?.name}</div>
                 <div style={{fontSize:24,fontWeight:800,color:col}}>€{tot.toLocaleString()}</div>
                 <div style={{fontSize:11,color:C.muted}}>per month</div>
-                <div style={{fontSize:11,color:col,marginTop:4,fontStyle:"italic"}}>{CITY_DATA[cid]?.vibe.split("—")[0].trim()}</div>
+                <div style={{fontSize:11,color:col,marginTop:4,fontStyle:"italic"}}>{(ci.vibes[cid]||CITY_DATA[cid]?.vibe||"").split("—")[0].trim()}</div>
               </div>
             ))}
           </div>
@@ -2914,7 +2935,73 @@ function VisaCheckerTool({user,setView}){
   )
 }
 
-function NeighbourhoodTool({user,setView,subscription}){
+function NeighbourhoodTool({user,setView,subscription,lang}){
+  const HOOD_I18N = {
+    en:{byCity:"By city",allCities:"All cities",sortBy:"Sort by:",sortExpat:"Expat-friendly",sortSafety:"Safety",sortDining:"Dining",sortTransit:"Transit",sortRent:"Lowest rent",metricSafety:"Safety",metricExpats:"Expats",metricDining:"Dining",metricTransit:"Transit",moEst:"/mo est.",signInPrompt:"Sign in to see all neighbourhoods",signInSub:"Basic subscribers unlock Plovdiv + Varna + cross-city comparison",signInBtn:"Sign in free →",comparePrompt:"🌍 Compare across all cities with Basic",compareSub:"See Plovdiv + Varna neighbourhoods and compare them all side by side",compareBtn:"Upgrade to Basic →"},
+    fr:{byCity:"Par ville",allCities:"Toutes les villes",sortBy:"Trier par :",sortExpat:"Adapté aux expatriés",sortSafety:"Sécurité",sortDining:"Restaurants",sortTransit:"Transport",sortRent:"Loyer le plus bas",metricSafety:"Sécurité",metricExpats:"Expatriés",metricDining:"Restaurants",metricTransit:"Transport",moEst:"/mois est.",signInPrompt:"Connectez-vous pour voir tous les quartiers",signInSub:"Les abonnés Basic débloquent Plovdiv + Varna + la comparaison entre villes",signInBtn:"Connexion gratuite →",comparePrompt:"🌍 Comparez toutes les villes avec Basic",compareSub:"Voyez les quartiers de Plovdiv + Varna et comparez-les tous côte à côte",compareBtn:"Passer à Basic →"},
+    es:{byCity:"Por ciudad",allCities:"Todas las ciudades",sortBy:"Ordenar por:",sortExpat:"Apto para expatriados",sortSafety:"Seguridad",sortDining:"Restaurantes",sortTransit:"Transporte",sortRent:"Alquiler más bajo",metricSafety:"Seguridad",metricExpats:"Expatriados",metricDining:"Restaurantes",metricTransit:"Transporte",moEst:"/mes est.",signInPrompt:"Inicia sesión para ver todos los barrios",signInSub:"Los suscriptores Basic desbloquean Plovdiv + Varna + comparación entre ciudades",signInBtn:"Inicia sesión gratis →",comparePrompt:"🌍 Compara todas las ciudades con Basic",compareSub:"Ve los barrios de Plovdiv + Varna y compáralos todos en paralelo",compareBtn:"Actualizar a Basic →"},
+    de:{byCity:"Nach Stadt",allCities:"Alle Städte",sortBy:"Sortieren nach:",sortExpat:"Expat-freundlich",sortSafety:"Sicherheit",sortDining:"Restaurants",sortTransit:"Nahverkehr",sortRent:"Niedrigste Miete",metricSafety:"Sicherheit",metricExpats:"Expats",metricDining:"Restaurants",metricTransit:"Nahverkehr",moEst:"/Monat gesch.",signInPrompt:"Anmelden, um alle Stadtviertel zu sehen",signInSub:"Basic-Abonnenten schalten Plovdiv + Varna + Städtevergleich frei",signInBtn:"Kostenlos anmelden →",comparePrompt:"🌍 Alle Städte mit Basic vergleichen",compareSub:"Sehen Sie Plovdiv + Varna Stadtviertel und vergleichen Sie alle nebeneinander",compareBtn:"Auf Basic upgraden →"},
+    nl:{byCity:"Per stad",allCities:"Alle steden",sortBy:"Sorteren op:",sortExpat:"Expatvriendelijk",sortSafety:"Veiligheid",sortDining:"Eten",sortTransit:"Vervoer",sortRent:"Laagste huur",metricSafety:"Veiligheid",metricExpats:"Expats",metricDining:"Eten",metricTransit:"Vervoer",moEst:"/mnd gesch.",signInPrompt:"Log in om alle buurten te zien",signInSub:"Basic-abonnees ontgrendelen Plovdiv + Varna + vergelijking tussen steden",signInBtn:"Gratis inloggen →",comparePrompt:"🌍 Vergelijk alle steden met Basic",compareSub:"Bekijk Plovdiv + Varna buurten en vergelijk ze allemaal naast elkaar",compareBtn:"Upgraden naar Basic →"},
+    ru:{byCity:"По городу",allCities:"Все города",sortBy:"Сортировать по:",sortExpat:"Удобно для экспатов",sortSafety:"Безопасность",sortDining:"Рестораны",sortTransit:"Транспорт",sortRent:"Самая низкая аренда",metricSafety:"Безопасность",metricExpats:"Экспаты",metricDining:"Рестораны",metricTransit:"Транспорт",moEst:"/мес. ориент.",signInPrompt:"Войдите, чтобы увидеть все районы",signInSub:"Подписчики Basic получают доступ к Пловдиву + Варне + сравнению между городами",signInBtn:"Войти бесплатно →",comparePrompt:"🌍 Сравните все города с Basic",compareSub:"Смотрите районы Пловдива + Варны и сравнивайте их все рядом",compareBtn:"Перейти на Basic →"},
+    uk:{byCity:"За містом",allCities:"Усі міста",sortBy:"Сортувати за:",sortExpat:"Зручно для експатів",sortSafety:"Безпека",sortDining:"Ресторани",sortTransit:"Транспорт",sortRent:"Найнижча оренда",metricSafety:"Безпека",metricExpats:"Експати",metricDining:"Ресторани",metricTransit:"Транспорт",moEst:"/міс. орієнт.",signInPrompt:"Увійдіть, щоб побачити всі райони",signInSub:"Передплатники Basic розблоковують Пловдив + Варну + порівняння між містами",signInBtn:"Увійти безкоштовно →",comparePrompt:"🌍 Порівняйте всі міста з Basic",compareSub:"Перегляньте райони Пловдива + Варни та порівняйте їх усі поруч",compareBtn:"Перейти на Basic →"},
+    tr:{byCity:"Şehre göre",allCities:"Tüm şehirler",sortBy:"Sırala:",sortExpat:"Expat dostu",sortSafety:"Güvenlik",sortDining:"Yemek",sortTransit:"Ulaşım",sortRent:"En düşük kira",metricSafety:"Güvenlik",metricExpats:"Expatlar",metricDining:"Yemek",metricTransit:"Ulaşım",moEst:"/ay tah.",signInPrompt:"Tüm mahalleleri görmek için giriş yapın",signInSub:"Basic aboneleri Plovdiv + Varna + şehirler arası karşılaştırmanın kilidini açar",signInBtn:"Ücretsiz giriş yap →",comparePrompt:"🌍 Basic ile tüm şehirleri karşılaştırın",compareSub:"Plovdiv + Varna mahallelerini görün ve hepsini yan yana karşılaştırın",compareBtn:"Basic'e yükselt →"},
+    bg:{byCity:"По град",allCities:"Всички градове",sortBy:"Подреди по:",sortExpat:"Удобно за чужденци",sortSafety:"Безопасност",sortDining:"Ресторанти",sortTransit:"Транспорт",sortRent:"Най-нисък наем",metricSafety:"Безопасност",metricExpats:"Чужденци",metricDining:"Ресторанти",metricTransit:"Транспорт",moEst:"/мес. прибл.",signInPrompt:"Влезте, за да видите всички квартали",signInSub:"Абонатите на Basic отключват Пловдив + Варна + сравнение между градове",signInBtn:"Безплатен вход →",comparePrompt:"🌍 Сравнете всички градове с Basic",compareSub:"Вижте кварталите на Пловдив + Варна и ги сравнете всички едновременно",compareBtn:"Надградете до Basic →"},
+  }
+  const hi=HOOD_I18N[lang]||HOOD_I18N.en
+  // Neighbourhood descriptions — fully translated for French so far (matches
+  // the language used throughout testing this feature). Other 7 languages
+  // fall back to the English desc until translated — flagged as a follow-up.
+  const HOOD_DESC_FR = {
+    "Lozenets":"Le plus populaire auprès des expatriés. Calme, verdoyant, superbes cafés.",
+    "Iztok":"Résidentiel haut de gamme, ambassades, grands appartements.",
+    "Doctor's Garden":"Le plus central et premium. Près du parc.",
+    "Center":"Meilleur emplacement, très praticable à pied, animé mais peut être bruyant.",
+    "Oborishte":"Excellent équilibre entre emplacement et prix. Très agréable à vivre.",
+    "Mladost 1":"Moderne, bonne liaison métro, populaire auprès des familles.",
+    "Vitosha":"Au pied de la montagne. Calme, verdoyant, voiture nécessaire.",
+    "Studentski Grad":"Quartier étudiant, très abordable, ambiance jeune.",
+    "Old Town (Stari Grad)":"Rues pavées classées UNESCO, galeries, meilleurs cafés. Premium mais charme incomparable.",
+    "Kapana":"Quartier artistique créatif. Bars animés, galeries, boutiques indépendantes. Très accueillant pour les expatriés.",
+    "Center (Plovdiv)":"Zone piétonne, tout est accessible à pied. Animé mais peut être bruyant.",
+    "Kamenitsa":"Grande zone résidentielle. Abordable et pratique. Bonnes liaisons de transport.",
+    "Ostromila":"Résidentiel calme, adapté aux familles, proche de l'université de Plovdiv.",
+    "Trakiya (Plovdiv)":"Quartier le plus abordable de Plovdiv. Immeubles en panneaux. Idéal pour un budget serré.",
+    "Sea Garden Area":"Meilleure adresse de Varna. À distance de marche de la plage et du parc. Style de vie premium.",
+    "Primorski":"Varna centrale. Chic, excellents restaurants, vue sur mer depuis les étages supérieurs.",
+    "Center (Varna)":"Zone la plus praticable à pied. Tous les commerces et services. Animé mais pratique.",
+    "Chaika":"Zone nord calme. Verdoyante, détendue. Bien pour les familles. Voiture utile.",
+    "Asparuhovo":"Quartier le plus abordable de Varna. Ambiance locale, loin des zones touristiques.",
+    "Golden Sands Area":"Vie de villégiature toute l'année. Plus calme en hiver. Plage juste à côté.",
+    "Burgas":"Zone piétonne, jardin de la mer à proximité. Meilleur emplacement de Burgas pour les expatriés.",
+    "Sea Garden (Burgas)":"Le long du magnifique parc en bord de mer. À distance de marche de la plage et de la marina.",
+    "Slaveykov":"Zone résidentielle avec de bonnes commodités. Mélange de locaux et de quelques expatriés.",
+    "Izgrev":"Quartier résidentiel plus calme. Abordable, ambiance locale.",
+    "Meden Rudnik":"Zone la plus abordable de Burgas. Immeubles en panneaux. Bonnes liaisons de bus vers le centre.",
+    "Stara Zagora Center":"Boulevards bordés d'arbres. Ville célèbre pour ses tilleuls. Tous les services accessibles à pied.",
+    "Tri Chuchura":"Zone résidentielle populaire. Bonnes écoles, parcs, transport fiable.",
+    "Zagorka (Stara Zagora)":"Quartier local. Très abordable, calme, vie bulgare authentique.",
+    "Industrialen (Stara Zagora)":"Près de la zone industrielle. Très bon marché. Surtout pour les résidents à petit budget sur le long terme.",
+    "Ruse Center (Svoboda Sq)":"Magnifique architecture néo-baroque. Appelée la Petite Vienne. Meilleure adresse de Ruse.",
+    "Danube Riverside":"Promenade pittoresque le long du Danube. Cafés, parcs, vue sur la Roumanie de l'autre côté du fleuve.",
+    "Druzhba (Ruse)":"Grand quartier résidentiel en panneaux. Abordable et pratique pour les expatriés à petit budget.",
+    "Nadezhda (Ruse)":"Zone résidentielle plus calme. Communauté locale, faible coût, bien pour les longs séjours.",
+    "Bansko Old Town":"Rues pavées, mehanas, vues sur la montagne. Très populaire auprès des expatriés.",
+    "Ski Quarter (Bansko)":"Près du télécabine. Style de vie ski aux pieds. Animé en saison, plus calme en été.",
+    "New Bansko":"Développement résidentiel moderne. Plus abordable que la vieille ville. Voiture recommandée.",
+    "Velingrad Spa District":"Cœur de la ville thermale. À distance de marche des bassins thermaux et centres de bien-être.",
+    "Velingrad Center":"Centre-ville avec toutes les commodités. Bon équilibre entre praticité et prix.",
+    "Kamenitsa (Velingrad)":"Résidentiel calme près des sources. Verdoyant, paisible. Voiture nécessaire.",
+    "Shumen Center":"Centre-ville avec place principale, commerces et université. Zone la plus praticable à pied.",
+    "Trakiya (Shumen)":"Grand quartier résidentiel en panneaux. Très abordable. Commodités de base.",
+    "Madara Neighbourhood":"Zone plus calme près du célèbre Cavalier de Madara. Verdoyant, paisible.",
+    "Yambol Center":"Centre-ville compact et praticable à pied. Tous les services à proximité. Ville bulgare très authentique.",
+    "Zlatist (Yambol)":"Zone résidentielle. Très abordable. Bien pour une vie à petit budget sur le long terme.",
+    "Diyan":"Zone la plus abordable de Yambol. Calme, locale, loin de l'activité touristique.",
+    "Sliven Center":"Centre-ville au pied des montagnes des Balkans. Cadre pittoresque, toutes commodités.",
+    "Nansen Quarter":"Quartier résidentiel établi. Pratique et abordable pour les expatriés à petit budget.",
+    "Kluchetar":"Zone la plus abordable de Sliven. Quartier local, présence minimale d'expatriés.",
+  }
+  const hoodDesc=(n)=>lang==="fr"?(HOOD_DESC_FR[n.name]||n.desc):n.desc
   const tier=(subscription&&subscription.plan)||"free"
   const isBasic=tier==="basic"||tier==="premium"
   const [hoodCity,setHoodCity]=useState("sofia")
@@ -2927,10 +3014,10 @@ function NeighbourhoodTool({user,setView,subscription}){
       {/* Mode toggle */}
       <div style={{display:"flex",gap:8,marginBottom:12}}>
         <button onClick={()=>setMode("city")} style={{flex:1,padding:"7px",borderRadius:10,border:`1.5px solid ${mode==="city"?C.primary:C.border}`,background:mode==="city"?C.primaryLight:"transparent",color:mode==="city"?C.primary:C.muted,cursor:"pointer",fontSize:12,fontWeight:mode==="city"?600:400}}>
-          <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d={MAP_PIN_D} accent="#1e5e3f" size={14}/>By city</span>
+          <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d={MAP_PIN_D} accent="#1e5e3f" size={14}/>{hi.byCity}</span>
         </button>
         <button onClick={()=>isBasic?setMode("allcities"):setView("pricing")} style={{flex:1,padding:"7px",borderRadius:10,border:`1.5px solid ${mode==="allcities"?C.accent:C.border}`,background:mode==="allcities"?C.accentLight:"transparent",color:mode==="allcities"?C.accent:C.muted,cursor:"pointer",fontSize:12,fontWeight:mode==="allcities"?600:400,display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
-          <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d={MAP_ICON_MAP.all} accent="#b8792a" size={14}/>All cities</span>
+          <span style={{display:"flex",alignItems:"center",gap:6}}><Icon2c d={MAP_ICON_MAP.all} accent="#b8792a" size={14}/>{hi.allCities}</span>
           {!isBasic&&<span style={{fontSize:9,background:"#fef3c7",color:"#92400e",padding:"1px 5px",borderRadius:5,fontWeight:700}}>BASIC</span>}
         </button>
       </div>
@@ -2943,8 +3030,8 @@ function NeighbourhoodTool({user,setView,subscription}){
         </div>
       )}
       <div style={{display:"flex",gap:6,marginBottom:16,flexWrap:"wrap",alignItems:"center"}}>
-        <span style={{fontSize:12,color:C.muted}}>Sort by:</span>
-        {[["expat","Expat-friendly"],["safety","Safety"],["restaurants","Dining"],["transport","Transit"],["rent","Lowest rent"]].map(([v,l])=>(
+        <span style={{fontSize:12,color:C.muted}}>{hi.sortBy}</span>
+        {[["expat",hi.sortExpat],["safety",hi.sortSafety],["restaurants",hi.sortDining],["transport",hi.sortTransit],["rent",hi.sortRent]].map(([v,l])=>(
           <button key={v} onClick={()=>setPrio(v)} style={{padding:"5px 12px",borderRadius:16,border:`1.5px solid ${prio===v?C.primary:C.border}`,background:prio===v?C.primaryLight:"transparent",color:prio===v?C.primary:C.muted,cursor:"pointer",fontSize:12,fontWeight:prio===v?600:400}}>{l}</button>
         ))}
       </div>
@@ -2957,12 +3044,12 @@ function NeighbourhoodTool({user,setView,subscription}){
                 <span style={{fontWeight:600,fontSize:14,color:C.text}}>{i===0?"🥇 ":i===1?"🥈 ":""}{n.name}</span>
                 {mode==="allcities"&&n.city&&<span style={{fontSize:10,background:n.city==="sofia"?C.primaryLight:n.city==="plovdiv"?C.accentLight:"#e6f6fd",color:n.city==="sofia"?C.primary:n.city==="plovdiv"?C.accent:"#0891b2",padding:"1px 7px",borderRadius:8,fontWeight:600,textTransform:"capitalize"}}>{n.city}</span>}
               </div>
-                <p style={{fontSize:12,color:C.muted,margin:"2px 0 0",lineHeight:1.4}}>{n.desc}</p>
+                <p style={{fontSize:12,color:C.muted,margin:"2px 0 0",lineHeight:1.4}}>{hoodDesc(n)}</p>
               </div>
-              <span style={{fontSize:14,fontWeight:700,color:C.primary,flexShrink:0,marginLeft:8}}>~€{n.rent}<span style={{fontSize:11,fontWeight:400,color:C.muted}}>/mo est.</span></span>
+              <span style={{fontSize:14,fontWeight:700,color:C.primary,flexShrink:0,marginLeft:8}}>~€{n.rent}<span style={{fontSize:11,fontWeight:400,color:C.muted}}>{hi.moEst}</span></span>
             </div>
             <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:8}}>
-              {[["Safety",n.safety],["Expats",n.expat],["Dining",n.restaurants],["Transit",n.transport]].map(([l,v])=>(
+              {[[hi.metricSafety,n.safety],[hi.metricExpats,n.expat],[hi.metricDining,n.restaurants],[hi.metricTransit,n.transport]].map(([l,v])=>(
                 <div key={l}>
                   <div style={{fontSize:10,color:C.muted,marginBottom:3}}>{l}</div>
                   <div style={{height:4,background:C.page,borderRadius:2,overflow:"hidden",marginBottom:2}}><div style={{width:`${v*10}%`,height:"100%",background:v>=8?C.primary:v>=6?C.accent:"#ccc",borderRadius:2,transition:"width 0.5s"}}/></div>
@@ -2975,16 +3062,16 @@ function NeighbourhoodTool({user,setView,subscription}){
       </div>
       {!user&&(
         <div style={{textAlign:"center",marginTop:12,padding:"14px",background:C.primaryLight,borderRadius:10}}>
-          <p style={{fontSize:13,color:C.primary,margin:"0 0 4px"}}>Sign in to see all neighbourhoods</p>
-          <p style={{fontSize:12,color:C.muted,margin:"0 0 10px"}}>Basic subscribers unlock Plovdiv + Varna + cross-city comparison</p>
-          <button onClick={()=>setView("login")} style={{background:C.primary,border:"none",color:"#fff",padding:"8px 18px",borderRadius:8,cursor:"pointer",fontSize:13,fontWeight:600}}>Sign in free →</button>
+          <p style={{fontSize:13,color:C.primary,margin:"0 0 4px"}}>{hi.signInPrompt}</p>
+          <p style={{fontSize:12,color:C.muted,margin:"0 0 10px"}}>{hi.signInSub}</p>
+          <button onClick={()=>setView("login")} style={{background:C.primary,border:"none",color:"#fff",padding:"8px 18px",borderRadius:8,cursor:"pointer",fontSize:13,fontWeight:600}}>{hi.signInBtn}</button>
         </div>
       )}
       {user&&!isBasic&&(
         <div style={{textAlign:"center",marginTop:12,padding:"14px",background:C.accentLight,borderRadius:10}}>
-          <p style={{fontSize:13,color:C.accent,margin:"0 0 4px",fontWeight:600}}>🌍 Compare across all cities with Basic</p>
-          <p style={{fontSize:12,color:C.muted,margin:"0 0 10px"}}>See Plovdiv + Varna neighbourhoods and compare them all side by side</p>
-          <button onClick={()=>setView("pricing")} style={{background:C.accent,border:"none",color:"#fff",padding:"8px 18px",borderRadius:8,cursor:"pointer",fontSize:13,fontWeight:600}}>Upgrade to Basic →</button>
+          <p style={{fontSize:13,color:C.accent,margin:"0 0 4px",fontWeight:600}}>{hi.comparePrompt}</p>
+          <p style={{fontSize:12,color:C.muted,margin:"0 0 10px"}}>{hi.compareSub}</p>
+          <button onClick={()=>setView("pricing")} style={{background:C.accent,border:"none",color:"#fff",padding:"8px 18px",borderRadius:8,cursor:"pointer",fontSize:13,fontWeight:600}}>{hi.compareBtn}</button>
         </div>
       )}
     </div>
@@ -3440,10 +3527,10 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription,lang,setLang,t})
   },[])
   const tool=TOOLS_LIST.find(t=>t.id===active)
   const render=()=>{
-    if(active==="cost")return<CostCalcTool user={user} setView={setView} subscription={effectiveSubscription}/>
+    if(active==="cost")return<CostCalcTool user={user} setView={setView} subscription={effectiveSubscription} lang={lang}/>
     if(active==="tax")return<TaxCalcTool user={user} setView={setView} subscription={effectiveSubscription}/>
     if(active==="visa")return<VisaCheckerTool user={user} setView={setView}/>
-    if(active==="hood")return<NeighbourhoodTool user={user} setView={setView} subscription={effectiveSubscription}/>
+    if(active==="hood")return<NeighbourhoodTool user={user} setView={setView} subscription={effectiveSubscription} lang={lang}/>
     if(active==="fx")return<CurrencyTool/>
     if(active==="checklist")return<ChecklistTool user={user} setView={setView} subscription={effectiveSubscription}/>
     if(active==="phrases")return<PhraseTool user={user} setView={setView} subscription={effectiveSubscription}/>
