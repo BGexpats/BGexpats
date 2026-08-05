@@ -3582,15 +3582,14 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription,lang,setLang,t})
 const MAP_LOCATIONS = [
   // Healthcare
   {id:1,city:"sofia",cat:"health",icon:"🏥",name:"Tokuda Hospital",desc:"One of the best private hospitals in Sofia. Many English-speaking specialists.",addr:"Promishlena zona Hladilnika, bul. \"Nikola Y. Vaptsarov\" 51Б, 1407 Sofia",phone:"+359 2 403 4000",english:true,lat:42.664574,lng:23.325034},
-  {id:2,city:"sofia",cat:"health",icon:"🏥",name:"Acibadem City Clinic",desc:"International standard hospital. English service available.",addr:"2 Georgi Sofiyski Blvd",phone:"+359 2 9159 000",english:true,lat:42.6897,lng:23.3199},
-  {id:3,city:"sofia",cat:"health",icon:"🏥",name:"Vita Private Hospital",desc:"Popular with expats. Good emergency department.",addr:"16 Praga St",phone:"+359 2 815 8300",english:true,lat:42.7001,lng:23.3315},
-  {id:4,city:"sofia",cat:"health",icon:"💊",name:"Pharmacy Remedium",desc:"Large central pharmacy. Some English-speaking staff.",addr:"2 Sveta Nedelya Sq",phone:"+359 2 980 0111",english:false,lat:42.6971,lng:23.3220},
+  {id:3,city:"sofia",cat:"health",icon:"🏥",name:"Vita Private Hospital",desc:"Popular with expats. Good emergency department.",addr:"Hladilnika, Filip Kutev Blvd 10, 1407 Sofia",phone:"+359 2 452 2000",english:true,lat:42.656220,lng:23.320546},
+  {id:4,city:"sofia",cat:"health",icon:"💊",name:"Pharmacy Remedium",desc:"Pharmacy chain with multiple branches across Sofia — this is the central location. Some English-speaking staff.",addr:"Sofia Center, ul. \"Graf Ignatiev\" 52-54, 1142 Sofia",phone:"+359 2 980 0111",english:false,lat:42.688749,lng:23.327872},
   // Schools
   {id:375,city:"sofia",cat:"school",icon:"🎓",name:"British School Sofia",desc:"International school in Sofia.",addr:"Sofia",phone:"+359 88 651 0510",english:true,lat:42.646884,lng:23.328283},
   {id:376,city:"sofia",cat:"school",icon:"🧸",name:"British School of Sofia Kindergarten",desc:"Kindergarten campus of British School of Sofia.",addr:"Sofia",phone:"+359 88 651 0510",english:true,lat:42.647632,lng:23.328752},
   // Banking
-  {id:5,city:"sofia",cat:"bank",icon:"🏦",name:"DSK Bank — Vitosha",desc:"Most foreigner-friendly branch. English-speaking staff. Opens accounts for expats.",addr:"4 Vitosha Blvd",phone:"+359 2 939 9611",english:true,lat:42.6944,lng:23.3195},
-  {id:6,city:"sofia",cat:"bank",icon:"🏦",name:"UniCredit Bulbank Center",desc:"International bank, English staff, great for SWIFT transfers.",addr:"7 Sveta Nedelya Sq",phone:"+359 2 923 2111",english:true,lat:42.6970,lng:23.3225},
+  {id:5,city:"sofia",cat:"bank",icon:"🏦",name:"DSK Bank — Vitosha",desc:"Most foreigner-friendly branch. English-speaking staff. Opens accounts for expats.",addr:"Ivan Vazov, Vitosha Blvd № 176, бл. 53, 1408 Sofia",phone:"0700 10 375",english:true,lat:42.678102,lng:23.310024},
+  {id:6,city:"sofia",cat:"bank",icon:"🏦",name:"UniCredit Bulbank Center",desc:"International bank, English staff, great for SWIFT transfers.",addr:"Sofia Center, pl. \"Sveta Nedelya\" 7, 1000 Sofia",phone:"0700 18 484",english:true,lat:42.697616,lng:23.320758},
   {id:7,city:"sofia",cat:"bank",icon:"🏦",name:"First Investment Bank",desc:"Good mobile banking and competitive fees.",addr:"37 Dragan Tsankov Blvd",phone:"+359 2 817 1100",english:false,lat:42.6718,lng:23.3440},
   // Legal
   {id:8,city:"sofia",cat:"legal",icon:"⚖️",name:"Migration Directorate Sofia",desc:"Register your EU residence here. Go early — bring all documents!",addr:"48 Knyaz Boris I Blvd",phone:"+359 2 982 3340",english:false,lat:42.7127,lng:23.3139},
