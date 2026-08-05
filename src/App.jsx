@@ -1450,9 +1450,12 @@ function Hero({setView,t,lang}){
           </button>
         </div>
         <div style={{display:"flex",justifyContent:"center",gap:36,marginTop:40}}>
-          {[[String(CATEGORIES.length),t.stats[0]],["24/7",t.stats[1]],[`⭐${TOOLS_LIST.filter(x=>!x.divider).length}`,t.stats[3]]].map(([n,l])=>(
+          {[[String(CATEGORIES.length),t.stats[0],false],["24/7",t.stats[1],false],[String(TOOLS_LIST.filter(x=>!x.divider).length),t.stats[3],true]].map(([n,l,star])=>(
             <div key={l} style={{textAlign:"center"}}>
-              <div style={{color:"#f0c060",fontSize:24,fontWeight:800}}>{n}</div>
+              <div style={{color:"#f0c060",fontSize:24,fontWeight:800,display:"flex",alignItems:"center",justifyContent:"center",gap:4}}>
+                {star&&<svg width="15" height="15" viewBox="0 0 24 24" fill="#f0c060" stroke="none" style={{flexShrink:0}}><path d="M12 2.5l2.7 6.5 6.9.6-5.3 4.5 1.7 6.8L12 17l-6 3.9 1.7-6.8-5.3-4.5 6.9-.6z"/></svg>}
+                {n}
+              </div>
               <div style={{color:"rgba(255,255,255,0.65)",fontSize:12}}>{l}</div>
             </div>
           ))}
