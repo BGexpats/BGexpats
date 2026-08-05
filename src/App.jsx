@@ -103,6 +103,7 @@ const T = {
     mapTitle:"BGexpats Map",mapSub:"Find hospitals, banks, legal offices, coworking and best neighbourhoods across Bulgaria",
     passesHeading:"🧳 Just visiting Bulgaria?",passesSub:"Get full Premium access for your trip — no subscription, no commitment.",passesOneTime:"one-time",passesGet:"Get",passesFooter:"All plans include 8 languages. Cancel anytime. Secure payment via Stripe.",
     checkoutGetting:"Getting",checkoutSubscribingTo:"Subscribing to",checkoutMonthly:"Monthly",checkoutYearly:"Yearly",checkoutBilledAnnually:"Billed annually at",checkoutSaves:"saves",checkoutWhatYouGet:"What you get",checkoutBackToPlans:"← Back to plans",checkoutPleaseText:"Please",checkoutSignInLink:"sign in or create a free account",checkoutFirst:"first.",checkoutSubscribingAs:"Subscribing as:",
+    toolsHeaderTitle:"Expat tools",toolsHeaderSub:"Free interactive tools to plan your life in Bulgaria",whatsIncluded:"What's included in each plan",
     mapBannerTitle:"Find real businesses & services on the BGexpats Map",mapBannerSub:"Lawyers, notaries, agencies, clinics, banks and more — verified locations you can actually visit",
     greeting:"👋 Hi! I'm your BGexpats assistant.\n\nAsk me anything about living in or visiting Bulgaria — visas, healthcare, banking, housing, taxes, or local tips. I'm here to help!",
     suggestions:["How do I get a residency permit?","What's the cost of living in Sofia?","How to open a bank account as a foreigner?","How to register an EOOD company?","Best neighbourhoods in Sofia for expats?"],
@@ -133,6 +134,7 @@ const T = {
     mapTitle:"Carte BGexpats",mapSub:"Trouvez hôpitaux, banques, cabinets juridiques, coworking et meilleurs quartiers dans toute la Bulgarie",
     passesHeading:"🧳 Juste de passage en Bulgarie ?",passesSub:"Profitez d'un accès Premium complet pour votre séjour — sans abonnement, sans engagement.",passesOneTime:"paiement unique",passesGet:"Obtenir",passesFooter:"Tous les forfaits incluent 8 langues. Annulez à tout moment. Paiement sécurisé via Stripe.",
     checkoutGetting:"Obtention",checkoutSubscribingTo:"Abonnement à",checkoutMonthly:"Mensuel",checkoutYearly:"Annuel",checkoutBilledAnnually:"Facturé annuellement à",checkoutSaves:"économisez",checkoutWhatYouGet:"Ce que vous obtenez",checkoutBackToPlans:"← Retour aux forfaits",checkoutPleaseText:"Veuillez",checkoutSignInLink:"vous connecter ou créer un compte gratuit",checkoutFirst:"d'abord.",checkoutSubscribingAs:"Abonnement en tant que :",
+    toolsHeaderTitle:"Outils pour expatriés",toolsHeaderSub:"Outils interactifs gratuits pour organiser votre vie en Bulgarie",whatsIncluded:"Ce qui est inclus dans chaque forfait",
     mapBannerTitle:"Trouvez de vraies entreprises et services sur la carte BGexpats",mapBannerSub:"Avocats, notaires, agences, cliniques, banques et plus — des lieux vérifiés que vous pouvez réellement visiter",
     greeting:"👋 Bonjour ! Je suis votre assistant guide pour la Bulgarie.\n\nPosez-moi n'importe quelle question sur la vie en Bulgarie — visas, santé, banque, logement, impôts ou conseils locaux. Je suis là pour vous aider !",
     suggestions:["Comment obtenir un permis de résidence ?","Quel est le coût de la vie à Sofia ?","Comment ouvrir un compte bancaire en tant qu'étranger ?","Comment créer une société EOOD ?","Meilleurs quartiers de Sofia pour les expatriés ?"],
@@ -163,6 +165,7 @@ const T = {
     mapTitle:"Mapa de BGexpats",mapSub:"Encuentra hospitales, bancos, despachos legales, coworking y los mejores barrios en toda Bulgaria",
     passesHeading:"🧳 ¿Solo estás de visita en Bulgaria?",passesSub:"Obtén acceso Premium completo para tu viaje — sin suscripción, sin compromiso.",passesOneTime:"pago único",passesGet:"Obtener",passesFooter:"Todos los planes incluyen 8 idiomas. Cancela cuando quieras. Pago seguro con Stripe.",
     checkoutGetting:"Obteniendo",checkoutSubscribingTo:"Suscribiéndote a",checkoutMonthly:"Mensual",checkoutYearly:"Anual",checkoutBilledAnnually:"Facturado anualmente a",checkoutSaves:"ahorras",checkoutWhatYouGet:"Lo que obtienes",checkoutBackToPlans:"← Volver a los planes",checkoutPleaseText:"Por favor",checkoutSignInLink:"inicia sesión o crea una cuenta gratuita",checkoutFirst:"primero.",checkoutSubscribingAs:"Suscribiéndote como:",
+    toolsHeaderTitle:"Herramientas para expatriados",toolsHeaderSub:"Herramientas interactivas gratuitas para planificar tu vida en Bulgaria",whatsIncluded:"Qué incluye cada plan",
     mapBannerTitle:"Encuentra negocios y servicios reales en el mapa de BGexpats",mapBannerSub:"Abogados, notarios, agencias, clínicas, bancos y más — ubicaciones verificadas que puedes visitar de verdad",
     greeting:"👋 ¡Hola! Soy tu asistente guía para Bulgaria.\n\nPregúntame lo que quieras sobre vivir o visitar Bulgaria — visados, sanidad, banca, vivienda, impuestos o consejos locales. ¡Estoy aquí para ayudarte!",
     suggestions:["¿Cómo obtengo un permiso de residencia?","¿Cuál es el coste de vida en Sofía?","¿Cómo abro una cuenta bancaria como extranjero?","¿Cómo registro una empresa EOOD?","¿Mejores barrios de Sofía para expatriados?"],
@@ -193,6 +196,7 @@ const T = {
     mapTitle:"BGexpats-Karte",mapSub:"Finden Sie Krankenhäuser, Banken, Anwaltskanzleien, Coworking und die besten Stadtviertel in ganz Bulgarien",
     passesHeading:"🧳 Nur zu Besuch in Bulgarien?",passesSub:"Holen Sie sich vollen Premium-Zugang für Ihre Reise — kein Abo, keine Verpflichtung.",passesOneTime:"einmalig",passesGet:"Holen",passesFooter:"Alle Pläne umfassen 8 Sprachen. Jederzeit kündbar. Sichere Zahlung über Stripe.",
     checkoutGetting:"Erhalten",checkoutSubscribingTo:"Abonnieren von",checkoutMonthly:"Monatlich",checkoutYearly:"Jährlich",checkoutBilledAnnually:"Jährlich abgerechnet zu",checkoutSaves:"sparen",checkoutWhatYouGet:"Das erhalten Sie",checkoutBackToPlans:"← Zurück zu den Plänen",checkoutPleaseText:"Bitte",checkoutSignInLink:"melden Sie sich an oder erstellen Sie ein kostenloses Konto",checkoutFirst:"zuerst.",checkoutSubscribingAs:"Abonnieren als:",
+    toolsHeaderTitle:"Expat-Tools",toolsHeaderSub:"Kostenlose interaktive Tools zur Planung Ihres Lebens in Bulgarien",whatsIncluded:"Was in jedem Plan enthalten ist",
     mapBannerTitle:"Echte Unternehmen & Dienstleistungen auf der BGexpats-Karte finden",mapBannerSub:"Anwälte, Notare, Agenturen, Kliniken, Banken und mehr — verifizierte Orte, die Sie wirklich besuchen können",
     greeting:"👋 Hallo! Ich bin Ihr Bulgarien-Reiseführer-Assistent.\n\nFragen Sie mich alles über das Leben in oder den Besuch Bulgariens — Visa, Gesundheit, Banking, Wohnen, Steuern oder lokale Tipps. Ich helfe Ihnen gerne!",
     suggestions:["Wie bekomme ich eine Aufenthaltserlaubnis?","Wie sind die Lebenshaltungskosten in Sofia?","Wie eröffne ich ein Bankkonto als Ausländer?","Wie registriere ich eine EOOD-Firma?","Beste Viertel in Sofia für Expats?"],
@@ -224,6 +228,7 @@ const T = {
     mapTitle:"BGexpats-kaart",mapSub:"Vind ziekenhuizen, banken, juridische kantoren, coworking en de beste buurten in heel Bulgarije",
     passesHeading:"🧳 Bent u alleen op bezoek in Bulgarije?",passesSub:"Krijg volledige Premium-toegang voor uw reis — geen abonnement, geen verplichting.",passesOneTime:"eenmalig",passesGet:"Aanschaffen",passesFooter:"Alle plannen omvatten 8 talen. Altijd opzegbaar. Veilig betalen via Stripe.",
     checkoutGetting:"Verkrijgen",checkoutSubscribingTo:"Abonneren op",checkoutMonthly:"Maandelijks",checkoutYearly:"Jaarlijks",checkoutBilledAnnually:"Jaarlijks gefactureerd op",checkoutSaves:"bespaart",checkoutWhatYouGet:"Wat u krijgt",checkoutBackToPlans:"← Terug naar plannen",checkoutPleaseText:"Log",checkoutSignInLink:"in of maak een gratis account aan",checkoutFirst:"eerst.",checkoutSubscribingAs:"Abonneren als:",
+    toolsHeaderTitle:"Expat-tools",toolsHeaderSub:"Gratis interactieve tools om uw leven in Bulgarije te plannen",whatsIncluded:"Wat elk plan omvat",
     mapBannerTitle:"Vind echte bedrijven & diensten op de BGexpats-kaart",mapBannerSub:"Advocaten, notarissen, bureaus, klinieken, banken en meer — geverifieerde locaties die u echt kunt bezoeken",
     greeting:"👋 Hallo! Ik ben uw gids-assistent voor Bulgarije.\n\nStel me alles over leven in of bezoeken van Bulgarije — visa's, gezondheidszorg, bankieren, wonen, belastingen of lokale tips. Ik help u graag!",
     suggestions:["Hoe krijg ik een verblijfsvergunning?","Wat zijn de kosten van levensonderhoud in Sofia?","Hoe open ik een bankrekening als buitenlander?","Hoe registreer ik een EOOD-bedrijf?","Beste wijken in Sofia voor expats?"],
@@ -254,6 +259,7 @@ const T = {
     mapTitle:"Карта BGexpats",mapSub:"Находите больницы, банки, юридические конторы, коворкинги и лучшие районы по всей Болгарии",
     passesHeading:"🧳 Просто путешествуете по Болгарии?",passesSub:"Получите полный Premium-доступ на время поездки — без подписки, без обязательств.",passesOneTime:"разовый платёж",passesGet:"Получить",passesFooter:"Все планы включают 8 языков. Отмена в любой момент. Безопасная оплата через Stripe.",
     checkoutGetting:"Получение",checkoutSubscribingTo:"Оформление подписки",checkoutMonthly:"Ежемесячно",checkoutYearly:"Ежегодно",checkoutBilledAnnually:"Оплата ежегодно по",checkoutSaves:"экономия",checkoutWhatYouGet:"Что вы получаете",checkoutBackToPlans:"← Назад к тарифам",checkoutPleaseText:"Пожалуйста",checkoutSignInLink:"войдите или создайте бесплатный аккаунт",checkoutFirst:"сначала.",checkoutSubscribingAs:"Оформление на:",
+    toolsHeaderTitle:"Инструменты для экспатов",toolsHeaderSub:"Бесплатные интерактивные инструменты для планирования жизни в Болгарии",whatsIncluded:"Что входит в каждый план",
     mapBannerTitle:"Найдите реальные компании и услуги на карте BGexpats",mapBannerSub:"Юристы, нотариусы, агентства, клиники, банки и многое другое — проверенные места, которые можно посетить",
     greeting:"👋 Привет! Я ваш ассистент BGexpats.\n\nЗадайте любой вопрос о жизни или туризме в Болгарии — визы, здравоохранение, банки, жильё, налоги или местные советы. Я здесь, чтобы помочь!",
     suggestions:["Как получить вид на жительство?","Какова стоимость жизни в Софии?","Как открыть банковский счёт иностранцу?","Как зарегистрировать компанию ЭООД?","Лучшие районы Софии для экспатов?"],
@@ -284,6 +290,7 @@ const T = {
     mapTitle:"Карта BGexpats",mapSub:"Знаходьте лікарні, банки, юридичні контори, коворкінги та найкращі райони по всій Болгарії",
     passesHeading:"🧳 Просто подорожуєте Болгарією?",passesSub:"Отримайте повний Premium-доступ на час подорожі — без підписки, без зобов'язань.",passesOneTime:"разовий платіж",passesGet:"Отримати",passesFooter:"Усі плани включають 8 мов. Скасування у будь-який час. Безпечна оплата через Stripe.",
     checkoutGetting:"Отримання",checkoutSubscribingTo:"Оформлення підписки",checkoutMonthly:"Щомісячно",checkoutYearly:"Щорічно",checkoutBilledAnnually:"Оплата щорічно за",checkoutSaves:"економія",checkoutWhatYouGet:"Що ви отримуєте",checkoutBackToPlans:"← Назад до тарифів",checkoutPleaseText:"Будь ласка",checkoutSignInLink:"увійдіть або створіть безкоштовний акаунт",checkoutFirst:"спочатку.",checkoutSubscribingAs:"Оформлення на:",
+    toolsHeaderTitle:"Інструменти для експатів",toolsHeaderSub:"Безкоштовні інтерактивні інструменти для планування життя в Болгарії",whatsIncluded:"Що входить у кожен план",
     mapBannerTitle:"Знайдіть реальні компанії та послуги на карті BGexpats",mapBannerSub:"Юристи, нотаріуси, агентства, клініки, банки та інше — перевірені місця, які можна дійсно відвідати",
     greeting:"👋 Привіт! Я ваш асистент BGexpats.\n\nЗадайте будь-яке питання про життя або туризм у Болгарії — візи, охорона здоров'я, банки, житло, податки або місцеві поради. Я тут, щоб допомогти!",
     suggestions:["Як отримати посвідку на проживання?","Яка вартість життя в Софії?","Як відкрити банківський рахунок іноземцю?","Як зареєструвати компанію ЕООД?","Найкращі райони Софії для експатів?"],
@@ -314,6 +321,7 @@ const T = {
     mapTitle:"Карта на BGexpats",mapSub:"Намерете болници, банки, адвокатски кантори, коуъркинг пространства и най-добрите квартали в цяла България",
     passesHeading:"🧳 Само на посещение в България?",passesSub:"Получете пълен Premium достъп за пътуването си — без абонамент, без ангажимент.",passesOneTime:"еднократно",passesGet:"Вземи",passesFooter:"Всички планове включват 8 езика. Отказ по всяко време. Сигурно плащане чрез Stripe.",
     checkoutGetting:"Получаване",checkoutSubscribingTo:"Абониране за",checkoutMonthly:"Месечно",checkoutYearly:"Годишно",checkoutBilledAnnually:"Годишно фактуриране на",checkoutSaves:"спестявате",checkoutWhatYouGet:"Какво получавате",checkoutBackToPlans:"← Назад към плановете",checkoutPleaseText:"Моля",checkoutSignInLink:"влезте или създайте безплатен акаунт",checkoutFirst:"първо.",checkoutSubscribingAs:"Абониране като:",
+    toolsHeaderTitle:"Инструменти за чужденци",toolsHeaderSub:"Безплатни интерактивни инструменти за планиране на живота ви в България",whatsIncluded:"Какво включва всеки план",
     mapBannerTitle:"Намерете реални бизнеси и услуги на картата на BGexpats",mapBannerSub:"Адвокати, нотариуси, агенции, клиники, банки и още — проверени места, които можете действително да посетите",
     greeting:"👋 Здравейте! Аз съм вашият BGexpats асистент.\n\nЗадайте всякакви въпроси за живота или туризма в България — визи, здравеопазване, банки, жилища, данъци или местни съвети. Тук съм, за да помогна!",
     suggestions:["Как да получа разрешение за пребиваване?","Какви са разходите за живот в София?","Как да открия банкова сметка като чужденец?","Как да регистрирам ЕООД?","Най-добрите квартали в София за експати?"],
@@ -344,6 +352,7 @@ const T = {
     mapTitle:"BGexpats Haritası",mapSub:"Bulgaristan genelinde hastaneler, bankalar, hukuk büroları, ortak çalışma alanları ve en iyi mahalleleri bulun",
     passesHeading:"🧳 Sadece Bulgaristan'ı mı ziyaret ediyorsunuz?",passesSub:"Seyahatiniz için tam Premium erişim edinin — abonelik yok, taahhüt yok.",passesOneTime:"tek seferlik",passesGet:"Al",passesFooter:"Tüm planlar 8 dil içerir. İstediğiniz zaman iptal edin. Stripe ile güvenli ödeme.",
     checkoutGetting:"Alınıyor",checkoutSubscribingTo:"Abone olunuyor",checkoutMonthly:"Aylık",checkoutYearly:"Yıllık",checkoutBilledAnnually:"Yıllık faturalandırma",checkoutSaves:"tasarruf",checkoutWhatYouGet:"Neler alacaksınız",checkoutBackToPlans:"← Planlara dön",checkoutPleaseText:"Lütfen önce",checkoutSignInLink:"giriş yapın veya ücretsiz hesap oluşturun",checkoutFirst:".",checkoutSubscribingAs:"Şu olarak abone olunuyor:",
+    toolsHeaderTitle:"Expat araçları",toolsHeaderSub:"Bulgaristan'daki yaşamınızı planlamak için ücretsiz interaktif araçlar",whatsIncluded:"Her plana neler dahil",
     mapBannerTitle:"BGexpats Haritasında gerçek işletmeleri ve hizmetleri bulun",mapBannerSub:"Avukatlar, noterler, ajanslar, klinikler, bankalar ve daha fazlası — gerçekten ziyaret edebileceğiniz doğrulanmış konumlar",
     greeting:"👋 Merhaba! Ben BGexpats asistanınızım.\n\nBulgaristan'da yaşam veya turizm hakkında her şeyi sorabilirsiniz — vizeler, sağlık, bankacılık, konut, vergiler veya yerel ipuçları. Yardımcı olmak için buradayım!",
     suggestions:["Oturma izni nasıl alınır?","Sofya'da yaşam maliyeti nedir?","Yabancı olarak banka hesabı nasıl açılır?","EOOD şirketi nasıl kurulur?","Expatlar için Sofya'nın en iyi mahalleleri?"],
@@ -3314,22 +3323,61 @@ function toolI18n(id,lang,fallbackLabel,fallbackDesc){
 // see PricingPage for the full-site breakdown). Kept in sync manually with
 // TOOLS_LIST's `premium` flags and the isBasic checks inside CostCalcTool /
 // NeighbourhoodTool above.
-function ToolsTierOverview({currentTier,setView}){
+function ToolsTierOverview({currentTier,setView,t,lang}){
   const [open,setOpen]=useState(false)
+  const TIER_OVERVIEW_I18N = {
+    en:{free:"Free",basic:"Basic",premium:"Premium",upgradeBasic:"Upgrade to Basic",goPremium:"Go Premium",
+      freeItems:["Cost of living — single city","Visa checker","Currency converter","Neighbourhoods — your city"],
+      basicItems:["Everything in Free","Tax calculator — net income breakdown","Moving checklist — your personalised plan","Bulgarian phrases guide","Compare cost of living across all 8 cities","Compare neighbourhoods across every city"],
+      premiumItems:["Everything in Basic","Document Generator","Relocation Planner","Property ROI calculator","Deadline Tracker","Neighbourhood Match","Language Coach","Budget Planner"]},
+    fr:{free:"Gratuit",basic:"Basic",premium:"Premium",upgradeBasic:"Passer à Basic",goPremium:"Passer à Premium",
+      freeItems:["Coût de la vie — une seule ville","Vérificateur de visa","Convertisseur de devises","Quartiers — votre ville"],
+      basicItems:["Tout ce qui est dans Free","Calculateur d'impôts — détail du revenu net","Liste de déménagement — votre plan personnalisé","Guide des phrases bulgares","Comparez le coût de la vie dans 8 villes","Comparez les quartiers dans toutes les villes"],
+      premiumItems:["Tout ce qui est dans Basic","Générateur de documents","Planificateur de déménagement","Calculateur de rentabilité immobilière","Suivi des échéances","Quartier idéal","Coach linguistique","Planificateur budgétaire"]},
+    es:{free:"Gratis",basic:"Basic",premium:"Premium",upgradeBasic:"Actualizar a Basic",goPremium:"Pasar a Premium",
+      freeItems:["Coste de vida — una sola ciudad","Comprobador de visado","Conversor de divisas","Barrios — tu ciudad"],
+      basicItems:["Todo lo de Free","Calculadora de impuestos — desglose del ingreso neto","Lista de mudanza — tu plan personalizado","Guía de frases en búlgaro","Compara el coste de vida en 8 ciudades","Compara barrios en todas las ciudades"],
+      premiumItems:["Todo lo de Basic","Generador de documentos","Planificador de mudanza","Calculadora de ROI inmobiliario","Seguimiento de plazos","Barrio ideal","Entrenador de idioma","Planificador de presupuesto"]},
+    de:{free:"Kostenlos",basic:"Basic",premium:"Premium",upgradeBasic:"Auf Basic upgraden",goPremium:"Zu Premium wechseln",
+      freeItems:["Lebenshaltungskosten — eine Stadt","Visa-Check","Währungsrechner","Stadtviertel — Ihre Stadt"],
+      basicItems:["Alles aus Free","Steuerrechner — Nettoeinkommensaufschlüsselung","Umzugscheckliste — Ihr persönlicher Plan","Bulgarischer Redewendungsführer","Lebenshaltungskosten in 8 Städten vergleichen","Stadtviertel in jeder Stadt vergleichen"],
+      premiumItems:["Alles aus Basic","Dokumentengenerator","Umzugsplaner","Immobilienrendite-Rechner","Fristenverfolgung","Stadtviertel-Match","Sprachcoach","Budgetplaner"]},
+    nl:{free:"Gratis",basic:"Basic",premium:"Premium",upgradeBasic:"Upgraden naar Basic",goPremium:"Overstappen naar Premium",
+      freeItems:["Kosten van levensonderhoud — één stad","Visumchecker","Valutaomrekenaar","Buurten — uw stad"],
+      basicItems:["Alles van Free","Belastingcalculator — netto-inkomen uitgesplitst","Verhuischecklist — uw persoonlijke plan","Bulgaarse zinnengids","Vergelijk kosten van levensonderhoud in 8 steden","Vergelijk buurten in elke stad"],
+      premiumItems:["Alles van Basic","Documentgenerator","Verhuisplanner","Vastgoedrendement-calculator","Deadlinetracker","Buurt-match","Taalcoach","Budgetplanner"]},
+    ru:{free:"Бесплатно",basic:"Basic",premium:"Premium",upgradeBasic:"Перейти на Basic",goPremium:"Перейти на Premium",
+      freeItems:["Стоимость жизни — один город","Проверка визы","Конвертер валют","Районы — ваш город"],
+      basicItems:["Всё из Free","Калькулятор налогов — расчёт чистого дохода","Чек-лист переезда — ваш персональный план","Гид по болгарским фразам","Сравнение стоимости жизни в 8 городах","Сравнение районов во всех городах"],
+      premiumItems:["Всё из Basic","Генератор документов","Планировщик переезда","Калькулятор доходности недвижимости","Отслеживание сроков","Подбор района","Языковой тренер","Планировщик бюджета"]},
+    uk:{free:"Безкоштовно",basic:"Basic",premium:"Premium",upgradeBasic:"Перейти на Basic",goPremium:"Перейти на Premium",
+      freeItems:["Вартість життя — одне місто","Перевірка візи","Конвертер валют","Райони — ваше місто"],
+      basicItems:["Усе з Free","Калькулятор податків — розрахунок чистого доходу","Чек-лист переїзду — ваш персональний план","Гід з болгарських фраз","Порівняння вартості життя у 8 містах","Порівняння районів у кожному місті"],
+      premiumItems:["Усе з Basic","Генератор документів","Планувальник переїзду","Калькулятор дохідності нерухомості","Відстеження термінів","Підбір району","Мовний тренер","Планувальник бюджету"]},
+    tr:{free:"Ücretsiz",basic:"Basic",premium:"Premium",upgradeBasic:"Basic'e yükselt",goPremium:"Premium'a geç",
+      freeItems:["Yaşam maliyeti — tek şehir","Vize kontrolü","Döviz çevirici","Mahalleler — şehriniz"],
+      basicItems:["Free'deki her şey","Vergi hesaplayıcı — net gelir dökümü","Taşınma kontrol listesi — kişiselleştirilmiş planınız","Bulgarca ifadeler rehberi","8 şehirde yaşam maliyetini karşılaştırın","Her şehirde mahalleleri karşılaştırın"],
+      premiumItems:["Basic'teki her şey","Belge Oluşturucu","Taşınma Planlayıcı","Gayrimenkul Getirisi hesaplayıcı","Son Tarih Takibi","Mahalle Eşleştirme","Dil Koçu","Bütçe Planlayıcı"]},
+    bg:{free:"Безплатно",basic:"Basic",premium:"Premium",upgradeBasic:"Надградете до Basic",goPremium:"Преминете към Premium",
+      freeItems:["Издръжка на живота — един град","Проверка на виза","Конвертор на валута","Квартали — вашия град"],
+      basicItems:["Всичко от Free","Данъчен калкулатор — разбивка на нетния доход","Списък за преместване — вашият персонализиран план","Наръчник с български фрази","Сравнете издръжката на живота в 8 града","Сравнете кварталите във всеки град"],
+      premiumItems:["Всичко от Basic","Генератор на документи","Планиране на преместване","Калкулатор за доходност от имот","Проследяване на срокове","Подбор на квартал","Езиков треньор","Планиране на бюджет"]},
+  }
+  const ti=TIER_OVERVIEW_I18N[lang]||TIER_OVERVIEW_I18N.en
   const cols=[
-    {id:"free",label:"Free",price:"€0",accentBg:C.surface,accentBorder:C.border,headBg:C.page,headColor:C.text,
-      items:["Cost of living — single city","Visa checker","Currency converter","Neighbourhoods — your city"]},
-    {id:"basic",label:"Basic",price:`€${PLANS.basic.monthly}/mo`,accentBg:C.surface,accentBorder:C.primary,headBg:C.primaryLight,headColor:C.primary,
-      items:["Everything in Free","Tax calculator — net income breakdown","Moving checklist — your personalised plan","Bulgarian phrases guide","Compare cost of living across all 8 cities","Compare neighbourhoods across every city"]},
-    {id:"premium",label:"Premium",price:`€${PLANS.premium.monthly}/mo`,accentBg:C.primary,accentBorder:C.primaryDark,headBg:"rgba(255,255,255,0.12)",headColor:"#fff",
-      items:["Everything in Basic","Document Generator","Relocation Planner","Property ROI calculator","Deadline Tracker","Neighbourhood Match","Language Coach","Budget Planner"]},
+    {id:"free",label:ti.free,price:"€0",accentBg:C.surface,accentBorder:C.border,headBg:C.page,headColor:C.text,
+      items:ti.freeItems},
+    {id:"basic",label:ti.basic,price:`€${PLANS.basic.monthly}/mo`,accentBg:C.surface,accentBorder:C.primary,headBg:C.primaryLight,headColor:C.primary,
+      items:ti.basicItems},
+    {id:"premium",label:ti.premium,price:`€${PLANS.premium.monthly}/mo`,accentBg:C.primary,accentBorder:C.primaryDark,headBg:"rgba(255,255,255,0.12)",headColor:"#fff",
+      items:ti.premiumItems},
   ]
   return(
     <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,marginBottom:20,overflow:"hidden",boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
       <button onClick={()=>setOpen(v=>!v)} style={{width:"100%",background:"none",border:"none",cursor:"pointer",padding:"14px 18px",display:"flex",alignItems:"center",justifyContent:"space-between",textAlign:"left"}}>
         <div style={{display:"flex",alignItems:"center",gap:8}}>
           <span style={{fontSize:15}}>🔑</span>
-          <span style={{fontSize:14,fontWeight:600,color:C.text}}>What's included in each plan</span>
+          <span style={{fontSize:14,fontWeight:600,color:C.text}}>{(t&&t.whatsIncluded)||"What's included in each plan"}</span>
         </div>
         <span style={{fontSize:12,color:C.muted,transform:open?"rotate(180deg)":"none",transition:"transform 0.15s"}}>▾</span>
       </button>
@@ -3350,12 +3398,12 @@ function ToolsTierOverview({currentTier,setView}){
               </ul>
               {col.id==="basic"&&currentTier==="free"&&(
                 <button onClick={()=>setView("pricing")} style={{margin:"0 14px 14px",background:"none",border:`1px solid ${col.accentBorder}`,color:col.headColor,borderRadius:8,padding:"6px 10px",fontSize:11,fontWeight:600,cursor:"pointer",width:"calc(100% - 28px)"}}>
-                  Upgrade to Basic
+                  {ti.upgradeBasic}
                 </button>
               )}
               {col.id==="premium"&&currentTier!=="premium"&&(
                 <button onClick={()=>setView("pricing")} style={{margin:"0 14px 14px",background:"#f0c060",border:"none",color:"#1a3a20",borderRadius:8,padding:"7px 10px",fontSize:11,fontWeight:700,cursor:"pointer",width:"calc(100% - 28px)"}}>
-                  Go Premium
+                  {ti.goPremium}
                 </button>
               )}
             </div>
@@ -3366,7 +3414,7 @@ function ToolsTierOverview({currentTier,setView}){
   )
 }
 
-function ToolsPage({user,setView,trackEvent=()=>{},subscription,lang,setLang}){
+function ToolsPage({user,setView,trackEvent=()=>{},subscription,lang,setLang,t}){
   const [active,setActive]=useState("cost")
   const [toolMenu,setToolMenu]=useState(false)
   const toolMenuRef=useRef(null)
@@ -3412,12 +3460,12 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription,lang,setLang}){
     <div style={{minHeight:"100vh",background:C.page}}>
       <div style={{background:`linear-gradient(135deg,${C.primary},#2a7a52)`,padding:isMobile?"26px 16px 42px":"32px 20px 48px"}}>
         <div style={{maxWidth:1100,margin:"0 auto"}}>
-          <h1 className="serif" style={{color:"#fff",fontSize:"clamp(24px,4vw,38px)",fontWeight:400,margin:"0 0 6px"}}>Expat tools</h1>
-          <p style={{color:"rgba(255,255,255,0.7)",fontSize:isMobile?13:15,margin:0,fontWeight:300}}>Free interactive tools to plan your life in Bulgaria</p>
+          <h1 className="serif" style={{color:"#fff",fontSize:"clamp(24px,4vw,38px)",fontWeight:400,margin:"0 0 6px"}}>{(t&&t.toolsHeaderTitle)||"Expat tools"}</h1>
+          <p style={{color:"rgba(255,255,255,0.7)",fontSize:isMobile?13:15,margin:0,fontWeight:300}}>{(t&&t.toolsHeaderSub)||"Free interactive tools to plan your life in Bulgaria"}</p>
         </div>
       </div>
       <div style={{maxWidth:1100,margin:isMobile?"-24px auto 32px":"-24px auto 48px",padding:isMobile?"0 12px":"0 20px"}}>
-        <ToolsTierOverview currentTier={currentTier} setView={setView}/>
+        <ToolsTierOverview currentTier={currentTier} setView={setView} t={t} lang={lang}/>
         {isMobile ? (
           /* MOBILE: dropdown selector, then the tool at full screen width */
           <>
@@ -3533,7 +3581,7 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription,lang,setLang}){
 // ── Map locations data ────────────────────────────────────────────
 const MAP_LOCATIONS = [
   // Healthcare
-  {id:1,city:"sofia",cat:"health",icon:"🏥",name:"Tokuda Hospital",desc:"One of the best private hospitals in Sofia. Many English-speaking specialists.",addr:"51A Nikola Vaptsarov Blvd",phone:"+359 2 403 4000",english:true,lat:42.6636,lng:23.3046},
+  {id:1,city:"sofia",cat:"health",icon:"🏥",name:"Tokuda Hospital",desc:"One of the best private hospitals in Sofia. Many English-speaking specialists.",addr:"Promishlena zona Hladilnika, bul. \"Nikola Y. Vaptsarov\" 51Б, 1407 Sofia",phone:"+359 2 403 4000",english:true,lat:42.664574,lng:23.325034},
   {id:2,city:"sofia",cat:"health",icon:"🏥",name:"Acibadem City Clinic",desc:"International standard hospital. English service available.",addr:"2 Georgi Sofiyski Blvd",phone:"+359 2 9159 000",english:true,lat:42.6897,lng:23.3199},
   {id:3,city:"sofia",cat:"health",icon:"🏥",name:"Vita Private Hospital",desc:"Popular with expats. Good emergency department.",addr:"16 Praga St",phone:"+359 2 815 8300",english:true,lat:42.7001,lng:23.3315},
   {id:4,city:"sofia",cat:"health",icon:"💊",name:"Pharmacy Remedium",desc:"Large central pharmacy. Some English-speaking staff.",addr:"2 Sveta Nedelya Sq",phone:"+359 2 980 0111",english:false,lat:42.6971,lng:23.3220},
@@ -5904,7 +5952,7 @@ export default function App(){
       ):view==="map"?(
         <MapPage user={user} setView={setView} subscription={subscription} openCheckout={openCheckout} lang={lang} t={t}/>
       ):view==="tools"?(
-        <ToolsPage user={user} setView={setView} trackEvent={trackEvent} subscription={subscription} lang={lang} setLang={setLang}/>
+        <ToolsPage user={user} setView={setView} trackEvent={trackEvent} subscription={subscription} lang={lang} setLang={setLang} t={t}/>
       ):view==="pricing"?(
         <PricingPage user={user} setView={setView} lang={lang} t={t} openCheckout={openCheckout}/>
       ):view==="community"?(
