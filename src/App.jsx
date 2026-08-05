@@ -1450,7 +1450,7 @@ function Hero({setView,t,lang}){
           </button>
         </div>
         <div style={{display:"flex",justifyContent:"center",gap:36,marginTop:40}}>
-          {[[String(CATEGORIES.length),t.stats[0]],["24/7",t.stats[1]],["5★",t.stats[2]],[String(TOOLS_LIST.filter(x=>!x.divider).length),t.stats[3]]].map(([n,l])=>(
+          {[[String(CATEGORIES.length),t.stats[0]],["24/7",t.stats[1]],[`⭐${TOOLS_LIST.filter(x=>!x.divider).length}`,t.stats[3]]].map(([n,l])=>(
             <div key={l} style={{textAlign:"center"}}>
               <div style={{color:"#f0c060",fontSize:24,fontWeight:800}}>{n}</div>
               <div style={{color:"rgba(255,255,255,0.65)",fontSize:12}}>{l}</div>
