@@ -100,6 +100,9 @@ const T = {
     stillQ:"Still have questions?",askLink:"Ask the AI →",
     chatTitle:"BGexpats AI",chatSub:"Expert on expat life in Bulgaria",
     pricingTitle:"Simple, honest pricing",pricingSub:"Join thousands of expats navigating life in Bulgaria",
+    mapTitle:"BGexpats Map",mapSub:"Find hospitals, banks, legal offices, coworking and best neighbourhoods across Bulgaria",
+    passesHeading:"🧳 Just visiting Bulgaria?",passesSub:"Get full Premium access for your trip — no subscription, no commitment.",passesOneTime:"one-time",passesGet:"Get",passesFooter:"All plans include 8 languages. Cancel anytime. Secure payment via Stripe.",
+    checkoutGetting:"Getting",checkoutSubscribingTo:"Subscribing to",checkoutMonthly:"Monthly",checkoutYearly:"Yearly",checkoutBilledAnnually:"Billed annually at",checkoutSaves:"saves",checkoutWhatYouGet:"What you get",checkoutBackToPlans:"← Back to plans",checkoutPleaseText:"Please",checkoutSignInLink:"sign in or create a free account",checkoutFirst:"first.",checkoutSubscribingAs:"Subscribing as:",
     mapBannerTitle:"Find real businesses & services on the BGexpats Map",mapBannerSub:"Lawyers, notaries, agencies, clinics, banks and more — verified locations you can actually visit",
     greeting:"👋 Hi! I'm your BGexpats assistant.\n\nAsk me anything about living in or visiting Bulgaria — visas, healthcare, banking, housing, taxes, or local tips. I'm here to help!",
     suggestions:["How do I get a residency permit?","What's the cost of living in Sofia?","How to open a bank account as a foreigner?","How to register an EOOD company?","Best neighbourhoods in Sofia for expats?"],
@@ -127,6 +130,9 @@ const T = {
     stillQ:"Vous avez encore des questions ?",askLink:"Demander à l'IA →",
     chatTitle:"Assistant IA BGexpats",chatSub:"Expert sur la vie d'expatrié en Bulgarie",
     pricingTitle:"Des tarifs simples et transparents",pricingSub:"Rejoignez des milliers d'expatriés qui vivent en Bulgarie",
+    mapTitle:"Carte BGexpats",mapSub:"Trouvez hôpitaux, banques, cabinets juridiques, coworking et meilleurs quartiers dans toute la Bulgarie",
+    passesHeading:"🧳 Juste de passage en Bulgarie ?",passesSub:"Profitez d'un accès Premium complet pour votre séjour — sans abonnement, sans engagement.",passesOneTime:"paiement unique",passesGet:"Obtenir",passesFooter:"Tous les forfaits incluent 8 langues. Annulez à tout moment. Paiement sécurisé via Stripe.",
+    checkoutGetting:"Obtention",checkoutSubscribingTo:"Abonnement à",checkoutMonthly:"Mensuel",checkoutYearly:"Annuel",checkoutBilledAnnually:"Facturé annuellement à",checkoutSaves:"économisez",checkoutWhatYouGet:"Ce que vous obtenez",checkoutBackToPlans:"← Retour aux forfaits",checkoutPleaseText:"Veuillez",checkoutSignInLink:"vous connecter ou créer un compte gratuit",checkoutFirst:"d'abord.",checkoutSubscribingAs:"Abonnement en tant que :",
     mapBannerTitle:"Trouvez de vraies entreprises et services sur la carte BGexpats",mapBannerSub:"Avocats, notaires, agences, cliniques, banques et plus — des lieux vérifiés que vous pouvez réellement visiter",
     greeting:"👋 Bonjour ! Je suis votre assistant guide pour la Bulgarie.\n\nPosez-moi n'importe quelle question sur la vie en Bulgarie — visas, santé, banque, logement, impôts ou conseils locaux. Je suis là pour vous aider !",
     suggestions:["Comment obtenir un permis de résidence ?","Quel est le coût de la vie à Sofia ?","Comment ouvrir un compte bancaire en tant qu'étranger ?","Comment créer une société EOOD ?","Meilleurs quartiers de Sofia pour les expatriés ?"],
@@ -154,6 +160,9 @@ const T = {
     stillQ:"¿Tienes más preguntas?",askLink:"Preguntar al IA →",
     chatTitle:"Asistente IA BGexpats",chatSub:"Experto en vida de expatriado en Bulgaria",
     pricingTitle:"Precios simples y honestos",pricingSub:"Únete a miles de expatriados que viven en Bulgaria",
+    mapTitle:"Mapa de BGexpats",mapSub:"Encuentra hospitales, bancos, despachos legales, coworking y los mejores barrios en toda Bulgaria",
+    passesHeading:"🧳 ¿Solo estás de visita en Bulgaria?",passesSub:"Obtén acceso Premium completo para tu viaje — sin suscripción, sin compromiso.",passesOneTime:"pago único",passesGet:"Obtener",passesFooter:"Todos los planes incluyen 8 idiomas. Cancela cuando quieras. Pago seguro con Stripe.",
+    checkoutGetting:"Obteniendo",checkoutSubscribingTo:"Suscribiéndote a",checkoutMonthly:"Mensual",checkoutYearly:"Anual",checkoutBilledAnnually:"Facturado anualmente a",checkoutSaves:"ahorras",checkoutWhatYouGet:"Lo que obtienes",checkoutBackToPlans:"← Volver a los planes",checkoutPleaseText:"Por favor",checkoutSignInLink:"inicia sesión o crea una cuenta gratuita",checkoutFirst:"primero.",checkoutSubscribingAs:"Suscribiéndote como:",
     mapBannerTitle:"Encuentra negocios y servicios reales en el mapa de BGexpats",mapBannerSub:"Abogados, notarios, agencias, clínicas, bancos y más — ubicaciones verificadas que puedes visitar de verdad",
     greeting:"👋 ¡Hola! Soy tu asistente guía para Bulgaria.\n\nPregúntame lo que quieras sobre vivir o visitar Bulgaria — visados, sanidad, banca, vivienda, impuestos o consejos locales. ¡Estoy aquí para ayudarte!",
     suggestions:["¿Cómo obtengo un permiso de residencia?","¿Cuál es el coste de vida en Sofía?","¿Cómo abro una cuenta bancaria como extranjero?","¿Cómo registro una empresa EOOD?","¿Mejores barrios de Sofía para expatriados?"],
@@ -181,6 +190,9 @@ const T = {
     stillQ:"Noch Fragen?",askLink:"KI fragen →",
     chatTitle:"BGexpats KI",chatSub:"Experte für Expat-Leben in Bulgarien",
     pricingTitle:"Einfache, faire Preise",pricingSub:"Schließen Sie sich Tausenden von Expats an, die in Bulgarien leben",
+    mapTitle:"BGexpats-Karte",mapSub:"Finden Sie Krankenhäuser, Banken, Anwaltskanzleien, Coworking und die besten Stadtviertel in ganz Bulgarien",
+    passesHeading:"🧳 Nur zu Besuch in Bulgarien?",passesSub:"Holen Sie sich vollen Premium-Zugang für Ihre Reise — kein Abo, keine Verpflichtung.",passesOneTime:"einmalig",passesGet:"Holen",passesFooter:"Alle Pläne umfassen 8 Sprachen. Jederzeit kündbar. Sichere Zahlung über Stripe.",
+    checkoutGetting:"Erhalten",checkoutSubscribingTo:"Abonnieren von",checkoutMonthly:"Monatlich",checkoutYearly:"Jährlich",checkoutBilledAnnually:"Jährlich abgerechnet zu",checkoutSaves:"sparen",checkoutWhatYouGet:"Das erhalten Sie",checkoutBackToPlans:"← Zurück zu den Plänen",checkoutPleaseText:"Bitte",checkoutSignInLink:"melden Sie sich an oder erstellen Sie ein kostenloses Konto",checkoutFirst:"zuerst.",checkoutSubscribingAs:"Abonnieren als:",
     mapBannerTitle:"Echte Unternehmen & Dienstleistungen auf der BGexpats-Karte finden",mapBannerSub:"Anwälte, Notare, Agenturen, Kliniken, Banken und mehr — verifizierte Orte, die Sie wirklich besuchen können",
     greeting:"👋 Hallo! Ich bin Ihr Bulgarien-Reiseführer-Assistent.\n\nFragen Sie mich alles über das Leben in oder den Besuch Bulgariens — Visa, Gesundheit, Banking, Wohnen, Steuern oder lokale Tipps. Ich helfe Ihnen gerne!",
     suggestions:["Wie bekomme ich eine Aufenthaltserlaubnis?","Wie sind die Lebenshaltungskosten in Sofia?","Wie eröffne ich ein Bankkonto als Ausländer?","Wie registriere ich eine EOOD-Firma?","Beste Viertel in Sofia für Expats?"],
@@ -209,6 +221,9 @@ const T = {
     stillQ:"Heeft u nog vragen?",askLink:"Vraag de AI →",
     chatTitle:"BGexpats AI",chatSub:"Expert in expatleven in Bulgarije",
     pricingTitle:"Eenvoudige, eerlijke prijzen",pricingSub:"Sluit je aan bij duizenden expats die in Bulgarije leven",
+    mapTitle:"BGexpats-kaart",mapSub:"Vind ziekenhuizen, banken, juridische kantoren, coworking en de beste buurten in heel Bulgarije",
+    passesHeading:"🧳 Bent u alleen op bezoek in Bulgarije?",passesSub:"Krijg volledige Premium-toegang voor uw reis — geen abonnement, geen verplichting.",passesOneTime:"eenmalig",passesGet:"Aanschaffen",passesFooter:"Alle plannen omvatten 8 talen. Altijd opzegbaar. Veilig betalen via Stripe.",
+    checkoutGetting:"Verkrijgen",checkoutSubscribingTo:"Abonneren op",checkoutMonthly:"Maandelijks",checkoutYearly:"Jaarlijks",checkoutBilledAnnually:"Jaarlijks gefactureerd op",checkoutSaves:"bespaart",checkoutWhatYouGet:"Wat u krijgt",checkoutBackToPlans:"← Terug naar plannen",checkoutPleaseText:"Log",checkoutSignInLink:"in of maak een gratis account aan",checkoutFirst:"eerst.",checkoutSubscribingAs:"Abonneren als:",
     mapBannerTitle:"Vind echte bedrijven & diensten op de BGexpats-kaart",mapBannerSub:"Advocaten, notarissen, bureaus, klinieken, banken en meer — geverifieerde locaties die u echt kunt bezoeken",
     greeting:"👋 Hallo! Ik ben uw gids-assistent voor Bulgarije.\n\nStel me alles over leven in of bezoeken van Bulgarije — visa's, gezondheidszorg, bankieren, wonen, belastingen of lokale tips. Ik help u graag!",
     suggestions:["Hoe krijg ik een verblijfsvergunning?","Wat zijn de kosten van levensonderhoud in Sofia?","Hoe open ik een bankrekening als buitenlander?","Hoe registreer ik een EOOD-bedrijf?","Beste wijken in Sofia voor expats?"],
@@ -236,6 +251,9 @@ const T = {
     stillQ:"Остались вопросы?",askLink:"Спросить ИИ →",
     chatTitle:"BGexpats ИИ",chatSub:"Эксперт по жизни экспатов в Болгарии",
     pricingTitle:"Простые, честные цены",pricingSub:"Присоединяйтесь к тысячам экспатов, живущих в Болгарии",
+    mapTitle:"Карта BGexpats",mapSub:"Находите больницы, банки, юридические конторы, коворкинги и лучшие районы по всей Болгарии",
+    passesHeading:"🧳 Просто путешествуете по Болгарии?",passesSub:"Получите полный Premium-доступ на время поездки — без подписки, без обязательств.",passesOneTime:"разовый платёж",passesGet:"Получить",passesFooter:"Все планы включают 8 языков. Отмена в любой момент. Безопасная оплата через Stripe.",
+    checkoutGetting:"Получение",checkoutSubscribingTo:"Оформление подписки",checkoutMonthly:"Ежемесячно",checkoutYearly:"Ежегодно",checkoutBilledAnnually:"Оплата ежегодно по",checkoutSaves:"экономия",checkoutWhatYouGet:"Что вы получаете",checkoutBackToPlans:"← Назад к тарифам",checkoutPleaseText:"Пожалуйста",checkoutSignInLink:"войдите или создайте бесплатный аккаунт",checkoutFirst:"сначала.",checkoutSubscribingAs:"Оформление на:",
     mapBannerTitle:"Найдите реальные компании и услуги на карте BGexpats",mapBannerSub:"Юристы, нотариусы, агентства, клиники, банки и многое другое — проверенные места, которые можно посетить",
     greeting:"👋 Привет! Я ваш ассистент BGexpats.\n\nЗадайте любой вопрос о жизни или туризме в Болгарии — визы, здравоохранение, банки, жильё, налоги или местные советы. Я здесь, чтобы помочь!",
     suggestions:["Как получить вид на жительство?","Какова стоимость жизни в Софии?","Как открыть банковский счёт иностранцу?","Как зарегистрировать компанию ЭООД?","Лучшие районы Софии для экспатов?"],
@@ -263,6 +281,9 @@ const T = {
     stillQ:"Залишилися питання?",askLink:"Запитати ШІ →",
     chatTitle:"BGexpats ШІ",chatSub:"Експерт з життя експатів у Болгарії",
     pricingTitle:"Прості, чесні ціни",pricingSub:"Приєднуйтесь до тисяч експатів, які живуть у Болгарії",
+    mapTitle:"Карта BGexpats",mapSub:"Знаходьте лікарні, банки, юридичні контори, коворкінги та найкращі райони по всій Болгарії",
+    passesHeading:"🧳 Просто подорожуєте Болгарією?",passesSub:"Отримайте повний Premium-доступ на час подорожі — без підписки, без зобов'язань.",passesOneTime:"разовий платіж",passesGet:"Отримати",passesFooter:"Усі плани включають 8 мов. Скасування у будь-який час. Безпечна оплата через Stripe.",
+    checkoutGetting:"Отримання",checkoutSubscribingTo:"Оформлення підписки",checkoutMonthly:"Щомісячно",checkoutYearly:"Щорічно",checkoutBilledAnnually:"Оплата щорічно за",checkoutSaves:"економія",checkoutWhatYouGet:"Що ви отримуєте",checkoutBackToPlans:"← Назад до тарифів",checkoutPleaseText:"Будь ласка",checkoutSignInLink:"увійдіть або створіть безкоштовний акаунт",checkoutFirst:"спочатку.",checkoutSubscribingAs:"Оформлення на:",
     mapBannerTitle:"Знайдіть реальні компанії та послуги на карті BGexpats",mapBannerSub:"Юристи, нотаріуси, агентства, клініки, банки та інше — перевірені місця, які можна дійсно відвідати",
     greeting:"👋 Привіт! Я ваш асистент BGexpats.\n\nЗадайте будь-яке питання про життя або туризм у Болгарії — візи, охорона здоров'я, банки, житло, податки або місцеві поради. Я тут, щоб допомогти!",
     suggestions:["Як отримати посвідку на проживання?","Яка вартість життя в Софії?","Як відкрити банківський рахунок іноземцю?","Як зареєструвати компанію ЕООД?","Найкращі райони Софії для експатів?"],
@@ -290,6 +311,9 @@ const T = {
     stillQ:"Имате още въпроси?",askLink:"Попитай ИИ →",
     chatTitle:"BGexpats ИИ",chatSub:"Експерт по живота на експати в България",
     pricingTitle:"Прости, честни цени",pricingSub:"Присъединете се към хиляди чужденци, живеещи в България",
+    mapTitle:"Карта на BGexpats",mapSub:"Намерете болници, банки, адвокатски кантори, коуъркинг пространства и най-добрите квартали в цяла България",
+    passesHeading:"🧳 Само на посещение в България?",passesSub:"Получете пълен Premium достъп за пътуването си — без абонамент, без ангажимент.",passesOneTime:"еднократно",passesGet:"Вземи",passesFooter:"Всички планове включват 8 езика. Отказ по всяко време. Сигурно плащане чрез Stripe.",
+    checkoutGetting:"Получаване",checkoutSubscribingTo:"Абониране за",checkoutMonthly:"Месечно",checkoutYearly:"Годишно",checkoutBilledAnnually:"Годишно фактуриране на",checkoutSaves:"спестявате",checkoutWhatYouGet:"Какво получавате",checkoutBackToPlans:"← Назад към плановете",checkoutPleaseText:"Моля",checkoutSignInLink:"влезте или създайте безплатен акаунт",checkoutFirst:"първо.",checkoutSubscribingAs:"Абониране като:",
     mapBannerTitle:"Намерете реални бизнеси и услуги на картата на BGexpats",mapBannerSub:"Адвокати, нотариуси, агенции, клиники, банки и още — проверени места, които можете действително да посетите",
     greeting:"👋 Здравейте! Аз съм вашият BGexpats асистент.\n\nЗадайте всякакви въпроси за живота или туризма в България — визи, здравеопазване, банки, жилища, данъци или местни съвети. Тук съм, за да помогна!",
     suggestions:["Как да получа разрешение за пребиваване?","Какви са разходите за живот в София?","Как да открия банкова сметка като чужденец?","Как да регистрирам ЕООД?","Най-добрите квартали в София за експати?"],
@@ -317,6 +341,9 @@ const T = {
     stillQ:"Hâlâ sorularınız mı var?",askLink:"Yapay zekaya sor →",
     chatTitle:"BGexpats Yapay Zeka",chatSub:"Bulgaristan expat yaşamı uzmanı",
     pricingTitle:"Basit, dürüst fiyatlandırma",pricingSub:"Bulgaristan'da yaşayan binlerce yabancıya katılın",
+    mapTitle:"BGexpats Haritası",mapSub:"Bulgaristan genelinde hastaneler, bankalar, hukuk büroları, ortak çalışma alanları ve en iyi mahalleleri bulun",
+    passesHeading:"🧳 Sadece Bulgaristan'ı mı ziyaret ediyorsunuz?",passesSub:"Seyahatiniz için tam Premium erişim edinin — abonelik yok, taahhüt yok.",passesOneTime:"tek seferlik",passesGet:"Al",passesFooter:"Tüm planlar 8 dil içerir. İstediğiniz zaman iptal edin. Stripe ile güvenli ödeme.",
+    checkoutGetting:"Alınıyor",checkoutSubscribingTo:"Abone olunuyor",checkoutMonthly:"Aylık",checkoutYearly:"Yıllık",checkoutBilledAnnually:"Yıllık faturalandırma",checkoutSaves:"tasarruf",checkoutWhatYouGet:"Neler alacaksınız",checkoutBackToPlans:"← Planlara dön",checkoutPleaseText:"Lütfen önce",checkoutSignInLink:"giriş yapın veya ücretsiz hesap oluşturun",checkoutFirst:".",checkoutSubscribingAs:"Şu olarak abone olunuyor:",
     mapBannerTitle:"BGexpats Haritasında gerçek işletmeleri ve hizmetleri bulun",mapBannerSub:"Avukatlar, noterler, ajanslar, klinikler, bankalar ve daha fazlası — gerçekten ziyaret edebileceğiniz doğrulanmış konumlar",
     greeting:"👋 Merhaba! Ben BGexpats asistanınızım.\n\nBulgaristan'da yaşam veya turizm hakkında her şeyi sorabilirsiniz — vizeler, sağlık, bankacılık, konut, vergiler veya yerel ipuçları. Yardımcı olmak için buradayım!",
     suggestions:["Oturma izni nasıl alınır?","Sofya'da yaşam maliyeti nedir?","Yabancı olarak banka hesabı nasıl açılır?","EOOD şirketi nasıl kurulur?","Expatlar için Sofya'nın en iyi mahalleleri?"],
@@ -1580,7 +1607,7 @@ function QuickFacts({t}){
         <h3 style={{fontSize:17,fontWeight:600,color:C.primary,margin:"0 0 18px"}}>{t.facts}</h3>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(270px,1fr))",gap:10}}>
           {t.factsList.map(([icon,text],i)=>(
-            <div key={text} style={{display:"flex",alignItems:"flex-start",gap:10,background:"#fff",borderRadius:10,padding:"11px 13px",border:`1px solid #bcd4c6`,color:C.primary}}>
+            <div key={text} style={{display:"flex",alignItems:"flex-start",gap:10,background:C.surface,borderRadius:10,padding:"11px 13px",border:`1px solid #bcd4c6`,color:C.primary}}>
               <Icon2c d={(FACTS_ICON_MAP[i]||{}).d} accent={(FACTS_ICON_MAP[i]||{}).accent} size={18}/>
               <span style={{fontSize:13,color:C.text,lineHeight:1.5}}>{text}</span>
             </div>
@@ -3260,6 +3287,27 @@ const TOOLS_LIST=[
   {id:"tripplanner",icon:"🧳",label:"Trip Planner",desc:"Plan trips with real local places",premium:true},
 ]
 
+// Translated label+desc for TOOLS_LIST, keyed by [lang][tool id]. Kept
+// separate from TOOLS_LIST itself for the same reason as MAP_CAT_LABELS —
+// keeps the tool list simple to scan/edit, translations centralized here.
+const TOOLS_I18N = {
+  en:{cost:["Cost of living","Budget + compare 8 cities"],visa:["Visa checker","Which visa do you need?"],fx:["Currency converter","EUR to any currency"],hood:["Neighbourhoods","Sofia, Plovdiv, Varna areas"],tax:["Tax calculator","Net income under Bulgarian tax"],checklist:["Moving checklist","Your personalised plan"],phrases:["Bulgarian phrases","Essential language guide"],docgen:["Document Generator","AI legal docs in minutes"],relocate:["Relocation Planner","Your personal moving plan"],property:["Property ROI","Investment calculator"],deadlines:["Deadline Tracker","Never miss a renewal"],hoodmatch:["Neighbourhood Match","Find your perfect area"],langcoach:["Language Coach","Learn Bulgarian with AI"],budget:["Budget Planner","Personal finance tracker"],tripplanner:["Trip Planner","Plan trips with real local places"],basicDivider:"── BASIC TOOLS ──",premiumDivider:"── PREMIUM TOOLS ──",freeHeader:"FREE TOOLS",basicHeader:"BASIC TOOLS",premiumHeader:"PREMIUM TOOLS"},
+  fr:{cost:["Coût de la vie","Budget + comparez 8 villes"],visa:["Vérificateur de visa","De quel visa avez-vous besoin ?"],fx:["Convertisseur de devises","EUR vers n'importe quelle devise"],hood:["Quartiers","Zones de Sofia, Plovdiv, Varna"],tax:["Calculateur d'impôts","Revenu net selon la fiscalité bulgare"],checklist:["Liste de déménagement","Votre plan personnalisé"],phrases:["Phrases bulgares","Guide linguistique essentiel"],docgen:["Générateur de documents","Documents juridiques IA en quelques minutes"],relocate:["Planificateur de déménagement","Votre plan de déménagement personnel"],property:["Rentabilité immobilière","Calculateur d'investissement"],deadlines:["Suivi des échéances","Ne manquez jamais un renouvellement"],hoodmatch:["Quartier idéal","Trouvez votre zone parfaite"],langcoach:["Coach linguistique","Apprenez le bulgare avec l'IA"],budget:["Planificateur budgétaire","Suivi de vos finances personnelles"],tripplanner:["Planificateur de voyage","Organisez des voyages avec de vrais lieux locaux"],basicDivider:"── OUTILS BASIC ──",premiumDivider:"── OUTILS PREMIUM ──",freeHeader:"OUTILS GRATUITS",basicHeader:"OUTILS BASIC",premiumHeader:"OUTILS PREMIUM"},
+  es:{cost:["Coste de vida","Presupuesto + compara 8 ciudades"],visa:["Comprobador de visado","¿Qué visado necesitas?"],fx:["Conversor de divisas","EUR a cualquier divisa"],hood:["Barrios","Zonas de Sofía, Plovdiv, Varna"],tax:["Calculadora de impuestos","Ingreso neto según el sistema fiscal búlgaro"],checklist:["Lista de mudanza","Tu plan personalizado"],phrases:["Frases en búlgaro","Guía esencial del idioma"],docgen:["Generador de documentos","Documentos legales con IA en minutos"],relocate:["Planificador de mudanza","Tu plan personal de mudanza"],property:["ROI inmobiliario","Calculadora de inversión"],deadlines:["Seguimiento de plazos","Nunca te pierdas una renovación"],hoodmatch:["Barrio ideal","Encuentra tu zona perfecta"],langcoach:["Entrenador de idioma","Aprende búlgaro con IA"],budget:["Planificador de presupuesto","Seguimiento de tus finanzas personales"],tripplanner:["Planificador de viajes","Organiza viajes con lugares locales reales"],basicDivider:"── HERRAMIENTAS BASIC ──",premiumDivider:"── HERRAMIENTAS PREMIUM ──",freeHeader:"HERRAMIENTAS GRATIS",basicHeader:"HERRAMIENTAS BASIC",premiumHeader:"HERRAMIENTAS PREMIUM"},
+  de:{cost:["Lebenshaltungskosten","Budget + Vergleich von 8 Städten"],visa:["Visa-Check","Welches Visum benötigen Sie?"],fx:["Währungsrechner","EUR in jede Währung"],hood:["Stadtviertel","Gebiete in Sofia, Plovdiv, Varna"],tax:["Steuerrechner","Nettoeinkommen nach bulgarischem Steuerrecht"],checklist:["Umzugscheckliste","Ihr persönlicher Plan"],phrases:["Bulgarische Redewendungen","Wichtiger Sprachführer"],docgen:["Dokumentengenerator","KI-Rechtsdokumente in Minuten"],relocate:["Umzugsplaner","Ihr persönlicher Umzugsplan"],property:["Immobilienrendite","Investitionsrechner"],deadlines:["Fristenverfolgung","Verpassen Sie nie eine Verlängerung"],hoodmatch:["Stadtviertel-Match","Finden Sie Ihr perfektes Viertel"],langcoach:["Sprachcoach","Bulgarisch lernen mit KI"],budget:["Budgetplaner","Ihre persönliche Finanzübersicht"],tripplanner:["Reiseplaner","Reisen mit echten lokalen Orten planen"],basicDivider:"── BASIC-TOOLS ──",premiumDivider:"── PREMIUM-TOOLS ──",freeHeader:"KOSTENLOSE TOOLS",basicHeader:"BASIC-TOOLS",premiumHeader:"PREMIUM-TOOLS"},
+  nl:{cost:["Kosten van levensonderhoud","Budget + vergelijk 8 steden"],visa:["Visumchecker","Welk visum heeft u nodig?"],fx:["Valutaomrekenaar","EUR naar elke valuta"],hood:["Buurten","Gebieden in Sofia, Plovdiv, Varna"],tax:["Belastingcalculator","Netto-inkomen onder Bulgaarse belasting"],checklist:["Verhuischecklist","Uw persoonlijke plan"],phrases:["Bulgaarse zinnen","Essentiële taalgids"],docgen:["Documentgenerator","AI juridische documenten in minuten"],relocate:["Verhuisplanner","Uw persoonlijke verhuisplan"],property:["Vastgoedrendement","Investeringscalculator"],deadlines:["Deadlinetracker","Mis nooit meer een verlenging"],hoodmatch:["Buurt-match","Vind uw perfecte buurt"],langcoach:["Taalcoach","Leer Bulgaars met AI"],budget:["Budgetplanner","Persoonlijk financieel overzicht"],tripplanner:["Reisplanner","Plan reizen met echte lokale plekken"],basicDivider:"── BASIC-TOOLS ──",premiumDivider:"── PREMIUM-TOOLS ──",freeHeader:"GRATIS TOOLS",basicHeader:"BASIC-TOOLS",premiumHeader:"PREMIUM-TOOLS"},
+  ru:{cost:["Стоимость жизни","Бюджет + сравнение 8 городов"],visa:["Проверка визы","Какая виза вам нужна?"],fx:["Конвертер валют","Евро в любую валюту"],hood:["Районы","Районы Софии, Пловдива, Варны"],tax:["Калькулятор налогов","Чистый доход по болгарской системе налогообложения"],checklist:["Чек-лист переезда","Ваш персональный план"],phrases:["Болгарские фразы","Основной языковой гид"],docgen:["Генератор документов","Юридические документы с ИИ за минуты"],relocate:["Планировщик переезда","Ваш личный план переезда"],property:["Доходность недвижимости","Калькулятор инвестиций"],deadlines:["Отслеживание сроков","Никогда не пропускайте продление"],hoodmatch:["Подбор района","Найдите свой идеальный район"],langcoach:["Языковой тренер","Изучайте болгарский с ИИ"],budget:["Планировщик бюджета","Личный финансовый трекер"],tripplanner:["Планировщик поездок","Планируйте поездки по реальным местам"],basicDivider:"── ИНСТРУМЕНТЫ BASIC ──",premiumDivider:"── ИНСТРУМЕНТЫ PREMIUM ──",freeHeader:"БЕСПЛАТНЫЕ ИНСТРУМЕНТЫ",basicHeader:"ИНСТРУМЕНТЫ BASIC",premiumHeader:"ИНСТРУМЕНТЫ PREMIUM"},
+  uk:{cost:["Вартість життя","Бюджет + порівняння 8 міст"],visa:["Перевірка візи","Яка віза вам потрібна?"],fx:["Конвертер валют","Євро в будь-яку валюту"],hood:["Райони","Райони Софії, Пловдива, Варни"],tax:["Калькулятор податків","Чистий дохід за болгарською системою оподаткування"],checklist:["Чек-лист переїзду","Ваш персональний план"],phrases:["Болгарські фрази","Основний мовний гід"],docgen:["Генератор документів","Юридичні документи зі ШІ за хвилини"],relocate:["Планувальник переїзду","Ваш особистий план переїзду"],property:["Дохідність нерухомості","Калькулятор інвестицій"],deadlines:["Відстеження термінів","Ніколи не пропускайте продовження"],hoodmatch:["Підбір району","Знайдіть свій ідеальний район"],langcoach:["Мовний тренер","Вивчайте болгарську зі ШІ"],budget:["Планувальник бюджету","Особистий фінансовий трекер"],tripplanner:["Планувальник подорожей","Плануйте подорожі реальними місцями"],basicDivider:"── ІНСТРУМЕНТИ BASIC ──",premiumDivider:"── ІНСТРУМЕНТИ PREMIUM ──",freeHeader:"БЕЗКОШТОВНІ ІНСТРУМЕНТИ",basicHeader:"ІНСТРУМЕНТИ BASIC",premiumHeader:"ІНСТРУМЕНТИ PREMIUM"},
+  tr:{cost:["Yaşam maliyeti","Bütçe + 8 şehri karşılaştırın"],visa:["Vize kontrolü","Hangi vizeye ihtiyacınız var?"],fx:["Döviz çevirici","EUR'dan herhangi bir para birimine"],hood:["Mahalleler","Sofya, Plovdiv, Varna bölgeleri"],tax:["Vergi hesaplayıcı","Bulgar vergi sistemine göre net gelir"],checklist:["Taşınma kontrol listesi","Kişiselleştirilmiş planınız"],phrases:["Bulgarca ifadeler","Temel dil rehberi"],docgen:["Belge Oluşturucu","Dakikalar içinde yapay zeka ile hukuki belgeler"],relocate:["Taşınma Planlayıcı","Kişisel taşınma planınız"],property:["Gayrimenkul Getirisi","Yatırım hesaplayıcı"],deadlines:["Son Tarih Takibi","Bir yenilemeyi asla kaçırmayın"],hoodmatch:["Mahalle Eşleştirme","Mükemmel bölgenizi bulun"],langcoach:["Dil Koçu","Yapay zeka ile Bulgarca öğrenin"],budget:["Bütçe Planlayıcı","Kişisel finans takibi"],tripplanner:["Gezi Planlayıcı","Gerçek yerel mekanlarla gezi planlayın"],basicDivider:"── BASIC ARAÇLAR ──",premiumDivider:"── PREMIUM ARAÇLAR ──",freeHeader:"ÜCRETSİZ ARAÇLAR",basicHeader:"BASIC ARAÇLAR",premiumHeader:"PREMIUM ARAÇLAR"},
+  bg:{cost:["Издръжка на живота","Бюджет + сравнение на 8 града"],visa:["Проверка на виза","От каква виза имате нужда?"],fx:["Конвертор на валута","EUR към всяка валута"],hood:["Квартали","Райони на София, Пловдив, Варна"],tax:["Данъчен калкулатор","Нетен доход по българската данъчна система"],checklist:["Списък за преместване","Вашият персонализиран план"],phrases:["Български фрази","Основен езиков наръчник"],docgen:["Генератор на документи","Правни документи с ИИ за минути"],relocate:["Планиране на преместване","Вашият личен план за преместване"],property:["Доходност от имот","Инвестиционен калкулатор"],deadlines:["Проследяване на срокове","Никога не пропускайте подновяване"],hoodmatch:["Подбор на квартал","Намерете перфектния за вас район"],langcoach:["Езиков треньор","Учете български с ИИ"],budget:["Планиране на бюджет","Личен финансов тракер"],tripplanner:["Планиране на пътувания","Планирайте пътувания с реални местни места"],basicDivider:"── БЕЙСИК ИНСТРУМЕНТИ ──",premiumDivider:"── ПРЕМИУМ ИНСТРУМЕНТИ ──",freeHeader:"БЕЗПЛАТНИ ИНСТРУМЕНТИ",basicHeader:"БЕЙСИК ИНСТРУМЕНТИ",premiumHeader:"ПРЕМИУМ ИНСТРУМЕНТИ"},
+}
+// Looks up the translated [label, desc] pair for a tool id, falling back to
+// English, then to whatever's hardcoded on the TOOLS_LIST entry itself.
+function toolI18n(id,lang,fallbackLabel,fallbackDesc){
+  const row=(TOOLS_I18N[lang]&&TOOLS_I18N[lang][id])||(TOOLS_I18N.en&&TOOLS_I18N.en[id])
+  return row?{label:row[0],desc:row[1]}:{label:fallbackLabel,desc:fallbackDesc}
+}
+
 // ── Tools tier overview ──────────────────────────────────────────
 // A compact, collapsible 3-column comparison of what Free / Basic / Premium
 // unlock specifically within the Expat Tools section (not the whole site —
@@ -3380,30 +3428,30 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription,lang,setLang}){
               </label>
               <button onClick={()=>setToolMenu(o=>!o)}
                 style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",gap:8,padding:"14px 16px",fontSize:16,fontWeight:700,color:C.primary,background:"#fff",border:`1.5px solid ${C.primary}33`,borderRadius:12,cursor:"pointer",boxShadow:"0 1px 3px rgba(0,0,0,0.04)",textAlign:"left"}}>
-                <span style={{minWidth:0,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{tool?tool.label:"Select a tool"}{tool&&tool.premium?" (PRO)":tool&&tool.basic?" (BASIC)":""}</span>
+                <span style={{minWidth:0,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{tool?toolI18n(tool.id,lang,tool.label,tool.desc).label:"Select a tool"}{tool&&tool.premium?" (PRO)":tool&&tool.basic?" (BASIC)":""}</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.primary} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,transform:toolMenu?"rotate(180deg)":"none",transition:"transform 0.2s"}}><polyline points="6 9 12 15 18 9"/></svg>
               </button>
               {toolMenu&&(
                 <div style={{marginTop:8,background:C.primary,border:`1px solid ${C.primaryDark}`,borderRadius:12,boxShadow:"0 8px 28px rgba(0,0,0,0.25)",overflow:"hidden",padding:"4px 0"}}>
-                  <div style={{padding:"8px 16px 4px",fontSize:10,fontWeight:700,color:"rgba(255,255,255,0.55)",letterSpacing:"0.08em"}}>FREE TOOLS</div>
+                  <div style={{padding:"8px 16px 4px",fontSize:10,fontWeight:700,color:"rgba(255,255,255,0.55)",letterSpacing:"0.08em"}}>{(TOOLS_I18N[lang]&&TOOLS_I18N[lang].freeHeader)||"FREE TOOLS"}</div>
                   {TOOLS_LIST.filter(t=>!t.divider&&!t.premium&&!t.basic).map(t=>(
                     <button key={t.id} onClick={()=>{setActive(t.id);setToolMenu(false);trackEvent("tool",t.id)}}
                       style={{width:"100%",background:active===t.id?"rgba(255,255,255,0.15)":"transparent",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:15,color:"rgba(255,255,255,0.92)",fontWeight:active===t.id?700:400}}>
-                      {t.label}
+                      {toolI18n(t.id,lang,t.label,t.desc).label}
                     </button>
                   ))}
-                  <div style={{padding:"10px 16px 4px",fontSize:10,fontWeight:700,color:"rgba(255,255,255,0.55)",letterSpacing:"0.08em",borderTop:"1px solid rgba(255,255,255,0.12)",marginTop:4}}>BASIC TOOLS</div>
+                  <div style={{padding:"10px 16px 4px",fontSize:10,fontWeight:700,color:"rgba(255,255,255,0.55)",letterSpacing:"0.08em",borderTop:"1px solid rgba(255,255,255,0.12)",marginTop:4}}>{(TOOLS_I18N[lang]&&TOOLS_I18N[lang].basicHeader)||"BASIC TOOLS"}</div>
                   {TOOLS_LIST.filter(t=>!t.divider&&t.basic).map(t=>(
                     <button key={t.id} onClick={()=>{setActive(t.id);setToolMenu(false);trackEvent("tool",t.id)}}
                       style={{width:"100%",background:active===t.id?"rgba(255,255,255,0.15)":"transparent",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:15,color:"rgba(255,255,255,0.92)",fontWeight:active===t.id?700:400,display:"flex",alignItems:"center",gap:6}}>
-                      {t.label}<span style={{fontSize:9,background:"#fff",color:C.primary,padding:"1px 5px",borderRadius:5,fontWeight:700}}>BASIC</span>
+                      {toolI18n(t.id,lang,t.label,t.desc).label}<span style={{fontSize:9,background:"#fff",color:C.primary,padding:"1px 5px",borderRadius:5,fontWeight:700}}>BASIC</span>
                     </button>
                   ))}
-                  <div style={{padding:"10px 16px 4px",fontSize:10,fontWeight:700,color:"rgba(255,255,255,0.55)",letterSpacing:"0.08em",borderTop:"1px solid rgba(255,255,255,0.12)",marginTop:4}}>PREMIUM TOOLS</div>
+                  <div style={{padding:"10px 16px 4px",fontSize:10,fontWeight:700,color:"rgba(255,255,255,0.55)",letterSpacing:"0.08em",borderTop:"1px solid rgba(255,255,255,0.12)",marginTop:4}}>{(TOOLS_I18N[lang]&&TOOLS_I18N[lang].premiumHeader)||"PREMIUM TOOLS"}</div>
                   {TOOLS_LIST.filter(t=>!t.divider&&t.premium).map(t=>(
                     <button key={t.id} onClick={()=>{setActive(t.id);setToolMenu(false);trackEvent("tool",t.id)}}
                       style={{width:"100%",background:active===t.id?"rgba(255,255,255,0.15)":"transparent",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:15,color:"rgba(255,255,255,0.92)",fontWeight:active===t.id?700:400,display:"flex",alignItems:"center",gap:6}}>
-                      {t.label}<span style={{fontSize:9,background:"#f0c060",color:"#1a3a20",padding:"1px 5px",borderRadius:5,fontWeight:700}}>PRO</span>
+                      {toolI18n(t.id,lang,t.label,t.desc).label}<span style={{fontSize:9,background:"#f0c060",color:"#1a3a20",padding:"1px 5px",borderRadius:5,fontWeight:700}}>PRO</span>
                     </button>
                   ))}
                 </div>
@@ -3414,11 +3462,11 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription,lang,setLang}){
                 {tool&&<Icon2c d={(TOOLS_ICON_MAP[tool.id]||{}).d} accent={(TOOLS_ICON_MAP[tool.id]||{}).accent} size={22}/>}
                 <div style={{minWidth:0}}>
                   <h2 className="serif" style={{fontSize:17,fontWeight:400,color:C.text,margin:0,display:"flex",alignItems:"center",gap:6}}>
-                    {(tool&&tool.label)}
+                    {(tool&&toolI18n(tool.id,lang,tool.label,tool.desc).label)}
                     {tool&&tool.premium&&<span style={{fontSize:9,background:"#fef3c7",color:"#92400e",padding:"1px 5px",borderRadius:5,fontWeight:700}}>PRO</span>}
                     {tool&&tool.basic&&<span style={{fontSize:9,background:C.primaryLight,color:C.primary,padding:"1px 5px",borderRadius:5,fontWeight:700}}>BASIC</span>}
                   </h2>
-                  <p style={{fontSize:12,color:C.muted,margin:0}}>{(tool&&tool.desc)}</p>
+                  <p style={{fontSize:12,color:C.muted,margin:0}}>{(tool&&toolI18n(tool.id,lang,tool.label,tool.desc).desc)}</p>
                 </div>
               </div>
               {render()}
@@ -3429,18 +3477,18 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription,lang,setLang}){
           <div style={{display:"grid",gridTemplateColumns:"min(220px,30vw) 1fr",gap:"clamp(8px,2vw,20px)",alignItems:"start"}}>
             <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,overflow:"hidden",boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
               {TOOLS_LIST.map(t=>{
-                if(t.divider)return<div key={t.id} style={{padding:"8px 14px",fontSize:10,fontWeight:600,color:C.muted,letterSpacing:"0.06em",borderTop:`1px solid ${C.border}`,marginTop:4}}>{t.label}</div>
+                if(t.divider)return<div key={t.id} style={{padding:"8px 14px",fontSize:10,fontWeight:600,color:C.muted,letterSpacing:"0.06em",borderTop:`1px solid ${C.border}`,marginTop:4}}>{t.id==="divider"&&t.label.includes("PREMIUM")?((TOOLS_I18N[lang]&&TOOLS_I18N[lang].premiumDivider)||t.label):((TOOLS_I18N[lang]&&TOOLS_I18N[lang].basicDivider)||t.label)}</div>
                 return(
                   <button key={t.id} onClick={()=>{setActive(t.id);trackEvent("tool",t.id)}}
                     style={{width:"100%",background:active===t.id?C.primaryLight:"transparent",border:"none",borderLeft:`3px solid ${active===t.id?C.primary:"transparent"}`,padding:"11px 14px",cursor:"pointer",textAlign:"left",display:"flex",alignItems:"center",gap:8,transition:"all 0.15s"}}>
                     <Icon2c d={(TOOLS_ICON_MAP[t.id]||{}).d} accent={(TOOLS_ICON_MAP[t.id]||{}).accent} size={17}/>
                     <div style={{flex:1,minWidth:0}}>
                       <div style={{fontSize:12,fontWeight:active===t.id?600:400,color:active===t.id?C.primary:C.text,display:"flex",alignItems:"center",gap:5}}>
-                        {t.label}
+                        {toolI18n(t.id,lang,t.label,t.desc).label}
                         {t.premium&&<span style={{fontSize:9,background:"#fef3c7",color:"#92400e",padding:"1px 5px",borderRadius:5,fontWeight:700}}>PRO</span>}
                         {t.basic&&<span style={{fontSize:9,background:C.primaryLight,color:C.primary,padding:"1px 5px",borderRadius:5,fontWeight:700}}>BASIC</span>}
                       </div>
-                      <div style={{fontSize:11,color:C.muted,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{t.desc}</div>
+                      <div style={{fontSize:11,color:C.muted,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{toolI18n(t.id,lang,t.label,t.desc).desc}</div>
                     </div>
                   </button>
                 )
@@ -3450,8 +3498,8 @@ function ToolsPage({user,setView,trackEvent=()=>{},subscription,lang,setLang}){
               <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:18,paddingBottom:14,borderBottom:`1px solid ${C.border}`}}>
                 {tool&&<Icon2c d={(TOOLS_ICON_MAP[tool.id]||{}).d} accent={(TOOLS_ICON_MAP[tool.id]||{}).accent} size={24}/>}
                 <div>
-                  <h2 className="serif" style={{fontSize:19,fontWeight:400,color:C.text,margin:0}}>{(tool&&tool.label)}</h2>
-                  <p style={{fontSize:13,color:C.muted,margin:0}}>{(tool&&tool.desc)}</p>
+                  <h2 className="serif" style={{fontSize:19,fontWeight:400,color:C.text,margin:0}}>{(tool&&toolI18n(tool.id,lang,tool.label,tool.desc).label)}</h2>
+                  <p style={{fontSize:13,color:C.muted,margin:0}}>{(tool&&toolI18n(tool.id,lang,tool.label,tool.desc).desc)}</p>
                 </div>
               </div>
               {render()}
@@ -3959,8 +4007,23 @@ const MAP_CATS=[
   {id:"jobs",    label:"Work & Jobs",      icon:"👔", color:"#0891b2"},
 ]
 
+// Translated labels for MAP_CATS, keyed by [lang][category id]. Kept separate
+// from MAP_CATS itself (rather than nesting per-language labels into each
+// category object) so the category list stays simple to scan and edit.
+const MAP_CAT_LABELS = {
+  en:{all:"All",health:"Healthcare",hood:"Neighbourhoods",school:"Schools",bank:"Banking",legal:"Legal",dining:"Dining",party:"Party & Clubs",hotel:"Hotels",summer:"Summer Activities",winter:"Winter Activities",art:"Art & Galleries",cultural:"Cultural Sites",festival:"Festivals",tradfest:"Traditional Fests",wine:"Wine Tourism",piano:"Piano Bars",work:"Coworking",car:"Car Rental",jobs:"Work & Jobs"},
+  fr:{all:"Tout",health:"Santé",hood:"Quartiers",school:"Écoles",bank:"Banques",legal:"Juridique",dining:"Restauration",party:"Fêtes & Clubs",hotel:"Hôtels",summer:"Activités d'été",winter:"Activités d'hiver",art:"Art & Galeries",cultural:"Sites culturels",festival:"Festivals",tradfest:"Fêtes traditionnelles",wine:"Œnotourisme",piano:"Bars à piano",work:"Coworking",car:"Location de voiture",jobs:"Emploi & Travail"},
+  es:{all:"Todo",health:"Salud",hood:"Barrios",school:"Colegios",bank:"Bancos",legal:"Legal",dining:"Restaurantes",party:"Fiestas y clubes",hotel:"Hoteles",summer:"Actividades de verano",winter:"Actividades de invierno",art:"Arte y galerías",cultural:"Sitios culturales",festival:"Festivales",tradfest:"Fiestas tradicionales",wine:"Turismo del vino",piano:"Bares de piano",work:"Coworking",car:"Alquiler de coches",jobs:"Empleo y trabajo"},
+  de:{all:"Alle",health:"Gesundheit",hood:"Stadtviertel",school:"Schulen",bank:"Banken",legal:"Recht",dining:"Restaurants",party:"Party & Clubs",hotel:"Hotels",summer:"Sommeraktivitäten",winter:"Winteraktivitäten",art:"Kunst & Galerien",cultural:"Kulturstätten",festival:"Festivals",tradfest:"Traditionelle Feste",wine:"Weintourismus",piano:"Piano-Bars",work:"Coworking",car:"Autovermietung",jobs:"Arbeit & Jobs"},
+  nl:{all:"Alles",health:"Gezondheid",hood:"Buurten",school:"Scholen",bank:"Banken",legal:"Juridisch",dining:"Eten & drinken",party:"Feesten & clubs",hotel:"Hotels",summer:"Zomeractiviteiten",winter:"Winteractiviteiten",art:"Kunst & galerieën",cultural:"Culturele bezienswaardigheden",festival:"Festivals",tradfest:"Traditionele feesten",wine:"Wijntoerisme",piano:"Pianobars",work:"Coworking",car:"Autoverhuur",jobs:"Werk & vacatures"},
+  ru:{all:"Все",health:"Здравоохранение",hood:"Районы",school:"Школы",bank:"Банки",legal:"Юридические услуги",dining:"Рестораны",party:"Вечеринки и клубы",hotel:"Отели",summer:"Летние мероприятия",winter:"Зимние мероприятия",art:"Искусство и галереи",cultural:"Культурные объекты",festival:"Фестивали",tradfest:"Традиционные праздники",wine:"Винный туризм",piano:"Пиано-бары",work:"Коворкинг",car:"Аренда авто",jobs:"Работа и вакансии"},
+  uk:{all:"Все",health:"Охорона здоров'я",hood:"Райони",school:"Школи",bank:"Банки",legal:"Юридичні послуги",dining:"Ресторани",party:"Вечірки та клуби",hotel:"Готелі",summer:"Літні заходи",winter:"Зимові заходи",art:"Мистецтво і галереї",cultural:"Культурні об'єкти",festival:"Фестивалі",tradfest:"Традиційні свята",wine:"Винний туризм",piano:"Піано-бари",work:"Коворкінг",car:"Оренда авто",jobs:"Робота та вакансії"},
+  tr:{all:"Tümü",health:"Sağlık",hood:"Mahalleler",school:"Okullar",bank:"Bankacılık",legal:"Hukuki",dining:"Restoranlar",party:"Parti & Kulüpler",hotel:"Oteller",summer:"Yaz Aktiviteleri",winter:"Kış Aktiviteleri",art:"Sanat & Galeriler",cultural:"Kültürel Mekanlar",festival:"Festivaller",tradfest:"Geleneksel Şenlikler",wine:"Şarap Turizmi",piano:"Piyano Barları",work:"Ortak Çalışma Alanı",car:"Araç Kiralama",jobs:"İş & Kariyer"},
+  bg:{all:"Всички",health:"Здравеопазване",hood:"Квартали",school:"Училища",bank:"Банки",legal:"Правни услуги",dining:"Ресторанти",party:"Купони и клубове",hotel:"Хотели",summer:"Летни дейности",winter:"Зимни дейности",art:"Изкуство и галерии",cultural:"Културни обекти",festival:"Фестивали",tradfest:"Традиционни празници",wine:"Винен туризъм",piano:"Пиано барове",work:"Коуъркинг",car:"Коли под наем",jobs:"Работа"},
+}
+
 // ── MapPage ───────────────────────────────────────────────────────
-function MapPage({user,setView,subscription,openCheckout}){
+function MapPage({user,setView,subscription,openCheckout,lang,t}){
   const mapRef=useRef(null)
   const mapInst=useRef(null)
   const markersRef=useRef([])
@@ -4363,8 +4426,8 @@ function MapPage({user,setView,subscription,openCheckout}){
       {/* Header */}
       <div style={{background:`linear-gradient(135deg,${C.primary},#2a7a52)`,padding:"28px 20px 36px"}}>
         <div style={{maxWidth:1200,margin:"0 auto"}}>
-          <h1 className="serif" style={{color:"#fff",fontSize:"clamp(22px,4vw,36px)",fontWeight:400,margin:"0 0 6px"}}>📍 BGexpats Map</h1>
-          <p style={{color:"rgba(255,255,255,0.7)",fontSize:15,margin:0,fontWeight:300}}>Find hospitals, banks, legal offices, coworking and best neighbourhoods in Sofia</p>
+          <h1 className="serif" style={{color:"#fff",fontSize:"clamp(22px,4vw,36px)",fontWeight:400,margin:"0 0 6px"}}>📍 {(t&&t.mapTitle)||"BGexpats Map"}</h1>
+          <p style={{color:"rgba(255,255,255,0.7)",fontSize:15,margin:0,fontWeight:300}}>{(t&&t.mapSub)||"Find hospitals, banks, legal offices, coworking and best neighbourhoods across Bulgaria"}</p>
         </div>
       </div>
 
@@ -4391,7 +4454,7 @@ function MapPage({user,setView,subscription,openCheckout}){
                 else{setFilter(cat.id);setSelected(null)}
               }}
                 style={{padding:"7px 14px",borderRadius:20,border:`1.5px solid ${filter===cat.id?cat.color:C.border}`,background:filter===cat.id?`${cat.color}15`:"transparent",color:filter===cat.id?cat.color:locked?C.muted:C.text,cursor:"pointer",fontSize:13,fontWeight:filter===cat.id?700:400,whiteSpace:"nowrap",flexShrink:0,transition:"all 0.15s",opacity:locked?0.65:1,display:"flex",alignItems:"center",gap:5}}>
-                <Icon2c d={MAP_ICON_MAP[cat.id]} accent={cat.color} size={15}/> {cat.label}
+                <Icon2c d={MAP_ICON_MAP[cat.id]} accent={cat.color} size={15}/> {(MAP_CAT_LABELS[lang]&&MAP_CAT_LABELS[lang][cat.id])||cat.label}
                 {locked&&<span style={{fontSize:10,background:PREMIUM_CATS.includes(cat.id)?"#f0c060":"var(--bg-accent)",color:PREMIUM_CATS.includes(cat.id)?"#1a3a20":"var(--text-accent)",padding:"1px 5px",borderRadius:6,fontWeight:700}}>{PREMIUM_CATS.includes(cat.id)?"PRO":"BASIC"}</span>}
               </button>
             )
@@ -4748,6 +4811,22 @@ const PASSES = {
   day:  { name:"Day Pass",  price:2.99, duration:"24 hours", blurb:"Full Premium access for one day" },
   week: { name:"Week Pass", price:6.99, duration:"7 days",   blurb:"Full Premium access for one week" },
 }
+// Translated name/duration/blurb for PASSES, keyed by [lang][pass id] — same
+// centralized-lookup pattern as MAP_CAT_LABELS/TOOLS_I18N above.
+const PASSES_I18N = {
+  en:{day:{name:"Day Pass",duration:"24 hours",blurb:"Full Premium access for one day"},week:{name:"Week Pass",duration:"7 days",blurb:"Full Premium access for one week"}},
+  fr:{day:{name:"Pass Journée",duration:"24 heures",blurb:"Accès Premium complet pour une journée"},week:{name:"Pass Semaine",duration:"7 jours",blurb:"Accès Premium complet pour une semaine"}},
+  es:{day:{name:"Pase de un día",duration:"24 horas",blurb:"Acceso Premium completo por un día"},week:{name:"Pase semanal",duration:"7 días",blurb:"Acceso Premium completo por una semana"}},
+  de:{day:{name:"Tagespass",duration:"24 Stunden",blurb:"Voller Premium-Zugang für einen Tag"},week:{name:"Wochenpass",duration:"7 Tage",blurb:"Voller Premium-Zugang für eine Woche"}},
+  nl:{day:{name:"Dagpas",duration:"24 uur",blurb:"Volledige Premium-toegang voor één dag"},week:{name:"Weekpas",duration:"7 dagen",blurb:"Volledige Premium-toegang voor één week"}},
+  ru:{day:{name:"Дневной пропуск",duration:"24 часа",blurb:"Полный Premium-доступ на один день"},week:{name:"Недельный пропуск",duration:"7 дней",blurb:"Полный Premium-доступ на одну неделю"}},
+  uk:{day:{name:"Денна перепустка",duration:"24 години",blurb:"Повний Premium-доступ на один день"},week:{name:"Тижнева перепустка",duration:"7 днів",blurb:"Повний Premium-доступ на один тиждень"}},
+  tr:{day:{name:"Günlük Geçiş",duration:"24 saat",blurb:"Bir gün boyunca tam Premium erişim"},week:{name:"Haftalık Geçiş",duration:"7 gün",blurb:"Bir hafta boyunca tam Premium erişim"}},
+  bg:{day:{name:"Дневен пропуск",duration:"24 часа",blurb:"Пълен Premium достъп за един ден"},week:{name:"Седмичен пропуск",duration:"7 дни",blurb:"Пълен Premium достъп за една седмица"}},
+}
+function passI18n(id,lang){
+  return (PASSES_I18N[lang]&&PASSES_I18N[lang][id])||PASSES_I18N.en[id]
+}
 
 // ── Pricing Page ─────────────────────────────────────────────────
 function PricingPage({user,setView,lang,t,openCheckout=()=>{}}){
@@ -4865,30 +4944,32 @@ function PricingPage({user,setView,lang,t,openCheckout=()=>{}}){
             Priced so stacking passes is always worse value than a real
             subscription (protects the Basic/Premium plans above). */}
         <div style={{marginTop:44,textAlign:"center"}}>
-          <div style={{fontSize:14,fontWeight:600,color:C.muted,letterSpacing:"0.03em"}}>🧳 Just visiting Bulgaria?</div>
+          <div style={{fontSize:14,fontWeight:600,color:C.muted,letterSpacing:"0.03em"}}>{(t&&t.passesHeading)||"🧳 Just visiting Bulgaria?"}</div>
           <p style={{fontSize:13,color:C.muted,margin:"6px 0 20px",maxWidth:420,marginLeft:"auto",marginRight:"auto"}}>
-            Get full Premium access for your trip — no subscription, no commitment.
+            {(t&&t.passesSub)||"Get full Premium access for your trip — no subscription, no commitment."}
           </p>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:16,maxWidth:520,margin:"0 auto"}}>
-          {Object.entries(PASSES).map(([id,pass])=>(
+          {Object.entries(PASSES).map(([id,pass])=>{
+            const i18n=passI18n(id,lang)
+            return(
             <div key={id} style={{background:C.surface,border:`1.5px solid ${C.border}`,borderRadius:16,padding:"20px 22px",textAlign:"left"}}>
-              <div style={{fontSize:13,fontWeight:600,color:C.text,marginBottom:2}}>{pass.name}</div>
-              <div style={{fontSize:12,color:C.muted,marginBottom:14}}>{pass.blurb}</div>
+              <div style={{fontSize:13,fontWeight:600,color:C.text,marginBottom:2}}>{i18n.name}</div>
+              <div style={{fontSize:12,color:C.muted,marginBottom:14}}>{i18n.blurb}</div>
               <div style={{display:"flex",alignItems:"baseline",gap:4,marginBottom:14}}>
                 <span style={{fontSize:26,fontWeight:700,color:C.text}}>€{pass.price.toFixed(2)}</span>
-                <span style={{fontSize:12,color:C.muted}}>one-time / {pass.duration}</span>
+                <span style={{fontSize:12,color:C.muted}}>{(t&&t.passesOneTime)||"one-time"} / {i18n.duration}</span>
               </div>
               <button onClick={()=>openCheckout(id)}
                 style={{width:"100%",background:"none",border:`1.5px solid ${C.primary}`,color:C.primary,padding:"10px",borderRadius:10,cursor:"pointer",fontSize:13,fontWeight:600}}>
-                Get {pass.name} →
+                {(t&&t.passesGet)||"Get"} {i18n.name} →
               </button>
             </div>
-          ))}
+          )})}
         </div>
 
         <p style={{textAlign:"center",fontSize:13,color:C.muted,marginTop:20}}>
-          All plans include 8 languages. Cancel anytime. Secure payment via Stripe.
+          {(t&&t.passesFooter)||"All plans include 8 languages. Cancel anytime. Secure payment via Stripe."}
         </p>
       </div>
     </div>
@@ -5805,7 +5886,7 @@ export default function App(){
       {view==="login"?(
         <LoginPage setUser={setUser} setView={setView}/>
       ):view==="checkout"?(
-        <CheckoutPage plan={checkoutPlan} billing={billing} setBilling={setBilling} setView={setView} user={user} setSubscription={setSubscription}/>
+        <CheckoutPage plan={checkoutPlan} billing={billing} setBilling={setBilling} setView={setView} user={user} setSubscription={setSubscription} lang={lang} t={t}/>
       ):view==="apps"?(
         <AppsPage/>
       ):view==="connect"?(
@@ -5821,7 +5902,7 @@ export default function App(){
       ):view==="agents"?(
         <AgentsPage setView={setView}/>
       ):view==="map"?(
-        <MapPage user={user} setView={setView} subscription={subscription} openCheckout={openCheckout}/>
+        <MapPage user={user} setView={setView} subscription={subscription} openCheckout={openCheckout} lang={lang} t={t}/>
       ):view==="tools"?(
         <ToolsPage user={user} setView={setView} trackEvent={trackEvent} subscription={subscription} lang={lang} setLang={setLang}/>
       ):view==="pricing"?(
@@ -5933,7 +6014,7 @@ const gtrack = (event, params={}) => {
 }
 
 // ── Checkout Page ─────────────────────────────────────────────────
-function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription}){
+function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang,t}){
   const [payMethod,setPayMethod]=useState("stripe") // "stripe" | "crypto"
   const [cryptoStep,setCryptoStep]=useState("select") // "select" | "address" | "confirm"
   const [selectedCoin,setSelectedCoin]=useState("BTC")
@@ -5974,6 +6055,18 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription}){
       "Early access to new features",
     ],
   }
+  const FEATURES_I18N = {
+    en:{basic:features.basic,premium:features.premium},
+    fr:{basic:["Communauté complète — publiez, aimez et répondez","30 questions IA par jour","7 outils interactifs","Tous les guides en 8 langues","Newsletter hebdomadaire pour expatriés","Laissez des avis et notes"],premium:["Tout ce qui est inclus dans Basic","Guides juridiques et fiscaux Premium","Modèles PDF téléchargeables","Annuaire de prestataires vérifiés","IA prioritaire — réponses plus approfondies","Badge de membre vérifié","Accès anticipé aux nouvelles fonctionnalités"]},
+    es:{basic:["Comunidad completa — publica, dale me gusta y responde","30 preguntas de chat IA al día","7 herramientas interactivas","Todas las guías en 8 idiomas","Boletín semanal para expatriados","Deja reseñas y valoraciones"],premium:["Todo lo de Basic","Guías legales y fiscales Premium","Plantillas PDF descargables","Directorio de servicios verificados","IA prioritaria — respuestas más completas","Insignia de miembro verificado","Acceso anticipado a nuevas funciones"]},
+    de:{basic:["Volle Community — posten, liken & antworten","30 KI-Chatfragen pro Tag","7 interaktive Tools","Alle Leitfäden in 8 Sprachen","Wöchentlicher Expat-Newsletter","Bewertungen abgeben"],premium:["Alles aus Basic","Premium Rechts- & Steuerleitfäden","Herunterladbare PDF-Vorlagen","Geprüftes Dienstleisterverzeichnis","Priorität-KI — ausführlichere Antworten","Verifiziertes Mitgliedsabzeichen","Frühzeitiger Zugang zu neuen Funktionen"]},
+    nl:{basic:["Volledige community — plaatsen, liken & reageren","30 AI-chatvragen per dag","7 interactieve tools","Alle gidsen in 8 talen","Wekelijkse expat-nieuwsbrief","Beoordelingen achterlaten"],premium:["Alles van Basic","Premium juridische & belastinggidsen","Downloadbare PDF-sjablonen","Geverifieerde dienstverlenersgids","Prioriteits-AI — diepgaandere antwoorden","Geverifieerd lid-badge","Vroege toegang tot nieuwe functies"]},
+    ru:{basic:["Полный доступ к сообществу — публикуйте, лайкайте, отвечайте","30 вопросов к ИИ в день","7 интерактивных инструментов","Все гиды на 8 языках","Еженедельная рассылка для экспатов","Оставляйте отзывы и оценки"],premium:["Всё из Basic","Премиум юридические и налоговые гиды","Скачиваемые PDF-шаблоны","Проверенный каталог услуг","Приоритетный ИИ — более глубокие ответы","Значок проверенного участника","Ранний доступ к новым функциям"]},
+    uk:{basic:["Повний доступ до спільноти — публікуйте, лайкайте, відповідайте","30 запитань до ШІ на день","7 інтерактивних інструментів","Усі гіди 8 мовами","Щотижнева розсилка для експатів","Залишайте відгуки та оцінки"],premium:["Усе з Basic","Преміум юридичні та податкові гіди","Файли PDF для завантаження","Перевірений каталог послуг","Пріоритетний ШІ — глибші відповіді","Значок перевіреного учасника","Ранній доступ до нових функцій"]},
+    tr:{basic:["Tam topluluk erişimi — paylaşın, beğenin & yanıtlayın","Günde 30 yapay zeka sohbet sorusu","7 interaktif araç","8 dilde tüm rehberler","Haftalık expat bülteni","Yorum ve puan bırakın"],premium:["Basic'teki her şey","Premium hukuki ve vergi rehberleri","İndirilebilir PDF şablonları","Onaylı hizmet dizini","Öncelikli yapay zeka — daha derin yanıtlar","Doğrulanmış üye rozeti","Yeni özelliklere erken erişim"]},
+    bg:{basic:["Пълен достъп до общността — публикувайте, харесвайте и отговаряйте","30 въпроса към ИИ на ден","7 интерактивни инструмента","Всички ръководства на 8 езика","Седмичен бюлетин за чужденци","Оставяйте ревюта и оценки"],premium:["Всичко от Basic","Премиум правни и данъчни ръководства","PDF шаблони за изтегляне","Проверен указател на услуги","Приоритетен ИИ — по-задълбочени отговори","Значка на потвърден член","Ранен достъп до нови функции"]},
+  }
+  const tFeatures = FEATURES_I18N[lang]||FEATURES_I18N.en
 
   return(
     <div style={{minHeight:"100vh",background:C.page,display:"flex",alignItems:"center",justifyContent:"center",padding:"40px 20px"}}>
@@ -5981,7 +6074,7 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription}){
         
         {/* Back */}
         <button onClick={()=>setView("pricing")} style={{background:"none",border:"none",color:C.muted,cursor:"pointer",fontSize:13,marginBottom:20,display:"flex",alignItems:"center",gap:5}}>
-          ← Back to plans
+          {(t&&t.checkoutBackToPlans)||"← Back to plans"}
         </button>
 
         <div style={{background:C.surface,borderRadius:22,border:`1px solid ${C.border}`,overflow:"hidden",boxShadow:"0 12px 40px rgba(0,0,0,0.1)"}}>
@@ -5989,10 +6082,10 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription}){
           {/* Plan header */}
           <div style={{background:(plan==="premium"||isPass)?`linear-gradient(135deg,${C.primary},#2a7a52)`:`linear-gradient(135deg,#1850a0,#2563eb)`,padding:"28px 28px 24px"}}>
             <div style={{fontSize:12,color:"rgba(255,255,255,0.7)",fontWeight:600,letterSpacing:"0.06em",textTransform:"uppercase",marginBottom:6}}>
-              {isPass?"Getting":"Subscribing to"}
+              {isPass?((t&&t.checkoutGetting)||"Getting"):((t&&t.checkoutSubscribingTo)||"Subscribing to")}
             </div>
-            <div style={{fontSize:24,fontWeight:700,color:"#fff",marginBottom:14}}>{isPass?pass.name:`${p.name} plan`}</div>
-            {isPass&&<div style={{fontSize:13,color:"rgba(255,255,255,0.75)",marginBottom:14}}>{pass.blurb} — full Premium access for {pass.duration}</div>}
+            <div style={{fontSize:24,fontWeight:700,color:"#fff",marginBottom:14}}>{isPass?passI18n(plan,lang).name:`${p.name} plan`}</div>
+            {isPass&&<div style={{fontSize:13,color:"rgba(255,255,255,0.75)",marginBottom:14}}>{passI18n(plan,lang).blurb} — full Premium access for {passI18n(plan,lang).duration}</div>}
 
             {/* Billing toggle — not shown for one-time passes */}
             {!isPass&&(
@@ -6000,7 +6093,7 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription}){
                 {["monthly","yearly"].map(b=>(
                   <button key={b} onClick={()=>setBilling(b)}
                     style={{background:billing===b?"#fff":"transparent",border:"none",color:billing===b?(plan==="premium"?C.primary:"#1850a0"):"rgba(255,255,255,0.8)",padding:"6px 16px",borderRadius:20,cursor:"pointer",fontSize:13,fontWeight:billing===b?600:400,transition:"all 0.2s",display:"flex",alignItems:"center",gap:6}}>
-                    {b==="monthly"?"Monthly":"Yearly"}
+                    {b==="monthly"?((t&&t.checkoutMonthly)||"Monthly"):((t&&t.checkoutYearly)||"Yearly")}
                     {b==="yearly"&&<span style={{background:"#f0c060",color:"#1a3a20",fontSize:9,padding:"1px 6px",borderRadius:6,fontWeight:700}}>-30%</span>}
                   </button>
                 ))}
@@ -6010,19 +6103,19 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription}){
             {/* Price — always show monthly rate (or the flat pass price) */}
             <div style={{marginTop:18,display:"flex",alignItems:"baseline",gap:6}}>
               <span style={{fontSize:40,fontWeight:800,color:"#fff",letterSpacing:"-1px"}}>€{isPass?pass.price.toFixed(2):(isYearly?p.yearly.toFixed(2):p.monthly.toFixed(2))}</span>
-              <span style={{fontSize:14,color:"rgba(255,255,255,0.7)"}}>{isPass?`one-time / ${pass.duration}`:"/month"}</span>
+              <span style={{fontSize:14,color:"rgba(255,255,255,0.7)"}}>{isPass?`${(t&&t.passesOneTime)||"one-time"} / ${passI18n(plan,lang).duration}`:"/month"}</span>
             </div>
             {isYearly&&!isPass&&(
               <div style={{fontSize:13,color:"rgba(255,255,255,0.65)",marginTop:3}}>
-                Billed annually at <strong style={{color:"#f0c060"}}>€{p.yearlyTotal}/year</strong> — saves €{(p.monthly*12-p.yearlyTotal).toFixed(2)}
+                {(t&&t.checkoutBilledAnnually)||"Billed annually at"} <strong style={{color:"#f0c060"}}>€{p.yearlyTotal}/year</strong> — {(t&&t.checkoutSaves)||"saves"} €{(p.monthly*12-p.yearlyTotal).toFixed(2)}
               </div>
             )}
           </div>
 
           {/* Features */}
           <div style={{padding:"22px 28px",borderBottom:`1px solid ${C.border}`}}>
-            <div style={{fontSize:12,fontWeight:600,color:C.muted,letterSpacing:"0.05em",textTransform:"uppercase",marginBottom:12}}>What you get</div>
-            {(features[isPass?"premium":plan]||[]).map((f,i)=>(
+            <div style={{fontSize:12,fontWeight:600,color:C.muted,letterSpacing:"0.05em",textTransform:"uppercase",marginBottom:12}}>{(t&&t.checkoutWhatYouGet)||"What you get"}</div>
+            {(tFeatures[isPass?"premium":plan]||[]).map((f,i)=>(
               <div key={i} style={{display:"flex",gap:10,padding:"6px 0",fontSize:13,color:C.text}}>
                 <span style={{color:"#22c55e",fontSize:14,flexShrink:0}}>✓</span>{f}
               </div>
@@ -6035,11 +6128,11 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription}){
             {/* User check */}
             {!user?(
               <div style={{background:"#fff9f0",border:"1px solid #f0d9b0",borderRadius:10,padding:"12px 14px",marginBottom:16,fontSize:13,color:"#8a5a1a"}}>
-                ⚠️ Please <button onClick={()=>setView("login")} style={{background:"none",border:"none",color:C.accent,fontWeight:600,cursor:"pointer",padding:0,fontSize:13,textDecoration:"underline"}}>sign in or create a free account</button> first.
+                ⚠️ {(t&&t.checkoutPleaseText)||"Please"} <button onClick={()=>setView("login")} style={{background:"none",border:"none",color:C.accent,fontWeight:600,cursor:"pointer",padding:0,fontSize:13,textDecoration:"underline"}}>{(t&&t.checkoutSignInLink)||"sign in or create a free account"}</button> {(t&&t.checkoutFirst)||"first."}
               </div>
             ):(
               <div style={{background:C.primaryLight,border:`1px solid ${C.primary}30`,borderRadius:10,padding:"10px 14px",marginBottom:16,fontSize:13,color:C.primary}}>
-                Subscribing as: <strong>{user.name}</strong>
+                {(t&&t.checkoutSubscribingAs)||"Subscribing as:"} <strong>{user.name}</strong>
               </div>
             )}
 
