@@ -4472,22 +4472,33 @@ const MAP_LOCATIONS = [
 ]
 
 const MAP_CITIES=[
-  {id:"sofia",       label:"Sofia",        icon:"🏛️", lat:42.6977, lng:23.3219, zoom:13},
-  {id:"varna",       label:"Varna",        icon:"🌊", lat:43.2141, lng:27.9147, zoom:13},
-  {id:"plovdiv",     label:"Plovdiv",      icon:"🏺", lat:42.1354, lng:24.7453, zoom:13},
-  {id:"burgas",      label:"Burgas",       icon:"⚓", lat:42.5048, lng:27.4626, zoom:13},
-  {id:"stara_zagora",label:"Stara Zagora", icon:"🌳", lat:42.4278, lng:25.6344, zoom:13},
-  {id:"sunny_beach", label:"Sunny Beach",  icon:"🏖️", lat:42.6960, lng:27.7107, zoom:14},
-  {id:"nessebar",    label:"Nessebar",     icon:"🏛️", lat:42.6597, lng:27.7355, zoom:14},
-  {id:"golden_sands",label:"Golden Sands", icon:"✨", lat:43.2817, lng:28.0395, zoom:14},
-  {id:"ruse",        label:"Ruse",         icon:"🌉", lat:43.8485, lng:25.9533, zoom:13},
-  {id:"sliven",      label:"Sliven",       icon:"🏔️", lat:42.6833, lng:26.3167, zoom:13},
-  {id:"shumen",      label:"Shumen",       icon:"🏰", lat:43.2708, lng:26.9194, zoom:13},
-  {id:"yambol",      label:"Yambol",       icon:"🌾", lat:42.4833, lng:26.5000, zoom:13},
-  {id:"montana",     label:"Montana",      icon:"🌲", lat:43.4083, lng:23.2250, zoom:13},
-  {id:"velingrad",   label:"Velingrad",    icon:"♨️", lat:42.0250, lng:23.9944, zoom:13},
-  {id:"sveti_vlas",  label:"Saint Vlas",   icon:"⛵", lat:42.7206, lng:27.7711, zoom:14},
-  {id:"pomorie",     label:"Pomorie",      icon:"🧂", lat:42.5594, lng:27.6428, zoom:14},
+  // Sofia City Region
+  {id:"sofia",       label:"Sofia",        icon:"🏛️", lat:42.6977, lng:23.3219, zoom:13, region:"Sofia Region"},
+  // Plovdiv Region
+  {id:"plovdiv",     label:"Plovdiv",      icon:"🏺", lat:42.1354, lng:24.7453, zoom:13, region:"Plovdiv Region"},
+  // Burgas Region
+  {id:"burgas",      label:"Burgas",       icon:"⚓", lat:42.5048, lng:27.4626, zoom:13, region:"Burgas Region"},
+  {id:"sunny_beach", label:"Sunny Beach",  icon:"🏖️", lat:42.6960, lng:27.7107, zoom:14, region:"Burgas Region"},
+  {id:"nessebar",    label:"Nessebar",     icon:"🏛️", lat:42.6597, lng:27.7355, zoom:14, region:"Burgas Region"},
+  {id:"sveti_vlas",  label:"Saint Vlas",   icon:"⛵", lat:42.7206, lng:27.7711, zoom:14, region:"Burgas Region"},
+  {id:"pomorie",     label:"Pomorie",      icon:"🧂", lat:42.5594, lng:27.6428, zoom:14, region:"Burgas Region"},
+  // Varna Region
+  {id:"varna",       label:"Varna",        icon:"🌊", lat:43.2141, lng:27.9147, zoom:13, region:"Varna Region"},
+  {id:"golden_sands",label:"Golden Sands", icon:"✨", lat:43.2817, lng:28.0395, zoom:14, region:"Varna Region"},
+  // Stara Zagora Region
+  {id:"stara_zagora",label:"Stara Zagora", icon:"🌳", lat:42.4278, lng:25.6344, zoom:13, region:"Stara Zagora Region"},
+  // Ruse Region
+  {id:"ruse",        label:"Ruse",         icon:"🌉", lat:43.8485, lng:25.9533, zoom:13, region:"Ruse Region"},
+  // Sliven Region
+  {id:"sliven",      label:"Sliven",       icon:"🏔️", lat:42.6833, lng:26.3167, zoom:13, region:"Sliven Region"},
+  // Shumen Region
+  {id:"shumen",      label:"Shumen",       icon:"🏰", lat:43.2708, lng:26.9194, zoom:13, region:"Shumen Region"},
+  // Yambol Region
+  {id:"yambol",      label:"Yambol",       icon:"🌾", lat:42.4833, lng:26.5000, zoom:13, region:"Yambol Region"},
+  // Montana Region
+  {id:"montana",     label:"Montana",      icon:"🌲", lat:43.4083, lng:23.2250, zoom:13, region:"Montana Region"},
+  // Pazardzhik Region
+  {id:"velingrad",   label:"Velingrad",    icon:"♨️", lat:42.0250, lng:23.9944, zoom:13, region:"Pazardzhik Region"},
 ]
 
 const MAP_CATS=[
@@ -4942,12 +4953,19 @@ function MapPage({user,setView,subscription,openCheckout,lang,t}){
 
       {/* City selector */}
       <div style={{background:C.primaryDark,padding:"10px 20px",overflowX:"auto"}}>
-        <div style={{maxWidth:1200,margin:"0 auto",display:"flex",gap:6}}>
-          {MAP_CITIES.map(c=>(
-            <button key={c.id} onClick={()=>{setCity(c.id);setFilter("all")}}
-              style={{padding:"6px 14px",borderRadius:20,border:`1.5px solid ${city===c.id?"#f0c060":"rgba(255,255,255,0.15)"}`,background:city===c.id?"rgba(240,192,96,0.2)":"rgba(255,255,255,0.06)",color:city===c.id?"#f0c060":"rgba(255,255,255,0.7)",cursor:"pointer",fontSize:12,fontWeight:city===c.id?700:400,whiteSpace:"nowrap",flexShrink:0,transition:"all 0.15s"}}>
-              <span style={{display:"flex",alignItems:"center",gap:5}}><Icon2c d={MAP_PIN_D} accent="#f0c060" size={14}/>{c.label}</span>
-            </button>
+        <div style={{maxWidth:1200,margin:"0 auto",display:"flex",gap:6,alignItems:"center"}}>
+          {MAP_CITIES.map((c,i)=>(
+            <Fragment key={c.id}>
+              {(i===0||MAP_CITIES[i-1].region!==c.region)&&(
+                <span style={{fontSize:10,fontWeight:700,color:"rgba(255,255,255,0.4)",letterSpacing:"0.06em",textTransform:"uppercase",flexShrink:0,paddingLeft:i===0?0:4,borderLeft:i===0?"none":"1px solid rgba(255,255,255,0.15)",marginLeft:i===0?0:2}}>
+                  {c.region.replace(" Region","")}
+                </span>
+              )}
+              <button onClick={()=>{setCity(c.id);setFilter("all")}}
+                style={{padding:"6px 14px",borderRadius:20,border:`1.5px solid ${city===c.id?"#f0c060":"rgba(255,255,255,0.15)"}`,background:city===c.id?"rgba(240,192,96,0.2)":"rgba(255,255,255,0.06)",color:city===c.id?"#f0c060":"rgba(255,255,255,0.7)",cursor:"pointer",fontSize:12,fontWeight:city===c.id?700:400,whiteSpace:"nowrap",flexShrink:0,transition:"all 0.15s"}}>
+                <span style={{display:"flex",alignItems:"center",gap:5}}><Icon2c d={MAP_PIN_D} accent="#f0c060" size={14}/>{c.label}</span>
+              </button>
+            </Fragment>
           ))}
         </div>
       </div>
