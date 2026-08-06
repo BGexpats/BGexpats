@@ -1815,7 +1815,7 @@ function CategoryPage({catId,setView,lang,t,cache,setCache,user,reviews,setRevie
       if(line.startsWith("## "))
         return<div key={i} style={{fontSize:19,fontWeight:600,color:C.text,margin:"22px 0 8px",paddingTop:i===0?0:14,borderTop:i===0?"none":`1px solid ${C.border}`,fontFamily:"'Sora',sans-serif"}}>{line.slice(3)}</div>
       if(line.startsWith("### "))
-        return<div key={i} style={{fontSize:16,fontWeight:600,color:C.primary,margin:"16px 0 4px",fontFamily:"'Sora',sans-serif"}}>{line.slice(4)}</div>
+        return<div key={i} style={{fontSize:21,fontWeight:700,color:C.primary,margin:"24px 0 10px",paddingBottom:6,borderBottom:`2px solid ${C.primary}30`,fontFamily:"'Sora',sans-serif"}}>{line.slice(4)}</div>
       if(line.trim()==="---")
         return<div key={i} style={{height:1,background:C.border,margin:"18px 0"}}/>
       if(line.startsWith("|")&&line.endsWith("|")){
