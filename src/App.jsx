@@ -100,7 +100,7 @@ const T = {
     stillQ:"Still have questions?",askLink:"Ask the AI →",
     chatTitle:"BGexpats AI",chatSub:"Expert on expat life in Bulgaria",
     pricingTitle:"Simple, honest pricing",pricingSub:"Join thousands of expats navigating life in Bulgaria",
-    mapTitle:"BGexpats Map",mapSub:"Find hospitals, banks, legal offices, coworking and best neighbourhoods across Bulgaria",
+    mapTitle:"BGexpats Map",mapSub:"Find hospitals, banks, legal offices, dining places, historical sites and many more across Bulgaria",
     passesHeading:"🧳 Just visiting Bulgaria?",passesSub:"Get full Premium access for your trip — no subscription, no commitment.",passesOneTime:"one-time",passesGet:"Get",passesFooter:"All plans include 8 languages. Cancel anytime. Secure payment via Stripe.",
     checkoutGetting:"Getting",checkoutSubscribingTo:"Subscribing to",checkoutMonthly:"Monthly",checkoutYearly:"Yearly",checkoutBilledAnnually:"Billed annually at",checkoutSaves:"saves",checkoutWhatYouGet:"What you get",checkoutBackToPlans:"← Back to plans",checkoutPleaseText:"Please",checkoutSignInLink:"sign in or create a free account",checkoutFirst:"first.",checkoutSubscribingAs:"Subscribing as:",
     toolsHeaderTitle:"Expat tools",toolsHeaderSub:"Free interactive tools to plan your life in Bulgaria",whatsIncluded:"What's included in each plan",
@@ -131,7 +131,7 @@ const T = {
     stillQ:"Vous avez encore des questions ?",askLink:"Demander à l'IA →",
     chatTitle:"Assistant IA BGexpats",chatSub:"Expert sur la vie d'expatrié en Bulgarie",
     pricingTitle:"Des tarifs simples et transparents",pricingSub:"Rejoignez des milliers d'expatriés qui vivent en Bulgarie",
-    mapTitle:"Carte BGexpats",mapSub:"Trouvez hôpitaux, banques, cabinets juridiques, coworking et meilleurs quartiers dans toute la Bulgarie",
+    mapTitle:"Carte BGexpats",mapSub:"Trouvez hôpitaux, banques, cabinets juridiques, restaurants, sites historiques et bien plus dans toute la Bulgarie",
     passesHeading:"🧳 Juste de passage en Bulgarie ?",passesSub:"Profitez d'un accès Premium complet pour votre séjour — sans abonnement, sans engagement.",passesOneTime:"paiement unique",passesGet:"Obtenir",passesFooter:"Tous les forfaits incluent 8 langues. Annulez à tout moment. Paiement sécurisé via Stripe.",
     checkoutGetting:"Obtention",checkoutSubscribingTo:"Abonnement à",checkoutMonthly:"Mensuel",checkoutYearly:"Annuel",checkoutBilledAnnually:"Facturé annuellement à",checkoutSaves:"économisez",checkoutWhatYouGet:"Ce que vous obtenez",checkoutBackToPlans:"← Retour aux forfaits",checkoutPleaseText:"Veuillez",checkoutSignInLink:"vous connecter ou créer un compte gratuit",checkoutFirst:"d'abord.",checkoutSubscribingAs:"Abonnement en tant que :",
     toolsHeaderTitle:"Outils pour expatriés",toolsHeaderSub:"Outils interactifs gratuits pour organiser votre vie en Bulgarie",whatsIncluded:"Ce qui est inclus dans chaque forfait",
@@ -162,7 +162,7 @@ const T = {
     stillQ:"¿Tienes más preguntas?",askLink:"Preguntar al IA →",
     chatTitle:"Asistente IA BGexpats",chatSub:"Experto en vida de expatriado en Bulgaria",
     pricingTitle:"Precios simples y honestos",pricingSub:"Únete a miles de expatriados que viven en Bulgaria",
-    mapTitle:"Mapa de BGexpats",mapSub:"Encuentra hospitales, bancos, despachos legales, coworking y los mejores barrios en toda Bulgaria",
+    mapTitle:"Mapa de BGexpats",mapSub:"Encuentra hospitales, bancos, despachos legales, restaurantes, sitios históricos y mucho más en toda Bulgaria",
     passesHeading:"🧳 ¿Solo estás de visita en Bulgaria?",passesSub:"Obtén acceso Premium completo para tu viaje — sin suscripción, sin compromiso.",passesOneTime:"pago único",passesGet:"Obtener",passesFooter:"Todos los planes incluyen 8 idiomas. Cancela cuando quieras. Pago seguro con Stripe.",
     checkoutGetting:"Obteniendo",checkoutSubscribingTo:"Suscribiéndote a",checkoutMonthly:"Mensual",checkoutYearly:"Anual",checkoutBilledAnnually:"Facturado anualmente a",checkoutSaves:"ahorras",checkoutWhatYouGet:"Lo que obtienes",checkoutBackToPlans:"← Volver a los planes",checkoutPleaseText:"Por favor",checkoutSignInLink:"inicia sesión o crea una cuenta gratuita",checkoutFirst:"primero.",checkoutSubscribingAs:"Suscribiéndote como:",
     toolsHeaderTitle:"Herramientas para expatriados",toolsHeaderSub:"Herramientas interactivas gratuitas para planificar tu vida en Bulgaria",whatsIncluded:"Qué incluye cada plan",
@@ -193,7 +193,7 @@ const T = {
     stillQ:"Noch Fragen?",askLink:"KI fragen →",
     chatTitle:"BGexpats KI",chatSub:"Experte für Expat-Leben in Bulgarien",
     pricingTitle:"Einfache, faire Preise",pricingSub:"Schließen Sie sich Tausenden von Expats an, die in Bulgarien leben",
-    mapTitle:"BGexpats-Karte",mapSub:"Finden Sie Krankenhäuser, Banken, Anwaltskanzleien, Coworking und die besten Stadtviertel in ganz Bulgarien",
+    mapTitle:"BGexpats-Karte",mapSub:"Finden Sie Krankenhäuser, Banken, Anwaltskanzleien, Restaurants, historische Stätten und vieles mehr in ganz Bulgarien",
     passesHeading:"🧳 Nur zu Besuch in Bulgarien?",passesSub:"Holen Sie sich vollen Premium-Zugang für Ihre Reise — kein Abo, keine Verpflichtung.",passesOneTime:"einmalig",passesGet:"Holen",passesFooter:"Alle Pläne umfassen 8 Sprachen. Jederzeit kündbar. Sichere Zahlung über Stripe.",
     checkoutGetting:"Erhalten",checkoutSubscribingTo:"Abonnieren von",checkoutMonthly:"Monatlich",checkoutYearly:"Jährlich",checkoutBilledAnnually:"Jährlich abgerechnet zu",checkoutSaves:"sparen",checkoutWhatYouGet:"Das erhalten Sie",checkoutBackToPlans:"← Zurück zu den Plänen",checkoutPleaseText:"Bitte",checkoutSignInLink:"melden Sie sich an oder erstellen Sie ein kostenloses Konto",checkoutFirst:"zuerst.",checkoutSubscribingAs:"Abonnieren als:",
     toolsHeaderTitle:"Expat-Tools",toolsHeaderSub:"Kostenlose interaktive Tools zur Planung Ihres Lebens in Bulgarien",whatsIncluded:"Was in jedem Plan enthalten ist",
@@ -225,7 +225,7 @@ const T = {
     stillQ:"Heeft u nog vragen?",askLink:"Vraag de AI →",
     chatTitle:"BGexpats AI",chatSub:"Expert in expatleven in Bulgarije",
     pricingTitle:"Eenvoudige, eerlijke prijzen",pricingSub:"Sluit je aan bij duizenden expats die in Bulgarije leven",
-    mapTitle:"BGexpats-kaart",mapSub:"Vind ziekenhuizen, banken, juridische kantoren, coworking en de beste buurten in heel Bulgarije",
+    mapTitle:"BGexpats-kaart",mapSub:"Vind ziekenhuizen, banken, juridische kantoren, eetgelegenheden, historische bezienswaardigheden en nog veel meer in heel Bulgarije",
     passesHeading:"🧳 Bent u alleen op bezoek in Bulgarije?",passesSub:"Krijg volledige Premium-toegang voor uw reis — geen abonnement, geen verplichting.",passesOneTime:"eenmalig",passesGet:"Aanschaffen",passesFooter:"Alle plannen omvatten 8 talen. Altijd opzegbaar. Veilig betalen via Stripe.",
     checkoutGetting:"Verkrijgen",checkoutSubscribingTo:"Abonneren op",checkoutMonthly:"Maandelijks",checkoutYearly:"Jaarlijks",checkoutBilledAnnually:"Jaarlijks gefactureerd op",checkoutSaves:"bespaart",checkoutWhatYouGet:"Wat u krijgt",checkoutBackToPlans:"← Terug naar plannen",checkoutPleaseText:"Log",checkoutSignInLink:"in of maak een gratis account aan",checkoutFirst:"eerst.",checkoutSubscribingAs:"Abonneren als:",
     toolsHeaderTitle:"Expat-tools",toolsHeaderSub:"Gratis interactieve tools om uw leven in Bulgarije te plannen",whatsIncluded:"Wat elk plan omvat",
@@ -256,7 +256,7 @@ const T = {
     stillQ:"Остались вопросы?",askLink:"Спросить ИИ →",
     chatTitle:"BGexpats ИИ",chatSub:"Эксперт по жизни экспатов в Болгарии",
     pricingTitle:"Простые, честные цены",pricingSub:"Присоединяйтесь к тысячам экспатов, живущих в Болгарии",
-    mapTitle:"Карта BGexpats",mapSub:"Находите больницы, банки, юридические конторы, коворкинги и лучшие районы по всей Болгарии",
+    mapTitle:"Карта BGexpats",mapSub:"Находите больницы, банки, юридические конторы, места для ужина, исторические достопримечательности и многое другое по всей Болгарии",
     passesHeading:"🧳 Просто путешествуете по Болгарии?",passesSub:"Получите полный Premium-доступ на время поездки — без подписки, без обязательств.",passesOneTime:"разовый платёж",passesGet:"Получить",passesFooter:"Все планы включают 8 языков. Отмена в любой момент. Безопасная оплата через Stripe.",
     checkoutGetting:"Получение",checkoutSubscribingTo:"Оформление подписки",checkoutMonthly:"Ежемесячно",checkoutYearly:"Ежегодно",checkoutBilledAnnually:"Оплата ежегодно по",checkoutSaves:"экономия",checkoutWhatYouGet:"Что вы получаете",checkoutBackToPlans:"← Назад к тарифам",checkoutPleaseText:"Пожалуйста",checkoutSignInLink:"войдите или создайте бесплатный аккаунт",checkoutFirst:"сначала.",checkoutSubscribingAs:"Оформление на:",
     toolsHeaderTitle:"Инструменты для экспатов",toolsHeaderSub:"Бесплатные интерактивные инструменты для планирования жизни в Болгарии",whatsIncluded:"Что входит в каждый план",
@@ -287,7 +287,7 @@ const T = {
     stillQ:"Залишилися питання?",askLink:"Запитати ШІ →",
     chatTitle:"BGexpats ШІ",chatSub:"Експерт з життя експатів у Болгарії",
     pricingTitle:"Прості, чесні ціни",pricingSub:"Приєднуйтесь до тисяч експатів, які живуть у Болгарії",
-    mapTitle:"Карта BGexpats",mapSub:"Знаходьте лікарні, банки, юридичні контори, коворкінги та найкращі райони по всій Болгарії",
+    mapTitle:"Карта BGexpats",mapSub:"Знаходьте лікарні, банки, юридичні контори, місця для вечері, історичні пам'ятки та багато іншого по всій Болгарії",
     passesHeading:"🧳 Просто подорожуєте Болгарією?",passesSub:"Отримайте повний Premium-доступ на час подорожі — без підписки, без зобов'язань.",passesOneTime:"разовий платіж",passesGet:"Отримати",passesFooter:"Усі плани включають 8 мов. Скасування у будь-який час. Безпечна оплата через Stripe.",
     checkoutGetting:"Отримання",checkoutSubscribingTo:"Оформлення підписки",checkoutMonthly:"Щомісячно",checkoutYearly:"Щорічно",checkoutBilledAnnually:"Оплата щорічно за",checkoutSaves:"економія",checkoutWhatYouGet:"Що ви отримуєте",checkoutBackToPlans:"← Назад до тарифів",checkoutPleaseText:"Будь ласка",checkoutSignInLink:"увійдіть або створіть безкоштовний акаунт",checkoutFirst:"спочатку.",checkoutSubscribingAs:"Оформлення на:",
     toolsHeaderTitle:"Інструменти для експатів",toolsHeaderSub:"Безкоштовні інтерактивні інструменти для планування життя в Болгарії",whatsIncluded:"Що входить у кожен план",
@@ -318,7 +318,7 @@ const T = {
     stillQ:"Имате още въпроси?",askLink:"Попитай ИИ →",
     chatTitle:"BGexpats ИИ",chatSub:"Експерт по живота на експати в България",
     pricingTitle:"Прости, честни цени",pricingSub:"Присъединете се към хиляди чужденци, живеещи в България",
-    mapTitle:"Карта на BGexpats",mapSub:"Намерете болници, банки, адвокатски кантори, коуъркинг пространства и най-добрите квартали в цяла България",
+    mapTitle:"Карта на BGexpats",mapSub:"Намерете болници, банки, адвокатски кантори, места за хранене, исторически забележителности и много повече в цяла България",
     passesHeading:"🧳 Само на посещение в България?",passesSub:"Получете пълен Premium достъп за пътуването си — без абонамент, без ангажимент.",passesOneTime:"еднократно",passesGet:"Вземи",passesFooter:"Всички планове включват 8 езика. Отказ по всяко време. Сигурно плащане чрез Stripe.",
     checkoutGetting:"Получаване",checkoutSubscribingTo:"Абониране за",checkoutMonthly:"Месечно",checkoutYearly:"Годишно",checkoutBilledAnnually:"Годишно фактуриране на",checkoutSaves:"спестявате",checkoutWhatYouGet:"Какво получавате",checkoutBackToPlans:"← Назад към плановете",checkoutPleaseText:"Моля",checkoutSignInLink:"влезте или създайте безплатен акаунт",checkoutFirst:"първо.",checkoutSubscribingAs:"Абониране като:",
     toolsHeaderTitle:"Инструменти за чужденци",toolsHeaderSub:"Безплатни интерактивни инструменти за планиране на живота ви в България",whatsIncluded:"Какво включва всеки план",
@@ -349,7 +349,7 @@ const T = {
     stillQ:"Hâlâ sorularınız mı var?",askLink:"Yapay zekaya sor →",
     chatTitle:"BGexpats Yapay Zeka",chatSub:"Bulgaristan expat yaşamı uzmanı",
     pricingTitle:"Basit, dürüst fiyatlandırma",pricingSub:"Bulgaristan'da yaşayan binlerce yabancıya katılın",
-    mapTitle:"BGexpats Haritası",mapSub:"Bulgaristan genelinde hastaneler, bankalar, hukuk büroları, ortak çalışma alanları ve en iyi mahalleleri bulun",
+    mapTitle:"BGexpats Haritası",mapSub:"Bulgaristan genelinde hastaneler, bankalar, hukuk büroları, restoranlar, tarihi mekanlar ve daha fazlasını bulun",
     passesHeading:"🧳 Sadece Bulgaristan'ı mı ziyaret ediyorsunuz?",passesSub:"Seyahatiniz için tam Premium erişim edinin — abonelik yok, taahhüt yok.",passesOneTime:"tek seferlik",passesGet:"Al",passesFooter:"Tüm planlar 8 dil içerir. İstediğiniz zaman iptal edin. Stripe ile güvenli ödeme.",
     checkoutGetting:"Alınıyor",checkoutSubscribingTo:"Abone olunuyor",checkoutMonthly:"Aylık",checkoutYearly:"Yıllık",checkoutBilledAnnually:"Yıllık faturalandırma",checkoutSaves:"tasarruf",checkoutWhatYouGet:"Neler alacaksınız",checkoutBackToPlans:"← Planlara dön",checkoutPleaseText:"Lütfen önce",checkoutSignInLink:"giriş yapın veya ücretsiz hesap oluşturun",checkoutFirst:".",checkoutSubscribingAs:"Şu olarak abone olunuyor:",
     toolsHeaderTitle:"Expat araçları",toolsHeaderSub:"Bulgaristan'daki yaşamınızı planlamak için ücretsiz interaktif araçlar",whatsIncluded:"Her plana neler dahil",
@@ -3610,7 +3610,7 @@ const MAP_ICON_MAP={
   dining:"M7 2v8a2 2 0 002 2v10M7 2v8M9.3 2v8M17 2c-2.2 0-3.5 3-3.5 6.5S17 15 17 15v9",
   party:"M12 2l1.2 4.4 4.4-1.2-2.6 3.8 3.8 2.6-4.4 1.2L12 17l-2.4-4.2-4.4-1.2 3.8-2.6L6.4 5.2l4.4 1.2z",
   festival:"M12 3l9 8H3zM7 11v8M17 11v8M3 19h18",
-  piano:"M4 6h16v12H4zM7.5 6v8M11 6v8M13 6v8M16.5 6v8",
+  bars:"M5 3h14l-2 9a5 5 0 01-4 4.9V19h3v2H8v-2h3v-2.1A5 5 0 017 12z",
   hotel:"M3 18v-7a2 2 0 012-2h6a2 2 0 012 2v1h6a2 2 0 012 2v4M3 18h18M7 11a2 2 0 100-4 2 2 0 000 4z",
   cultural:"M4 21h16M5 21V10M9 21V10M15 21V10M19 21V10M3 10l9-6 9 6",
   tradfest:"M12 3a9 9 0 00-9 9c0 3 2 5 4 6M12 3a9 9 0 019 9c0 3-2 5-4 6M8.5 10a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4zm7 0a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4zM9 15c1 1 2 1.5 3 1.5s2-.5 3-1.5",
@@ -4371,12 +4371,12 @@ const MAP_LOCATIONS = [
   {id:368,cat:"party",icon:"🪩",name:"Lazur Disco Club — Sunny Beach",desc:"Classic Sunny Beach disco. Multiple floors, variety of music. Open every night May–October.",addr:"Sunny Beach, Nessebar",phone:"+359 554 42 350",english:true,lat:42.6960,lng:27.7100,city:"sunny_beach"},
 
   // ══ PIANO BARS ════════════════════════════════════════════════
-  {id:369,cat:"piano",icon:"🎹",name:"Piano Bar — Grand Hotel Sofia",desc:"Elegant piano bar in Sofia's prestigious Grand Hotel. Live piano nightly. Excellent cocktails and wine selection. Sophisticated atmosphere.",addr:"1 Gurko St, Sofia",phone:"+359 2 811 0800",english:true,lat:42.6974,lng:23.3226,city:"sofia"},
-  {id:370,cat:"piano",icon:"🎹",name:"Brasserie Piano Bar — Sofia",desc:"French-style brasserie with live piano evenings. Good food and cocktails. Romantic setting. Popular with expat professionals.",addr:"Sofia Center",phone:"+359 88 900 2020",english:true,lat:42.6971,lng:23.3252,city:"sofia"},
-  {id:371,cat:"piano",icon:"🎹",name:"Art Club Music — Sofia",desc:"Live jazz and piano most evenings. Intimate atmosphere. Great wine list. Cultural events and gallery exhibitions.",addr:"5 Shipka St, Sofia",phone:"+359 2 943 9696",english:true,lat:42.6913,lng:23.3390,city:"sofia"},
-  {id:372,cat:"piano",icon:"🎹",name:"Marmalad Piano Restaurant — Plovdiv",desc:"Romantic piano bar and restaurant in Plovdiv. Live pianist Friday–Saturday evenings. Old Town location.",addr:"Old Town, Plovdiv",phone:"+359 32 631 778",english:true,lat:42.1445,lng:24.7508,city:"plovdiv"},
-  {id:373,cat:"piano",icon:"🎹",name:"Jazz & Piano Bar — Varna",desc:"The best live music bar in Varna. Regular jazz piano evenings. Good cocktails. Sea Garden location.",addr:"Sea Garden area, Varna",phone:"+359 52 612 660",english:true,lat:42.2141,lng:27.9244,city:"varna"},
-  {id:374,cat:"piano",icon:"🎹",name:"Grand Piano Lounge — Bansko",desc:"Cozy ski resort piano bar. Live music, fireplace, premium whisky and cognac. Perfect after skiing.",addr:"Bansko Resort Center",phone:"+359 749 88321",english:true,lat:41.8433,lng:23.4900,city:"sofia"},
+  {id:369,cat:"bars",icon:"🎹",name:"Piano Bar — Grand Hotel Sofia",desc:"Elegant piano bar in Sofia's prestigious Grand Hotel. Live piano nightly. Excellent cocktails and wine selection. Sophisticated atmosphere.",addr:"1 Gurko St, Sofia",phone:"+359 2 811 0800",english:true,lat:42.6974,lng:23.3226,city:"sofia"},
+  {id:370,cat:"bars",icon:"🎹",name:"Brasserie Piano Bar — Sofia",desc:"French-style brasserie with live piano evenings. Good food and cocktails. Romantic setting. Popular with expat professionals.",addr:"Sofia Center",phone:"+359 88 900 2020",english:true,lat:42.6971,lng:23.3252,city:"sofia"},
+  {id:371,cat:"bars",icon:"🎹",name:"Art Club Music — Sofia",desc:"Live jazz and piano most evenings. Intimate atmosphere. Great wine list. Cultural events and gallery exhibitions.",addr:"5 Shipka St, Sofia",phone:"+359 2 943 9696",english:true,lat:42.6913,lng:23.3390,city:"sofia"},
+  {id:372,cat:"bars",icon:"🎹",name:"Marmalad Piano Restaurant — Plovdiv",desc:"Romantic piano bar and restaurant in Plovdiv. Live pianist Friday–Saturday evenings. Old Town location.",addr:"Old Town, Plovdiv",phone:"+359 32 631 778",english:true,lat:42.1445,lng:24.7508,city:"plovdiv"},
+  {id:373,cat:"bars",icon:"🎹",name:"Jazz & Piano Bar — Varna",desc:"The best live music bar in Varna. Regular jazz piano evenings. Good cocktails. Sea Garden location.",addr:"Sea Garden area, Varna",phone:"+359 52 612 660",english:true,lat:42.2141,lng:27.9244,city:"varna"},
+  {id:374,cat:"bars",icon:"🎹",name:"Grand Piano Lounge — Bansko",desc:"Cozy ski resort piano bar. Live music, fireplace, premium whisky and cognac. Perfect after skiing.",addr:"Bansko Resort Center",phone:"+359 749 88321",english:true,lat:41.8433,lng:23.4900,city:"sofia"},
 ]
 
 const MAP_CITIES=[
@@ -4428,7 +4428,7 @@ const MAP_CATS=[
   {id:"festival",label:"Festivals",        icon:"🎪", color:"#059669"},
   {id:"tradfest",label:"Traditional Fests",icon:"🎭", color:"#065f46"},
   {id:"wine",    label:"Wine Tourism",     icon:"🍷", color:"#7c2d12"},
-  {id:"piano",   label:"Piano Bars",       icon:"🎹", color:"#1f2937"},
+  {id:"bars",    label:"Bars & Pubs",      icon:"🍸", color:"#1f2937"},
   // ── Premium ──
   {id:"work",    label:"Coworking",        icon:"💼", color:"#b8792a"},
   {id:"car",     label:"Car Rental",       icon:"🚗", color:"#dc2626"},
@@ -4439,15 +4439,15 @@ const MAP_CATS=[
 // from MAP_CATS itself (rather than nesting per-language labels into each
 // category object) so the category list stays simple to scan and edit.
 const MAP_CAT_LABELS = {
-  en:{all:"All",health:"Healthcare",hood:"Neighbourhoods",school:"Schools",bank:"Banking",legal:"Legal",dining:"Dining",party:"Party & Clubs",hotel:"Hotels",summer:"Summer Activities",winter:"Winter Activities",art:"Art & Galleries",cultural:"Cultural Sites",festival:"Festivals",tradfest:"Traditional Fests",wine:"Wine Tourism",piano:"Piano Bars",work:"Coworking",car:"Car Rental",jobs:"Work & Jobs"},
-  fr:{all:"Tout",health:"Santé",hood:"Quartiers",school:"Écoles",bank:"Banques",legal:"Juridique",dining:"Restauration",party:"Fêtes & Clubs",hotel:"Hôtels",summer:"Activités d'été",winter:"Activités d'hiver",art:"Art & Galeries",cultural:"Sites culturels",festival:"Festivals",tradfest:"Fêtes traditionnelles",wine:"Œnotourisme",piano:"Bars à piano",work:"Coworking",car:"Location de voiture",jobs:"Emploi & Travail"},
-  es:{all:"Todo",health:"Salud",hood:"Barrios",school:"Colegios",bank:"Bancos",legal:"Legal",dining:"Restaurantes",party:"Fiestas y clubes",hotel:"Hoteles",summer:"Actividades de verano",winter:"Actividades de invierno",art:"Arte y galerías",cultural:"Sitios culturales",festival:"Festivales",tradfest:"Fiestas tradicionales",wine:"Turismo del vino",piano:"Bares de piano",work:"Coworking",car:"Alquiler de coches",jobs:"Empleo y trabajo"},
-  de:{all:"Alle",health:"Gesundheit",hood:"Stadtviertel",school:"Schulen",bank:"Banken",legal:"Recht",dining:"Restaurants",party:"Party & Clubs",hotel:"Hotels",summer:"Sommeraktivitäten",winter:"Winteraktivitäten",art:"Kunst & Galerien",cultural:"Kulturstätten",festival:"Festivals",tradfest:"Traditionelle Feste",wine:"Weintourismus",piano:"Piano-Bars",work:"Coworking",car:"Autovermietung",jobs:"Arbeit & Jobs"},
-  nl:{all:"Alles",health:"Gezondheid",hood:"Buurten",school:"Scholen",bank:"Banken",legal:"Juridisch",dining:"Eten & drinken",party:"Feesten & clubs",hotel:"Hotels",summer:"Zomeractiviteiten",winter:"Winteractiviteiten",art:"Kunst & galerieën",cultural:"Culturele bezienswaardigheden",festival:"Festivals",tradfest:"Traditionele feesten",wine:"Wijntoerisme",piano:"Pianobars",work:"Coworking",car:"Autoverhuur",jobs:"Werk & vacatures"},
-  ru:{all:"Все",health:"Здравоохранение",hood:"Районы",school:"Школы",bank:"Банки",legal:"Юридические услуги",dining:"Рестораны",party:"Вечеринки и клубы",hotel:"Отели",summer:"Летние мероприятия",winter:"Зимние мероприятия",art:"Искусство и галереи",cultural:"Культурные объекты",festival:"Фестивали",tradfest:"Традиционные праздники",wine:"Винный туризм",piano:"Пиано-бары",work:"Коворкинг",car:"Аренда авто",jobs:"Работа и вакансии"},
-  uk:{all:"Все",health:"Охорона здоров'я",hood:"Райони",school:"Школи",bank:"Банки",legal:"Юридичні послуги",dining:"Ресторани",party:"Вечірки та клуби",hotel:"Готелі",summer:"Літні заходи",winter:"Зимові заходи",art:"Мистецтво і галереї",cultural:"Культурні об'єкти",festival:"Фестивалі",tradfest:"Традиційні свята",wine:"Винний туризм",piano:"Піано-бари",work:"Коворкінг",car:"Оренда авто",jobs:"Робота та вакансії"},
-  tr:{all:"Tümü",health:"Sağlık",hood:"Mahalleler",school:"Okullar",bank:"Bankacılık",legal:"Hukuki",dining:"Restoranlar",party:"Parti & Kulüpler",hotel:"Oteller",summer:"Yaz Aktiviteleri",winter:"Kış Aktiviteleri",art:"Sanat & Galeriler",cultural:"Kültürel Mekanlar",festival:"Festivaller",tradfest:"Geleneksel Şenlikler",wine:"Şarap Turizmi",piano:"Piyano Barları",work:"Ortak Çalışma Alanı",car:"Araç Kiralama",jobs:"İş & Kariyer"},
-  bg:{all:"Всички",health:"Здравеопазване",hood:"Квартали",school:"Училища",bank:"Банки",legal:"Правни услуги",dining:"Ресторанти",party:"Купони и клубове",hotel:"Хотели",summer:"Летни дейности",winter:"Зимни дейности",art:"Изкуство и галерии",cultural:"Културни обекти",festival:"Фестивали",tradfest:"Традиционни празници",wine:"Винен туризъм",piano:"Пиано барове",work:"Коуъркинг",car:"Коли под наем",jobs:"Работа"},
+  en:{all:"All",health:"Healthcare",hood:"Neighbourhoods",school:"Schools",bank:"Banking",legal:"Legal",dining:"Dining",party:"Party & Clubs",hotel:"Hotels",summer:"Summer Activities",winter:"Winter Activities",art:"Art & Galleries",cultural:"Cultural Sites",festival:"Festivals",tradfest:"Traditional Fests",wine:"Wine Tourism",bars:"Bars & Pubs",work:"Coworking",car:"Car Rental",jobs:"Work & Jobs"},
+  fr:{all:"Tout",health:"Santé",hood:"Quartiers",school:"Écoles",bank:"Banques",legal:"Juridique",dining:"Restauration",party:"Fêtes & Clubs",hotel:"Hôtels",summer:"Activités d'été",winter:"Activités d'hiver",art:"Art & Galeries",cultural:"Sites culturels",festival:"Festivals",tradfest:"Fêtes traditionnelles",wine:"Œnotourisme",bars:"Bars & Pubs",work:"Coworking",car:"Location de voiture",jobs:"Emploi & Travail"},
+  es:{all:"Todo",health:"Salud",hood:"Barrios",school:"Colegios",bank:"Bancos",legal:"Legal",dining:"Restaurantes",party:"Fiestas y clubes",hotel:"Hoteles",summer:"Actividades de verano",winter:"Actividades de invierno",art:"Arte y galerías",cultural:"Sitios culturales",festival:"Festivales",tradfest:"Fiestas tradicionales",wine:"Turismo del vino",bars:"Bares y pubs",work:"Coworking",car:"Alquiler de coches",jobs:"Empleo y trabajo"},
+  de:{all:"Alle",health:"Gesundheit",hood:"Stadtviertel",school:"Schulen",bank:"Banken",legal:"Recht",dining:"Restaurants",party:"Party & Clubs",hotel:"Hotels",summer:"Sommeraktivitäten",winter:"Winteraktivitäten",art:"Kunst & Galerien",cultural:"Kulturstätten",festival:"Festivals",tradfest:"Traditionelle Feste",wine:"Weintourismus",bars:"Bars & Kneipen",work:"Coworking",car:"Autovermietung",jobs:"Arbeit & Jobs"},
+  nl:{all:"Alles",health:"Gezondheid",hood:"Buurten",school:"Scholen",bank:"Banken",legal:"Juridisch",dining:"Eten & drinken",party:"Feesten & clubs",hotel:"Hotels",summer:"Zomeractiviteiten",winter:"Winteractiviteiten",art:"Kunst & galerieën",cultural:"Culturele bezienswaardigheden",festival:"Festivals",tradfest:"Traditionele feesten",wine:"Wijntoerisme",bars:"Bars & kroegen",work:"Coworking",car:"Autoverhuur",jobs:"Werk & vacatures"},
+  ru:{all:"Все",health:"Здравоохранение",hood:"Районы",school:"Школы",bank:"Банки",legal:"Юридические услуги",dining:"Рестораны",party:"Вечеринки и клубы",hotel:"Отели",summer:"Летние мероприятия",winter:"Зимние мероприятия",art:"Искусство и галереи",cultural:"Культурные объекты",festival:"Фестивали",tradfest:"Традиционные праздники",wine:"Винный туризм",bars:"Бары и пабы",work:"Коворкинг",car:"Аренда авто",jobs:"Работа и вакансии"},
+  uk:{all:"Все",health:"Охорона здоров'я",hood:"Райони",school:"Школи",bank:"Банки",legal:"Юридичні послуги",dining:"Ресторани",party:"Вечірки та клуби",hotel:"Готелі",summer:"Літні заходи",winter:"Зимові заходи",art:"Мистецтво і галереї",cultural:"Культурні об'єкти",festival:"Фестивалі",tradfest:"Традиційні свята",wine:"Винний туризм",bars:"Бари та паби",work:"Коворкінг",car:"Оренда авто",jobs:"Робота та вакансії"},
+  tr:{all:"Tümü",health:"Sağlık",hood:"Mahalleler",school:"Okullar",bank:"Bankacılık",legal:"Hukuki",dining:"Restoranlar",party:"Parti & Kulüpler",hotel:"Oteller",summer:"Yaz Aktiviteleri",winter:"Kış Aktiviteleri",art:"Sanat & Galeriler",cultural:"Kültürel Mekanlar",festival:"Festivaller",tradfest:"Geleneksel Şenlikler",wine:"Şarap Turizmi",bars:"Barlar ve Publar",work:"Ortak Çalışma Alanı",car:"Araç Kiralama",jobs:"İş & Kariyer"},
+  bg:{all:"Всички",health:"Здравеопазване",hood:"Квартали",school:"Училища",bank:"Банки",legal:"Правни услуги",dining:"Ресторанти",party:"Купони и клубове",hotel:"Хотели",summer:"Летни дейности",winter:"Зимни дейности",art:"Изкуство и галерии",cultural:"Културни обекти",festival:"Фестивали",tradfest:"Традиционни празници",wine:"Винен туризъм",bars:"Барове и пъбове",work:"Коуъркинг",car:"Коли под наем",jobs:"Работа"},
 }
 
 // ── MapPage ───────────────────────────────────────────────────────
@@ -4607,7 +4607,7 @@ function MapPage({user,setView,subscription,openCheckout,lang,t}){
   const PREMIUM_CATS = ["car","jobs","work"]
   // Free tier: only Healthcare + Neighbourhoods. Everything else — including
   // Banking and Legal, which used to be free — now requires Basic+.
-  const BASIC_CATS   = ["school","bank","legal","dining","party","hotel","summer","winter","art","cultural","festival","tradfest","wine","piano"]
+  const BASIC_CATS   = ["school","bank","legal","dining","party","hotel","summer","winter","art","cultural","festival","tradfest","wine","bars"]
 
   const canSeeCategory = (cat) => {
     if(PREMIUM_CATS.includes(cat)) return isPremium
