@@ -4549,6 +4549,12 @@ function MapPage({user,setView,subscription,openCheckout,lang,t}){
   const markersRef=useRef([])
   const customMarkersRef=useRef([])
   const [city,setCity]=useState("sofia")
+  // Region groups the pill row (top); the dropdown below it lists only
+  // that region's cities. Kept as its own state (not derived from `city`)
+  // so switching regions doesn't require picking a city immediately.
+  const MAP_REGIONS=[...new Set(MAP_CITIES.map(c=>c.region))]
+  const [region,setRegion]=useState((MAP_CITIES.find(c=>c.id==="sofia")||{}).region||MAP_REGIONS[0])
+  const citiesInRegion=MAP_CITIES.filter(c=>c.region===region)
   const [filter,setFilter]=useState("all")
   const [selected,setSelected]=useState(null)
   const [loaded,setLoaded]=useState(false)
@@ -4951,22 +4957,27 @@ function MapPage({user,setView,subscription,openCheckout,lang,t}){
         </div>
       </div>
 
-      {/* City selector */}
-      <div style={{background:C.primaryDark,padding:"10px 20px",overflowX:"auto"}}>
-        <div style={{maxWidth:1200,margin:"0 auto",display:"flex",gap:6,alignItems:"center"}}>
-          {MAP_CITIES.map((c,i)=>(
-            <Fragment key={c.id}>
-              {(i===0||MAP_CITIES[i-1].region!==c.region)&&(
-                <span style={{fontSize:10,fontWeight:700,color:"rgba(255,255,255,0.4)",letterSpacing:"0.06em",textTransform:"uppercase",flexShrink:0,paddingLeft:i===0?0:4,borderLeft:i===0?"none":"1px solid rgba(255,255,255,0.15)",marginLeft:i===0?0:2}}>
-                  {c.region.replace(" Region","")}
-                </span>
-              )}
-              <button onClick={()=>{setCity(c.id);setFilter("all")}}
-                style={{padding:"6px 14px",borderRadius:20,border:`1.5px solid ${city===c.id?"#f0c060":"rgba(255,255,255,0.15)"}`,background:city===c.id?"rgba(240,192,96,0.2)":"rgba(255,255,255,0.06)",color:city===c.id?"#f0c060":"rgba(255,255,255,0.7)",cursor:"pointer",fontSize:12,fontWeight:city===c.id?700:400,whiteSpace:"nowrap",flexShrink:0,transition:"all 0.15s"}}>
-                <span style={{display:"flex",alignItems:"center",gap:5}}><Icon2c d={MAP_PIN_D} accent="#f0c060" size={14}/>{c.label}</span>
-              </button>
-            </Fragment>
+      {/* Region selector */}
+      <div style={{background:C.primaryDark,padding:"10px 20px 6px",overflowX:"auto"}}>
+        <div style={{maxWidth:1200,margin:"0 auto",display:"flex",gap:6}}>
+          {MAP_REGIONS.map(r=>(
+            <button key={r} onClick={()=>{setRegion(r);const first=MAP_CITIES.find(c=>c.region===r);if(first){setCity(first.id);setFilter("all")}}}
+              style={{padding:"6px 14px",borderRadius:20,border:`1.5px solid ${region===r?"#f0c060":"rgba(255,255,255,0.15)"}`,background:region===r?"rgba(240,192,96,0.2)":"rgba(255,255,255,0.06)",color:region===r?"#f0c060":"rgba(255,255,255,0.7)",cursor:"pointer",fontSize:12,fontWeight:region===r?700:400,whiteSpace:"nowrap",flexShrink:0,transition:"all 0.15s"}}>
+              {r}
+            </button>
           ))}
+        </div>
+      </div>
+      {/* City dropdown — only shows cities within the selected region above */}
+      <div style={{background:C.primaryDark,padding:"6px 20px 10px",borderTop:"1px solid rgba(255,255,255,0.08)"}}>
+        <div style={{maxWidth:1200,margin:"0 auto"}}>
+          <select value={city} onChange={e=>{setCity(e.target.value);setFilter("all")}}
+            style={{padding:"7px 14px",borderRadius:10,border:"1.5px solid rgba(255,255,255,0.2)",background:"rgba(255,255,255,0.08)",color:"#f0c060",cursor:"pointer",fontSize:13,fontWeight:600,outline:"none",maxWidth:260}}>
+            {citiesInRegion.map(c=>(
+              <option key={c.id} value={c.id} style={{background:C.primaryDark,color:"#fff"}}>{c.icon} {c.label}</option>
+            ))}
+          </select>
+          {citiesInRegion.length>1&&<span style={{marginLeft:10,fontSize:11,color:"rgba(255,255,255,0.5)"}}>{citiesInRegion.length} places in {region}</span>}
         </div>
       </div>
 
