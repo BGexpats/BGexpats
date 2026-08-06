@@ -53,6 +53,10 @@ export async function getCurrentUser() {
     name: (profile && profile.name) || session.user.email.split('@')[0],
     av: (profile && profile.av) || session.user.email.slice(0, 2).toUpperCase(),
     isAdmin: (profile && profile.is_admin) || false,
+    accountType: (profile && profile.account_type) || 'expat',
+    inCommunity: !!(profile && profile.in_community),
+    businessName: (profile && profile.business_name) || '',
+    businessCategory: (profile && profile.business_category) || '',
     joined: (profile && profile.created_at)
       ? new Date(profile.created_at).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })
       : ''

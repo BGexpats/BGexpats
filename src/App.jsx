@@ -1171,7 +1171,7 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{},
   }
   return(
     <nav style={{background:C.primary,position:"sticky",top:0,zIndex:100,borderBottom:`1px solid ${C.primaryDark}`}}>
-      <div style={{maxWidth:1100,margin:"0 auto",padding:"0 12px",height:58,display:"flex",alignItems:"center",justifyContent:"space-between",gap:8}}>
+      <div className="bg-nav-row" style={{maxWidth:1100,margin:"0 auto",padding:"0 12px",height:58,display:"flex",alignItems:"center",justifyContent:"space-between",gap:8,overflowX:"auto",scrollbarWidth:"none"}}>
         <button onClick={()=>setView("home")} className="bg-nav-logo" style={{background:"none",border:"none",cursor:"pointer",display:"flex",alignItems:"center",gap:8,padding:0,flexShrink:0}}>
           <img src={LOGO_ICON} alt="BGexpats" style={{height:24,width:24}}/>
           <span className="bg-nav-wordmark" style={{color:"#fff",fontSize:16,fontWeight:700,letterSpacing:"-0.3px"}}>BGexpats</span>
@@ -1226,9 +1226,9 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{},
             </button>
           )}
         </div>
-        {/* ── Dark mode toggle ─────────────────────── */}
+        {/* ── Dark mode toggle (desktop only — moved into the hamburger menu on mobile to save space) ── */}
         {setDark&&(
-          <button onClick={()=>setDark(d=>!d)} aria-label={dark?"Switch to light mode":"Switch to night mode"}
+          <button onClick={()=>setDark(d=>!d)} aria-label={dark?"Switch to light mode":"Switch to night mode"} className="bg-nav-darktoggle"
             style={{background:"rgba(255,255,255,0.12)",border:"1px solid rgba(255,255,255,0.2)",color:"#fff",width:38,height:38,borderRadius:10,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",padding:0,flexShrink:0}}>
             {dark?(
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 3v2M12 19v2M4.2 12H6M18 12h1.8M6.3 6.3l1.3 1.3M16.4 16.4l1.3 1.3M6.3 17.7l1.3-1.3M16.4 7.6l1.3-1.3"/></svg>
@@ -1292,6 +1292,13 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{},
                   ))}
                 </div>
               )}
+              {/* ── Dark mode toggle — lives here on mobile instead of the nav row, to keep the row from overflowing on narrow phones ── */}
+              {setDark&&(
+                <button onClick={()=>setDark(d=>!d)}
+                  style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",background:"transparent",border:"none",padding:"13px 18px",cursor:"pointer",textAlign:"left",fontSize:14,color:"#fff",fontWeight:600,borderTop:"1px solid rgba(255,255,255,0.12)"}}>
+                  <span>{dark?"☀️ Light mode":"🌙 Dark mode"}</span>
+                </button>
+              )}
             </div>
           )}
         </div>
@@ -1321,7 +1328,7 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{},
               )}
             </div>
           ):(
-            <button onClick={()=>setView("login")} style={{display:"flex",alignItems:"center",gap:6,background:"rgba(255,255,255,0.15)",border:"1px solid rgba(255,255,255,0.25)",color:"#fff",padding:"8px 14px",borderRadius:10,cursor:"pointer",fontSize:13,fontWeight:700}}>
+            <button onClick={()=>setView("login")} style={{display:"flex",alignItems:"center",gap:6,background:"rgba(255,255,255,0.15)",border:"1px solid rgba(255,255,255,0.25)",color:"#fff",padding:"8px 14px",borderRadius:10,cursor:"pointer",fontSize:13,fontWeight:700,flexShrink:0,whiteSpace:"nowrap"}}>
               <NavIcon d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 20c0-4 3.6-6 8-6s8 2 8 6" d2="M12 12a4 4 0 100-8 4 4 0 000 8z"/>
               {clean(t.nav?.login)||"Login"}
             </button>
@@ -2042,17 +2049,22 @@ function LoginPage({setUser,setView}){
   const [email,setEmail]=useState("")
   const [pass,setPass]=useState("")
   const [name,setName]=useState("")
+  const [accountType,setAccountType]=useState("expat") // "expat" | "partner"
+  const [businessName,setBusinessName]=useState("")
+  const [businessCategory,setBusinessCategory]=useState("")
   const [err,setErr]=useState("")
   const [ok,setOk]=useState(false)
   const [busy,setBusy]=useState(false)
   const [notice,setNotice]=useState("")
   const [showPass,setShowPass]=useState(false)
+  const BUSINESS_CATEGORIES=["Real Estate","Legal Services","Healthcare","Financial Services & Banking","Moving & Logistics","Education & Schools","Hospitality & Tourism","Home Services & Repairs","Other"]
 
   const submit=async()=>{
     setErr("");setNotice("")
     if(!email.includes("@")){setErr("Please enter a valid email address.");return}
     if(pass.length<6){setErr("Password must be at least 6 characters.");return}
     if(mode==="register"&&!name.trim()){setErr("Please enter your full name.");return}
+    if(mode==="register"&&accountType==="partner"&&!businessName.trim()){setErr("Please enter your business or service name.");return}
 
     setBusy(true)
     try{
@@ -2062,23 +2074,41 @@ function LoginPage({setUser,setView}){
           setErr(error.message||"Could not create your account. Please try again.")
           setBusy(false);return
         }
-        // If email confirmation is on, there's no session yet — tell the user to check their inbox.
+        const partnerExtras = accountType==="partner" ? {account_type:"partner",business_name:businessName.trim(),business_category:businessCategory||"Other"} : {account_type:"expat"}
+        // If email confirmation is on, there's no session yet — nothing to
+        // write to profiles until they're actually authenticated. Stash the
+        // partner details locally and apply them right after their first
+        // successful sign-in below, instead of losing them.
         if(!data.session){
+          if(accountType==="partner"){
+            try{ localStorage.setItem(`bg_pending_partner_${email.toLowerCase()}`, JSON.stringify(partnerExtras)) }catch{}
+          }
           setNotice("Almost there! Check your email to confirm your account, then sign in.")
           setMode("login");setPass("");setBusy(false);return
         }
+        if(data.session) await sbUpdateProfile(data.session.user.id, partnerExtras)
         const u=await sbGetCurrentUser()
-        setUser(u);setOk(true);gtrack("sign_up",{method:"email"})
-        setTimeout(()=>setView("community"),900)
+        setUser(u);setOk(true);gtrack("sign_up",{method:"email",account_type:accountType})
+        setTimeout(()=>setView("account"),900)
       } else {
-        const {error}=await sbSignIn(email,pass)
+        const {data:signInData,error}=await sbSignIn(email,pass)
         if(error){
           setErr("Incorrect email or password.")
           setBusy(false);return
         }
+        // Apply any pending partner details saved during a signup that needed
+        // email confirmation first (see above).
+        try{
+          const pendingKey=`bg_pending_partner_${email.toLowerCase()}`
+          const pending=localStorage.getItem(pendingKey)
+          if(pending&&signInData.session){
+            await sbUpdateProfile(signInData.session.user.id, JSON.parse(pending))
+            localStorage.removeItem(pendingKey)
+          }
+        }catch{}
         const u=await sbGetCurrentUser()
         setUser(u);setOk(true);gtrack("login",{method:"email"})
-        setTimeout(()=>setView("community"),900)
+        setTimeout(()=>setView("account"),900)
       }
     }catch(e){
       setErr("Something went wrong. Please try again.")
@@ -2112,10 +2142,43 @@ function LoginPage({setUser,setView}){
             </div>
             {mode==="register"&&(
               <div style={{marginBottom:16}}>
+                <label style={{display:"block",fontSize:13,fontWeight:600,color:C.text,marginBottom:5}}>Account type</label>
+                <div style={{display:"flex",gap:8}}>
+                  {[["expat","M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4.4 3.6-7 8-7s8 2.6 8 7","Expat"],["partner","M4 8h16v11H4zM9 8V6a2 2 0 012-2h4a2 2 0 012 2v2","Business / Partner"]].map(([k,d,l])=>(
+                    <button key={k} type="button" onClick={()=>setAccountType(k)}
+                      style={{flex:1,padding:"10px",borderRadius:9,border:`1.5px solid ${accountType===k?C.primary:C.border}`,background:accountType===k?C.primaryLight:"transparent",color:accountType===k?C.primary:C.muted,cursor:"pointer",fontSize:13,fontWeight:accountType===k?700:400,display:"flex",alignItems:"center",justifyContent:"center",gap:7}}>
+                      <Icon2c d={d} accent={accountType===k?C.primary:C.muted} size={15}/>{l}
+                    </button>
+                  ))}
+                </div>
+                <p style={{fontSize:11.5,color:C.muted,margin:"6px 0 0"}}>
+                  {accountType==="partner"?"For businesses and service providers who want to reach expats — e.g. real estate agents, lawyers, movers.":"For individuals living in or moving to Bulgaria."}
+                </p>
+              </div>
+            )}
+            {mode==="register"&&(
+              <div style={{marginBottom:16}}>
                 <label style={{display:"block",fontSize:13,fontWeight:600,color:C.text,marginBottom:5}}>Full name</label>
                 <input value={name} onChange={e=>setName(e.target.value)} placeholder="Maria Ivanova"
                   style={{width:"100%",border:`1px solid ${C.border}`,borderRadius:9,padding:"11px 14px",fontSize:14,outline:"none",color:C.text,background:C.page,boxSizing:"border-box"}}/>
               </div>
+            )}
+            {mode==="register"&&accountType==="partner"&&(
+              <>
+                <div style={{marginBottom:16}}>
+                  <label style={{display:"block",fontSize:13,fontWeight:600,color:C.text,marginBottom:5}}>Business / service name</label>
+                  <input value={businessName} onChange={e=>setBusinessName(e.target.value)} placeholder="e.g. Sofia Real Estate Ltd."
+                    style={{width:"100%",border:`1px solid ${C.border}`,borderRadius:9,padding:"11px 14px",fontSize:14,outline:"none",color:C.text,background:C.page,boxSizing:"border-box"}}/>
+                </div>
+                <div style={{marginBottom:16}}>
+                  <label style={{display:"block",fontSize:13,fontWeight:600,color:C.text,marginBottom:5}}>Category</label>
+                  <select value={businessCategory} onChange={e=>setBusinessCategory(e.target.value)}
+                    style={{width:"100%",border:`1px solid ${C.border}`,borderRadius:9,padding:"11px 14px",fontSize:14,outline:"none",color:C.text,background:C.page,boxSizing:"border-box",cursor:"pointer"}}>
+                    <option value="">Select a category…</option>
+                    {BUSINESS_CATEGORIES.map(c=><option key={c} value={c}>{c}</option>)}
+                  </select>
+                </div>
+              </>
             )}
             <div style={{marginBottom:16}}>
               <label style={{display:"block",fontSize:13,fontWeight:600,color:C.text,marginBottom:5}}>Email address</label>
@@ -2197,7 +2260,7 @@ const loadPosts = () => {
 }
 
 
-function CommunityPage({user,setView,posts,setPosts}){
+function CommunityPage({user,setUser,setView,posts,setPosts}){
   const [filter,setFilter]=useState("all")
   const [newPost,setNewPost]=useState("")
   const [newCat,setNewCat]=useState("general")
@@ -2209,13 +2272,21 @@ function CommunityPage({user,setView,posts,setPosts}){
     window.addEventListener("resize",onResize)
     return()=>window.removeEventListener("resize",onResize)
   },[])
+  const [joiningCommunity,setJoiningCommunity]=useState(false)
   const filtered=filter==="all"?posts:posts.filter(p=>p.cat===filter)
   const tabs=["all","general","legal","healthcare","banking","tourism","housing","business"]
+
+  const joinCommunity=async()=>{
+    setJoiningCommunity(true)
+    const {error}=await sbUpdateProfile(user.id,{in_community:true})
+    setJoiningCommunity(false)
+    if(!error) setUser(u=>u?{...u,inCommunity:true}:u)
+  }
 
   const addPost=()=>{
     if(!newPost.trim())return
     const av=(user.av||user.name.slice(0,2).toUpperCase())
-    setPosts(prev=>[{id:Date.now(),author:user.name,av,time:"Just now",content:newPost.trim(),likes:0,liked:false,cat:newCat,replies:[]},...prev])
+    setPosts(prev=>[{id:Date.now(),author:user.name,av,time:"Just now",content:newPost.trim(),likes:0,liked:false,cat:newCat,replies:[],accountType:user.accountType||"expat"},...prev])
     setNewPost("")
   }
   const toggleLike=(id)=>{
@@ -2241,7 +2312,18 @@ function CommunityPage({user,setView,posts,setPosts}){
 
       <div style={{maxWidth:1100,margin:"0 auto",padding:isMobile?"18px 14px":"24px 20px",display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 300px",gap:isMobile?16:20,alignItems:"start"}}>
         <div style={{minWidth:0}}>
-          {user&&(
+          {user&&!user.inCommunity&&(
+            <div style={{background:C.primaryLight,border:`1px solid ${C.primary}30`,borderRadius:16,padding:"20px",marginBottom:16,textAlign:"center"}}>
+              <div style={{fontSize:28,marginBottom:8}}>💬</div>
+              <div style={{fontWeight:700,fontSize:15,color:C.primary,marginBottom:4}}>Activate Community to post &amp; comment</div>
+              <p style={{fontSize:13,color:C.muted,margin:"0 0 14px",lineHeight:1.5}}>You can already read everything below — activating lets you post, reply, and appear as a member.</p>
+              <button onClick={joinCommunity} disabled={joiningCommunity}
+                style={{background:C.primary,border:"none",color:"#fff",padding:"10px 22px",borderRadius:9,cursor:joiningCommunity?"default":"pointer",fontSize:14,fontWeight:700}}>
+                {joiningCommunity?"…":"Activate Community →"}
+              </button>
+            </div>
+          )}
+          {user&&user.inCommunity&&(
             <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,padding:"18px",marginBottom:16,boxShadow:"0 1px 4px rgba(0,0,0,0.05)"}}>
               <div style={{display:"flex",gap:12,marginBottom:12}}>
                 <Av initials={user.av||user.name.slice(0,2).toUpperCase()} size={40}/>
@@ -2279,6 +2361,7 @@ function CommunityPage({user,setView,posts,setPosts}){
                   <div style={{flex:1,minWidth:0}}>
                     <div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap",marginBottom:6}}>
                       <span style={{fontWeight:700,fontSize:14,color:C.text}}>{post.author}</span>
+                      {post.accountType==="partner"&&<span style={{fontSize:9,background:"#f0c060",color:"#1a3a20",padding:"2px 7px",borderRadius:6,fontWeight:700}}>PARTNER</span>}
                       <span style={{fontSize:11,color:C.muted}}>{post.time}</span>
                       <span style={{fontSize:11,background:CAT_COLORS[post.cat],padding:"2px 9px",borderRadius:10,color:C.text,display:"inline-flex",alignItems:"center",gap:4}}><Icon2c d={(COMMUNITY_ICON_MAP[post.cat]||{}).d} accent={(COMMUNITY_ICON_MAP[post.cat]||{}).accent} size={12}/>{post.cat}</span>
                     </div>
@@ -5416,7 +5499,7 @@ function PricingPage({user,setView,lang,t,openCheckout=()=>{}}){
                 <span style={{fontSize:12,color:C.muted}}>{(t&&t.passesOneTime)||"one-time"} / {i18n.duration}</span>
               </div>
               <button onClick={()=>openCheckout(id)}
-                style={{width:"100%",background:"none",border:`1.5px solid ${C.primary}`,color:C.primary,padding:"10px",borderRadius:10,cursor:"pointer",fontSize:13,fontWeight:600}}>
+                style={{width:"100%",background:C.primary,border:`1.5px solid ${C.primary}`,color:"#fff",padding:"10px",borderRadius:10,cursor:"pointer",fontSize:13,fontWeight:700,boxShadow:`0 3px 12px ${C.primary}55`}}>
                 {(t&&t.passesGet)||"Get"} {i18n.name} →
               </button>
             </div>
@@ -5435,7 +5518,7 @@ function PricingPage({user,setView,lang,t,openCheckout=()=>{}}){
 const PROFILE_CITIES=["Sofia","Plovdiv","Varna","Burgas","Bansko","Ruse","Stara Zagora","Sunny Beach","Nessebar","Other"]
 const PROFILE_LANGS=["English","Bulgarian","Russian","German","French","Spanish","Dutch","Turkish","Ukrainian","Italian","Polish","Romanian"]
 
-function AccountPage({user,setUser,setView}){
+function AccountPage({user,setUser,setView,subscription}){
   const [name,setName]=useState("")
   const [bio,setBio]=useState("")
   const [origin,setOrigin]=useState("")
@@ -5445,13 +5528,20 @@ function AccountPage({user,setUser,setView}){
   const [languages,setLanguages]=useState([])
   const [avatarUrl,setAvatarUrl]=useState("")
   const [inConnect,setInConnect]=useState(false)
+  const [inCommunity,setInCommunity]=useState(false)
+  const [accountType,setAccountType]=useState("expat")
+  const [businessName,setBusinessName]=useState("")
+  const [businessCategory,setBusinessCategory]=useState("")
   const [loading,setLoading]=useState(true)
   const [saving,setSaving]=useState(false)
   const [joining,setJoining]=useState(false)
+  const [joiningCommunity,setJoiningCommunity]=useState(false)
   const [uploading,setUploading]=useState(false)
   const [msg,setMsg]=useState("")
   const [err,setErr]=useState("")
   const fileRef=useRef(null)
+  const isPremium=(subscription&&subscription.plan)==="premium"
+  const BUSINESS_CATEGORIES=["Real Estate","Legal Services","Healthcare","Financial Services & Banking","Moving & Logistics","Education & Schools","Hospitality & Tourism","Home Services & Repairs","Other"]
   const [isMobile,setIsMobile]=useState(typeof window!=="undefined"&&window.innerWidth<=768)
   useEffect(()=>{
     const onResize=()=>setIsMobile(window.innerWidth<=768)
@@ -5476,6 +5566,10 @@ function AccountPage({user,setUser,setView}){
         setLanguages(data.languages||[])
         setAvatarUrl(data.avatar_url||"")
         setInConnect(!!data.in_connect)
+        setInCommunity(!!data.in_community)
+        setAccountType(data.account_type||"expat")
+        setBusinessName(data.business_name||"")
+        setBusinessCategory(data.business_category||"")
       }
       setLoading(false)
     })()
@@ -5488,6 +5582,7 @@ function AccountPage({user,setUser,setView}){
   const save=async()=>{
     setErr("");setMsg("")
     if(!name.trim()){setErr("Please enter a name.");return}
+    if(accountType==="partner"&&!businessName.trim()){setErr("Please enter a business name.");return}
     setSaving(true)
     const {error}=await sbUpdateProfile(user.id,{
       name:name.trim(),
@@ -5497,6 +5592,7 @@ function AccountPage({user,setUser,setView}){
       looking_for:lookingFor||null,
       interests:interests.length?interests:null,
       languages:languages.length?languages:null,
+      ...(accountType==="partner"?{business_name:businessName.trim(),business_category:businessCategory||"Other"}:{}),
     })
     setSaving(false)
     if(error){
@@ -5506,6 +5602,21 @@ function AccountPage({user,setUser,setView}){
     }
     setUser(u=>u?{...u,name:name.trim()}:u)
     setMsg("Profile saved.")
+    setTimeout(()=>setMsg(""),3000)
+  }
+
+  // Join or leave the Community (the opt-in that lets you post, comment, and
+  // appear as a member — separate from just having an account).
+  const toggleCommunity=async()=>{
+    setErr("");setMsg("")
+    setJoiningCommunity(true)
+    const next=!inCommunity
+    const {error}=await sbUpdateProfile(user.id,{in_community:next})
+    setJoiningCommunity(false)
+    if(error){ setErr("Could not update: "+(error.message||"unknown error")); return }
+    setInCommunity(next)
+    setUser(u=>u?{...u,inCommunity:next}:u)
+    setMsg(next?"You're now part of the community!":"You've left the community.")
     setTimeout(()=>setMsg(""),3000)
   }
 
@@ -5605,6 +5716,51 @@ function AccountPage({user,setUser,setView}){
                 <div style={{fontSize:11,color:C.muted,marginTop:3}}>This is shown across BGexpats, including in Meet & Connect if you join.</div>
               </div>
 
+              {/* Business details — Partner accounts only */}
+              {accountType==="partner"&&(
+                <div style={{marginBottom:16,background:"#fef9ef",border:"1px solid #f0d9a8",borderRadius:12,padding:"14px"}}>
+                  <div style={{fontSize:12,fontWeight:700,color:"#92400e",marginBottom:10,display:"flex",alignItems:"center",gap:6}}><Icon2c d="M4 8h16v11H4zM9 8V6a2 2 0 012-2h4a2 2 0 012 2v2" accent="#92400e" size={14}/>PARTNER ACCOUNT</div>
+                  <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>BUSINESS / SERVICE NAME</label>
+                  <input value={businessName} onChange={e=>setBusinessName(e.target.value.slice(0,60))}
+                    placeholder="e.g. Sofia Real Estate Ltd."
+                    style={{...inputStyle,marginBottom:12}}/>
+                  <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>CATEGORY</label>
+                  <select value={businessCategory} onChange={e=>setBusinessCategory(e.target.value)}
+                    style={{...inputStyle,cursor:"pointer"}}>
+                    <option value="">Select a category…</option>
+                    {BUSINESS_CATEGORIES.map(c=><option key={c} value={c}>{c}</option>)}
+                  </select>
+                </div>
+              )}
+
+              {/* Advertising pricing preview — Partner accounts only. Being a
+                  Partner (community participation) and advertising (map
+                  listing / featured / sponsored) are two separate things —
+                  this just makes sure Partners actually see what advertising
+                  costs, right from their own dashboard, instead of only
+                  finding it if they happen to click Advertise in the nav. */}
+              {accountType==="partner"&&(
+                <div style={{marginBottom:16,background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,padding:"14px"}}>
+                  <div style={{fontSize:12,fontWeight:700,color:C.text,marginBottom:2}}>Want to advertise to expats too?</div>
+                  <p style={{fontSize:12,color:C.muted,margin:"0 0 12px",lineHeight:1.5}}>Being a Partner gets you into the community. Advertising puts your business on the map and in front of people searching for exactly what you offer.</p>
+                  <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:12}}>
+                    {AD_TIERS.map(tier=>(
+                      <div key={tier.id} style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"9px 12px",background:C.page,borderRadius:9,border:`1px solid ${C.border}`}}>
+                        <div>
+                          <div style={{fontSize:13,fontWeight:600,color:C.text}}>{tier.name}{tier.popular&&<span style={{marginLeft:6,fontSize:9,background:tier.accent,color:"#fff",padding:"1px 6px",borderRadius:5,fontWeight:700}}>POPULAR</span>}</div>
+                          <div style={{fontSize:11,color:C.muted}}>{tier.tagline}</div>
+                        </div>
+                        <div style={{fontSize:14,fontWeight:700,color:tier.accent,flexShrink:0,marginLeft:10}}>€{tier.monthly}<span style={{fontSize:11,fontWeight:400,color:C.muted}}>/mo</span></div>
+                      </div>
+                    ))}
+                  </div>
+                  <button onClick={()=>setView("advertise")}
+                    style={{width:"100%",background:"none",border:`1.5px solid ${C.primary}`,color:C.primary,padding:"9px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:700}}>
+                    See full pricing & get started →
+                  </button>
+                </div>
+              )}
+
               {/* I am — Bulgarian or Expat */}
               <div style={{marginBottom:16}}>
                 <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:6}}>I AM</label>
@@ -5680,25 +5836,64 @@ function AccountPage({user,setUser,setView}){
                 {saving?"Saving…":"Save profile"}
               </button>
 
-              {/* Meet & Connect opt-in — separate from having a BGexpats account */}
+              {/* Community opt-in — separate from just having a BGexpats account */}
               <div style={{marginTop:22,paddingTop:20,borderTop:`1px solid ${C.border}`}}>
-                <div style={{display:"flex",alignItems:"flex-start",gap:12,background:inConnect?"#f0fff4":"#f9f6ff",border:`1px solid ${inConnect?"#bce8cd":"#e9d5ff"}`,borderRadius:12,padding:"16px"}}>
-                  <div style={{flexShrink:0,width:38,height:38,borderRadius:10,background:inConnect?"#dcfce7":"#f3e8ff",display:"flex",alignItems:"center",justifyContent:"center"}}>
-                    <Icon2c d={CONNECT_ICON_D} accent={inConnect?"#16a34a":"#9333ea"} size={20}/>
+                <div style={{display:"flex",alignItems:"flex-start",gap:12,background:inCommunity?"#f0fff4":C.page,border:`1px solid ${inCommunity?"#bce8cd":C.border}`,borderRadius:12,padding:"16px"}}>
+                  <div style={{flexShrink:0,width:38,height:38,borderRadius:10,background:inCommunity?"#dcfce7":C.primaryLight,display:"flex",alignItems:"center",justifyContent:"center"}}>
+                    <Icon2c d="M4 4h16v12H7l-3 3V4z" accent={inCommunity?"#16a34a":C.primary} size={20}/>
                   </div>
                   <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:15,fontWeight:700,color:C.text,marginBottom:3}}>Meet &amp; Connect</div>
+                    <div style={{fontSize:15,fontWeight:700,color:C.text,marginBottom:3}}>Community{accountType==="partner"&&<span style={{marginLeft:6,fontSize:10,background:"#f0c060",color:"#1a3a20",padding:"2px 7px",borderRadius:6,fontWeight:700,verticalAlign:"middle"}}>PARTNER</span>}</div>
                     <p style={{fontSize:13,color:C.muted,margin:"0 0 12px",lineHeight:1.6}}>
-                      {inConnect
-                        ? "Your profile is visible to other members in Meet & Connect. You can leave anytime."
-                        : "Optional — join to appear in Meet & Connect so other members can find you. Your BGexpats account works with or without this."}
+                      {inCommunity
+                        ? (accountType==="partner"?"Your posts show a Partner badge so members know you're a business, not another expat. You can leave anytime.":"You can post, comment, and appear as a member. You can leave anytime.")
+                        : "Optional — activate to post, comment, and be part of the community. Your BGexpats account works with or without this."}
                     </p>
-                    <button onClick={toggleConnect} disabled={joining}
-                      style={{background:inConnect?"transparent":"#9333ea",border:inConnect?`1.5px solid ${C.border}`:"none",color:inConnect?C.muted:"#fff",padding:"9px 18px",borderRadius:9,cursor:joining?"default":"pointer",fontSize:14,fontWeight:700}}>
-                      {joining?"…":(inConnect?"Leave Meet & Connect":"Join Meet & Connect →")}
+                    <button onClick={toggleCommunity} disabled={joiningCommunity}
+                      style={{background:inCommunity?"transparent":C.primary,border:inCommunity?`1.5px solid ${C.border}`:"none",color:inCommunity?C.muted:"#fff",padding:"9px 18px",borderRadius:9,cursor:joiningCommunity?"default":"pointer",fontSize:14,fontWeight:700}}>
+                      {joiningCommunity?"…":(inCommunity?"Leave Community":"Activate Community →")}
                     </button>
                   </div>
                 </div>
+              </div>
+
+              {/* Meet & Connect opt-in — Premium only, separate from Community */}
+              <div style={{marginTop:14}}>
+                {isPremium?(
+                  <div style={{display:"flex",alignItems:"flex-start",gap:12,background:inConnect?"#f0fff4":"#f9f6ff",border:`1px solid ${inConnect?"#bce8cd":"#e9d5ff"}`,borderRadius:12,padding:"16px"}}>
+                    <div style={{flexShrink:0,width:38,height:38,borderRadius:10,background:inConnect?"#dcfce7":"#f3e8ff",display:"flex",alignItems:"center",justifyContent:"center"}}>
+                      <Icon2c d={CONNECT_ICON_D} accent={inConnect?"#16a34a":"#9333ea"} size={20}/>
+                    </div>
+                    <div style={{flex:1,minWidth:0}}>
+                      <div style={{fontSize:15,fontWeight:700,color:C.text,marginBottom:3}}>Meet &amp; Connect</div>
+                      <p style={{fontSize:13,color:C.muted,margin:"0 0 12px",lineHeight:1.6}}>
+                        {inConnect
+                          ? "Your profile is visible to other members in Meet & Connect. You can leave anytime."
+                          : "Optional — join to appear in Meet & Connect so other members can find you. Your BGexpats account works with or without this."}
+                      </p>
+                      <button onClick={toggleConnect} disabled={joining}
+                        style={{background:inConnect?"transparent":"#9333ea",border:inConnect?`1.5px solid ${C.border}`:"none",color:inConnect?C.muted:"#fff",padding:"9px 18px",borderRadius:9,cursor:joining?"default":"pointer",fontSize:14,fontWeight:700}}>
+                        {joining?"…":(inConnect?"Leave Meet & Connect":"Join Meet & Connect →")}
+                      </button>
+                    </div>
+                  </div>
+                ):(
+                  <div style={{display:"flex",alignItems:"flex-start",gap:12,background:"#1a0f00",border:"1px solid #f0c06040",borderRadius:12,padding:"16px"}}>
+                    <div style={{flexShrink:0,width:38,height:38,borderRadius:10,background:"rgba(240,192,96,0.15)",display:"flex",alignItems:"center",justifyContent:"center"}}>
+                      <Icon2c d={CONNECT_ICON_D} accent="#f0c060" size={20}/>
+                    </div>
+                    <div style={{flex:1,minWidth:0}}>
+                      <div style={{fontSize:15,fontWeight:700,color:"#f0c060",marginBottom:3}}>Meet &amp; Connect — Premium</div>
+                      <p style={{fontSize:13,color:"rgba(255,255,255,0.6)",margin:"0 0 12px",lineHeight:1.6}}>
+                        Meet other expats directly — upgrade to Premium to unlock this.
+                      </p>
+                      <button onClick={()=>setView("pricing")}
+                        style={{background:"linear-gradient(135deg,#f0c060,#e8a020)",border:"none",color:"#1a3a20",padding:"9px 18px",borderRadius:9,cursor:"pointer",fontSize:14,fontWeight:700}}>
+                        Upgrade to Premium →
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
 
               <p style={{fontSize:11,color:C.muted,textAlign:"center",margin:"14px 0 0",lineHeight:1.5}}>
@@ -6219,6 +6414,8 @@ export default function App(){
         /* Nav on small screens: keep the logo AND wordmark visible, drop only the
            user's first name so the avatar button always has room. */
         .nav-links::-webkit-scrollbar{display:none}
+        .bg-nav-row::-webkit-scrollbar{display:none}
+        .bg-nav-row{-ms-overflow-style:none}
         @media (max-width: 560px){
           .bg-nav-username{display:none}
         }
@@ -6259,6 +6456,8 @@ export default function App(){
           .bg-chat-bubble{max-width:95% !important}
           /* Upgrade lives in the Explore menu on mobile to avoid banner overflow */
           .bg-nav-upgrade{display:none !important}
+          /* Dark mode toggle moves into the hamburger menu on mobile to free up space in the nav row */
+          .bg-nav-darktoggle{display:none !important}
           /* Mobile nav: hide desktop dropdowns, show hamburger */
           .bg-nav-desktop{display:none !important}
           .bg-nav-mobile{display:block !important;order:-1}
@@ -6353,7 +6552,7 @@ export default function App(){
       ):view==="analytics"?(
         <AnalyticsPage liveEvents={liveEvents} user={user}/>
       ):view==="account"?(
-        <AccountPage user={user} setUser={setUser} setView={setView}/>
+        <AccountPage user={user} setUser={setUser} setView={setView} subscription={subscription}/>
       ):view==="agents"?(
         <AgentsPage setView={setView}/>
       ):view==="map"?(
@@ -6363,7 +6562,7 @@ export default function App(){
       ):view==="pricing"?(
         <PricingPage user={user} setView={setView} lang={lang} t={t} openCheckout={openCheckout}/>
       ):view==="community"?(
-        <CommunityPage user={user} setView={setView} posts={posts} setPosts={setPosts}/>
+        <CommunityPage user={user} setUser={setUser} setView={setView} posts={posts} setPosts={setPosts}/>
       ):view==="chat"?(
         <ChatPage lang={lang} t={t} user={user} subscription={subscription} setView={setView}/>
       ):view.startsWith("travel-")?(
