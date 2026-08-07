@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, Fragment } from "react"
-import { signUp as sbSignUp, signIn as sbSignIn, signOut as sbSignOut, getCurrentUser as sbGetCurrentUser, resetPassword as sbResetPassword, getProfile as sbGetProfile, updateProfile as sbUpdateProfile, uploadAvatar as sbUploadAvatar, listProfiles as sbListProfiles, getPins as sbGetPins, savePin as sbSavePin, deletePin as sbDeletePin, updatePin as sbUpdatePin, getTrips as sbGetTrips, saveTrip as sbSaveTrip, updateTrip as sbUpdateTrip, deleteTrip as sbDeleteTrip } from "./supabase"
+import { signUp as sbSignUp, signIn as sbSignIn, signOut as sbSignOut, getCurrentUser as sbGetCurrentUser, resetPassword as sbResetPassword, getProfile as sbGetProfile, updateProfile as sbUpdateProfile, uploadAvatar as sbUploadAvatar, listProfiles as sbListProfiles, getPins as sbGetPins, savePin as sbSavePin, deletePin as sbDeletePin, updatePin as sbUpdatePin, getTrips as sbGetTrips, saveTrip as sbSaveTrip, updateTrip as sbUpdateTrip, deleteTrip as sbDeleteTrip, getMyMessages as sbGetMyMessages, getThread as sbGetThread, sendMessage as sbSendMessage, markThreadRead as sbMarkThreadRead, listPartners as sbListPartners, searchProfiles as sbSearchProfiles, getProfilesByIds as sbGetProfilesByIds, getUnreadCount as sbGetUnreadCount } from "./supabase"
 import heroImg1 from "./assets/hero-rila-lake.jpg"
 import nessebar from "./assets/nessebar.jpg"
 import plovdiv from "./assets/plovdiv.jpg"
@@ -1111,7 +1111,7 @@ function LangBanner({lang,setLang}){
   )
 }
 
-function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{},dark,setDark}){
+function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{},dark,setDark,unreadMsgs=0}){
   const [mob,setMob]=useState(false)
   const [mobSection,setMobSection]=useState(null) // null|"expats"|"partners" — which accordion group is open in the mobile menu
   const mobRef=useRef(null)
@@ -1310,7 +1310,12 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{},
             <div style={{position:"relative"}}>
               <button onClick={()=>setUserMenu(!userMenu)}
                 style={{background:"rgba(255,255,255,0.15)",border:"1px solid rgba(255,255,255,0.25)",color:"#fff",padding:"5px 10px 5px 6px",borderRadius:20,cursor:"pointer",fontSize:13,display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
-                <div style={{width:26,height:26,borderRadius:"50%",background:"rgba(255,255,255,0.25)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700,flexShrink:0}}>{user.av||user.name.slice(0,2).toUpperCase()}</div>
+                <div style={{position:"relative",flexShrink:0}}>
+                  <div style={{width:26,height:26,borderRadius:"50%",background:"rgba(255,255,255,0.25)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700}}>{user.av||user.name.slice(0,2).toUpperCase()}</div>
+                  {unreadMsgs>0&&(
+                    <span style={{position:"absolute",top:-3,right:-3,minWidth:15,height:15,padding:"0 3px",borderRadius:8,background:"#dc2626",border:`1.5px solid ${C.primary}`,color:"#fff",fontSize:9,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",lineHeight:1}}>{unreadMsgs>9?"9+":unreadMsgs}</span>
+                  )}
+                </div>
                 <span className="bg-nav-username">{user.name.split(" ")[0]}</span>
               </button>
               {userMenu&&(
@@ -1322,6 +1327,11 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{},
                   <button onClick={()=>{setView("account");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:C.text,display:"flex",alignItems:"center",gap:9,borderTop:`1px solid ${C.border}`}}><svg width="15" height="15" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#1e5e3f" fillOpacity=".28" stroke="none" d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/><path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>My account</button>
                   <button onClick={()=>{setView("advertise");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:"#b8792a",display:"flex",alignItems:"center",gap:9,borderTop:`1px solid ${C.border}`}}><svg width="15" height="15" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#b8792a" fillOpacity=".3" stroke="none" d="M3 11l18-5v12L3 14v-3z"/><path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M3 11l18-5v12L3 14v-3z"/></svg>Advertise on BGexpats</button>
           <button onClick={()=>{setView("community");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:C.text,display:"flex",alignItems:"center",gap:9}}><svg width="15" height="15" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#f0c060" fillOpacity=".35" stroke="none" d="M4 4h16v12H7l-3 3V4z"/><path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M4 4h16v12H7l-3 3V4z"/></svg>My community</button>
+                  <button onClick={()=>{setView("messages");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:C.text,display:"flex",alignItems:"center",gap:9}}>
+                    <svg width="15" height="15" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#1e5e3f" fillOpacity=".28" stroke="none" d="M4 4h16v12H7l-3 3V4z"/><path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M4 4h16v12H7l-3 3V4z"/></svg>
+                    Messages
+                    {unreadMsgs>0&&<span style={{marginLeft:"auto",background:"#dc2626",color:"#fff",fontSize:10,fontWeight:700,minWidth:16,height:16,padding:"0 3px",borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center"}}>{unreadMsgs>9?"9+":unreadMsgs}</span>}
+                  </button>
                   {(user&&user.isAdmin)&&<button onClick={()=>{setView("analytics");setUserMenu(false)}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:"#1d4ed8",display:"flex",alignItems:"center",gap:9,borderTop:"1px solid var(--border)"}}><svg width="15" height="15" viewBox="0 0 24 24" style={{flexShrink:0}}><path fill="#1d4ed8" fillOpacity=".25" stroke="none" d="M5 20V10h4v10H5zm5 0V4h4v16h-4zm5 0v-7h4v7h-4z"/><path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d="M5 20V10h4v10H5zm5 0V4h4v16h-4zm5 0v-7h4v7h-4z"/></svg>Analytics dashboard</button>}
                   <button onClick={async()=>{await sbSignOut();setUser(null);setUserMenu(false);setView("home")}} style={{width:"100%",background:"none",border:"none",padding:"12px 16px",cursor:"pointer",textAlign:"left",fontSize:13,color:"#c00",display:"flex",alignItems:"center",gap:9,borderTop:`1px solid ${C.border}`}}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0}}><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Sign out</button>
                 </div>
@@ -2256,12 +2266,11 @@ function LoginPage({setUser,setView,openCheckout,lang,setLang}){
               )}
             </div>
 
-            {/* Just visiting? Day/Week Pass, no account needed — passes are
-                session-based access, not tied to a persistent account, so
-                requiring registration for them was unnecessary friction. */}
+            {/* Quick link to Day/Week Pass checkout — still requires an
+                account (reverted), just saves a click from Pricing. */}
             {openCheckout&&(
               <div style={{marginTop:16,paddingTop:16,borderTop:`1px solid ${C.border}`,textAlign:"center"}}>
-                <p style={{fontSize:12.5,color:C.muted,margin:"0 0 10px",display:"flex",alignItems:"center",justifyContent:"center",gap:6}}><Icon2c d="M4 7h16v13a1 1 0 01-1 1H5a1 1 0 01-1-1V7zM8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M4 12h16" accent={C.muted} size={14}/>Just visiting Bulgaria? No account needed for a pass.</p>
+                <p style={{fontSize:12.5,color:C.muted,margin:"0 0 10px",display:"flex",alignItems:"center",justifyContent:"center",gap:6}}><Icon2c d="M4 7h16v13a1 1 0 01-1 1H5a1 1 0 01-1-1V7zM8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M4 12h16" accent={C.muted} size={14}/>Just visiting Bulgaria? Get a Day or Week Pass.</p>
                 <div style={{display:"flex",gap:8}}>
                   {Object.entries(PASSES).map(([id,pass])=>(
                     <button key={id} onClick={()=>openCheckout(id)}
@@ -2331,7 +2340,7 @@ function CommunityPage({user,setUser,setView,posts,setPosts}){
   const addPost=()=>{
     if(!newPost.trim())return
     const av=(user.av||user.name.slice(0,2).toUpperCase())
-    setPosts(prev=>[{id:Date.now(),author:user.name,av,time:"Just now",content:newPost.trim(),likes:0,liked:false,cat:newCat,replies:[],accountType:user.accountType||"expat"},...prev])
+    setPosts(prev=>[{id:Date.now(),author:user.name,av,time:"Just now",content:newPost.trim(),likes:0,liked:false,cat:newCat,replies:[],role:userRole(user)},...prev])
     setNewPost("")
   }
   const toggleLike=(id)=>{
@@ -2340,7 +2349,7 @@ function CommunityPage({user,setUser,setView,posts,setPosts}){
   const addReply=(id)=>{
     if(!replyText.trim())return
     const av=(user.av||user.name.slice(0,2).toUpperCase())
-    setPosts(prev=>prev.map(p=>p.id===id?{...p,replies:[...p.replies,{author:user.name,av,text:replyText.trim()}]}:p))
+    setPosts(prev=>prev.map(p=>p.id===id?{...p,replies:[...p.replies,{author:user.name,av,text:replyText.trim(),role:userRole(user)}]}:p))
     setReplyText("");setReplyOpen(null)
   }
 
@@ -2406,7 +2415,7 @@ function CommunityPage({user,setUser,setView,posts,setPosts}){
                   <div style={{flex:1,minWidth:0}}>
                     <div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap",marginBottom:6}}>
                       <span style={{fontWeight:700,fontSize:14,color:C.text}}>{post.author}</span>
-                      {post.accountType==="partner"&&<span style={{fontSize:9,background:"#f0c060",color:"#1a3a20",padding:"2px 7px",borderRadius:6,fontWeight:700}}>PARTNER</span>}
+                      {post.role&&ROLE_BADGES[post.role]&&<span style={{fontSize:9,background:ROLE_BADGES[post.role].bg,color:ROLE_BADGES[post.role].color,padding:"2px 7px",borderRadius:6,fontWeight:700}}>{ROLE_BADGES[post.role].label}</span>}
                       <span style={{fontSize:11,color:C.muted}}>{post.time}</span>
                       <span style={{fontSize:11,background:CAT_COLORS[post.cat],padding:"2px 9px",borderRadius:10,color:C.text,display:"inline-flex",alignItems:"center",gap:4}}><Icon2c d={(COMMUNITY_ICON_MAP[post.cat]||{}).d} accent={(COMMUNITY_ICON_MAP[post.cat]||{}).accent} size={12}/>{post.cat}</span>
                     </div>
@@ -2429,6 +2438,7 @@ function CommunityPage({user,setUser,setView,posts,setPosts}){
                             <Av initials={r.av} size={28}/>
                             <div style={{background:C.page,borderRadius:10,padding:"8px 12px",flex:1}}>
                               <span style={{fontWeight:700,fontSize:12,color:C.text}}>{r.author}</span>
+                              {r.role&&ROLE_BADGES[r.role]&&<span style={{marginLeft:6,fontSize:8,background:ROLE_BADGES[r.role].bg,color:ROLE_BADGES[r.role].color,padding:"1px 6px",borderRadius:5,fontWeight:700}}>{ROLE_BADGES[r.role].label}</span>}
                               <p style={{fontSize:13,color:C.text,margin:"3px 0 0",lineHeight:1.55}}>{r.text}</p>
                             </div>
                           </div>
@@ -2484,6 +2494,237 @@ function CommunityPage({user,setUser,setView,posts,setPosts}){
             ))}
           </div>
         </div>
+      </div>
+    </div>
+  )
+}
+
+// ── Private Messages (Premium / active Tourist pass / Partner accounts) ──
+function MessagesPage({user,setView,subscription,setUnreadMsgs}){
+  const [conversations,setConversations]=useState([])
+  const [profileCache,setProfileCache]=useState({}) // id -> {name,av,account_type}
+  const [activeId,setActiveId]=useState(null) // other participant's id
+  const [threadMsgs,setThreadMsgs]=useState([])
+  const [newMsg,setNewMsg]=useState("")
+  const [loading,setLoading]=useState(true)
+  const [sending,setSending]=useState(false)
+  const [showNew,setShowNew]=useState(false)
+  const [partners,setPartners]=useState([])
+  const [searchQ,setSearchQ]=useState("")
+  const [searchResults,setSearchResults]=useState([])
+  const [searching,setSearching]=useState(false)
+  const [isMobile,setIsMobile]=useState(typeof window!=="undefined"&&window.innerWidth<=768)
+  useEffect(()=>{
+    const r=()=>setIsMobile(window.innerWidth<=768)
+    window.addEventListener("resize",r);return()=>window.removeEventListener("resize",r)
+  },[])
+
+  const role=userRole(user)
+  const canAccess=!!user&&(role==="partner"||role==="tourist"||(subscription&&subscription.plan==="premium"))
+
+  // Load the inbox — group all messages by "the other participant"
+  const loadInbox=async()=>{
+    if(!user||!canAccess)return
+    setLoading(true)
+    const {data}=await sbGetMyMessages(user.id)
+    if(data){
+      const grouped={}
+      data.forEach(m=>{
+        const otherId=m.sender_id===user.id?m.recipient_id:m.sender_id
+        if(!grouped[otherId])grouped[otherId]={otherId,last:m,unread:0}
+        if(m.recipient_id===user.id&&!m.read)grouped[otherId].unread++
+      })
+      const list=Object.values(grouped).sort((a,b)=>new Date(b.last.created_at)-new Date(a.last.created_at))
+      setConversations(list)
+      const ids=list.map(c=>c.otherId)
+      if(ids.length){
+        const {data:profiles}=await sbGetProfilesByIds(ids)
+        if(profiles){
+          const cache={}
+          profiles.forEach(p=>{cache[p.id]=p})
+          setProfileCache(prev=>({...prev,...cache}))
+        }
+      }
+    }
+    setLoading(false)
+  }
+  useEffect(()=>{loadInbox()},[user])
+
+  const openThread=async(otherId)=>{
+    setActiveId(otherId)
+    setShowNew(false)
+    const {data}=await sbGetThread(user.id,otherId)
+    setThreadMsgs(data||[])
+    await sbMarkThreadRead(user.id,otherId)
+    setConversations(prev=>{
+      const convo=prev.find(c=>c.otherId===otherId)
+      if(convo&&convo.unread>0&&setUnreadMsgs)setUnreadMsgs(n=>Math.max(0,n-convo.unread))
+      return prev.map(c=>c.otherId===otherId?{...c,unread:0}:c)
+    })
+  }
+
+  const send=async()=>{
+    if(!newMsg.trim()||!activeId||sending)return
+    setSending(true)
+    const {data,error}=await sbSendMessage(user.id,activeId,newMsg.trim())
+    setSending(false)
+    if(!error&&data){
+      setThreadMsgs(prev=>[...prev,data])
+      setNewMsg("")
+      loadInbox()
+    }
+  }
+
+  const loadPartners=async()=>{
+    const {data}=await sbListPartners()
+    setPartners((data||[]).filter(p=>p.id!==user.id))
+  }
+  const runSearch=async(q)=>{
+    setSearchQ(q)
+    if(q.trim().length<2){setSearchResults([]);return}
+    setSearching(true)
+    const {data}=await sbSearchProfiles(q.trim())
+    setSearching(false)
+    setSearchResults((data||[]).filter(p=>p.id!==user.id))
+  }
+  const startNew=()=>{
+    setShowNew(true);setActiveId(null);setSearchQ("");setSearchResults([])
+    loadPartners()
+  }
+  const startConversationWith=(p)=>{
+    setProfileCache(prev=>({...prev,[p.id]:p}))
+    openThread(p.id)
+  }
+
+  if(!user){
+    return(
+      <div style={{minHeight:"100vh",background:C.page,display:"flex",alignItems:"center",justifyContent:"center",padding:20}}>
+        <div style={{textAlign:"center"}}>
+          <div style={{fontSize:40,marginBottom:10}}>🔒</div>
+          <h2 style={{fontSize:18,color:C.text,margin:"0 0 8px"}}>Sign in to use Messages</h2>
+          <button onClick={()=>setView("login")} style={{background:C.primary,border:"none",color:"#fff",padding:"10px 22px",borderRadius:9,cursor:"pointer",fontSize:14,fontWeight:700}}>Sign in →</button>
+        </div>
+      </div>
+    )
+  }
+
+  if(!canAccess){
+    return(
+      <div style={{minHeight:"100vh",background:C.page,display:"flex",alignItems:"center",justifyContent:"center",padding:20}}>
+        <div style={{textAlign:"center",maxWidth:380}}>
+          <div style={{fontSize:40,marginBottom:10}}>💬</div>
+          <h2 style={{fontSize:19,color:C.text,margin:"0 0 8px"}}>Messages — Premium</h2>
+          <p style={{fontSize:14,color:C.muted,margin:"0 0 18px",lineHeight:1.6}}>
+            Private messaging is available to Premium subscribers, anyone with an active Day or Week Pass, and Partner accounts — so you can reach out to businesses directly, or they can reach you.
+          </p>
+          <button onClick={()=>setView("pricing")} style={{background:"linear-gradient(135deg,#f0c060,#e8a020)",border:"none",color:"#1a3a20",padding:"11px 26px",borderRadius:10,cursor:"pointer",fontSize:15,fontWeight:700}}>Upgrade to Premium →</button>
+        </div>
+      </div>
+    )
+  }
+
+  const activeProfile=activeId?profileCache[activeId]:null
+
+  return(
+    <div style={{minHeight:"100vh",background:C.page}}>
+      <div style={{background:`linear-gradient(135deg,${C.primary},#2a7a52)`,padding:"22px 20px"}}>
+        <div style={{maxWidth:1000,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+          <h1 className="serif" style={{color:"#fff",fontSize:"clamp(20px,3.5vw,28px)",fontWeight:400,margin:0}}>💬 Messages</h1>
+          <button onClick={startNew} style={{background:"rgba(255,255,255,0.15)",border:"1px solid rgba(255,255,255,0.3)",color:"#fff",padding:"8px 16px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:700}}>+ New message</button>
+        </div>
+      </div>
+
+      <div style={{maxWidth:1000,margin:"0 auto",padding:isMobile?0:"16px 20px",display:"grid",gridTemplateColumns:isMobile?"1fr":"280px 1fr",minHeight:"calc(100vh - 78px)"}}>
+        {/* Conversation list — hidden on mobile once a thread/new-message panel is open */}
+        {(!isMobile||(!activeId&&!showNew))&&(
+          <div style={{borderRight:isMobile?"none":`1px solid ${C.border}`,background:C.surface}}>
+            {loading?(
+              <p style={{padding:20,color:C.muted,fontSize:13,textAlign:"center"}}>Loading…</p>
+            ):conversations.length===0?(
+              <p style={{padding:20,color:C.muted,fontSize:13,textAlign:"center"}}>No messages yet. Tap "+ New message" to reach out to a Partner or another member.</p>
+            ):conversations.map(c=>{
+              const p=profileCache[c.otherId]
+              return(
+                <button key={c.otherId} onClick={()=>openThread(c.otherId)}
+                  style={{width:"100%",display:"flex",alignItems:"center",gap:10,background:activeId===c.otherId?C.primaryLight:"transparent",border:"none",borderBottom:`1px solid ${C.border}`,padding:"12px 16px",cursor:"pointer",textAlign:"left"}}>
+                  <Av initials={(p&&(p.av||p.name.slice(0,2).toUpperCase()))||"?"} size={38}/>
+                  <div style={{flex:1,minWidth:0}}>
+                    <div style={{display:"flex",alignItems:"center",gap:5}}>
+                      <span style={{fontWeight:700,fontSize:13,color:C.text}}>{(p&&p.name)||"Member"}</span>
+                      {p&&p.account_type==="partner"&&<span style={{fontSize:8,background:"#f0c060",color:"#1a3a20",padding:"1px 5px",borderRadius:5,fontWeight:700}}>PARTNER</span>}
+                    </div>
+                    <div style={{fontSize:12,color:C.muted,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{c.last.sender_id===user.id?"You: ":""}{c.last.content}</div>
+                  </div>
+                  {c.unread>0&&<span style={{background:C.primary,color:"#fff",fontSize:10,fontWeight:700,width:18,height:18,borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>{c.unread}</span>}
+                </button>
+              )
+            })}
+          </div>
+        )}
+
+        {/* New message panel */}
+        {showNew&&(
+          <div style={{padding:"16px 20px"}}>
+            <button onClick={()=>setShowNew(false)} style={{background:"none",border:"none",color:C.muted,cursor:"pointer",fontSize:13,marginBottom:14,padding:0}}>← Back</button>
+            <input value={searchQ} onChange={e=>runSearch(e.target.value)} placeholder="Search members by name…"
+              style={{width:"100%",border:`1px solid ${C.border}`,borderRadius:10,padding:"10px 14px",fontSize:14,outline:"none",color:C.text,background:C.page,marginBottom:16,boxSizing:"border-box"}}/>
+            {searchQ.trim().length>=2?(
+              <div>
+                <div style={{fontSize:11,fontWeight:700,color:C.muted,letterSpacing:"0.05em",marginBottom:8}}>SEARCH RESULTS</div>
+                {searching?<p style={{fontSize:13,color:C.muted}}>Searching…</p>:searchResults.length===0?<p style={{fontSize:13,color:C.muted}}>No members found.</p>:searchResults.map(p=>(
+                  <button key={p.id} onClick={()=>startConversationWith(p)} style={{width:"100%",display:"flex",alignItems:"center",gap:10,background:C.surface,border:`1px solid ${C.border}`,borderRadius:10,padding:"10px 14px",cursor:"pointer",marginBottom:8,textAlign:"left"}}>
+                    <Av initials={p.av||p.name.slice(0,2).toUpperCase()} size={32}/>
+                    <span style={{fontWeight:600,fontSize:13,color:C.text}}>{p.name}</span>
+                    {p.account_type==="partner"&&<span style={{fontSize:8,background:"#f0c060",color:"#1a3a20",padding:"1px 5px",borderRadius:5,fontWeight:700}}>PARTNER</span>}
+                  </button>
+                ))}
+              </div>
+            ):(
+              <div>
+                <div style={{fontSize:11,fontWeight:700,color:C.muted,letterSpacing:"0.05em",marginBottom:8}}>MESSAGE A PARTNER</div>
+                {partners.length===0?<p style={{fontSize:13,color:C.muted}}>No partners to show yet.</p>:partners.map(p=>(
+                  <button key={p.id} onClick={()=>startConversationWith(p)} style={{width:"100%",display:"flex",alignItems:"center",gap:10,background:C.surface,border:`1px solid ${C.border}`,borderRadius:10,padding:"10px 14px",cursor:"pointer",marginBottom:8,textAlign:"left"}}>
+                    <Av initials={p.av||p.name.slice(0,2).toUpperCase()} size={32}/>
+                    <div>
+                      <div style={{fontWeight:600,fontSize:13,color:C.text}}>{p.business_name||p.name}</div>
+                      {p.business_category&&<div style={{fontSize:11,color:C.muted}}>{p.business_category}</div>}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Thread view */}
+        {!showNew&&activeId&&(
+          <div style={{display:"flex",flexDirection:"column",height:isMobile?"calc(100vh - 78px)":"calc(100vh - 110px)"}}>
+            <div style={{display:"flex",alignItems:"center",gap:10,padding:"12px 16px",borderBottom:`1px solid ${C.border}`,background:C.surface}}>
+              {isMobile&&<button onClick={()=>setActiveId(null)} style={{background:"none",border:"none",color:C.muted,cursor:"pointer",fontSize:18,padding:0}}>←</button>}
+              <Av initials={(activeProfile&&(activeProfile.av||activeProfile.name.slice(0,2).toUpperCase()))||"?"} size={32}/>
+              <span style={{fontWeight:700,fontSize:14,color:C.text}}>{(activeProfile&&activeProfile.name)||"Member"}</span>
+            </div>
+            <div style={{flex:1,overflow:"auto",padding:16,display:"flex",flexDirection:"column",gap:8}}>
+              {threadMsgs.map(m=>(
+                <div key={m.id} style={{display:"flex",justifyContent:m.sender_id===user.id?"flex-end":"flex-start"}}>
+                  <div style={{maxWidth:"75%",background:m.sender_id===user.id?C.primary:C.surface,color:m.sender_id===user.id?"#fff":C.text,border:m.sender_id===user.id?"none":`1px solid ${C.border}`,borderRadius:m.sender_id===user.id?"14px 14px 4px 14px":"14px 14px 14px 4px",padding:"9px 13px",fontSize:13.5}}>
+                    {m.content}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{display:"flex",gap:8,padding:"10px 16px",borderTop:`1px solid ${C.border}`,background:C.surface}}>
+              <input value={newMsg} onChange={e=>setNewMsg(e.target.value)} onKeyDown={e=>e.key==="Enter"&&send()} placeholder="Type a message…"
+                style={{flex:1,border:`1px solid ${C.border}`,borderRadius:10,padding:"9px 14px",fontSize:14,outline:"none",color:C.text,background:C.page}}/>
+              <button onClick={send} disabled={!newMsg.trim()||sending} style={{background:newMsg.trim()?C.primary:"#ccc",border:"none",color:"#fff",padding:"9px 16px",borderRadius:10,cursor:newMsg.trim()?"pointer":"default",fontSize:15,fontWeight:700}}>→</button>
+            </div>
+          </div>
+        )}
+
+        {/* Empty state on desktop when nothing is selected */}
+        {!isMobile&&!activeId&&!showNew&&(
+          <div style={{display:"flex",alignItems:"center",justifyContent:"center",color:C.muted,fontSize:14}}>Select a conversation, or start a new one.</div>
+        )}
       </div>
     </div>
   )
@@ -5411,6 +5652,21 @@ function passI18n(id,lang){
   return (PASSES_I18N[lang]&&PASSES_I18N[lang][id])||PASSES_I18N.en[id]
 }
 
+// Shared across Community and Messages: a user shows as "tourist" while they
+// have an active Day/Week Pass, regardless of their underlying account type
+// — takes priority over Expat/Partner since it reflects what they're doing
+// right now, not their permanent account. Falls back to accountType once the
+// pass expires.
+function userRole(user){
+  if(!user)return "expat"
+  if(user.passExpiresAt&&new Date(user.passExpiresAt)>new Date())return "tourist"
+  return user.accountType||"expat"
+}
+const ROLE_BADGES={
+  partner:{label:"PARTNER",bg:"#f0c060",color:"#1a3a20"},
+  tourist:{label:"TOURIST",bg:"#38bdf8",color:"#0c2a3a"},
+}
+
 // ── Pricing Page ─────────────────────────────────────────────────
 function PricingPage({user,setView,lang,t,openCheckout=()=>{}}){
   const [billing,setBilling]=useState("monthly")
@@ -5941,6 +6197,25 @@ function AccountPage({user,setUser,setView,subscription}){
                 )}
               </div>
 
+              {/* Private Messages — Premium / active pass / Partner accounts.
+                  Gating itself lives in MessagesPage; this is just the entry
+                  point, so anyone can see the feature exists. */}
+              <div style={{marginTop:14,display:"flex",alignItems:"flex-start",gap:12,background:C.page,border:`1px solid ${C.border}`,borderRadius:12,padding:"16px"}}>
+                <div style={{flexShrink:0,width:38,height:38,borderRadius:10,background:C.primaryLight,display:"flex",alignItems:"center",justifyContent:"center"}}>
+                  <Icon2c d="M4 4h16v12H7l-3 3V4z" accent={C.primary} size={20}/>
+                </div>
+                <div style={{flex:1,minWidth:0}}>
+                  <div style={{fontSize:15,fontWeight:700,color:C.text,marginBottom:3}}>Messages</div>
+                  <p style={{fontSize:13,color:C.muted,margin:"0 0 12px",lineHeight:1.6}}>
+                    Private 1:1 messaging with other members and Partners. Included with Premium, an active Day/Week Pass, or a Partner account.
+                  </p>
+                  <button onClick={()=>setView("messages")}
+                    style={{background:C.primary,border:"none",color:"#fff",padding:"9px 18px",borderRadius:9,cursor:"pointer",fontSize:14,fontWeight:700}}>
+                    Open Messages →
+                  </button>
+                </div>
+              </div>
+
               <p style={{fontSize:11,color:C.muted,textAlign:"center",margin:"14px 0 0",lineHeight:1.5}}>
                 Only signed-in members can see your profile. Never share your home address, phone number or financial details.
               </p>
@@ -6354,6 +6629,20 @@ export default function App(){
   const [lang,setLang]=useState("en")
   const [cache,setCache]=useState({})
   const [user,setUser]=useState(null)
+  const [unreadMsgs,setUnreadMsgs]=useState(0)
+  // Poll for unread messages so the nav badge stays current from any page —
+  // simpler and more reliable than wiring a realtime subscription for a v1.
+  useEffect(()=>{
+    if(!user){setUnreadMsgs(0);return}
+    let cancelled=false
+    const check=async()=>{
+      const {count}=await sbGetUnreadCount(user.id)
+      if(!cancelled)setUnreadMsgs(count)
+    }
+    check()
+    const interval=setInterval(check,45000)
+    return()=>{cancelled=true;clearInterval(interval)}
+  },[user])
   // Restore the logged-in user on page load / refresh. Supabase keeps the session
   // in the browser, so returning visitors stay signed in.
   useEffect(()=>{
@@ -6396,10 +6685,19 @@ export default function App(){
       const p=new URLSearchParams(window.location.search)
       if(p.get("success")==="1"){
         const boughtPlan=p.get("plan")||"basic"
-        // Day/week passes grant full Premium access (session-only for now —
-        // see the persistence TODO near PASSES above).
         const isPass=boughtPlan==="day"||boughtPlan==="week"
         setSubscription({plan:isPass?"premium":boughtPlan, billing:isPass?boughtPlan:(p.get("billing")||"monthly"), isPass})
+        if(isPass&&user){
+          // Persist the pass so it survives a refresh and so Community can
+          // tag this person as "Tourist" instead of Expat/Partner while it's
+          // active. Written client-side on the success redirect, same trust
+          // model already used for activating the subscription itself above
+          // — a proper Stripe webhook is a separate, larger piece of work.
+          const hours=boughtPlan==="day"?24:24*7
+          const expiresAt=new Date(Date.now()+hours*3600*1000).toISOString()
+          sbUpdateProfile(user.id,{pass_type:boughtPlan,pass_expires_at:expiresAt})
+            .then(()=>setUser(u=>u?{...u,passType:boughtPlan,passExpiresAt:expiresAt}:u))
+        }
         window.history.replaceState({},"",window.location.pathname)
       }
     }catch(e){}
@@ -6579,7 +6877,7 @@ export default function App(){
           </div>
         </div>
       )}
-      <Nav view={view} setView={setView} lang={lang} t={t} user={user} setUser={setUser} subscription={subscription} openCheckout={openCheckout} dark={dark} setDark={setDark}/>
+      <Nav view={view} setView={setView} lang={lang} t={t} user={user} setUser={setUser} subscription={subscription} openCheckout={openCheckout} dark={dark} setDark={setDark} unreadMsgs={unreadMsgs}/>
       {view==="login"?(
         <LoginPage setUser={setUser} setView={setView} openCheckout={openCheckout} lang={lang} setLang={setLang}/>
       ):view==="checkout"?(
@@ -6588,6 +6886,8 @@ export default function App(){
         <AppsPage setView={setView} subscription={subscription}/>
       ):view==="connect"?(
         <ConnectPage user={user} setView={setView} subscription={subscription}/>
+      ):view==="messages"?(
+        <MessagesPage user={user} setView={setView} subscription={subscription} setUnreadMsgs={setUnreadMsgs}/>
       ):view==="tracker"?(
         <DeadlineTracker user={user} subscription={subscription} setView={setView}/>
       ):view==="advertise"?(
@@ -6715,7 +7015,6 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang
   const [payMethod,setPayMethod]=useState("stripe") // "stripe" | "crypto"
   const [cryptoStep,setCryptoStep]=useState("select") // "select" | "address" | "confirm"
   const [selectedCoin,setSelectedCoin]=useState("BTC")
-  const [guestEmail,setGuestEmail]=useState("") // for pass purchases with no account
   const isPass = plan==="day"||plan==="week"
   const p = PLANS[plan]||PLANS.basic
   const pass = PASSES[plan]
@@ -6726,10 +7025,6 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang
   const stripeUrl = STRIPE_LINKS[linkKey]||"#"
 
   const handlePay = () => {
-    if(!user&&isPass&&!guestEmail.includes("@")){
-      alert("Please enter a valid email address for your receipt.")
-      return
-    }
     gtrack("begin_checkout",{plan,billing,value:price,currency:"EUR"})
     if(stripeUrl==="https://buy.stripe.com/REPLACE_"+linkKey.toUpperCase()||stripeUrl==="#"){
       alert("⚠️ Set up your Stripe Payment Links!\n\nGo to dashboard.stripe.com → Payment Links → Create link\nThen paste the URL into STRIPE_LINKS in the code.")
@@ -6827,20 +7122,12 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang
           {/* Payment section */}
           <div style={{padding:"22px 28px"}}>
 
-            {/* User check — passes don't need a persistent account, only
-                actual subscriptions do, since they need something to attach
-                ongoing state to. */}
-            {!user&&!isPass?(
+            {/* User check — reverted to requiring an account for all plans,
+                including passes, so pass purchases can be tagged and
+                attributed (Tourist role in Community, expiry tracking). */}
+            {!user?(
               <div style={{background:"#fff9f0",border:"1px solid #f0d9b0",borderRadius:10,padding:"12px 14px",marginBottom:16,fontSize:13,color:"#8a5a1a"}}>
                 ⚠️ {(t&&t.checkoutPleaseText)||"Please"} <button onClick={()=>setView("login")} style={{background:"none",border:"none",color:C.accent,fontWeight:600,cursor:"pointer",padding:0,fontSize:13,textDecoration:"underline"}}>{(t&&t.checkoutSignInLink)||"sign in or create a free account"}</button> {(t&&t.checkoutFirst)||"first."}
-              </div>
-            ):!user&&isPass?(
-              <div style={{marginBottom:16}}>
-                <div style={{background:C.primaryLight,border:`1px solid ${C.primary}30`,borderRadius:10,padding:"10px 14px",marginBottom:10,fontSize:13,color:C.primary}}>
-                  ✓ No account needed — just enter your email for the receipt.
-                </div>
-                <input type="email" value={guestEmail} onChange={e=>setGuestEmail(e.target.value)} placeholder="you@example.com"
-                  style={{width:"100%",border:`1.5px solid ${C.border}`,borderRadius:10,padding:"11px 14px",fontSize:14,outline:"none",color:C.text,background:C.page,boxSizing:"border-box"}}/>
               </div>
             ):(
               <div style={{background:C.primaryLight,border:`1px solid ${C.primary}30`,borderRadius:10,padding:"10px 14px",marginBottom:16,fontSize:13,color:C.primary}}>
@@ -6861,7 +7148,7 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang
             {/* Stripe section */}
             {payMethod==="stripe"&&(
               <div>
-                <button onClick={(user||isPass)?handlePay:()=>setView("login")}
+                <button onClick={user?handlePay:()=>setView("login")}
                   style={{width:"100%",background:"#635BFF",border:"none",color:"#fff",padding:"15px",borderRadius:12,cursor:"pointer",fontSize:15,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:12,boxShadow:"0 4px 18px rgba(99,91,255,0.35)",transition:"all 0.2s"}}
                   onMouseEnter={e=>{e.currentTarget.style.background="#524BEE"}}
                   onMouseLeave={e=>{e.currentTarget.style.background="#635BFF"}}>

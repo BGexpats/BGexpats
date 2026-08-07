@@ -57,6 +57,8 @@ export async function getCurrentUser() {
     inCommunity: !!(profile && profile.in_community),
     businessName: (profile && profile.business_name) || '',
     businessCategory: (profile && profile.business_category) || '',
+    passType: (profile && profile.pass_type) || null,
+    passExpiresAt: (profile && profile.pass_expires_at) || null,
     joined: (profile && profile.created_at)
       ? new Date(profile.created_at).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })
       : ''
@@ -221,4 +223,92 @@ export async function deleteTrip(tripId) {
     .delete()
     .eq('id', tripId)
   return { error }
+}
+
+// ─── Private messages (Premium/Tourist-pass/Partner feature) ──────────
+// RLS-protected — a user can only ever see messages where they're the
+// sender or recipient. Conversations aren't a separate table; they're
+// derived client-side by grouping messages by "the other participant".
+
+// Fetch every message the signed-in user has sent or received, newest
+// first. The app groups these into conversations client-side.
+export async function getMyMessages(userId) {
+  const { data, error } = await supabase
+    .from('messages')
+    .select('*')
+    .or(`sender_id.eq.${userId},recipient_id.eq.${userId}`)
+    .order('created_at', { ascending: false })
+  return { data, error }
+}
+
+// Fetch the message thread between the signed-in user and one other person.
+export async function getThread(userId, otherId) {
+  const { data, error } = await supabase
+    .from('messages')
+    .select('*')
+    .or(`and(sender_id.eq.${userId},recipient_id.eq.${otherId}),and(sender_id.eq.${otherId},recipient_id.eq.${userId})`)
+    .order('created_at', { ascending: true })
+  return { data, error }
+}
+
+// Send a private message.
+export async function sendMessage(senderId, recipientId, content) {
+  const { data, error } = await supabase
+    .from('messages')
+    .insert({ sender_id: senderId, recipient_id: recipientId, content })
+    .select()
+    .single()
+  return { data, error }
+}
+
+// Mark every message from otherId to the signed-in user as read.
+export async function markThreadRead(userId, otherId) {
+  const { error } = await supabase
+    .from('messages')
+    .update({ read: true })
+    .eq('sender_id', otherId)
+    .eq('recipient_id', userId)
+    .eq('read', false)
+  return { error }
+}
+
+// Lightweight count-only query for the nav unread badge — avoids fetching
+// full message rows just to show a number.
+export async function getUnreadCount(userId) {
+  const { count, error } = await supabase
+    .from('messages')
+    .select('*', { count: 'exact', head: true })
+    .eq('recipient_id', userId)
+    .eq('read', false)
+  return { count: count || 0, error }
+}
+
+// Look up multiple profiles at once by ID — used to show names/avatars in
+// the messages inbox, since the messages table only stores user IDs.
+export async function getProfilesByIds(ids) {
+  if (!ids || !ids.length) return { data: [], error: null }
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('id, name, av, avatar_url, account_type')
+    .in('id', ids)
+  return { data, error }
+}
+// List Partner accounts — used for the "message a partner" starting point.
+export async function listPartners() {
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('id, name, av, avatar_url, business_name, business_category')
+    .eq('account_type', 'partner')
+    .order('created_at', { ascending: false })
+  return { data, error }
+}
+
+// Search any community member by name — used for general DMs beyond Partners.
+export async function searchProfiles(query) {
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('id, name, av, avatar_url, account_type')
+    .ilike('name', `%${query}%`)
+    .limit(20)
+  return { data, error }
 }
