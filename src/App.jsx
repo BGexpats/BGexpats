@@ -2184,19 +2184,28 @@ function LoginPage({setUser,setView,openCheckout,lang,setLang}){
               </div>
             )}
             {mode==="register"&&(
-              <div style={{marginBottom:16}}>
-                <label style={{display:"block",fontSize:13,fontWeight:600,color:C.text,marginBottom:5}}>Account type</label>
-                <div style={{display:"flex",gap:8}}>
-                  {[["expat","M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4.4 3.6-7 8-7s8 2.6 8 7","Expat"],["partner","M4 8h16v11H4zM9 8V6a2 2 0 012-2h4a2 2 0 012 2v2","Business / Partner"]].map(([k,d,l])=>(
+              <div style={{marginBottom:18}}>
+                <label style={{display:"block",fontSize:14,fontWeight:700,color:C.text,marginBottom:8}}>I am a...</label>
+                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+                  {[
+                    {k:"expat",d:"M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4.4 3.6-7 8-7s8 2.6 8 7",l:"Expat",desc:"Living in or moving to Bulgaria"},
+                    {k:"partner",d:"M4 8h16v11H4zM9 8V6a2 2 0 012-2h4a2 2 0 012 2v2",l:"Business / Partner",desc:"A business reaching expats"},
+                  ].map(({k,d,l,desc})=>(
                     <button key={k} type="button" onClick={()=>setAccountType(k)}
-                      style={{flex:1,padding:"10px",borderRadius:9,border:`1.5px solid ${accountType===k?C.primary:C.border}`,background:accountType===k?C.primaryLight:"transparent",color:accountType===k?C.primary:C.muted,cursor:"pointer",fontSize:13,fontWeight:accountType===k?700:400,display:"flex",alignItems:"center",justifyContent:"center",gap:7}}>
-                      <Icon2c d={d} accent={accountType===k?C.primary:C.muted} size={15}/>{l}
+                      style={{position:"relative",padding:"16px 12px",borderRadius:12,border:`2px solid ${accountType===k?C.primary:C.border}`,background:accountType===k?C.primaryLight:C.page,cursor:"pointer",textAlign:"center",transition:"all 0.15s"}}>
+                      {accountType===k&&(
+                        <div style={{position:"absolute",top:8,right:8,width:18,height:18,borderRadius:"50%",background:C.primary,display:"flex",alignItems:"center",justifyContent:"center"}}>
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                      )}
+                      <div style={{width:36,height:36,borderRadius:10,background:accountType===k?C.primary:C.border,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 8px"}}>
+                        <Icon2c d={d} accent={accountType===k?"#fff":C.muted} size={17}/>
+                      </div>
+                      <div style={{fontSize:14,fontWeight:700,color:accountType===k?C.primary:C.text,marginBottom:3}}>{l}</div>
+                      <div style={{fontSize:11.5,color:C.muted,lineHeight:1.4}}>{desc}</div>
                     </button>
                   ))}
                 </div>
-                <p style={{fontSize:11.5,color:C.muted,margin:"6px 0 0"}}>
-                  {accountType==="partner"?"For businesses and service providers who want to reach expats — e.g. real estate agents, lawyers, movers.":"For individuals living in or moving to Bulgaria."}
-                </p>
               </div>
             )}
             {mode==="register"&&(
@@ -7118,9 +7127,15 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang
 
             {/* Price — always show monthly rate (or the flat pass price) */}
             <div style={{marginTop:18,display:"flex",alignItems:"baseline",gap:6}}>
-              <span style={{fontSize:40,fontWeight:800,color:"#fff",letterSpacing:"-1px"}}>€{isPass?pass.price.toFixed(2):(isYearly?p.yearly.toFixed(2):p.monthly.toFixed(2))}</span>
-              <span style={{fontSize:14,color:"rgba(255,255,255,0.7)"}}>{isPass?`${(t&&t.passesOneTime)||"one-time"} / ${passI18n(plan,lang).duration}`:"/month"}</span>
+              <span style={{fontSize:44,fontWeight:800,color:"#fff",letterSpacing:"-1px",textShadow:isPass?"0 2px 8px rgba(0,0,0,0.4)":"none"}}>€{isPass?pass.price.toFixed(2):(isYearly?p.yearly.toFixed(2):p.monthly.toFixed(2))}</span>
+              {!isPass&&<span style={{fontSize:14,color:"rgba(255,255,255,0.7)"}}>/month</span>}
             </div>
+            {isPass&&(
+              <div style={{display:"inline-flex",alignItems:"center",gap:6,marginTop:10,background:"rgba(0,0,0,0.25)",borderRadius:20,padding:"5px 12px"}}>
+                <span style={{width:6,height:6,borderRadius:"50%",background:"#f0c060",flexShrink:0}}/>
+                <span style={{fontSize:12.5,color:"#fff",fontWeight:600}}>{(t&&t.passesOneTime)||"One-time payment"} · {passI18n(plan,lang).duration} access</span>
+              </div>
+            )}
             {isYearly&&!isPass&&(
               <div style={{fontSize:13,color:"rgba(255,255,255,0.65)",marginTop:3}}>
                 {(t&&t.checkoutBilledAnnually)||"Billed annually at"} <strong style={{color:"#f0c060"}}>€{p.yearlyTotal}/year</strong> — {(t&&t.checkoutSaves)||"saves"} €{(p.monthly*12-p.yearlyTotal).toFixed(2)}
