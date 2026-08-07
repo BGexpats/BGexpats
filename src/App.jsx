@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, Fragment } from "react"
 import { signUp as sbSignUp, signIn as sbSignIn, signOut as sbSignOut, getCurrentUser as sbGetCurrentUser, resetPassword as sbResetPassword, getProfile as sbGetProfile, updateProfile as sbUpdateProfile, uploadAvatar as sbUploadAvatar, listProfiles as sbListProfiles, getPins as sbGetPins, savePin as sbSavePin, deletePin as sbDeletePin, updatePin as sbUpdatePin, getTrips as sbGetTrips, saveTrip as sbSaveTrip, updateTrip as sbUpdateTrip, deleteTrip as sbDeleteTrip, getMyMessages as sbGetMyMessages, getThread as sbGetThread, sendMessage as sbSendMessage, markThreadRead as sbMarkThreadRead, listPartners as sbListPartners, searchProfiles as sbSearchProfiles, getProfilesByIds as sbGetProfilesByIds, getUnreadCount as sbGetUnreadCount } from "./supabase"
 import heroImg1 from "./assets/hero-rila-lake.jpg"
 import bgMapDoodle from "./assets/bg-map-doodle-white.png"
+import bgTravelDoodle from "./assets/bg-travel-doodle-white.png"
 import nessebar from "./assets/nessebar.jpg"
 import plovdiv from "./assets/plovdiv.jpg"
 import heroImg2 from "./assets/hero-sunny-beach.jpg"
@@ -7093,7 +7094,9 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang
         <div style={{background:C.surface,borderRadius:22,border:`1px solid ${C.border}`,overflow:"hidden",boxShadow:"0 12px 40px rgba(0,0,0,0.1)"}}>
 
           {/* Plan header */}
-          <div style={{background:(plan==="premium"||isPass)?`linear-gradient(135deg,${C.primary},#2a7a52)`:`linear-gradient(135deg,#1850a0,#2563eb)`,padding:"28px 28px 24px"}}>
+          <div style={{background:(plan==="premium"||isPass)?`linear-gradient(135deg,${C.primary},#2a7a52)`:`linear-gradient(135deg,#1850a0,#2563eb)`,padding:"28px 28px 24px",position:"relative",overflow:"hidden"}}>
+            {isPass&&<img src={bgTravelDoodle} alt="" aria-hidden="true" style={{position:"absolute",top:0,left:0,width:"100%",height:"100%",objectFit:"cover",opacity:0.22,pointerEvents:"none",userSelect:"none"}}/>}
+            <div style={{position:"relative"}}>
             <div style={{fontSize:12,color:"rgba(255,255,255,0.7)",fontWeight:600,letterSpacing:"0.06em",textTransform:"uppercase",marginBottom:6}}>
               {isPass?((t&&t.checkoutGetting)||"Getting"):((t&&t.checkoutSubscribingTo)||"Subscribing to")}
             </div>
@@ -7123,6 +7126,7 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang
                 {(t&&t.checkoutBilledAnnually)||"Billed annually at"} <strong style={{color:"#f0c060"}}>€{p.yearlyTotal}/year</strong> — {(t&&t.checkoutSaves)||"saves"} €{(p.monthly*12-p.yearlyTotal).toFixed(2)}
               </div>
             )}
+            </div>
           </div>
 
           {/* Features */}
