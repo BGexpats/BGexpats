@@ -2224,11 +2224,14 @@ function LoginPage({setUser,setView,openCheckout,lang,setLang}){
                 </div>
                 <div style={{marginBottom:16}}>
                   <label style={{display:"block",fontSize:13,fontWeight:600,color:C.text,marginBottom:5}}>Category</label>
-                  <select value={businessCategory} onChange={e=>setBusinessCategory(e.target.value)}
-                    style={{width:"100%",border:`1px solid ${C.border}`,borderRadius:9,padding:"11px 14px",fontSize:14,outline:"none",color:C.text,background:C.page,boxSizing:"border-box",cursor:"pointer"}}>
-                    <option value="">Select a category…</option>
-                    {BUSINESS_CATEGORIES.map(c=><option key={c} value={c}>{c}</option>)}
-                  </select>
+                  <div style={{position:"relative"}}>
+                    <select value={businessCategory} onChange={e=>setBusinessCategory(e.target.value)}
+                      style={{width:"100%",border:`1.5px solid ${C.border}`,borderRadius:9,padding:"11px 40px 11px 14px",fontSize:14,outline:"none",color:businessCategory?C.text:C.muted,background:C.page,boxSizing:"border-box",cursor:"pointer",appearance:"none",WebkitAppearance:"none",MozAppearance:"none"}}>
+                      <option value="">Select a category…</option>
+                      {BUSINESS_CATEGORIES.map(c=><option key={c} value={c}>{c}</option>)}
+                    </select>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.muted} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{position:"absolute",top:"50%",right:14,transform:"translateY(-50%)",pointerEvents:"none"}}><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
                 </div>
               </>
             )}
@@ -6046,11 +6049,14 @@ function AccountPage({user,setUser,setView,subscription}){
                     placeholder="e.g. Sofia Real Estate Ltd."
                     style={{...inputStyle,marginBottom:12}}/>
                   <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>CATEGORY</label>
-                  <select value={businessCategory} onChange={e=>setBusinessCategory(e.target.value)}
-                    style={{...inputStyle,cursor:"pointer"}}>
-                    <option value="">Select a category…</option>
-                    {BUSINESS_CATEGORIES.map(c=><option key={c} value={c}>{c}</option>)}
-                  </select>
+                  <div style={{position:"relative"}}>
+                    <select value={businessCategory} onChange={e=>setBusinessCategory(e.target.value)}
+                      style={{...inputStyle,cursor:"pointer",paddingRight:40,appearance:"none",WebkitAppearance:"none",MozAppearance:"none",color:businessCategory?C.text:C.muted}}>
+                      <option value="">Select a category…</option>
+                      {BUSINESS_CATEGORIES.map(c=><option key={c} value={c}>{c}</option>)}
+                    </select>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.muted} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{position:"absolute",top:"50%",right:14,transform:"translateY(-50%)",pointerEvents:"none"}}><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
                 </div>
               )}
 
