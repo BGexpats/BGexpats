@@ -1880,6 +1880,7 @@ function ChatPage({lang,t,user,subscription,setView}){
   const send=async(text)=>{
     const msg=(text||input).trim()
     if(!msg||loading)return
+    if(!user){ setView("login"); return }
     if(limitReached){
       const upgradeMsg=currentTier==="basic"
         ?"Upgrade to Premium for unlimited AI chat, or come back tomorrow — your questions reset daily."
@@ -1976,12 +1977,24 @@ function ChatPage({lang,t,user,subscription,setView}){
       )}
 
       <div style={{padding:"10px 16px 18px",background:C.surface,borderTop:`1px solid ${C.border}`}}>
-        <div style={{maxWidth:780,margin:"0 auto",display:"flex",gap:9}}>
-          <input value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>e.key==="Enter"&&!e.shiftKey&&send()}
-            placeholder={limitReached?"Upgrade to keep chatting today, or come back tomorrow":t.placeholder}
-            style={{flex:1,border:`1px solid ${C.border}`,borderRadius:10,padding:"10px 15px",fontSize:14,outline:"none",background:C.page,color:C.text}}/>
-          <button onClick={()=>send()} disabled={!input.trim()||loading}
-            style={{background:input.trim()&&!loading?C.primary:"#ccc",border:"none",color:"#fff",padding:"10px 16px",borderRadius:10,cursor:input.trim()&&!loading?"pointer":"default",fontSize:15,fontWeight:700,transition:"background 0.15s",minWidth:44}}>→</button>
+        <div style={{maxWidth:780,margin:"0 auto"}}>
+          {!user?(
+            <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,background:C.primaryLight,border:`1px solid ${C.primary}30`,borderRadius:12,padding:"12px 16px"}}>
+              <div>
+                <div style={{fontSize:13,fontWeight:700,color:C.primary,display:"flex",alignItems:"center",gap:6}}><Icon2c d="M6 10V7a6 6 0 1112 0v3M5 10h14v10a1 1 0 01-1 1H6a1 1 0 01-1-1V10z" accent={C.primary} size={14}/>Sign in to chat with the AI assistant</div>
+                <div style={{fontSize:12,color:C.muted,marginTop:2}}>Free account — 3 questions a day, no card required</div>
+              </div>
+              <button onClick={()=>setView("login")} style={{background:C.primary,border:"none",color:"#fff",padding:"9px 18px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:700,flexShrink:0,whiteSpace:"nowrap"}}>Sign in →</button>
+            </div>
+          ):(
+            <div style={{display:"flex",gap:9}}>
+              <input value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>e.key==="Enter"&&!e.shiftKey&&send()}
+                placeholder={limitReached?"Upgrade to keep chatting today, or come back tomorrow":t.placeholder}
+                style={{flex:1,border:`1px solid ${C.border}`,borderRadius:10,padding:"10px 15px",fontSize:14,outline:"none",background:C.page,color:C.text}}/>
+              <button onClick={()=>send()} disabled={!input.trim()||loading}
+                style={{background:input.trim()&&!loading?C.primary:"#ccc",border:"none",color:"#fff",padding:"10px 16px",borderRadius:10,cursor:input.trim()&&!loading?"pointer":"default",fontSize:15,fontWeight:700,transition:"background 0.15s",minWidth:44}}>→</button>
+            </div>
+          )}
         </div>
       </div>
 
@@ -2044,7 +2057,7 @@ function Av({initials,size=36,bg}){
 }
 
 // ── Login Page ───────────────────────────────────────────────────
-function LoginPage({setUser,setView}){
+function LoginPage({setUser,setView,openCheckout,lang,setLang}){
   const [mode,setMode]=useState("login")
   const [email,setEmail]=useState("")
   const [pass,setPass]=useState("")
@@ -2140,6 +2153,21 @@ function LoginPage({setUser,setView}){
                   style={{flex:1,background:mode===m?C.surface:"transparent",border:mode===m?`1px solid ${C.border}`:"none",borderRadius:9,padding:"9px 8px",cursor:"pointer",fontSize:13,fontWeight:mode===m?700:400,color:mode===m?C.text:C.muted,transition:"all 0.15s",boxShadow:mode===m?"0 1px 4px rgba(0,0,0,0.07)":"none"}}>{l}</button>
               ))}
             </div>
+            {mode==="register"&&setLang&&(
+              <div style={{marginBottom:16}}>
+                <label style={{display:"block",fontSize:13,fontWeight:600,color:C.text,marginBottom:5}}>Your language</label>
+                <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
+                  {Object.entries(LANGS).map(([code,l])=>(
+                    <button key={code} type="button" onClick={()=>setLang(code)}
+                      style={{padding:"6px 10px",borderRadius:8,border:`1.5px solid ${lang===code?C.primary:C.border}`,background:lang===code?C.primaryLight:"transparent",cursor:"pointer",fontSize:16,lineHeight:1,display:"flex",alignItems:"center",gap:5}}>
+                      <span>{l.flag}</span>
+                      {lang===code&&<span style={{fontSize:11,fontWeight:700,color:C.primary}}>{l.short}</span>}
+                    </button>
+                  ))}
+                </div>
+                <p style={{fontSize:11.5,color:C.muted,margin:"6px 0 0"}}>Sets the language for your account and the whole site — you can change it anytime.</p>
+              </div>
+            )}
             {mode==="register"&&(
               <div style={{marginBottom:16}}>
                 <label style={{display:"block",fontSize:13,fontWeight:600,color:C.text,marginBottom:5}}>Account type</label>
@@ -2227,6 +2255,23 @@ function LoginPage({setUser,setView}){
                 </p>
               )}
             </div>
+
+            {/* Just visiting? Day/Week Pass, no account needed — passes are
+                session-based access, not tied to a persistent account, so
+                requiring registration for them was unnecessary friction. */}
+            {openCheckout&&(
+              <div style={{marginTop:16,paddingTop:16,borderTop:`1px solid ${C.border}`,textAlign:"center"}}>
+                <p style={{fontSize:12.5,color:C.muted,margin:"0 0 10px",display:"flex",alignItems:"center",justifyContent:"center",gap:6}}><Icon2c d="M4 7h16v13a1 1 0 01-1 1H5a1 1 0 01-1-1V7zM8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M4 12h16" accent={C.muted} size={14}/>Just visiting Bulgaria? No account needed for a pass.</p>
+                <div style={{display:"flex",gap:8}}>
+                  {Object.entries(PASSES).map(([id,pass])=>(
+                    <button key={id} onClick={()=>openCheckout(id)}
+                      style={{flex:1,background:"none",border:`1.5px solid ${C.border}`,color:C.text,padding:"9px",borderRadius:9,cursor:"pointer",fontSize:12.5,fontWeight:600}}>
+                      {passI18n(id,lang).name} — €{pass.price.toFixed(2)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -6536,7 +6581,7 @@ export default function App(){
       )}
       <Nav view={view} setView={setView} lang={lang} t={t} user={user} setUser={setUser} subscription={subscription} openCheckout={openCheckout} dark={dark} setDark={setDark}/>
       {view==="login"?(
-        <LoginPage setUser={setUser} setView={setView}/>
+        <LoginPage setUser={setUser} setView={setView} openCheckout={openCheckout} lang={lang} setLang={setLang}/>
       ):view==="checkout"?(
         <CheckoutPage plan={checkoutPlan} billing={billing} setBilling={setBilling} setView={setView} user={user} setSubscription={setSubscription} lang={lang} t={t}/>
       ):view==="apps"?(
@@ -6670,6 +6715,7 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang
   const [payMethod,setPayMethod]=useState("stripe") // "stripe" | "crypto"
   const [cryptoStep,setCryptoStep]=useState("select") // "select" | "address" | "confirm"
   const [selectedCoin,setSelectedCoin]=useState("BTC")
+  const [guestEmail,setGuestEmail]=useState("") // for pass purchases with no account
   const isPass = plan==="day"||plan==="week"
   const p = PLANS[plan]||PLANS.basic
   const pass = PASSES[plan]
@@ -6680,6 +6726,10 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang
   const stripeUrl = STRIPE_LINKS[linkKey]||"#"
 
   const handlePay = () => {
+    if(!user&&isPass&&!guestEmail.includes("@")){
+      alert("Please enter a valid email address for your receipt.")
+      return
+    }
     gtrack("begin_checkout",{plan,billing,value:price,currency:"EUR"})
     if(stripeUrl==="https://buy.stripe.com/REPLACE_"+linkKey.toUpperCase()||stripeUrl==="#"){
       alert("⚠️ Set up your Stripe Payment Links!\n\nGo to dashboard.stripe.com → Payment Links → Create link\nThen paste the URL into STRIPE_LINKS in the code.")
@@ -6777,10 +6827,20 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang
           {/* Payment section */}
           <div style={{padding:"22px 28px"}}>
 
-            {/* User check */}
-            {!user?(
+            {/* User check — passes don't need a persistent account, only
+                actual subscriptions do, since they need something to attach
+                ongoing state to. */}
+            {!user&&!isPass?(
               <div style={{background:"#fff9f0",border:"1px solid #f0d9b0",borderRadius:10,padding:"12px 14px",marginBottom:16,fontSize:13,color:"#8a5a1a"}}>
                 ⚠️ {(t&&t.checkoutPleaseText)||"Please"} <button onClick={()=>setView("login")} style={{background:"none",border:"none",color:C.accent,fontWeight:600,cursor:"pointer",padding:0,fontSize:13,textDecoration:"underline"}}>{(t&&t.checkoutSignInLink)||"sign in or create a free account"}</button> {(t&&t.checkoutFirst)||"first."}
+              </div>
+            ):!user&&isPass?(
+              <div style={{marginBottom:16}}>
+                <div style={{background:C.primaryLight,border:`1px solid ${C.primary}30`,borderRadius:10,padding:"10px 14px",marginBottom:10,fontSize:13,color:C.primary}}>
+                  ✓ No account needed — just enter your email for the receipt.
+                </div>
+                <input type="email" value={guestEmail} onChange={e=>setGuestEmail(e.target.value)} placeholder="you@example.com"
+                  style={{width:"100%",border:`1.5px solid ${C.border}`,borderRadius:10,padding:"11px 14px",fontSize:14,outline:"none",color:C.text,background:C.page,boxSizing:"border-box"}}/>
               </div>
             ):(
               <div style={{background:C.primaryLight,border:`1px solid ${C.primary}30`,borderRadius:10,padding:"10px 14px",marginBottom:16,fontSize:13,color:C.primary}}>
@@ -6801,7 +6861,7 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang
             {/* Stripe section */}
             {payMethod==="stripe"&&(
               <div>
-                <button onClick={user?handlePay:()=>setView("login")}
+                <button onClick={(user||isPass)?handlePay:()=>setView("login")}
                   style={{width:"100%",background:"#635BFF",border:"none",color:"#fff",padding:"15px",borderRadius:12,cursor:"pointer",fontSize:15,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:12,boxShadow:"0 4px 18px rgba(99,91,255,0.35)",transition:"all 0.2s"}}
                   onMouseEnter={e=>{e.currentTarget.style.background="#524BEE"}}
                   onMouseLeave={e=>{e.currentTarget.style.background="#635BFF"}}>
