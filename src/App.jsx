@@ -2389,7 +2389,18 @@ function CommunityPage({user,setUser,setView,posts,setPosts}){
 
       <div style={{maxWidth:1100,margin:"0 auto",padding:isMobile?"18px 14px":"24px 20px",display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 300px",gap:isMobile?16:20,alignItems:"start"}}>
         <div style={{minWidth:0}}>
-          {user&&!user.inCommunity&&(
+          {user&&user.accountType==="partner"&&(
+            <div style={{background:C.page,border:`1px solid ${C.border}`,borderRadius:16,padding:"20px",marginBottom:16,textAlign:"center"}}>
+              <div style={{fontSize:28,marginBottom:8}}>💬</div>
+              <div style={{fontWeight:700,fontSize:15,color:C.text,marginBottom:4}}>Community isn't available for Partner accounts</div>
+              <p style={{fontSize:13,color:C.muted,margin:"0 0 14px",lineHeight:1.5}}>You can still read everything below. To reach expats directly, use private Messages from your account page instead.</p>
+              <button onClick={()=>setView("account")}
+                style={{background:C.primary,border:"none",color:"#fff",padding:"10px 22px",borderRadius:9,cursor:"pointer",fontSize:14,fontWeight:700}}>
+                Go to Messages →
+              </button>
+            </div>
+          )}
+          {user&&user.accountType!=="partner"&&!user.inCommunity&&(
             <div style={{background:C.primaryLight,border:`1px solid ${C.primary}30`,borderRadius:16,padding:"20px",marginBottom:16,textAlign:"center"}}>
               <div style={{fontSize:28,marginBottom:8}}>💬</div>
               <div style={{fontWeight:700,fontSize:15,color:C.primary,marginBottom:4}}>Activate Community to post &amp; comment</div>
@@ -2400,7 +2411,7 @@ function CommunityPage({user,setUser,setView,posts,setPosts}){
               </button>
             </div>
           )}
-          {user&&user.inCommunity&&(
+          {user&&user.accountType!=="partner"&&user.inCommunity&&(
             <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,padding:"18px",marginBottom:16,boxShadow:"0 1px 4px rgba(0,0,0,0.05)"}}>
               <div style={{display:"flex",gap:12,marginBottom:12}}>
                 <Av initials={user.av||user.name.slice(0,2).toUpperCase()} size={40}/>
@@ -5897,6 +5908,32 @@ function AccountPage({user,setUser,setView,subscription}){
   const [err,setErr]=useState("")
   const fileRef=useRef(null)
   const isPremium=(subscription&&subscription.plan)==="premium"
+  // Live conversation preview for the Partner dashboard widget
+  const [msgConvos,setMsgConvos]=useState([])
+  const [msgConvosLoading,setMsgConvosLoading]=useState(true)
+  const loadMsgConvos=async()=>{
+    if(!user)return
+    setMsgConvosLoading(true)
+    const {data}=await sbGetMyMessages(user.id)
+    if(data){
+      const grouped={}
+      data.forEach(m=>{
+        const otherId=m.sender_id===user.id?m.recipient_id:m.sender_id
+        if(!grouped[otherId])grouped[otherId]={otherId,last:m,unread:0}
+        if(m.recipient_id===user.id&&!m.read)grouped[otherId].unread++
+      })
+      const list=Object.values(grouped).sort((a,b)=>new Date(b.last.created_at)-new Date(a.last.created_at)).slice(0,4)
+      const ids=list.map(c=>c.otherId)
+      let profiles={}
+      if(ids.length){
+        const {data:p}=await sbGetProfilesByIds(ids)
+        if(p)p.forEach(pr=>{profiles[pr.id]=pr})
+      }
+      setMsgConvos(list.map(c=>({...c,profile:profiles[c.otherId]})))
+    }
+    setMsgConvosLoading(false)
+  }
+  useEffect(()=>{ loadMsgConvos() },[user])
   const BUSINESS_CATEGORIES=["Real Estate","Legal Services","Healthcare","Financial Services & Banking","Moving & Logistics","Education & Schools","Hospitality & Tourism","Home Services & Repairs","Other"]
   const [isMobile,setIsMobile]=useState(typeof window!=="undefined"&&window.innerWidth<=768)
   useEffect(()=>{
@@ -5913,7 +5950,8 @@ function AccountPage({user,setUser,setView,subscription}){
       const {data}=await sbGetProfile(user.id)
       if(cancelled)return
       if(data){
-        setName(data.name||user.name||"")
+        const isPartnerAcct=(data.account_type||"expat")==="partner"
+        setName(isPartnerAcct?(data.business_name||data.name||user.name||""):(data.name||user.name||""))
         setBio(data.bio||"")
         setOrigin(data.origin||"")
         setCity(data.city||"")
@@ -5937,11 +5975,11 @@ function AccountPage({user,setUser,setView,subscription}){
 
   const save=async()=>{
     setErr("");setMsg("")
-    if(!name.trim()){setErr("Please enter a name.");return}
-    if(accountType==="partner"&&!businessName.trim()){setErr("Please enter a business name.");return}
+    const effectiveName=accountType==="partner"?businessName.trim():name.trim()
+    if(!effectiveName){setErr(accountType==="partner"?"Please enter a business name.":"Please enter a name.");return}
     setSaving(true)
     const {error}=await sbUpdateProfile(user.id,{
-      name:name.trim(),
+      name:effectiveName,
       bio:bio.trim()||null,
       origin:origin||null,
       city:city||null,
@@ -5956,7 +5994,7 @@ function AccountPage({user,setUser,setView,subscription}){
       setErr("Could not save: "+(error.message||"unknown error"))
       return
     }
-    setUser(u=>u?{...u,name:name.trim()}:u)
+    setUser(u=>u?{...u,name:effectiveName}:u)
     setMsg("Profile saved.")
     setTimeout(()=>setMsg(""),3000)
   }
@@ -6030,13 +6068,13 @@ function AccountPage({user,setUser,setView,subscription}){
   return(
     <div style={{minHeight:"100vh",background:C.page}}>
       <div style={{background:`linear-gradient(135deg,${C.primary},#2a7a52)`,padding:isMobile?"26px 16px 42px":"32px 20px 48px"}}>
-        <div style={{maxWidth:760,margin:"0 auto"}}>
+        <div style={{maxWidth:960,margin:"0 auto"}}>
           <h1 className="serif" style={{color:"#fff",fontSize:"clamp(24px,4vw,34px)",fontWeight:400,margin:"0 0 6px"}}>My account</h1>
           <p style={{color:"rgba(255,255,255,0.75)",fontSize:isMobile?13:15,margin:0,fontWeight:300}}>Your profile is visible to other signed-in members</p>
         </div>
       </div>
 
-      <div style={{maxWidth:760,margin:isMobile?"-24px auto 32px":"-24px auto 48px",padding:isMobile?"0 12px":"0 20px"}}>
+      <div style={{maxWidth:960,margin:isMobile?"-24px auto 32px":"-24px auto 48px",padding:isMobile?"0 12px":"0 20px"}}>
         <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:16,padding:isMobile?"18px 16px":"24px",boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}>
 
           {loading?(
@@ -6063,14 +6101,52 @@ function AccountPage({user,setUser,setView,subscription}){
                 </div>
               </div>
 
-              {/* Name */}
-              <div style={{marginBottom:16}}>
-                <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>NAME OR NICKNAME</label>
-                <input value={name} onChange={e=>setName(e.target.value.slice(0,40))}
-                  placeholder="How you'd like to appear"
-                  style={inputStyle}/>
-                <div style={{fontSize:11,color:C.muted,marginTop:3}}>This is shown across BGexpats, including in Meet & Connect if you join.</div>
-              </div>
+              {/* Name — not shown for Partners, who already gave a business
+                  name at signup; that name is used as their display name
+                  automatically (synced on save). */}
+              {accountType!=="partner"&&(
+                <div style={{marginBottom:16}}>
+                  <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>NAME OR NICKNAME</label>
+                  <input value={name} onChange={e=>setName(e.target.value.slice(0,40))}
+                    placeholder="How you'd like to appear"
+                    style={inputStyle}/>
+                  <div style={{fontSize:11,color:C.muted,marginTop:3}}>This is shown across BGexpats, including in Meet & Connect if you join.</div>
+                </div>
+              )}
+
+              {/* Messages dashboard widget — Partner accounts only. Moved up
+                  near the top since private messaging with expats is the
+                  main way Partners interact with members (Community is not
+                  available to Partner accounts). */}
+              {accountType==="partner"&&(
+                <div style={{marginBottom:16,background:C.primaryLight,border:`1px solid ${C.primary}30`,borderRadius:14,padding:"16px"}}>
+                  <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12}}>
+                    <div style={{fontSize:14,fontWeight:700,color:C.primary,display:"flex",alignItems:"center",gap:7}}>
+                      <Icon2c d="M4 4h16v12H7l-3 3V4z" accent={C.primary} size={17}/>Messages
+                    </div>
+                    <button onClick={()=>setView("messages")} style={{background:"none",border:"none",color:C.primary,cursor:"pointer",fontSize:12,fontWeight:700}}>Open all →</button>
+                  </div>
+                  {msgConvosLoading?(
+                    <p style={{fontSize:12,color:C.muted,margin:0}}>Loading…</p>
+                  ):msgConvos.length===0?(
+                    <p style={{fontSize:12,color:C.muted,margin:0}}>No messages yet. Expats reaching out will show up here.</p>
+                  ):(
+                    <div style={{display:"flex",flexDirection:"column",gap:6}}>
+                      {msgConvos.map(c=>(
+                        <button key={c.otherId} onClick={()=>setView("messages")}
+                          style={{display:"flex",alignItems:"center",gap:10,background:C.surface,border:`1px solid ${C.border}`,borderRadius:9,padding:"9px 12px",cursor:"pointer",textAlign:"left"}}>
+                          <Av initials={(c.profile&&(c.profile.av||c.profile.name.slice(0,2).toUpperCase()))||"?"} size={30}/>
+                          <div style={{flex:1,minWidth:0}}>
+                            <div style={{fontSize:12.5,fontWeight:600,color:C.text}}>{(c.profile&&c.profile.name)||"Member"}</div>
+                            <div style={{fontSize:11.5,color:C.muted,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{c.last.sender_id===user.id?"You: ":""}{c.last.content}</div>
+                          </div>
+                          {c.unread>0&&<span style={{background:"#dc2626",color:"#fff",fontSize:10,fontWeight:700,minWidth:17,height:17,borderRadius:9,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>{c.unread}</span>}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* Business details — Partner accounts only */}
               {accountType==="partner"&&(
@@ -6094,7 +6170,7 @@ function AccountPage({user,setUser,setView,subscription}){
               {accountType==="partner"&&(
                 <div style={{marginBottom:16,background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,padding:"14px"}}>
                   <div style={{fontSize:12,fontWeight:700,color:C.text,marginBottom:2}}>Want to advertise to expats too?</div>
-                  <p style={{fontSize:12,color:C.muted,margin:"0 0 12px",lineHeight:1.5}}>Being a Partner gets you into the community. Advertising puts your business on the map and in front of people searching for exactly what you offer.</p>
+                  <p style={{fontSize:12,color:C.muted,margin:"0 0 12px",lineHeight:1.5}}>As a Partner you can message expats directly (see Messages above) — no access to the general Community. Advertising goes further: it puts your business on the map and in front of people actively searching for what you offer.</p>
                   <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:12}}>
                     {AD_TIERS.map(tier=>(
                       <div key={tier.id} style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"9px 12px",background:C.page,borderRadius:9,border:`1px solid ${C.border}`}}>
@@ -6194,17 +6270,20 @@ function AccountPage({user,setUser,setView,subscription}){
                 {saving?"Saving…":"Save profile"}
               </button>
 
-              {/* Community opt-in — separate from just having a BGexpats account */}
+              {/* Community opt-in — not available to Partner accounts.
+                  Partners reach expats through Messages/advertising instead
+                  (see the widgets above), not the general Community feed. */}
+              {accountType!=="partner"&&(
               <div style={{marginTop:22,paddingTop:20,borderTop:`1px solid ${C.border}`}}>
                 <div style={{display:"flex",alignItems:"flex-start",gap:12,background:inCommunity?"#f0fff4":C.page,border:`1px solid ${inCommunity?"#bce8cd":C.border}`,borderRadius:12,padding:"16px"}}>
                   <div style={{flexShrink:0,width:38,height:38,borderRadius:10,background:inCommunity?"#dcfce7":C.primaryLight,display:"flex",alignItems:"center",justifyContent:"center"}}>
                     <Icon2c d="M4 4h16v12H7l-3 3V4z" accent={inCommunity?"#16a34a":C.primary} size={20}/>
                   </div>
                   <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:15,fontWeight:700,color:C.text,marginBottom:3}}>Community{accountType==="partner"&&<span style={{marginLeft:6,fontSize:10,background:"#f0c060",color:"#1a3a20",padding:"2px 7px",borderRadius:6,fontWeight:700,verticalAlign:"middle"}}>PARTNER</span>}</div>
+                    <div style={{fontSize:15,fontWeight:700,color:C.text,marginBottom:3}}>Community</div>
                     <p style={{fontSize:13,color:C.muted,margin:"0 0 12px",lineHeight:1.6}}>
                       {inCommunity
-                        ? (accountType==="partner"?"Your posts show a Partner badge so members know you're a business, not another expat. You can leave anytime.":"You can post, comment, and appear as a member. You can leave anytime.")
+                        ? "You can post, comment, and appear as a member. You can leave anytime."
                         : "Optional — activate to post, comment, and be part of the community. Your BGexpats account works with or without this."}
                     </p>
                     <button onClick={toggleCommunity} disabled={joiningCommunity}
@@ -6214,6 +6293,7 @@ function AccountPage({user,setUser,setView,subscription}){
                   </div>
                 </div>
               </div>
+              )}
 
               {/* Meet & Connect opt-in — Premium only, separate from Community, not relevant for Partner accounts */}
               {accountType!=="partner"&&(
@@ -6256,9 +6336,10 @@ function AccountPage({user,setUser,setView,subscription}){
               </div>
               )}
 
-              {/* Private Messages — Premium / active pass / Partner accounts.
-                  Gating itself lives in MessagesPage; this is just the entry
-                  point, so anyone can see the feature exists. */}
+              {/* Private Messages — Premium / active pass accounts. Partners
+                  already have the richer dashboard widget up top, so this
+                  simpler link only shows for Expat accounts. */}
+              {accountType!=="partner"&&(
               <div style={{marginTop:14,display:"flex",alignItems:"flex-start",gap:12,background:C.page,border:`1px solid ${C.border}`,borderRadius:12,padding:"16px"}}>
                 <div style={{flexShrink:0,width:38,height:38,borderRadius:10,background:C.primaryLight,display:"flex",alignItems:"center",justifyContent:"center"}}>
                   <Icon2c d="M4 4h16v12H7l-3 3V4z" accent={C.primary} size={20}/>
@@ -6274,6 +6355,7 @@ function AccountPage({user,setUser,setView,subscription}){
                   </button>
                 </div>
               </div>
+              )}
 
               <p style={{fontSize:11,color:C.muted,textAlign:"center",margin:"14px 0 0",lineHeight:1.5}}>
                 Only signed-in members can see your profile. Never share your home address, phone number or financial details.
