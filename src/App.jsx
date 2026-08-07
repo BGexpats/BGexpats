@@ -6565,9 +6565,15 @@ export default function App(){
     }
   },[dark])
   const [view,setViewState]=useState(()=>{
-    // On first load, honour a hash like #map so refresh/shared links work.
+    // On first load, honour a hash like #map so refresh/shared links work —
+    // but NOT #checkout: that view depends on checkoutPlan/billing state
+    // that was never actually stored in the hash, so restoring it directly
+    // lands people on a checkout page for whatever the default plan happens
+    // to be (Basic), not what they actually meant to do. Send them to
+    // pricing instead, where picking a plan sets that state properly.
     if(typeof window!=="undefined"&&window.location.hash){
       const h=window.location.hash.replace(/^#/,"")
+      if(h==="checkout")return "pricing"
       if(h)return h
     }
     return "home"
