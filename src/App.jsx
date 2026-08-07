@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, Fragment } from "react"
 import { signUp as sbSignUp, signIn as sbSignIn, signOut as sbSignOut, getCurrentUser as sbGetCurrentUser, resetPassword as sbResetPassword, getProfile as sbGetProfile, updateProfile as sbUpdateProfile, uploadAvatar as sbUploadAvatar, listProfiles as sbListProfiles, getPins as sbGetPins, savePin as sbSavePin, deletePin as sbDeletePin, updatePin as sbUpdatePin, getTrips as sbGetTrips, saveTrip as sbSaveTrip, updateTrip as sbUpdateTrip, deleteTrip as sbDeleteTrip, getMyMessages as sbGetMyMessages, getThread as sbGetThread, sendMessage as sbSendMessage, markThreadRead as sbMarkThreadRead, listPartners as sbListPartners, searchProfiles as sbSearchProfiles, getProfilesByIds as sbGetProfilesByIds, getUnreadCount as sbGetUnreadCount } from "./supabase"
 import heroImg1 from "./assets/hero-rila-lake.jpg"
+import bgMapDoodle from "./assets/bg-map-doodle-white.png"
 import nessebar from "./assets/nessebar.jpg"
 import plovdiv from "./assets/plovdiv.jpg"
 import heroImg2 from "./assets/hero-sunny-beach.jpg"
@@ -2151,10 +2152,13 @@ function LoginPage({setUser,setView,openCheckout,lang,setLang}){
     <div style={{minHeight:"calc(100vh - 100px)",display:"flex",alignItems:"center",justifyContent:"center",padding:"40px 20px",background:C.page}}>
       <div style={{width:"100%",maxWidth:440}}>
         <div style={{background:C.surface,borderRadius:22,border:`1px solid ${C.border}`,boxShadow:"0 12px 40px rgba(0,0,0,0.1)",overflow:"hidden"}}>
-          <div style={{background:`linear-gradient(135deg,${C.primary} 0%,#2a7a52 100%)`,padding:"36px 32px 30px",textAlign:"center"}}>
-            <img src={LOGO_ICON} alt="BGexpats" style={{height:40,width:40,marginBottom:10}}/>
-            <h1 style={{color:"#fff",fontSize:24,fontWeight:800,margin:"0 0 6px",letterSpacing:"-0.4px"}}>Welcome to BGexpats</h1>
-            <p style={{color:"rgba(255,255,255,0.72)",fontSize:14,margin:0}}>Your guide to living well in Bulgaria — sign in to get started</p>
+          <div style={{background:`linear-gradient(135deg,${C.primary} 0%,#2a7a52 100%)`,padding:"36px 32px 30px",textAlign:"center",position:"relative",overflow:"hidden"}}>
+            <img src={bgMapDoodle} alt="" aria-hidden="true" style={{position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"140%",maxWidth:520,opacity:0.14,pointerEvents:"none",userSelect:"none"}}/>
+            <div style={{position:"relative"}}>
+              <img src={LOGO_ICON} alt="BGexpats" style={{height:40,width:40,marginBottom:10}}/>
+              <h1 style={{color:"#fff",fontSize:24,fontWeight:800,margin:"0 0 6px",letterSpacing:"-0.4px"}}>Welcome to BGexpats</h1>
+              <p style={{color:"rgba(255,255,255,0.72)",fontSize:14,margin:0}}>Your guide to living well in Bulgaria — sign in to get started</p>
+            </div>
           </div>
           <div style={{padding:"28px 32px 32px"}}>
             <div style={{display:"flex",background:C.page,borderRadius:12,padding:4,marginBottom:24,gap:4}}>
