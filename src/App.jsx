@@ -5885,7 +5885,7 @@ function PricingPage({user,setView,lang,t,openCheckout=()=>{}}){
 const PROFILE_CITIES=["Sofia","Plovdiv","Varna","Burgas","Bansko","Ruse","Stara Zagora","Sunny Beach","Nessebar","Other"]
 const PROFILE_LANGS=["English","Bulgarian","Russian","German","French","Spanish","Dutch","Turkish","Ukrainian","Italian","Polish","Romanian"]
 
-function AccountPage({user,setUser,setView,subscription}){
+function AccountPage({user,setUser,setView,subscription,lang}){
   const [name,setName]=useState("")
   const [bio,setBio]=useState("")
   const [origin,setOrigin]=useState("")
@@ -5899,6 +5899,12 @@ function AccountPage({user,setUser,setView,subscription}){
   const [accountType,setAccountType]=useState("expat")
   const [businessName,setBusinessName]=useState("")
   const [businessCategory,setBusinessCategory]=useState("")
+  const [editingHeaderName,setEditingHeaderName]=useState(false)
+  const ACCT_I18N = {
+    en:{myAccount:"My account",profileVisible:"Your profile is visible to other signed-in members",greeting:(n)=>`Welcome back, ${n}! 👋`,addPhoto:"Add photo",changePhoto:"Change photo",uploading:"Uploading…",edit:"Edit",save:"Save changes",saving:"Saving…",nameLabel:"NAME OR NICKNAME",nameHint:"This is shown across BGexpats, including in Meet & Connect if you join.",messages:"Messages",openAll:"Open all →",loadingDots:"Loading…",noMessagesYet:"No messages yet. Expats reaching out will show up here.",partnerAccount:"PARTNER ACCOUNT",businessName:"BUSINESS / SERVICE NAME",businessNamePh:"e.g. Sofia Real Estate Ltd.",category:"CATEGORY",selectCategory:"Select a category…",wantAdvertise:"Want to advertise to expats too?",advertiseDesc:"As a Partner you can message expats directly (see Messages above) — no access to the general Community. Advertising goes further: it puts your business on the map and in front of people actively searching for what you offer.",seeFullPricing:"See full pricing & get started →",aboutCompany:"ABOUT YOUR COMPANY",aboutCompanyPh:"Tell members about your company or service — what you offer, who it's for, why they should reach out…",aboutYou:"ABOUT YOU",aboutYouPh:"Tell other members a bit about yourself — what brought you to Bulgaria, what you enjoy…",cityLabel:"CITY",selectCity:"Select a city…",lookingForLabel:"LOOKING FOR",selectGeneric:"Select…",languagesLabel:"LANGUAGES I SPEAK",footer:"Only signed-in members can see your profile. Never share your home address, phone number or financial details."},
+    bg:{myAccount:"Моят акаунт",profileVisible:"Профилът ви е видим за други регистрирани членове",greeting:(n)=>`Добре дошли, ${n}! 👋`,addPhoto:"Добавете снимка",changePhoto:"Смени снимката",uploading:"Качване…",edit:"Редактирай",save:"Запази промените",saving:"Запазване…",nameLabel:"ИМЕ ИЛИ ПСЕВДОНИМ",nameHint:"Показва се навсякъде в BGexpats, включително в Meet & Connect, ако се присъедините.",messages:"Съобщения",openAll:"Отвори всички →",loadingDots:"Зареждане…",noMessagesYet:"Все още няма съобщения. Чужденци, които се свържат с вас, ще се показват тук.",partnerAccount:"ПАРТНЬОРСКИ АКАУНТ",businessName:"ИМЕ НА БИЗНЕСА / УСЛУГАТА",businessNamePh:"напр. София Недвижими Имоти ЕООД",category:"КАТЕГОРИЯ",selectCategory:"Изберете категория…",wantAdvertise:"Искате ли да рекламирате пред чужденци?",advertiseDesc:"Като партньор можете да пишете директно на чужденци (вижте Съобщения по-горе) — без достъп до общата общност. Рекламата отива по-далеч: поставя бизнеса ви на картата и пред хора, които активно търсят точно това, което предлагате.",seeFullPricing:"Вижте пълните цени и започнете →",aboutCompany:"ЗА ВАШАТА КОМПАНИЯ",aboutCompanyPh:"Разкажете на членовете за вашата компания или услуга — какво предлагате, за кого е, защо да се свържат с вас…",aboutYou:"ЗА ВАС",aboutYouPh:"Разкажете на другите членове малко за себе си — какво ви доведе в България, какво харесвате…",cityLabel:"ГРАД",selectCity:"Изберете град…",lookingForLabel:"ТЪРСЯ",selectGeneric:"Изберете…",languagesLabel:"ЕЗИЦИ, КОИТО ГОВОРЯ",footer:"Само регистрирани членове могат да виждат профила ви. Никога не споделяйте домашния си адрес, телефонен номер или финансови данни."},
+  }
+  const ai=ACCT_I18N[lang]||ACCT_I18N.en
   const [loading,setLoading]=useState(true)
   const [saving,setSaving]=useState(false)
   const [joining,setJoining]=useState(false)
@@ -6069,8 +6075,8 @@ function AccountPage({user,setUser,setView,subscription}){
     <div style={{minHeight:"100vh",background:C.page}}>
       <div style={{background:`linear-gradient(135deg,${C.primary},#2a7a52)`,padding:isMobile?"26px 16px 42px":"32px 20px 48px"}}>
         <div style={{maxWidth:960,margin:"0 auto"}}>
-          <h1 className="serif" style={{color:"#fff",fontSize:"clamp(24px,4vw,34px)",fontWeight:400,margin:"0 0 6px"}}>My account</h1>
-          <p style={{color:"rgba(255,255,255,0.75)",fontSize:isMobile?13:15,margin:0,fontWeight:300}}>Your profile is visible to other signed-in members</p>
+          <h1 className="serif" style={{color:"#fff",fontSize:"clamp(24px,4vw,34px)",fontWeight:400,margin:"0 0 6px"}}>{ai.myAccount}</h1>
+          <p style={{color:"rgba(255,255,255,0.75)",fontSize:isMobile?13:15,margin:0,fontWeight:300}}>{user&&(name||user.name)?ai.greeting(name||user.name):ai.profileVisible}</p>
         </div>
       </div>
 
@@ -6090,74 +6096,92 @@ function AccountPage({user,setUser,setView,subscription}){
                     <Av initials={user.av||"?"} size={76}/>
                   )}
                 </div>
-                <div style={{minWidth:0}}>
-                  <div style={{fontSize:18,fontWeight:700,color:C.text,marginBottom:2}}>{name||user.name}</div>
+                <div style={{minWidth:0,flex:1}}>
+                  {accountType==="partner"&&editingHeaderName?(
+                    <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:2}}>
+                      <input autoFocus value={businessName} onChange={e=>setBusinessName(e.target.value.slice(0,60))}
+                        onKeyDown={e=>e.key==="Enter"&&setEditingHeaderName(false)}
+                        style={{fontSize:16,fontWeight:700,color:C.text,border:`1.5px solid ${C.primary}`,borderRadius:7,padding:"4px 8px",background:C.page,outline:"none",minWidth:0}}/>
+                      <button onClick={()=>setEditingHeaderName(false)} style={{background:C.primary,border:"none",color:"#fff",borderRadius:6,width:24,height:24,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      </button>
+                    </div>
+                  ):(
+                    <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:2}}>
+                      <div style={{fontSize:18,fontWeight:700,color:C.text}}>{name||user.name}</div>
+                      {accountType==="partner"&&(
+                        <button onClick={()=>setEditingHeaderName(true)} title={ai.edit} style={{background:"none",border:"none",color:C.muted,cursor:"pointer",padding:2,display:"flex",alignItems:"center"}}>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                        </button>
+                      )}
+                    </div>
+                  )}
                   <div style={{fontSize:13,color:C.muted,marginBottom:8,overflow:"hidden",textOverflow:"ellipsis"}}>{user.email}</div>
                   <input ref={fileRef} type="file" accept="image/jpeg,image/png,image/webp" onChange={onFile} style={{display:"none"}}/>
                   <button onClick={pickFile} disabled={uploading}
                     style={{background:"transparent",border:`1.5px solid ${C.primary}`,color:C.primary,padding:"6px 14px",borderRadius:8,cursor:uploading?"default":"pointer",fontSize:12,fontWeight:600}}>
-                    {uploading?"Uploading…":(avatarUrl?"Change photo":"Add photo")}
+                    {uploading?ai.uploading:(avatarUrl?ai.changePhoto:ai.addPhoto)}
                   </button>
                 </div>
               </div>
 
-              {/* Name — not shown for Partners, who already gave a business
-                  name at signup; that name is used as their display name
-                  automatically (synced on save). */}
+              {/* Name — not shown for Partners, who edit it inline next to
+                  their photo above instead (already gave a business name at
+                  signup; used as their display name automatically). */}
               {accountType!=="partner"&&(
                 <div style={{marginBottom:16}}>
-                  <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>NAME OR NICKNAME</label>
+                  <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>{ai.nameLabel}</label>
                   <input value={name} onChange={e=>setName(e.target.value.slice(0,40))}
                     placeholder="How you'd like to appear"
                     style={inputStyle}/>
-                  <div style={{fontSize:11,color:C.muted,marginTop:3}}>This is shown across BGexpats, including in Meet & Connect if you join.</div>
+                  <div style={{fontSize:11,color:C.muted,marginTop:3}}>{ai.nameHint}</div>
                 </div>
               )}
 
-              {/* Messages dashboard widget — Partner accounts only. Moved up
-                  near the top since private messaging with expats is the
-                  main way Partners interact with members (Community is not
-                  available to Partner accounts). */}
+              {/* Partner dashboard — Messages widget + Business details
+                  grouped side by side on desktop instead of stacked, so the
+                  wider page doesn't feel like one long stretched column. */}
               {accountType==="partner"&&(
-                <div style={{marginBottom:16,background:C.primaryLight,border:`1px solid ${C.primary}30`,borderRadius:14,padding:"16px"}}>
-                  <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12}}>
-                    <div style={{fontSize:14,fontWeight:700,color:C.primary,display:"flex",alignItems:"center",gap:7}}>
-                      <Icon2c d="M4 4h16v12H7l-3 3V4z" accent={C.primary} size={17}/>Messages
+                <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:16,marginBottom:16,alignItems:"start"}}>
+                  {/* Messages dashboard widget */}
+                  <div style={{background:C.primaryLight,border:`1px solid ${C.primary}30`,borderRadius:14,padding:"16px"}}>
+                    <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12}}>
+                      <div style={{fontSize:14,fontWeight:700,color:C.primary,display:"flex",alignItems:"center",gap:7}}>
+                        <Icon2c d="M4 4h16v12H7l-3 3V4z" accent={C.primary} size={17}/>{ai.messages}
+                      </div>
+                      <button onClick={()=>setView("messages")} style={{background:"none",border:"none",color:C.primary,cursor:"pointer",fontSize:12,fontWeight:700}}>{ai.openAll}</button>
                     </div>
-                    <button onClick={()=>setView("messages")} style={{background:"none",border:"none",color:C.primary,cursor:"pointer",fontSize:12,fontWeight:700}}>Open all →</button>
+                    {msgConvosLoading?(
+                      <p style={{fontSize:12,color:C.muted,margin:0}}>{ai.loadingDots}</p>
+                    ):msgConvos.length===0?(
+                      <p style={{fontSize:12,color:C.muted,margin:0}}>{ai.noMessagesYet}</p>
+                    ):(
+                      <div style={{display:"flex",flexDirection:"column",gap:6}}>
+                        {msgConvos.map(c=>(
+                          <button key={c.otherId} onClick={()=>setView("messages")}
+                            style={{display:"flex",alignItems:"center",gap:10,background:C.surface,border:`1px solid ${C.border}`,borderRadius:9,padding:"9px 12px",cursor:"pointer",textAlign:"left"}}>
+                            <Av initials={(c.profile&&(c.profile.av||c.profile.name.slice(0,2).toUpperCase()))||"?"} size={30}/>
+                            <div style={{flex:1,minWidth:0}}>
+                              <div style={{fontSize:12.5,fontWeight:600,color:C.text}}>{(c.profile&&c.profile.name)||"Member"}</div>
+                              <div style={{fontSize:11.5,color:C.muted,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{c.last.sender_id===user.id?"You: ":""}{c.last.content}</div>
+                            </div>
+                            {c.unread>0&&<span style={{background:"#dc2626",color:"#fff",fontSize:10,fontWeight:700,minWidth:17,height:17,borderRadius:9,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>{c.unread}</span>}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  {msgConvosLoading?(
-                    <p style={{fontSize:12,color:C.muted,margin:0}}>Loading…</p>
-                  ):msgConvos.length===0?(
-                    <p style={{fontSize:12,color:C.muted,margin:0}}>No messages yet. Expats reaching out will show up here.</p>
-                  ):(
-                    <div style={{display:"flex",flexDirection:"column",gap:6}}>
-                      {msgConvos.map(c=>(
-                        <button key={c.otherId} onClick={()=>setView("messages")}
-                          style={{display:"flex",alignItems:"center",gap:10,background:C.surface,border:`1px solid ${C.border}`,borderRadius:9,padding:"9px 12px",cursor:"pointer",textAlign:"left"}}>
-                          <Av initials={(c.profile&&(c.profile.av||c.profile.name.slice(0,2).toUpperCase()))||"?"} size={30}/>
-                          <div style={{flex:1,minWidth:0}}>
-                            <div style={{fontSize:12.5,fontWeight:600,color:C.text}}>{(c.profile&&c.profile.name)||"Member"}</div>
-                            <div style={{fontSize:11.5,color:C.muted,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{c.last.sender_id===user.id?"You: ":""}{c.last.content}</div>
-                          </div>
-                          {c.unread>0&&<span style={{background:"#dc2626",color:"#fff",fontSize:10,fontWeight:700,minWidth:17,height:17,borderRadius:9,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>{c.unread}</span>}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
 
-              {/* Business details — Partner accounts only */}
-              {accountType==="partner"&&(
-                <div style={{marginBottom:16,background:"#fef9ef",border:"1px solid #f0d9a8",borderRadius:12,padding:"14px"}}>
-                  <div style={{fontSize:12,fontWeight:700,color:"#92400e",marginBottom:10,display:"flex",alignItems:"center",gap:6}}><Icon2c d="M4 8h16v11H4zM9 8V6a2 2 0 012-2h4a2 2 0 012 2v2" accent="#92400e" size={14}/>PARTNER ACCOUNT</div>
-                  <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>BUSINESS / SERVICE NAME</label>
-                  <input value={businessName} onChange={e=>setBusinessName(e.target.value.slice(0,60))}
-                    placeholder="e.g. Sofia Real Estate Ltd."
-                    style={{...inputStyle,marginBottom:12}}/>
-                  <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>CATEGORY</label>
-                  <CustomSelect value={businessCategory} onChange={setBusinessCategory} options={BUSINESS_CATEGORIES} placeholder="Select a category…"/>
+                  {/* Business details */}
+                  <div style={{background:"#fef9ef",border:"1px solid #f0d9a8",borderRadius:12,padding:"14px"}}>
+                    <div style={{fontSize:12,fontWeight:700,color:"#92400e",marginBottom:10,display:"flex",alignItems:"center",gap:6}}><Icon2c d="M4 8h16v11H4zM9 8V6a2 2 0 012-2h4a2 2 0 012 2v2" accent="#92400e" size={14}/>{ai.partnerAccount}</div>
+                    <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>{ai.businessName}</label>
+                    <input value={businessName} onChange={e=>setBusinessName(e.target.value.slice(0,60))}
+                      placeholder={ai.businessNamePh}
+                      style={{...inputStyle,marginBottom:12}}/>
+                    <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>{ai.category}</label>
+                    <CustomSelect value={businessCategory} onChange={setBusinessCategory} options={BUSINESS_CATEGORIES} placeholder={ai.selectCategory}/>
+                  </div>
                 </div>
               )}
 
@@ -6169,22 +6193,20 @@ function AccountPage({user,setUser,setView,subscription}){
                   finding it if they happen to click Advertise in the nav. */}
               {accountType==="partner"&&(
                 <div style={{marginBottom:16,background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,padding:"14px"}}>
-                  <div style={{fontSize:12,fontWeight:700,color:C.text,marginBottom:2}}>Want to advertise to expats too?</div>
-                  <p style={{fontSize:12,color:C.muted,margin:"0 0 12px",lineHeight:1.5}}>As a Partner you can message expats directly (see Messages above) — no access to the general Community. Advertising goes further: it puts your business on the map and in front of people actively searching for what you offer.</p>
-                  <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:12}}>
+                  <div style={{fontSize:12,fontWeight:700,color:C.text,marginBottom:2}}>{ai.wantAdvertise}</div>
+                  <p style={{fontSize:12,color:C.muted,margin:"0 0 12px",lineHeight:1.5}}>{ai.advertiseDesc}</p>
+                  <div style={{display:isMobile?"flex":"grid",flexDirection:isMobile?"column":undefined,gridTemplateColumns:isMobile?undefined:"1fr 1fr 1fr",gap:8,marginBottom:12}}>
                     {AD_TIERS.map(tier=>(
-                      <div key={tier.id} style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"9px 12px",background:C.page,borderRadius:9,border:`1px solid ${C.border}`}}>
-                        <div>
-                          <div style={{fontSize:13,fontWeight:600,color:C.text}}>{tier.name}{tier.popular&&<span style={{marginLeft:6,fontSize:9,background:tier.accent,color:"#fff",padding:"1px 6px",borderRadius:5,fontWeight:700}}>POPULAR</span>}</div>
-                          <div style={{fontSize:11,color:C.muted}}>{tier.tagline}</div>
-                        </div>
-                        <div style={{fontSize:14,fontWeight:700,color:tier.accent,flexShrink:0,marginLeft:10}}>€{tier.monthly}<span style={{fontSize:11,fontWeight:400,color:C.muted}}>/mo</span></div>
+                      <div key={tier.id} style={{padding:"10px 12px",background:C.page,borderRadius:9,border:`1px solid ${C.border}`}}>
+                        <div style={{fontSize:13,fontWeight:600,color:C.text}}>{tier.name}{tier.popular&&<span style={{marginLeft:6,fontSize:9,background:tier.accent,color:"#fff",padding:"1px 6px",borderRadius:5,fontWeight:700}}>POPULAR</span>}</div>
+                        <div style={{fontSize:11,color:C.muted,marginBottom:4}}>{tier.tagline}</div>
+                        <div style={{fontSize:14,fontWeight:700,color:tier.accent}}>€{tier.monthly}<span style={{fontSize:11,fontWeight:400,color:C.muted}}>/mo</span></div>
                       </div>
                     ))}
                   </div>
                   <button onClick={()=>setView("advertise")}
                     style={{width:"100%",background:"none",border:`1.5px solid ${C.primary}`,color:C.primary,padding:"9px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:700}}>
-                    See full pricing & get started →
+                    {ai.seeFullPricing}
                   </button>
                 </div>
               )}
@@ -6205,9 +6227,9 @@ function AccountPage({user,setUser,setView,subscription}){
 
               {/* About you — business/service description for Partner accounts */}
               <div style={{marginBottom:16}}>
-                <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>{accountType==="partner"?"ABOUT YOUR COMPANY":"ABOUT YOU"}</label>
+                <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>{accountType==="partner"?ai.aboutCompany:ai.aboutYou}</label>
                 <textarea value={bio} onChange={e=>setBio(e.target.value.slice(0,300))}
-                  placeholder={accountType==="partner"?"Tell members about your company or service — what you offer, who it's for, why they should reach out…":"Tell other members a bit about yourself — what brought you to Bulgaria, what you enjoy…"}
+                  placeholder={accountType==="partner"?ai.aboutCompanyPh:ai.aboutYouPh}
                   style={{...inputStyle,height:90,resize:"none",fontFamily:"inherit",lineHeight:1.6}}/>
                 <div style={{fontSize:11,color:C.muted,textAlign:"right",marginTop:2}}>{bio.length}/300</div>
               </div>
@@ -6215,22 +6237,22 @@ function AccountPage({user,setUser,setView,subscription}){
               {/* City (+ Looking for, Expat accounts only) */}
               <div style={{display:"grid",gridTemplateColumns:(accountType!=="partner"&&!isMobile)?"1fr 1fr":"1fr",gap:12,marginBottom:16}}>
                 <div>
-                  <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>CITY</label>
+                  <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>{ai.cityLabel}</label>
                   <select value={city} onChange={e=>setCity(e.target.value)} style={inputStyle}>
-                    <option value="">Select a city…</option>
+                    <option value="">{ai.selectCity}</option>
                     {PROFILE_CITIES.map(c=><option key={c} value={c}>{c}</option>)}
                   </select>
                 </div>
                 {accountType!=="partner"&&(
                   <div>
-                    <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>LOOKING FOR</label>
+                    <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>{ai.lookingForLabel}</label>
                     <select value={lookingFor} onChange={e=>setLookingFor(e.target.value)} style={inputStyle}>
-                      <option value="">Select…</option>
-                      <option value="friends">Friends</option>
-                      <option value="networking">Networking</option>
-                      <option value="language">Language exchange</option>
-                      <option value="activities">Activity partners</option>
-                      <option value="relationship">Relationship</option>
+                      <option value="">{ai.selectGeneric}</option>
+                      <option value="friends">{lang==="bg"?"Приятели":"Friends"}</option>
+                      <option value="networking">{lang==="bg"?"Контакти":"Networking"}</option>
+                      <option value="language">{lang==="bg"?"Езиков обмен":"Language exchange"}</option>
+                      <option value="activities">{lang==="bg"?"Партньори за занимания":"Activity partners"}</option>
+                      <option value="relationship">{lang==="bg"?"Връзка":"Relationship"}</option>
                     </select>
                   </div>
                 )}
@@ -6238,7 +6260,7 @@ function AccountPage({user,setUser,setView,subscription}){
 
               {/* Languages */}
               <div style={{marginBottom:16}}>
-                <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:6}}>LANGUAGES I SPEAK</label>
+                <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:6}}>{ai.languagesLabel}</label>
                 <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
                   {PROFILE_LANGS.map(l=>{
                     const sel=languages.includes(l)
@@ -6267,7 +6289,7 @@ function AccountPage({user,setUser,setView,subscription}){
 
               <button onClick={save} disabled={saving}
                 style={{width:"100%",background:saving?"#9bb8a8":C.primary,border:"none",color:"#fff",padding:"12px",borderRadius:10,cursor:saving?"default":"pointer",fontSize:15,fontWeight:700}}>
-                {saving?"Saving…":"Save profile"}
+                {saving?ai.saving:ai.save}
               </button>
 
               {/* Community opt-in — not available to Partner accounts.
@@ -6358,7 +6380,7 @@ function AccountPage({user,setUser,setView,subscription}){
               )}
 
               <p style={{fontSize:11,color:C.muted,textAlign:"center",margin:"14px 0 0",lineHeight:1.5}}>
-                Only signed-in members can see your profile. Never share your home address, phone number or financial details.
+                {ai.footer}
               </p>
             </>
           )}
@@ -7042,7 +7064,7 @@ export default function App(){
       ):view==="analytics"?(
         <AnalyticsPage liveEvents={liveEvents} user={user}/>
       ):view==="account"?(
-        <AccountPage user={user} setUser={setUser} setView={setView} subscription={subscription}/>
+        <AccountPage user={user} setUser={setUser} setView={setView} subscription={subscription} lang={lang}/>
       ):view==="agents"?(
         <AgentsPage setView={setView}/>
       ):view==="map"?(
