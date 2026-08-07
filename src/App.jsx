@@ -2094,20 +2094,18 @@ function LoginPage({setUser,setView,openCheckout,lang,setLang}){
     setBusy(true)
     try{
       if(mode==="register"){
-        const {data,error}=await sbSignUp(email,pass,name.trim())
+        const partnerExtras = accountType==="partner" ? {account_type:"partner",business_name:businessName.trim(),business_category:businessCategory||"Other"} : {account_type:"expat"}
+        // Pass account type/business fields as signup metadata (stored on
+        // the auth account itself, not the browser) — that way they're
+        // recoverable on login regardless of which device confirms the
+        // email, unlike a browser-local flag which only works if the same
+        // browser comes back.
+        const {data,error}=await sbSignUp(email,pass,name.trim(),partnerExtras)
         if(error){
           setErr(error.message||"Could not create your account. Please try again.")
           setBusy(false);return
         }
-        const partnerExtras = accountType==="partner" ? {account_type:"partner",business_name:businessName.trim(),business_category:businessCategory||"Other"} : {account_type:"expat"}
-        // If email confirmation is on, there's no session yet — nothing to
-        // write to profiles until they're actually authenticated. Stash the
-        // partner details locally and apply them right after their first
-        // successful sign-in below, instead of losing them.
         if(!data.session){
-          if(accountType==="partner"){
-            try{ localStorage.setItem(`bg_pending_partner_${email.toLowerCase()}`, JSON.stringify(partnerExtras)) }catch{}
-          }
           setNotice("Almost there! Check your email to confirm your account, then sign in.")
           setMode("login");setPass("");setBusy(false);return
         }
@@ -2121,14 +2119,23 @@ function LoginPage({setUser,setView,openCheckout,lang,setLang}){
           setErr("Incorrect email or password.")
           setBusy(false);return
         }
-        // Apply any pending partner details saved during a signup that needed
-        // email confirmation first (see above).
+        // If this account was signed up with account_type/business fields
+        // in its auth metadata (set at signup) but the profile row hasn't
+        // been synced yet -- e.g. email confirmation happened on a
+        // different device than the original signup -- sync it now. Reads
+        // from the auth account itself, not browser storage, so this works
+        // regardless of which device is doing the confirming/logging in.
         try{
-          const pendingKey=`bg_pending_partner_${email.toLowerCase()}`
-          const pending=localStorage.getItem(pendingKey)
-          if(pending&&signInData.session){
-            await sbUpdateProfile(signInData.session.user.id, JSON.parse(pending))
-            localStorage.removeItem(pendingKey)
+          const meta=signInData.session&&signInData.session.user&&signInData.session.user.user_metadata
+          if(meta&&meta.account_type){
+            const {data:profile}=await sbGetProfile(signInData.session.user.id)
+            if(profile&&profile.account_type!==meta.account_type){
+              await sbUpdateProfile(signInData.session.user.id,{
+                account_type:meta.account_type,
+                business_name:meta.business_name||null,
+                business_category:meta.business_category||null,
+              })
+            }
           }
         }catch{}
         const u=await sbGetCurrentUser()

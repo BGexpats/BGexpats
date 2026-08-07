@@ -15,11 +15,16 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 // ─── Auth helpers ────────────────────────────────────────────────────
 
 // Register a new user. Supabase hashes the password; we never see or store it.
-export async function signUp(email, password, name) {
+export async function signUp(email, password, name, extra = {}) {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
-    options: { data: { name } }   // saved to user metadata; the DB trigger copies it to profiles
+    // Saved to user metadata; the DB trigger copies these into profiles at
+    // creation time. Passing account_type/business fields here (not just
+    // name) means they're set correctly server-side even if the person
+    // confirms their email and logs in from a different browser/device
+    // than the one they signed up on.
+    options: { data: { name, ...extra } }
   })
   return { data, error }
 }
