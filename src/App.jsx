@@ -1171,7 +1171,7 @@ function Nav({view,setView,lang,t,user,setUser,subscription,openCheckout=()=>{},
   }
   return(
     <nav style={{background:C.primary,position:"sticky",top:0,zIndex:100,borderBottom:`1px solid ${C.primaryDark}`}}>
-      <div className="bg-nav-row" style={{maxWidth:1100,margin:"0 auto",padding:"0 12px",height:58,display:"flex",alignItems:"center",justifyContent:"space-between",gap:8,overflowX:"auto",scrollbarWidth:"none"}}>
+      <div className="bg-nav-row" style={{maxWidth:1100,margin:"0 auto",padding:"0 12px",height:58,display:"flex",alignItems:"center",justifyContent:"space-between",gap:8}}>
         <button onClick={()=>setView("home")} className="bg-nav-logo" style={{background:"none",border:"none",cursor:"pointer",display:"flex",alignItems:"center",gap:8,padding:0,flexShrink:0}}>
           <img src={LOGO_ICON} alt="BGexpats" style={{height:24,width:24}}/>
           <span className="bg-nav-wordmark" style={{color:"#fff",fontSize:16,fontWeight:700,letterSpacing:"-0.3px"}}>BGexpats</span>
@@ -6414,8 +6414,6 @@ export default function App(){
         /* Nav on small screens: keep the logo AND wordmark visible, drop only the
            user's first name so the avatar button always has room. */
         .nav-links::-webkit-scrollbar{display:none}
-        .bg-nav-row::-webkit-scrollbar{display:none}
-        .bg-nav-row{-ms-overflow-style:none}
         @media (max-width: 560px){
           .bg-nav-username{display:none}
         }
