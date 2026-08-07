@@ -6087,42 +6087,75 @@ function AccountPage({user,setUser,setView,subscription,lang}){
             <div style={{textAlign:"center",padding:"40px 0",color:C.muted,fontSize:14}}>Loading your profile…</div>
           ):(
             <>
-              {/* Avatar + name */}
-              <div style={{display:"flex",alignItems:"center",gap:16,paddingBottom:20,marginBottom:20,borderBottom:`1px solid ${C.border}`}}>
-                <div style={{position:"relative",flexShrink:0}}>
-                  {avatarUrl?(
-                    <img src={avatarUrl} alt="" style={{width:76,height:76,borderRadius:"50%",objectFit:"cover",border:`2px solid ${C.border}`}}/>
-                  ):(
-                    <Av initials={user.av||"?"} size={76}/>
-                  )}
-                </div>
-                <div style={{minWidth:0,flex:1}}>
-                  {accountType==="partner"&&editingHeaderName?(
-                    <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:2}}>
-                      <input autoFocus value={businessName} onChange={e=>setBusinessName(e.target.value.slice(0,60))}
-                        onKeyDown={e=>e.key==="Enter"&&setEditingHeaderName(false)}
-                        style={{fontSize:16,fontWeight:700,color:C.text,border:`1.5px solid ${C.primary}`,borderRadius:7,padding:"4px 8px",background:C.page,outline:"none",minWidth:0}}/>
-                      <button onClick={()=>setEditingHeaderName(false)} style={{background:C.primary,border:"none",color:"#fff",borderRadius:6,width:24,height:24,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                      </button>
-                    </div>
-                  ):(
-                    <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:2}}>
-                      <div style={{fontSize:18,fontWeight:700,color:C.text}}>{name||user.name}</div>
-                      {accountType==="partner"&&(
-                        <button onClick={()=>setEditingHeaderName(true)} title={ai.edit} style={{background:"none",border:"none",color:C.muted,cursor:"pointer",padding:2,display:"flex",alignItems:"center"}}>
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              {/* Avatar + name (+ compact Messages widget beside it for Partners) */}
+              <div style={{display:"grid",gridTemplateColumns:(accountType==="partner"&&!isMobile)?"auto 1fr":"1fr",gap:20,alignItems:"start",paddingBottom:20,marginBottom:20,borderBottom:`1px solid ${C.border}`}}>
+                <div style={{display:"flex",alignItems:"center",gap:16}}>
+                  <div style={{position:"relative",flexShrink:0}}>
+                    {avatarUrl?(
+                      <img src={avatarUrl} alt="" style={{width:76,height:76,borderRadius:"50%",objectFit:"cover",border:`2px solid ${C.border}`}}/>
+                    ):(
+                      <Av initials={user.av||"?"} size={76}/>
+                    )}
+                  </div>
+                  <div style={{minWidth:0}}>
+                    {accountType==="partner"&&editingHeaderName?(
+                      <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:2}}>
+                        <input autoFocus value={businessName} onChange={e=>setBusinessName(e.target.value.slice(0,60))}
+                          onKeyDown={e=>e.key==="Enter"&&setEditingHeaderName(false)}
+                          style={{fontSize:16,fontWeight:700,color:C.text,border:`1.5px solid ${C.primary}`,borderRadius:7,padding:"4px 8px",background:C.page,outline:"none",minWidth:0}}/>
+                        <button onClick={()=>setEditingHeaderName(false)} style={{background:C.primary,border:"none",color:"#fff",borderRadius:6,width:24,height:24,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                         </button>
-                      )}
-                    </div>
-                  )}
-                  <div style={{fontSize:13,color:C.muted,marginBottom:8,overflow:"hidden",textOverflow:"ellipsis"}}>{user.email}</div>
-                  <input ref={fileRef} type="file" accept="image/jpeg,image/png,image/webp" onChange={onFile} style={{display:"none"}}/>
-                  <button onClick={pickFile} disabled={uploading}
-                    style={{background:"transparent",border:`1.5px solid ${C.primary}`,color:C.primary,padding:"6px 14px",borderRadius:8,cursor:uploading?"default":"pointer",fontSize:12,fontWeight:600}}>
-                    {uploading?ai.uploading:(avatarUrl?ai.changePhoto:ai.addPhoto)}
-                  </button>
+                      </div>
+                    ):(
+                      <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:2}}>
+                        <div style={{fontSize:18,fontWeight:700,color:C.text}}>{name||user.name}</div>
+                        {accountType==="partner"&&(
+                          <button onClick={()=>setEditingHeaderName(true)} title={ai.edit} style={{background:"none",border:"none",color:C.muted,cursor:"pointer",padding:2,display:"flex",alignItems:"center"}}>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                          </button>
+                        )}
+                      </div>
+                    )}
+                    <div style={{fontSize:13,color:C.muted,marginBottom:8,overflow:"hidden",textOverflow:"ellipsis"}}>{user.email}</div>
+                    <input ref={fileRef} type="file" accept="image/jpeg,image/png,image/webp" onChange={onFile} style={{display:"none"}}/>
+                    <button onClick={pickFile} disabled={uploading}
+                      style={{background:"transparent",border:`1.5px solid ${C.primary}`,color:C.primary,padding:"6px 14px",borderRadius:8,cursor:uploading?"default":"pointer",fontSize:12,fontWeight:600}}>
+                      {uploading?ai.uploading:(avatarUrl?ai.changePhoto:ai.addPhoto)}
+                    </button>
+                  </div>
                 </div>
+
+                {/* Compact Messages widget — sits beside the name on desktop */}
+                {accountType==="partner"&&(
+                  <div style={{background:C.primaryLight,border:`1px solid ${C.primary}30`,borderRadius:14,padding:"14px 16px"}}>
+                    <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10}}>
+                      <div style={{fontSize:13,fontWeight:700,color:C.primary,display:"flex",alignItems:"center",gap:6}}>
+                        <Icon2c d="M4 4h16v12H7l-3 3V4z" accent={C.primary} size={15}/>{ai.messages}
+                      </div>
+                      <button onClick={()=>setView("messages")} style={{background:"none",border:"none",color:C.primary,cursor:"pointer",fontSize:11.5,fontWeight:700}}>{ai.openAll}</button>
+                    </div>
+                    {msgConvosLoading?(
+                      <p style={{fontSize:12,color:C.muted,margin:0}}>{ai.loadingDots}</p>
+                    ):msgConvos.length===0?(
+                      <p style={{fontSize:12,color:C.muted,margin:0}}>{ai.noMessagesYet}</p>
+                    ):(
+                      <div style={{display:"flex",flexDirection:"column",gap:5}}>
+                        {msgConvos.slice(0,2).map(c=>(
+                          <button key={c.otherId} onClick={()=>setView("messages")}
+                            style={{display:"flex",alignItems:"center",gap:9,background:C.surface,border:`1px solid ${C.border}`,borderRadius:8,padding:"7px 10px",cursor:"pointer",textAlign:"left"}}>
+                            <Av initials={(c.profile&&(c.profile.av||c.profile.name.slice(0,2).toUpperCase()))||"?"} size={26}/>
+                            <div style={{flex:1,minWidth:0}}>
+                              <div style={{fontSize:12,fontWeight:600,color:C.text}}>{(c.profile&&c.profile.name)||"Member"}</div>
+                              <div style={{fontSize:11,color:C.muted,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{c.last.sender_id===user.id?"You: ":""}{c.last.content}</div>
+                            </div>
+                            {c.unread>0&&<span style={{background:"#dc2626",color:"#fff",fontSize:9,fontWeight:700,minWidth:15,height:15,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>{c.unread}</span>}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* Name — not shown for Partners, who edit it inline next to
@@ -6138,40 +6171,11 @@ function AccountPage({user,setUser,setView,subscription,lang}){
                 </div>
               )}
 
-              {/* Partner dashboard — Messages widget + Business details
-                  grouped side by side on desktop instead of stacked, so the
-                  wider page doesn't feel like one long stretched column. */}
+              {/* Partner dashboard — Business details + Advertise grouped
+                  side by side on desktop, so the wider page doesn't feel
+                  stretched. Messages now lives up in the header instead. */}
               {accountType==="partner"&&(
                 <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:16,marginBottom:16,alignItems:"start"}}>
-                  {/* Messages dashboard widget */}
-                  <div style={{background:C.primaryLight,border:`1px solid ${C.primary}30`,borderRadius:14,padding:"16px"}}>
-                    <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12}}>
-                      <div style={{fontSize:14,fontWeight:700,color:C.primary,display:"flex",alignItems:"center",gap:7}}>
-                        <Icon2c d="M4 4h16v12H7l-3 3V4z" accent={C.primary} size={17}/>{ai.messages}
-                      </div>
-                      <button onClick={()=>setView("messages")} style={{background:"none",border:"none",color:C.primary,cursor:"pointer",fontSize:12,fontWeight:700}}>{ai.openAll}</button>
-                    </div>
-                    {msgConvosLoading?(
-                      <p style={{fontSize:12,color:C.muted,margin:0}}>{ai.loadingDots}</p>
-                    ):msgConvos.length===0?(
-                      <p style={{fontSize:12,color:C.muted,margin:0}}>{ai.noMessagesYet}</p>
-                    ):(
-                      <div style={{display:"flex",flexDirection:"column",gap:6}}>
-                        {msgConvos.map(c=>(
-                          <button key={c.otherId} onClick={()=>setView("messages")}
-                            style={{display:"flex",alignItems:"center",gap:10,background:C.surface,border:`1px solid ${C.border}`,borderRadius:9,padding:"9px 12px",cursor:"pointer",textAlign:"left"}}>
-                            <Av initials={(c.profile&&(c.profile.av||c.profile.name.slice(0,2).toUpperCase()))||"?"} size={30}/>
-                            <div style={{flex:1,minWidth:0}}>
-                              <div style={{fontSize:12.5,fontWeight:600,color:C.text}}>{(c.profile&&c.profile.name)||"Member"}</div>
-                              <div style={{fontSize:11.5,color:C.muted,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{c.last.sender_id===user.id?"You: ":""}{c.last.content}</div>
-                            </div>
-                            {c.unread>0&&<span style={{background:"#dc2626",color:"#fff",fontSize:10,fontWeight:700,minWidth:17,height:17,borderRadius:9,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>{c.unread}</span>}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
                   {/* Business details */}
                   <div style={{background:"#fef9ef",border:"1px solid #f0d9a8",borderRadius:12,padding:"14px"}}>
                     <div style={{fontSize:12,fontWeight:700,color:"#92400e",marginBottom:10,display:"flex",alignItems:"center",gap:6}}><Icon2c d="M4 8h16v11H4zM9 8V6a2 2 0 012-2h4a2 2 0 012 2v2" accent="#92400e" size={14}/>{ai.partnerAccount}</div>
@@ -6182,32 +6186,26 @@ function AccountPage({user,setUser,setView,subscription,lang}){
                     <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>{ai.category}</label>
                     <CustomSelect value={businessCategory} onChange={setBusinessCategory} options={BUSINESS_CATEGORIES} placeholder={ai.selectCategory}/>
                   </div>
-                </div>
-              )}
 
-              {/* Advertising pricing preview — Partner accounts only. Being a
-                  Partner (community participation) and advertising (map
-                  listing / featured / sponsored) are two separate things —
-                  this just makes sure Partners actually see what advertising
-                  costs, right from their own dashboard, instead of only
-                  finding it if they happen to click Advertise in the nav. */}
-              {accountType==="partner"&&(
-                <div style={{marginBottom:16,background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,padding:"14px"}}>
-                  <div style={{fontSize:12,fontWeight:700,color:C.text,marginBottom:2}}>{ai.wantAdvertise}</div>
-                  <p style={{fontSize:12,color:C.muted,margin:"0 0 12px",lineHeight:1.5}}>{ai.advertiseDesc}</p>
-                  <div style={{display:isMobile?"flex":"grid",flexDirection:isMobile?"column":undefined,gridTemplateColumns:isMobile?undefined:"1fr 1fr 1fr",gap:8,marginBottom:12}}>
-                    {AD_TIERS.map(tier=>(
-                      <div key={tier.id} style={{padding:"10px 12px",background:C.page,borderRadius:9,border:`1px solid ${C.border}`}}>
-                        <div style={{fontSize:13,fontWeight:600,color:C.text}}>{tier.name}{tier.popular&&<span style={{marginLeft:6,fontSize:9,background:tier.accent,color:"#fff",padding:"1px 6px",borderRadius:5,fontWeight:700}}>POPULAR</span>}</div>
-                        <div style={{fontSize:11,color:C.muted,marginBottom:4}}>{tier.tagline}</div>
-                        <div style={{fontSize:14,fontWeight:700,color:tier.accent}}>€{tier.monthly}<span style={{fontSize:11,fontWeight:400,color:C.muted}}>/mo</span></div>
-                      </div>
-                    ))}
+                  {/* Advertise — now beside Partner Account instead of below it */}
+                  <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,padding:"14px"}}>
+                    <div style={{fontSize:12,fontWeight:700,color:C.text,marginBottom:2}}>{ai.wantAdvertise}</div>
+                    <p style={{fontSize:11.5,color:C.muted,margin:"0 0 10px",lineHeight:1.5}}>{ai.advertiseDesc}</p>
+                    <div style={{display:"flex",flexDirection:"column",gap:6,marginBottom:10}}>
+                      {AD_TIERS.map(tier=>(
+                        <div key={tier.id} style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"8px 10px",background:C.page,borderRadius:8,border:`1px solid ${C.border}`}}>
+                          <div>
+                            <div style={{fontSize:12.5,fontWeight:600,color:C.text}}>{tier.name}{tier.popular&&<span style={{marginLeft:5,fontSize:8,background:tier.accent,color:"#fff",padding:"1px 5px",borderRadius:4,fontWeight:700}}>POPULAR</span>}</div>
+                          </div>
+                          <div style={{fontSize:13,fontWeight:700,color:tier.accent,flexShrink:0,marginLeft:8}}>€{tier.monthly}<span style={{fontSize:10.5,fontWeight:400,color:C.muted}}>/mo</span></div>
+                        </div>
+                      ))}
+                    </div>
+                    <button onClick={()=>setView("advertise")}
+                      style={{width:"100%",background:"none",border:`1.5px solid ${C.primary}`,color:C.primary,padding:"9px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:700}}>
+                      {ai.seeFullPricing}
+                    </button>
                   </div>
-                  <button onClick={()=>setView("advertise")}
-                    style={{width:"100%",background:"none",border:`1.5px solid ${C.primary}`,color:C.primary,padding:"9px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:700}}>
-                    {ai.seeFullPricing}
-                  </button>
                 </div>
               )}
 
