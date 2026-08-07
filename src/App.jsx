@@ -2285,16 +2285,16 @@ function LoginPage({setUser,setView,openCheckout,lang,setLang}){
             {openCheckout&&(
               <div style={{marginTop:20,paddingTop:20,borderTop:`1px solid ${C.border}`}}>
                 <div style={{background:C.primaryLight,border:`1px solid ${C.primary}30`,borderRadius:14,padding:"16px"}}>
-                  <p style={{fontSize:13,color:C.primary,fontWeight:700,margin:"0 0 12px",display:"flex",alignItems:"center",justifyContent:"center",gap:7}}>
-                    <Icon2c d="M4 7h16v13a1 1 0 01-1 1H5a1 1 0 01-1-1V7zM8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M4 12h16" accent={C.primary} size={15}/>
+                  <p style={{fontSize:13,color:"#22c55e",fontWeight:700,margin:"0 0 12px",display:"flex",alignItems:"center",justifyContent:"center",gap:7}}>
+                    <Icon2c d="M4 7h16v13a1 1 0 01-1 1H5a1 1 0 01-1-1V7zM8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M4 12h16" accent="#22c55e" size={15}/>
                     Just visiting Bulgaria? Get a Day or Week Pass
                   </p>
                   <div style={{display:"flex",gap:8}}>
                     {Object.entries(PASSES).map(([id,pass])=>(
                       <button key={id} onClick={()=>openCheckout(id)}
-                        style={{flex:1,background:C.surface,border:`1.5px solid ${C.primary}`,color:C.primary,padding:"11px 8px",borderRadius:10,cursor:"pointer",fontSize:13,fontWeight:700,boxShadow:"0 2px 6px rgba(0,0,0,0.06)"}}>
+                        style={{flex:1,background:"#fff",border:"1.5px solid #1e5e3f",color:"#1e5e3f",padding:"11px 8px",borderRadius:10,cursor:"pointer",fontSize:13,fontWeight:700,boxShadow:"0 2px 6px rgba(0,0,0,0.15)"}}>
                         {passI18n(id,lang).name}
-                        <div style={{fontSize:15,fontWeight:800,color:C.primaryDark,marginTop:2}}>€{pass.price.toFixed(2)}</div>
+                        <div style={{fontSize:15,fontWeight:800,color:"#164530",marginTop:2}}>€{pass.price.toFixed(2)}</div>
                       </button>
                     ))}
                   </div>
