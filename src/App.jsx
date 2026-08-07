@@ -2224,14 +2224,7 @@ function LoginPage({setUser,setView,openCheckout,lang,setLang}){
                 </div>
                 <div style={{marginBottom:16}}>
                   <label style={{display:"block",fontSize:13,fontWeight:600,color:C.text,marginBottom:5}}>Category</label>
-                  <div style={{position:"relative"}}>
-                    <select value={businessCategory} onChange={e=>setBusinessCategory(e.target.value)}
-                      style={{width:"100%",border:`1.5px solid ${C.border}`,borderRadius:9,padding:"11px 40px 11px 14px",fontSize:14,outline:"none",color:businessCategory?C.text:C.muted,background:C.page,boxSizing:"border-box",cursor:"pointer",appearance:"none",WebkitAppearance:"none",MozAppearance:"none"}}>
-                      <option value="">Select a category…</option>
-                      {BUSINESS_CATEGORIES.map(c=><option key={c} value={c}>{c}</option>)}
-                    </select>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.muted} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{position:"absolute",top:"50%",right:14,transform:"translateY(-50%)",pointerEvents:"none"}}><polyline points="6 9 12 15 18 9"/></svg>
-                  </div>
+                  <CustomSelect value={businessCategory} onChange={setBusinessCategory} options={BUSINESS_CATEGORIES} placeholder="Select a category…"/>
                 </div>
               </>
             )}
@@ -3950,6 +3943,38 @@ function Icon2c({d,accent="#f0c060",size=16}){
       <path fill={accent} fillOpacity=".32" stroke="none" d={d}/>
       <path fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" d={d}/>
     </svg>
+  )
+}
+
+// Custom dropdown — replaces native <select>, which mobile browsers hand off
+// entirely to the OS's own picker UI (no CSS can touch that once it's open).
+// This renders the same styled list on every platform.
+function CustomSelect({value,onChange,options,placeholder="Select…",style}){
+  const [open,setOpen]=useState(false)
+  const ref=useRef(null)
+  useEffect(()=>{
+    const onClick=e=>{ if(ref.current&&!ref.current.contains(e.target))setOpen(false) }
+    document.addEventListener("mousedown",onClick)
+    return()=>document.removeEventListener("mousedown",onClick)
+  },[])
+  return(
+    <div ref={ref} style={{position:"relative",...style}}>
+      <button type="button" onClick={()=>setOpen(o=>!o)}
+        style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",border:`1.5px solid ${open?C.primary:C.border}`,borderRadius:9,padding:"11px 14px",fontSize:14,color:value?C.text:C.muted,background:C.page,boxSizing:"border-box",cursor:"pointer",textAlign:"left"}}>
+        <span style={{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{value||placeholder}</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.muted} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,marginLeft:8,transform:open?"rotate(180deg)":"none",transition:"transform 0.15s"}}><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      {open&&(
+        <div style={{position:"absolute",top:"calc(100% + 4px)",left:0,right:0,zIndex:50,background:C.surface,border:`1px solid ${C.border}`,borderRadius:10,boxShadow:"0 8px 24px rgba(0,0,0,0.15)",maxHeight:260,overflowY:"auto"}}>
+          {options.map(opt=>(
+            <button key={opt} type="button" onClick={()=>{onChange(opt);setOpen(false)}}
+              style={{width:"100%",display:"block",textAlign:"left",padding:"11px 14px",fontSize:14,border:"none",background:value===opt?C.primaryLight:"transparent",color:value===opt?C.primary:C.text,fontWeight:value===opt?700:400,cursor:"pointer"}}>
+              {opt}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   )
 }
 const TOOLS_ICON_MAP={
@@ -6049,14 +6074,7 @@ function AccountPage({user,setUser,setView,subscription}){
                     placeholder="e.g. Sofia Real Estate Ltd."
                     style={{...inputStyle,marginBottom:12}}/>
                   <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>CATEGORY</label>
-                  <div style={{position:"relative"}}>
-                    <select value={businessCategory} onChange={e=>setBusinessCategory(e.target.value)}
-                      style={{...inputStyle,cursor:"pointer",paddingRight:40,appearance:"none",WebkitAppearance:"none",MozAppearance:"none",color:businessCategory?C.text:C.muted}}>
-                      <option value="">Select a category…</option>
-                      {BUSINESS_CATEGORIES.map(c=><option key={c} value={c}>{c}</option>)}
-                    </select>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.muted} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{position:"absolute",top:"50%",right:14,transform:"translateY(-50%)",pointerEvents:"none"}}><polyline points="6 9 12 15 18 9"/></svg>
-                  </div>
+                  <CustomSelect value={businessCategory} onChange={setBusinessCategory} options={BUSINESS_CATEGORIES} placeholder="Select a category…"/>
                 </div>
               )}
 
