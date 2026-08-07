@@ -2130,8 +2130,8 @@ function LoginPage({setUser,setView}){
         <div style={{background:C.surface,borderRadius:22,border:`1px solid ${C.border}`,boxShadow:"0 12px 40px rgba(0,0,0,0.1)",overflow:"hidden"}}>
           <div style={{background:`linear-gradient(135deg,${C.primary} 0%,#2a7a52 100%)`,padding:"36px 32px 30px",textAlign:"center"}}>
             <img src={LOGO_ICON} alt="BGexpats" style={{height:40,width:40,marginBottom:10}}/>
-            <h1 style={{color:"#fff",fontSize:24,fontWeight:800,margin:"0 0 6px",letterSpacing:"-0.4px"}}>BGexpats Community</h1>
-            <p style={{color:"rgba(255,255,255,0.72)",fontSize:14,margin:0}}>Join expats sharing tips about Bulgaria</p>
+            <h1 style={{color:"#fff",fontSize:24,fontWeight:800,margin:"0 0 6px",letterSpacing:"-0.4px"}}>Welcome to BGexpats</h1>
+            <p style={{color:"rgba(255,255,255,0.72)",fontSize:14,margin:0}}>Your guide to living well in Bulgaria — sign in to get started</p>
           </div>
           <div style={{padding:"28px 32px 32px"}}>
             <div style={{display:"flex",background:C.page,borderRadius:12,padding:4,marginBottom:24,gap:4}}>
@@ -2210,10 +2210,10 @@ function LoginPage({setUser,setView}){
             </div>
             {err&&<div style={{background:"#fff0f0",border:"1px solid #fcc",borderRadius:9,padding:"10px 14px",fontSize:13,color:"#c00",marginBottom:16}}>⚠️ {err}</div>}
             {notice&&<div style={{background:"#f0f6ff",border:"1px solid #b8d4f0",borderRadius:9,padding:"10px 14px",fontSize:13,color:"#1d4ed8",marginBottom:16}}>✉️ {notice}</div>}
-            {ok&&<div style={{background:"#f0fff4",border:"1px solid #9de",borderRadius:9,padding:"10px 14px",fontSize:13,color:"#060",marginBottom:16}}>✅ Welcome! Redirecting to community...</div>}
+            {ok&&<div style={{background:"#f0fff4",border:"1px solid #9de",borderRadius:9,padding:"10px 14px",fontSize:13,color:"#060",marginBottom:16}}>✅ Welcome! Redirecting to your account...</div>}
             <button onClick={submit} disabled={busy}
               style={{width:"100%",background:busy?"#9bb8a8":C.primary,border:"none",color:"#fff",padding:"13px",borderRadius:10,cursor:busy?"default":"pointer",fontSize:15,fontWeight:700,marginBottom:18,boxSizing:"border-box"}}>
-              {busy?"Please wait…":(mode==="login"?"Sign in to community":"Join the community →")}
+              {busy?"Please wait…":(mode==="login"?"Sign in":"Create account →")}
             </button>
             <div style={{textAlign:"center",padding:"14px 0",borderTop:`1px solid ${C.border}`}}>
               {mode==="login"&&(
