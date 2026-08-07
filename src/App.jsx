@@ -2181,9 +2181,9 @@ function LoginPage({setUser,setView,openCheckout,lang,setLang}){
                 <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
                   {Object.entries(LANGS).map(([code,l])=>(
                     <button key={code} type="button" onClick={()=>setLang(code)}
-                      style={{padding:"6px 10px",borderRadius:8,border:`1.5px solid ${lang===code?C.primary:C.border}`,background:lang===code?C.primaryLight:"transparent",cursor:"pointer",fontSize:16,lineHeight:1,display:"flex",alignItems:"center",gap:5}}>
-                      <span>{l.flag}</span>
-                      {lang===code&&<span style={{fontSize:11,fontWeight:700,color:C.primary}}>{l.short}</span>}
+                      style={{padding:"6px 10px",borderRadius:8,border:`1.5px solid ${lang===code?C.primary:C.border}`,background:lang===code?C.primaryLight:"transparent",cursor:"pointer",lineHeight:1,display:"flex",alignItems:"center",gap:6}}>
+                      <img src={`https://flagcdn.com/32x24/${l.cc}.png`} alt={l.name} width="20" height="15" style={{borderRadius:2,display:"block",boxShadow:"0 0 0 1px rgba(0,0,0,0.08)"}}/>
+                      <span style={{fontSize:11,fontWeight:lang===code?700:500,color:lang===code?C.primary:C.muted}}>{l.short}</span>
                     </button>
                   ))}
                 </div>
