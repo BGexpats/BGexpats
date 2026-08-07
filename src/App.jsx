@@ -2274,17 +2274,17 @@ function LoginPage({setUser,setView,openCheckout,lang,setLang}){
                 account (reverted), just saves a click from Pricing. */}
             {openCheckout&&(
               <div style={{marginTop:20,paddingTop:20,borderTop:`1px solid ${C.border}`}}>
-                <div style={{background:"linear-gradient(135deg,#fef6e7,#fdecc8)",border:"1px solid #f0d9a8",borderRadius:14,padding:"16px"}}>
-                  <p style={{fontSize:13,color:"#92400e",fontWeight:700,margin:"0 0 12px",display:"flex",alignItems:"center",justifyContent:"center",gap:7}}>
-                    <Icon2c d="M4 7h16v13a1 1 0 01-1 1H5a1 1 0 01-1-1V7zM8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M4 12h16" accent="#92400e" size={15}/>
+                <div style={{background:C.primaryLight,border:`1px solid ${C.primary}30`,borderRadius:14,padding:"16px"}}>
+                  <p style={{fontSize:13,color:C.primary,fontWeight:700,margin:"0 0 12px",display:"flex",alignItems:"center",justifyContent:"center",gap:7}}>
+                    <Icon2c d="M4 7h16v13a1 1 0 01-1 1H5a1 1 0 01-1-1V7zM8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M4 12h16" accent={C.primary} size={15}/>
                     Just visiting Bulgaria? Get a Day or Week Pass
                   </p>
                   <div style={{display:"flex",gap:8}}>
                     {Object.entries(PASSES).map(([id,pass])=>(
                       <button key={id} onClick={()=>openCheckout(id)}
-                        style={{flex:1,background:"#fff",border:"1.5px solid #f0c060",color:"#8a5a1a",padding:"11px 8px",borderRadius:10,cursor:"pointer",fontSize:13,fontWeight:700,boxShadow:"0 2px 6px rgba(0,0,0,0.06)"}}>
+                        style={{flex:1,background:C.surface,border:`1.5px solid ${C.primary}`,color:C.primary,padding:"11px 8px",borderRadius:10,cursor:"pointer",fontSize:13,fontWeight:700,boxShadow:"0 2px 6px rgba(0,0,0,0.06)"}}>
                         {passI18n(id,lang).name}
-                        <div style={{fontSize:15,fontWeight:800,color:"#b8792a",marginTop:2}}>€{pass.price.toFixed(2)}</div>
+                        <div style={{fontSize:15,fontWeight:800,color:C.primaryDark,marginTop:2}}>€{pass.price.toFixed(2)}</div>
                       </button>
                     ))}
                   </div>
@@ -7086,8 +7086,8 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang
       <div style={{width:"100%",maxWidth:500}}>
         
         {/* Back */}
-        <button onClick={()=>setView("pricing")} style={{background:"none",border:"none",color:C.muted,cursor:"pointer",fontSize:13,marginBottom:20,display:"flex",alignItems:"center",gap:5}}>
-          {(t&&t.checkoutBackToPlans)||"← Back to plans"}
+        <button onClick={()=>setView(isPass?"login":"pricing")} style={{background:"none",border:"none",color:C.muted,cursor:"pointer",fontSize:13,marginBottom:20,display:"flex",alignItems:"center",gap:5}}>
+          {isPass?"← Back to sign in":((t&&t.checkoutBackToPlans)||"← Back to plans")}
         </button>
 
         <div style={{background:C.surface,borderRadius:22,border:`1px solid ${C.border}`,overflow:"hidden",boxShadow:"0 12px 40px rgba(0,0,0,0.1)"}}>
@@ -7098,7 +7098,7 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang
               {isPass?((t&&t.checkoutGetting)||"Getting"):((t&&t.checkoutSubscribingTo)||"Subscribing to")}
             </div>
             <div style={{fontSize:24,fontWeight:700,color:"#fff",marginBottom:14}}>{isPass?passI18n(plan,lang).name:`${p.name} plan`}</div>
-            {isPass&&<div style={{fontSize:13,color:"rgba(255,255,255,0.75)",marginBottom:14}}>{passI18n(plan,lang).blurb} — full Premium access for {passI18n(plan,lang).duration}</div>}
+            {isPass&&<div style={{fontSize:13,color:"rgba(255,255,255,0.75)",marginBottom:14}}>{passI18n(plan,lang).blurb}</div>}
 
             {/* Billing toggle — not shown for one-time passes */}
             {!isPass&&(
@@ -7143,7 +7143,7 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang
                 attributed (Tourist role in Community, expiry tracking). */}
             {!user?(
               <div style={{background:"#fff9f0",border:"1px solid #f0d9b0",borderRadius:10,padding:"12px 14px",marginBottom:16,fontSize:13,color:"#8a5a1a"}}>
-                ⚠️ {(t&&t.checkoutPleaseText)||"Please"} <button onClick={()=>setView("login")} style={{background:"none",border:"none",color:C.accent,fontWeight:600,cursor:"pointer",padding:0,fontSize:13,textDecoration:"underline"}}>{(t&&t.checkoutSignInLink)||"sign in or create a free account"}</button> {(t&&t.checkoutFirst)||"first."}
+                ⚠️ {(t&&t.checkoutPleaseText)||"Please"} <button onClick={()=>setView("login")} style={{background:"none",border:"none",color:C.accent,fontWeight:600,cursor:"pointer",padding:0,fontSize:13,textDecoration:"underline"}}>{(t&&t.checkoutSignInLink)||"sign in or create a free account"}</button> {isPass?`first to use the ${passI18n(plan,lang).name}.`:((t&&t.checkoutFirst)||"first.")}
               </div>
             ):(
               <div style={{background:C.primaryLight,border:`1px solid ${C.primary}30`,borderRadius:10,padding:"10px 14px",marginBottom:16,fontSize:13,color:C.primary}}>
@@ -7155,7 +7155,7 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang
             <div style={{display:"flex",gap:8,marginBottom:16}}>
               {[["stripe",(t&&t.checkoutCardLabel)||"💳 Card"],["crypto",(t&&t.checkoutCryptoLabel)||"₿ Bitcoin & Crypto"]].map(([k,l])=>(
                 <button key={k} onClick={()=>{setPayMethod(k);setCryptoStep("select")}}
-                  style={{flex:1,padding:"10px",borderRadius:10,border:`2px solid ${payMethod===k?(k==="crypto"?BTC_COLOR:"#635BFF"):C.border}`,background:payMethod===k?(k==="crypto"?"#1a0f00":"#f0efff"):"transparent",color:payMethod===k?(k==="crypto"?BTC_COLOR:"#635BFF"):C.muted,cursor:"pointer",fontSize:13,fontWeight:payMethod===k?700:400,transition:"all 0.2s"}}>
+                  style={{flex:1,padding:"10px",borderRadius:10,border:`2px solid ${payMethod===k?(k==="crypto"?BTC_COLOR:"#0e9f6e"):C.border}`,background:payMethod===k?(k==="crypto"?"#1a0f00":"#e8f9f3"):"transparent",color:payMethod===k?(k==="crypto"?BTC_COLOR:"#0e9f6e"):C.muted,cursor:"pointer",fontSize:13,fontWeight:payMethod===k?700:400,transition:"all 0.2s"}}>
                   {l}
                 </button>
               ))}
@@ -7165,11 +7165,11 @@ function CheckoutPage({plan,billing,setBilling,setView,user,setSubscription,lang
             {payMethod==="stripe"&&(
               <div>
                 <button onClick={user?handlePay:()=>setView("login")}
-                  style={{width:"100%",background:"#635BFF",border:"none",color:"#fff",padding:"15px",borderRadius:12,cursor:"pointer",fontSize:15,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:12,boxShadow:"0 4px 18px rgba(99,91,255,0.35)",transition:"all 0.2s"}}
-                  onMouseEnter={e=>{e.currentTarget.style.background="#524BEE"}}
-                  onMouseLeave={e=>{e.currentTarget.style.background="#635BFF"}}>
+                  style={{width:"100%",background:"#0e9f6e",border:"none",color:"#fff",padding:"15px",borderRadius:12,cursor:"pointer",fontSize:15,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:12,boxShadow:"0 4px 18px rgba(14,159,110,0.35)",transition:"all 0.2s"}}
+                  onMouseEnter={e=>{e.currentTarget.style.background="#0c8a5f"}}
+                  onMouseLeave={e=>{e.currentTarget.style.background="#0e9f6e"}}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" fill="white"/></svg>
-                  {(t&&t.checkoutPayWithCard)||"Pay with Card"} — {isYearly?`€${p.yearlyTotal} billed annually`:`€${p.monthly.toFixed(2)}/month`}
+                  {(t&&t.checkoutPayWithCard)||"Pay with Card"} — {isPass?`€${pass.price.toFixed(2)}`:(isYearly?`€${p.yearlyTotal} billed annually`:`€${p.monthly.toFixed(2)}/month`)}
                 </button>
                 <div style={{display:"flex",justifyContent:"center",gap:14,marginBottom:12}}>
                   {[["🔒",(t&&t.checkoutSSLSecure)||"SSL secure"],["✓","Stripe"],["↩️",(t&&t.checkoutCancelAnytime)||"Cancel anytime"]].map(([i,l])=>(
