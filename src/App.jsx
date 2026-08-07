@@ -2273,15 +2273,21 @@ function LoginPage({setUser,setView,openCheckout,lang,setLang}){
             {/* Quick link to Day/Week Pass checkout — still requires an
                 account (reverted), just saves a click from Pricing. */}
             {openCheckout&&(
-              <div style={{marginTop:16,paddingTop:16,borderTop:`1px solid ${C.border}`,textAlign:"center"}}>
-                <p style={{fontSize:12.5,color:C.muted,margin:"0 0 10px",display:"flex",alignItems:"center",justifyContent:"center",gap:6}}><Icon2c d="M4 7h16v13a1 1 0 01-1 1H5a1 1 0 01-1-1V7zM8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M4 12h16" accent={C.muted} size={14}/>Just visiting Bulgaria? Get a Day or Week Pass.</p>
-                <div style={{display:"flex",gap:8}}>
-                  {Object.entries(PASSES).map(([id,pass])=>(
-                    <button key={id} onClick={()=>openCheckout(id)}
-                      style={{flex:1,background:"none",border:`1.5px solid ${C.border}`,color:C.text,padding:"9px",borderRadius:9,cursor:"pointer",fontSize:12.5,fontWeight:600}}>
-                      {passI18n(id,lang).name} — €{pass.price.toFixed(2)}
-                    </button>
-                  ))}
+              <div style={{marginTop:20,paddingTop:20,borderTop:`1px solid ${C.border}`}}>
+                <div style={{background:"linear-gradient(135deg,#fef6e7,#fdecc8)",border:"1px solid #f0d9a8",borderRadius:14,padding:"16px"}}>
+                  <p style={{fontSize:13,color:"#92400e",fontWeight:700,margin:"0 0 12px",display:"flex",alignItems:"center",justifyContent:"center",gap:7}}>
+                    <Icon2c d="M4 7h16v13a1 1 0 01-1 1H5a1 1 0 01-1-1V7zM8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M4 12h16" accent="#92400e" size={15}/>
+                    Just visiting Bulgaria? Get a Day or Week Pass
+                  </p>
+                  <div style={{display:"flex",gap:8}}>
+                    {Object.entries(PASSES).map(([id,pass])=>(
+                      <button key={id} onClick={()=>openCheckout(id)}
+                        style={{flex:1,background:"#fff",border:"1.5px solid #f0c060",color:"#8a5a1a",padding:"11px 8px",borderRadius:10,cursor:"pointer",fontSize:13,fontWeight:700,boxShadow:"0 2px 6px rgba(0,0,0,0.06)"}}>
+                        {passI18n(id,lang).name}
+                        <div style={{fontSize:15,fontWeight:800,color:"#b8792a",marginTop:2}}>€{pass.price.toFixed(2)}</div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
