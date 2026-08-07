@@ -2153,11 +2153,11 @@ function LoginPage({setUser,setView,openCheckout,lang,setLang}){
       <div style={{width:"100%",maxWidth:440}}>
         <div style={{background:C.surface,borderRadius:22,border:`1px solid ${C.border}`,boxShadow:"0 12px 40px rgba(0,0,0,0.1)",overflow:"hidden"}}>
           <div style={{background:`linear-gradient(135deg,${C.primary} 0%,#2a7a52 100%)`,padding:"36px 32px 30px",textAlign:"center",position:"relative",overflow:"hidden"}}>
-            <img src={bgMapDoodle} alt="" aria-hidden="true" style={{position:"absolute",top:0,left:0,width:"100%",height:"100%",objectFit:"cover",opacity:0.4,pointerEvents:"none",userSelect:"none"}}/>
+            <img src={bgMapDoodle} alt="" aria-hidden="true" style={{position:"absolute",top:0,left:0,width:"100%",height:"100%",objectFit:"contain",opacity:0.4,pointerEvents:"none",userSelect:"none"}}/>
             <div style={{position:"relative"}}>
               <img src={LOGO_ICON} alt="BGexpats" style={{height:40,width:40,marginBottom:10}}/>
-              <h1 style={{color:"#fff",fontSize:24,fontWeight:800,margin:"0 0 6px",letterSpacing:"-0.4px"}}>Welcome to BGexpats</h1>
-              <p style={{color:"rgba(255,255,255,0.72)",fontSize:14,margin:0}}>Your guide to living well in Bulgaria — sign in to get started</p>
+              <h1 style={{color:"#fff",fontSize:24,fontWeight:800,margin:"0 0 6px",letterSpacing:"-0.4px",textShadow:"0 1px 6px rgba(0,0,0,0.35)"}}>Welcome to BGexpats</h1>
+              <p style={{color:"#fff",fontSize:14,margin:0,textShadow:"0 1px 6px rgba(0,0,0,0.35)"}}>Your guide to living well in Bulgaria — sign in to get started</p>
             </div>
           </div>
           <div style={{padding:"28px 32px 32px"}}>
