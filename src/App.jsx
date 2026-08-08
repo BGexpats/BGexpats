@@ -4766,6 +4766,7 @@ const MAP_LOCATIONS = [
   {id:330,cat:"summer",icon:"🧗",name:"Rock Climbing — Vratsa Gorge",desc:"Best rock climbing destination in Bulgaria. 500+ routes for all levels. 3 hours from Sofia. Stunning Balkan scenery.",addr:"Vratsa Gorge, Vratsa",phone:"+359 92 662 533",english:true,lat:43.2013,lng:23.5534,city:"sofia"},
   {id:331,cat:"summer",icon:"🚵",name:"Mountain Biking — Vitosha (Sofia)",desc:"Trails for all levels just 15 min from Sofia city center. Bike rentals available. Stunning mountain views.",addr:"Vitosha Mountain, Sofia",english:true,lat:42.5790,lng:23.2813,city:"sofia"},
   {id:332,cat:"summer",icon:"🏖️",name:"Sozopol Beach & Old Town",desc:"Most charming coastal town in Bulgaria. Ancient stone houses, beautiful beaches, great seafood. Must visit.",addr:"Sozopol, Burgas region",english:true,lat:42.4167,lng:27.6981,city:"burgas"},
+  {id:9002,cat:"summer",icon:"🦁",name:"The Sofia Zoo",desc:"Sofia's city zoo, home to over 200 species including lions, bears, and exotic birds. Great for families.",addr:"Sofia",english:true,lat:42.659582,lng:23.335734,city:"sofia"},
 
   // ══ WINTER ACTIVITIES ═════════════════════════════════════════
   {id:333,cat:"winter",icon:"⛷️",name:"Bansko Ski Resort",desc:"Bulgaria's premier ski resort. 75km of pistes, modern gondola, international ski schools. 1,000m–2,600m altitude.",addr:"Bansko, Pirin Mountains",phone:"+359 749 88580",english:true,lat:41.827822,lng:23.477377,city:"bansko"},
