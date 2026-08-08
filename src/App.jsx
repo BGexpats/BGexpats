@@ -3975,19 +3975,22 @@ function CustomSelect({value,onChange,options,placeholder="Select…",style}){
     document.addEventListener("mousedown",onClick)
     return()=>document.removeEventListener("mousedown",onClick)
   },[])
+  // options can be plain strings (value===label) or {value,label} objects
+  const norm=options.map(o=>typeof o==="object"?o:{value:o,label:o})
+  const current=norm.find(o=>o.value===value)
   return(
     <div ref={ref} style={{position:"relative",...style}}>
       <button type="button" onClick={()=>setOpen(o=>!o)}
-        style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",border:`1.5px solid ${open?C.primary:C.border}`,borderRadius:9,padding:"11px 14px",fontSize:14,color:value?C.text:C.muted,background:C.page,boxSizing:"border-box",cursor:"pointer",textAlign:"left"}}>
-        <span style={{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{value||placeholder}</span>
+        style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",border:`1.5px solid ${open?C.primary:C.border}`,borderRadius:9,padding:"11px 14px",fontSize:14,color:current?C.text:C.muted,background:C.page,boxSizing:"border-box",cursor:"pointer",textAlign:"left"}}>
+        <span style={{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{current?current.label:placeholder}</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={C.muted} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,marginLeft:8,transform:open?"rotate(180deg)":"none",transition:"transform 0.15s"}}><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       {open&&(
         <div style={{position:"absolute",top:"calc(100% + 4px)",left:0,right:0,zIndex:50,background:C.surface,border:`1px solid ${C.border}`,borderRadius:10,boxShadow:"0 8px 24px rgba(0,0,0,0.15)",maxHeight:260,overflowY:"auto"}}>
-          {options.map(opt=>(
-            <button key={opt} type="button" onClick={()=>{onChange(opt);setOpen(false)}}
-              style={{width:"100%",display:"block",textAlign:"left",padding:"11px 14px",fontSize:14,border:"none",background:value===opt?C.primaryLight:"transparent",color:value===opt?C.primary:C.text,fontWeight:value===opt?700:400,cursor:"pointer"}}>
-              {opt}
+          {norm.map(opt=>(
+            <button key={opt.value} type="button" onClick={()=>{onChange(opt.value);setOpen(false)}}
+              style={{width:"100%",display:"block",textAlign:"left",padding:"11px 14px",fontSize:14,border:"none",background:value===opt.value?C.primaryLight:"transparent",color:value===opt.value?C.primary:C.text,fontWeight:value===opt.value?700:400,cursor:"pointer"}}>
+              {opt.label}
             </button>
           ))}
         </div>
@@ -4414,7 +4417,7 @@ const MAP_LOCATIONS = [
   {id:12,city:"sofia",cat:"work",icon:"💼",name:"Puzl CowOrKing",desc:"Central coworking space. Great expat community. Meeting rooms available.",addr:"33 William Gladstone St",phone:"+359 2 491 7400",english:true,lat:42.6978,lng:23.3204},
   {id:13,city:"sofia",cat:"work",icon:"💼",name:"Regus Sofia City",desc:"Professional offices and coworking. All-inclusive packages. Good for client meetings.",addr:"67 James Bourchier Blvd",phone:"+359 2 981 0000",english:true,lat:42.6844,lng:23.3165},
   // Sofia Neighborhoods
-  {id:14,city:"sofia",cat:"hood",icon:"🏠",name:"Lozenets",desc:"Most popular with expats. Quiet, leafy, great cafes. Rent: €800-1,400/month.",addr:"Lozenets, Sofia",english:true,lat:42.6838,lng:23.3245},
+  {id:14,city:"sofia",cat:"hood",icon:"🏠",name:"Lozenets",desc:"Most popular with expats. Quiet, leafy, great cafes. Rent: €800-1,400/month.",addr:"Lozenets, Sofia",english:true,lat:42.673280,lng:23.325653},
   {id:15,city:"sofia",cat:"hood",icon:"🏠",name:"Iztok",desc:"Upscale residential. Embassy area. Large apartments. Very safe.",addr:"Iztok, Sofia",english:true,lat:42.6761,lng:23.3493},
   {id:16,city:"sofia",cat:"hood",icon:"🏠",name:"Doctor's Garden",desc:"Most central and premium. Near the park. Best restaurants nearby.",addr:"Doctor's Garden, Sofia",english:true,lat:42.6920,lng:23.3280},
   {id:17,city:"sofia",cat:"hood",icon:"🏠",name:"Oborishte",desc:"Great balance of location and price. Very liveable.",addr:"Oborishte, Sofia",english:true,lat:42.6967,lng:23.3348},
@@ -5900,9 +5903,10 @@ function AccountPage({user,setUser,setView,subscription,lang}){
   const [businessName,setBusinessName]=useState("")
   const [businessCategory,setBusinessCategory]=useState("")
   const [editingHeaderName,setEditingHeaderName]=useState(false)
+  const [expandedTier,setExpandedTier]=useState(null)
   const ACCT_I18N = {
-    en:{myAccount:"My account",profileVisible:"Your profile is visible to other signed-in members",greeting:(n)=>`Welcome back, ${n}! 👋`,addPhoto:"Add photo",changePhoto:"Change photo",uploading:"Uploading…",edit:"Edit",save:"Save changes",saving:"Saving…",nameLabel:"NAME OR NICKNAME",nameHint:"This is shown across BGexpats, including in Meet & Connect if you join.",messages:"Messages",openAll:"Open all →",loadingDots:"Loading…",noMessagesYet:"No messages yet. Expats reaching out will show up here.",partnerAccount:"PARTNER ACCOUNT",businessName:"BUSINESS / SERVICE NAME",businessNamePh:"e.g. Sofia Real Estate Ltd.",category:"CATEGORY",selectCategory:"Select a category…",wantAdvertise:"Want to advertise to expats too?",advertiseDesc:"As a Partner you can message expats directly (see Messages above) — no access to the general Community. Advertising goes further: it puts your business on the map and in front of people actively searching for what you offer.",seeFullPricing:"See full pricing & get started →",aboutCompany:"ABOUT YOUR COMPANY",aboutCompanyPh:"Tell members about your company or service — what you offer, who it's for, why they should reach out…",aboutYou:"ABOUT YOU",aboutYouPh:"Tell other members a bit about yourself — what brought you to Bulgaria, what you enjoy…",cityLabel:"CITY",selectCity:"Select a city…",lookingForLabel:"LOOKING FOR",selectGeneric:"Select…",languagesLabel:"LANGUAGES I SPEAK",footer:"Only signed-in members can see your profile. Never share your home address, phone number or financial details."},
-    bg:{myAccount:"Моят акаунт",profileVisible:"Профилът ви е видим за други регистрирани членове",greeting:(n)=>`Добре дошли, ${n}! 👋`,addPhoto:"Добавете снимка",changePhoto:"Смени снимката",uploading:"Качване…",edit:"Редактирай",save:"Запази промените",saving:"Запазване…",nameLabel:"ИМЕ ИЛИ ПСЕВДОНИМ",nameHint:"Показва се навсякъде в BGexpats, включително в Meet & Connect, ако се присъедините.",messages:"Съобщения",openAll:"Отвори всички →",loadingDots:"Зареждане…",noMessagesYet:"Все още няма съобщения. Чужденци, които се свържат с вас, ще се показват тук.",partnerAccount:"ПАРТНЬОРСКИ АКАУНТ",businessName:"ИМЕ НА БИЗНЕСА / УСЛУГАТА",businessNamePh:"напр. София Недвижими Имоти ЕООД",category:"КАТЕГОРИЯ",selectCategory:"Изберете категория…",wantAdvertise:"Искате ли да рекламирате пред чужденци?",advertiseDesc:"Като партньор можете да пишете директно на чужденци (вижте Съобщения по-горе) — без достъп до общата общност. Рекламата отива по-далеч: поставя бизнеса ви на картата и пред хора, които активно търсят точно това, което предлагате.",seeFullPricing:"Вижте пълните цени и започнете →",aboutCompany:"ЗА ВАШАТА КОМПАНИЯ",aboutCompanyPh:"Разкажете на членовете за вашата компания или услуга — какво предлагате, за кого е, защо да се свържат с вас…",aboutYou:"ЗА ВАС",aboutYouPh:"Разкажете на другите членове малко за себе си — какво ви доведе в България, какво харесвате…",cityLabel:"ГРАД",selectCity:"Изберете град…",lookingForLabel:"ТЪРСЯ",selectGeneric:"Изберете…",languagesLabel:"ЕЗИЦИ, КОИТО ГОВОРЯ",footer:"Само регистрирани членове могат да виждат профила ви. Никога не споделяйте домашния си адрес, телефонен номер или финансови данни."},
+    en:{myAccount:"My account",profileVisible:"Your profile is visible to other signed-in members",greeting:(n)=>`Welcome back, ${n}! 👋`,addPhoto:"Add photo",changePhoto:"Change photo",uploading:"Uploading…",edit:"Edit",save:"Save changes",saving:"Saving…",nameLabel:"NAME OR NICKNAME",nameHint:"This is shown across BGexpats, including in Meet & Connect if you join.",messages:"Messages",openAll:"Open all →",loadingDots:"Loading…",noMessagesYet:"No messages yet. Expats reaching out will show up here.",partnerAccount:"PARTNER ACCOUNT",businessName:"BUSINESS / SERVICE NAME",businessNamePh:"e.g. Sofia Real Estate Ltd.",category:"CATEGORY",selectCategory:"Select a category…",wantAdvertise:"Want to advertise to expats too?",advertiseDesc:"Three ways to get in front of expats actively searching for what you offer. Tap a plan to see exactly what's included.",seeFullPricing:"See full pricing & get started →",aboutCompany:"ABOUT YOUR COMPANY",aboutCompanyPh:"Tell members about your company or service — what you offer, who it's for, why they should reach out…",aboutYou:"ABOUT YOU",aboutYouPh:"Tell other members a bit about yourself — what brought you to Bulgaria, what you enjoy…",cityLabel:"CITY",selectCity:"Select a city…",lookingForLabel:"LOOKING FOR",selectGeneric:"Select…",languagesLabel:"LANGUAGES I SPEAK",footer:"Only signed-in members can see your profile. Never share your home address, phone number or financial details."},
+    bg:{myAccount:"Моят акаунт",profileVisible:"Профилът ви е видим за други регистрирани членове",greeting:(n)=>`Добре дошли, ${n}! 👋`,addPhoto:"Добавете снимка",changePhoto:"Смени снимката",uploading:"Качване…",edit:"Редактирай",save:"Запази промените",saving:"Запазване…",nameLabel:"ИМЕ ИЛИ ПСЕВДОНИМ",nameHint:"Показва се навсякъде в BGexpats, включително в Meet & Connect, ако се присъедините.",messages:"Съобщения",openAll:"Отвори всички →",loadingDots:"Зареждане…",noMessagesYet:"Все още няма съобщения. Чужденци, които се свържат с вас, ще се показват тук.",partnerAccount:"ПАРТНЬОРСКИ АКАУНТ",businessName:"ИМЕ НА БИЗНЕСА / УСЛУГАТА",businessNamePh:"напр. София Недвижими Имоти ЕООД",category:"КАТЕГОРИЯ",selectCategory:"Изберете категория…",wantAdvertise:"Искате ли да рекламирате пред чужденци?",advertiseDesc:"Три начина да достигнете до чужденци, които активно търсят точно това, което предлагате. Докоснете план, за да видите какво точно включва.",seeFullPricing:"Вижте пълните цени и започнете →",aboutCompany:"ЗА ВАШАТА КОМПАНИЯ",aboutCompanyPh:"Разкажете на членовете за вашата компания или услуга — какво предлагате, за кого е, защо да се свържат с вас…",aboutYou:"ЗА ВАС",aboutYouPh:"Разкажете на другите членове малко за себе си — какво ви доведе в България, какво харесвате…",cityLabel:"ГРАД",selectCity:"Изберете град…",lookingForLabel:"ТЪРСЯ",selectGeneric:"Изберете…",languagesLabel:"ЕЗИЦИ, КОИТО ГОВОРЯ",footer:"Само регистрирани членове могат да виждат профила ви. Никога не споделяйте домашния си адрес, телефонен номер или финансови данни."},
   }
   const ai=ACCT_I18N[lang]||ACCT_I18N.en
   const [loading,setLoading]=useState(true)
@@ -6171,13 +6175,13 @@ function AccountPage({user,setUser,setView,subscription,lang}){
                 </div>
               )}
 
-              {/* Partner dashboard — Business details + Advertise grouped
-                  side by side on desktop, so the wider page doesn't feel
-                  stretched. Messages now lives up in the header instead. */}
+              {/* Partner dashboard — Business details, About your company, and
+                  Advertise now flow in sequence (not side by side), per
+                  request: Partner Account -> About your company -> Advertise. */}
               {accountType==="partner"&&(
-                <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:16,marginBottom:16,alignItems:"start"}}>
+                <>
                   {/* Business details */}
-                  <div style={{background:"#fef9ef",border:"1px solid #f0d9a8",borderRadius:12,padding:"14px"}}>
+                  <div style={{marginBottom:16,background:"#fef9ef",border:"1px solid #f0d9a8",borderRadius:12,padding:"14px"}}>
                     <div style={{fontSize:12,fontWeight:700,color:"#92400e",marginBottom:10,display:"flex",alignItems:"center",gap:6}}><Icon2c d="M4 8h16v11H4zM9 8V6a2 2 0 012-2h4a2 2 0 012 2v2" accent="#92400e" size={14}/>{ai.partnerAccount}</div>
                     <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>{ai.businessName}</label>
                     <input value={businessName} onChange={e=>setBusinessName(e.target.value.slice(0,60))}
@@ -6187,26 +6191,54 @@ function AccountPage({user,setUser,setView,subscription,lang}){
                     <CustomSelect value={businessCategory} onChange={setBusinessCategory} options={BUSINESS_CATEGORIES} placeholder={ai.selectCategory}/>
                   </div>
 
-                  {/* Advertise — now beside Partner Account instead of below it */}
-                  <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,padding:"14px"}}>
+                  {/* About your company */}
+                  <div style={{marginBottom:16}}>
+                    <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>{ai.aboutCompany}</label>
+                    <textarea value={bio} onChange={e=>setBio(e.target.value.slice(0,300))}
+                      placeholder={ai.aboutCompanyPh}
+                      style={{...inputStyle,height:90,resize:"none",fontFamily:"inherit",lineHeight:1.6}}/>
+                    <div style={{fontSize:11,color:C.muted,textAlign:"right",marginTop:2}}>{bio.length}/300</div>
+                  </div>
+
+                  {/* Advertise — tap a tier to see what's included */}
+                  <div style={{marginBottom:16,background:C.surface,border:`1px solid ${C.border}`,borderRadius:12,padding:"14px"}}>
                     <div style={{fontSize:12,fontWeight:700,color:C.text,marginBottom:2}}>{ai.wantAdvertise}</div>
                     <p style={{fontSize:11.5,color:C.muted,margin:"0 0 10px",lineHeight:1.5}}>{ai.advertiseDesc}</p>
                     <div style={{display:"flex",flexDirection:"column",gap:6,marginBottom:10}}>
-                      {AD_TIERS.map(tier=>(
-                        <div key={tier.id} style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"8px 10px",background:C.page,borderRadius:8,border:`1px solid ${C.border}`}}>
-                          <div>
-                            <div style={{fontSize:12.5,fontWeight:600,color:C.text}}>{tier.name}{tier.popular&&<span style={{marginLeft:5,fontSize:8,background:tier.accent,color:"#fff",padding:"1px 5px",borderRadius:4,fontWeight:700}}>POPULAR</span>}</div>
+                      {AD_TIERS.map(tier=>{
+                        const isOpen=expandedTier===tier.id
+                        return(
+                          <div key={tier.id} style={{background:C.page,borderRadius:8,border:`1px solid ${isOpen?tier.accent:C.border}`,overflow:"hidden"}}>
+                            <button onClick={()=>setExpandedTier(isOpen?null:tier.id)}
+                              style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",padding:"9px 10px",background:"none",border:"none",cursor:"pointer",textAlign:"left"}}>
+                              <div style={{display:"flex",alignItems:"center",gap:6}}>
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={C.muted} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,transform:isOpen?"rotate(90deg)":"none",transition:"transform 0.15s"}}><polyline points="9 18 15 12 9 6"/></svg>
+                                <div style={{fontSize:12.5,fontWeight:600,color:C.text}}>{tier.name}{tier.popular&&<span style={{marginLeft:5,fontSize:8,background:tier.accent,color:"#fff",padding:"1px 5px",borderRadius:4,fontWeight:700}}>POPULAR</span>}</div>
+                              </div>
+                              <div style={{fontSize:13,fontWeight:700,color:tier.accent,flexShrink:0,marginLeft:8}}>€{tier.monthly}<span style={{fontSize:10.5,fontWeight:400,color:C.muted}}>/mo</span></div>
+                            </button>
+                            {isOpen&&(
+                              <div style={{padding:"0 12px 12px 29px"}}>
+                                <div style={{fontSize:11,color:C.muted,marginBottom:6,fontStyle:"italic"}}>{tier.tagline}</div>
+                                <ul style={{margin:0,padding:0,listStyle:"none",display:"flex",flexDirection:"column",gap:4}}>
+                                  {tier.features.map((f,i)=>(
+                                    <li key={i} style={{fontSize:11.5,color:C.text,display:"flex",gap:6,alignItems:"flex-start"}}>
+                                      <span style={{color:tier.accent,flexShrink:0}}>✓</span>{f}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
                           </div>
-                          <div style={{fontSize:13,fontWeight:700,color:tier.accent,flexShrink:0,marginLeft:8}}>€{tier.monthly}<span style={{fontSize:10.5,fontWeight:400,color:C.muted}}>/mo</span></div>
-                        </div>
-                      ))}
+                        )
+                      })}
                     </div>
                     <button onClick={()=>setView("advertise")}
                       style={{width:"100%",background:"none",border:`1.5px solid ${C.primary}`,color:C.primary,padding:"9px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:700}}>
                       {ai.seeFullPricing}
                     </button>
                   </div>
-                </div>
+                </>
               )}
 
               {/* I am — Bulgarian or Expat (not relevant for Partner accounts) */}
@@ -6223,35 +6255,36 @@ function AccountPage({user,setUser,setView,subscription,lang}){
                 </div>
               )}
 
-              {/* About you — business/service description for Partner accounts */}
-              <div style={{marginBottom:16}}>
-                <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>{accountType==="partner"?ai.aboutCompany:ai.aboutYou}</label>
-                <textarea value={bio} onChange={e=>setBio(e.target.value.slice(0,300))}
-                  placeholder={accountType==="partner"?ai.aboutCompanyPh:ai.aboutYouPh}
-                  style={{...inputStyle,height:90,resize:"none",fontFamily:"inherit",lineHeight:1.6}}/>
-                <div style={{fontSize:11,color:C.muted,textAlign:"right",marginTop:2}}>{bio.length}/300</div>
-              </div>
+              {/* About you — Expat accounts only (Partners have their own
+                  "About your company" version above, in sequence between
+                  Partner Account and Advertise). */}
+              {accountType!=="partner"&&(
+                <div style={{marginBottom:16}}>
+                  <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>{ai.aboutYou}</label>
+                  <textarea value={bio} onChange={e=>setBio(e.target.value.slice(0,300))}
+                    placeholder={ai.aboutYouPh}
+                    style={{...inputStyle,height:90,resize:"none",fontFamily:"inherit",lineHeight:1.6}}/>
+                  <div style={{fontSize:11,color:C.muted,textAlign:"right",marginTop:2}}>{bio.length}/300</div>
+                </div>
+              )}
 
               {/* City (+ Looking for, Expat accounts only) */}
               <div style={{display:"grid",gridTemplateColumns:(accountType!=="partner"&&!isMobile)?"1fr 1fr":"1fr",gap:12,marginBottom:16}}>
                 <div>
                   <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>{ai.cityLabel}</label>
-                  <select value={city} onChange={e=>setCity(e.target.value)} style={inputStyle}>
-                    <option value="">{ai.selectCity}</option>
-                    {PROFILE_CITIES.map(c=><option key={c} value={c}>{c}</option>)}
-                  </select>
+                  <CustomSelect value={city} onChange={setCity} options={PROFILE_CITIES} placeholder={ai.selectCity}/>
                 </div>
                 {accountType!=="partner"&&(
                   <div>
                     <label style={{fontSize:12,fontWeight:600,color:C.muted,display:"block",marginBottom:5}}>{ai.lookingForLabel}</label>
-                    <select value={lookingFor} onChange={e=>setLookingFor(e.target.value)} style={inputStyle}>
-                      <option value="">{ai.selectGeneric}</option>
-                      <option value="friends">{lang==="bg"?"Приятели":"Friends"}</option>
-                      <option value="networking">{lang==="bg"?"Контакти":"Networking"}</option>
-                      <option value="language">{lang==="bg"?"Езиков обмен":"Language exchange"}</option>
-                      <option value="activities">{lang==="bg"?"Партньори за занимания":"Activity partners"}</option>
-                      <option value="relationship">{lang==="bg"?"Връзка":"Relationship"}</option>
-                    </select>
+                    <CustomSelect value={lookingFor} onChange={setLookingFor} placeholder={ai.selectGeneric}
+                      options={[
+                        {value:"friends",label:lang==="bg"?"Приятели":"Friends"},
+                        {value:"networking",label:lang==="bg"?"Контакти":"Networking"},
+                        {value:"language",label:lang==="bg"?"Езиков обмен":"Language exchange"},
+                        {value:"activities",label:lang==="bg"?"Партньори за занимания":"Activity partners"},
+                        {value:"relationship",label:lang==="bg"?"Връзка":"Relationship"},
+                      ]}/>
                   </div>
                 )}
               </div>
@@ -9563,6 +9596,7 @@ const AD_TIERS = [
       "Priority placement — top of your category",
       "Highlighted card with your brand colour",
       "Featured in the app directory sidebar",
+      "Private messaging with Premium expats",
       "One social post to our community feed / month",
       "Monthly views & clicks report",
     ],
