@@ -4409,9 +4409,9 @@ const MAP_LOCATIONS = [
   {id:6,city:"sofia",cat:"bank",icon:"🏦",name:"UniCredit Bulbank Center",desc:"International bank, English staff, great for SWIFT transfers.",addr:"Sofia Center, pl. \"Sveta Nedelya\" 7, 1000 Sofia",phone:"0700 18 484",english:true,lat:42.697616,lng:23.320758},
   {id:7,city:"sofia",cat:"bank",icon:"🏦",name:"First Investment Bank",desc:"Good mobile banking and competitive fees.",addr:"Hladilnika, Blvd. \"Cherni vrah\" 100, 1407 Sofia",phone:"028002545",english:false,lat:42.657174,lng:23.315261},
   // Legal
-  {id:8,city:"sofia",cat:"legal",icon:"⚖️",name:"Migration Directorate Sofia",desc:"Register your EU residence here. Go early — bring all documents!",addr:"48 Knyaz Boris I Blvd",phone:"+359 2 982 3340",english:false,lat:42.7127,lng:23.3139},
-  {id:9,city:"sofia",cat:"legal",icon:"📋",name:"Sofia Central Notary",desc:"Notary services for expats. Document authentication and apostille.",addr:"17 Tsar Osvoboditel Blvd",phone:"+359 2 986 1177",english:false,lat:42.6988,lng:23.3280},
-  {id:10,city:"sofia",cat:"legal",icon:"🏛️",name:"Sofia Registry Agency",desc:"EOOD company registration and commercial register.",addr:"20 Elitsa St",phone:"+359 2 948 6015",english:false,lat:42.7006,lng:23.3389},
+  {id:8,city:"sofia",cat:"legal",icon:"⚖️",name:"Migration Directorate Sofia",desc:"Register your EU residence here. Go early — bring all documents!",addr:"1202, Knyagina Maria Luisa Blvd 48, 1202 Sofia",phone:"029824808",english:false,lat:42.703362,lng:23.323617},
+  {id:9,city:"sofia",cat:"legal",icon:"📋",name:"Notarius Desislava Cherneva",desc:"Notary services for expats. Document authentication and apostille.",addr:"Old City Center, ul. \"Tsar Samuil\" 44, 1000 Sofia",phone:"0887737808",english:false,lat:42.695513,lng:23.317222},
+  {id:10,city:"sofia",cat:"legal",icon:"🏛️",name:"Sofia Registry Agency",desc:"EOOD company registration and commercial register.",addr:"Geo Milev, ul. \"Elisaveta Bagryana\" 20, 1111 Geo Milev, Sofia",phone:"029486181",english:false,lat:42.680218,lng:23.360440},
   // Coworking
   {id:11,city:"sofia",cat:"work",icon:"💼",name:"Campus X",desc:"Best coworking in Sofia. Used by startups and remote workers. Super fast WiFi.",addr:"1 Alexander Malinov Blvd",phone:"+359 88 888 0011",english:true,lat:42.6541,lng:23.3789},
   {id:12,city:"sofia",cat:"work",icon:"💼",name:"Puzl CowOrKing",desc:"Central coworking space. Great expat community. Meeting rooms available.",addr:"33 William Gladstone St",phone:"+359 2 491 7400",english:true,lat:42.6978,lng:23.3204},
@@ -4420,7 +4420,7 @@ const MAP_LOCATIONS = [
   {id:14,city:"sofia",cat:"hood",icon:"🏠",name:"Lozenets",desc:"Most popular with expats. Quiet, leafy, great cafes. Rent: €800-1,400/month.",addr:"Lozenets, Sofia",english:true,lat:42.673280,lng:23.325653},
   {id:15,city:"sofia",cat:"hood",icon:"🏠",name:"Iztok",desc:"Upscale residential. Embassy area. Large apartments. Very safe.",addr:"Iztok, Sofia",english:true,lat:42.672520,lng:23.356959},
   {id:16,city:"sofia",cat:"hood",icon:"🏠",name:"Doctor's Garden",desc:"Most central and premium. Near the park. Best restaurants nearby.",addr:"Doctor's Garden, Sofia",english:true,lat:42.694434,lng:23.338504},
-  {id:17,city:"sofia",cat:"hood",icon:"🏠",name:"Oborishte",desc:"Great balance of location and price. Very liveable.",addr:"Oborishte, Sofia",english:true,lat:42.6967,lng:23.3348},
+  {id:17,city:"sofia",cat:"hood",icon:"🏠",name:"Oborishte",desc:"Great balance of location and price. Very liveable.",addr:"Oborishte, Sofia",english:true,lat:42.696342,lng:23.341660},
   {id:18,city:"sofia",cat:"hood",icon:"🏠",name:"Mladost 1",desc:"Modern area. Great metro links. Popular with families. Rent from €700/month.",addr:"Mladost, Sofia",english:true,lat:42.6486,lng:23.3789},
 
   // ── VARNA ──────────────────────────────────────────────────────
@@ -4735,7 +4735,7 @@ const MAP_LOCATIONS = [
 
   // ══ DINING ════════════════════════════════════════════════════
   {id:307,cat:"dining",icon:"🍽️",name:"Hadjidraganov's Houses — Sofia",desc:"Most famous traditional Bulgarian restaurant. Stunning old-Sofia atmosphere. Try the shopska salad and grilled meats. Book in advance!",addr:"34 Kozloduy St, Sofia",phone:"+359 2 931 3511",english:true,lat:42.6960,lng:23.3370,city:"sofia"},
-  {id:308,cat:"dining",icon:"🍽️",name:"Made in Home — Sofia",desc:"Cozy homestyle Bulgarian food. Great lunch spot. Very popular with expats. Fresh, seasonal menu.",addr:"30A Pozitano St, Sofia",phone:"+359 2 851 5555",english:true,lat:42.6971,lng:23.3290,city:"sofia"},
+  {id:308,cat:"dining",icon:"🍽️",name:"Dark Sister by Made in Home",desc:"Cozy homestyle Bulgarian food. Great lunch spot. Very popular with expats. Fresh, seasonal menu.",addr:"Sofia Center, ul. \"Angel Kanchev\" 30, 1000 Sofia",phone:"0876884014",english:true,lat:42.689587,lng:23.321593,city:"sofia"},
   {id:309,cat:"dining",icon:"🍽️",name:"Uno Enoteca — Sofia",desc:"Best wine bar and restaurant in Sofia. Italian-Bulgarian fusion. 400+ wines. Romantic atmosphere.",addr:"18 Rakovski St, Sofia",phone:"+359 88 890 0101",english:true,lat:42.6980,lng:23.3320,city:"sofia"},
   {id:310,cat:"dining",icon:"🍽️",name:"Pavaj Restaurant — Plovdiv",desc:"Traditional Bulgarian cuisine in the Old Town. Terrace with stunning views. Live folk music on weekends.",addr:"Old Town, Plovdiv",phone:"+359 32 260 880",english:true,lat:42.1445,lng:24.7515,city:"plovdiv"},
   {id:311,cat:"dining",icon:"🦞",name:"Morski Club Neptune — Varna",desc:"Best seafood restaurant in Varna. Fresh Black Sea fish and shellfish. Right on the beach.",addr:"Sea Garden, Varna",phone:"+359 52 612 400",english:true,lat:42.2100,lng:27.9245,city:"varna"},
