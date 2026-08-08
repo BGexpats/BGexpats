@@ -4407,7 +4407,7 @@ const MAP_LOCATIONS = [
   // Banking
   {id:5,city:"sofia",cat:"bank",icon:"🏦",name:"DSK Bank — Vitosha",desc:"Most foreigner-friendly branch. English-speaking staff. Opens accounts for expats.",addr:"Ivan Vazov, Vitosha Blvd № 176, бл. 53, 1408 Sofia",phone:"0700 10 375",english:true,lat:42.678102,lng:23.310024},
   {id:6,city:"sofia",cat:"bank",icon:"🏦",name:"UniCredit Bulbank Center",desc:"International bank, English staff, great for SWIFT transfers.",addr:"Sofia Center, pl. \"Sveta Nedelya\" 7, 1000 Sofia",phone:"0700 18 484",english:true,lat:42.697616,lng:23.320758},
-  {id:7,city:"sofia",cat:"bank",icon:"🏦",name:"First Investment Bank",desc:"Good mobile banking and competitive fees.",addr:"37 Dragan Tsankov Blvd",phone:"+359 2 817 1100",english:false,lat:42.6718,lng:23.3440},
+  {id:7,city:"sofia",cat:"bank",icon:"🏦",name:"First Investment Bank",desc:"Good mobile banking and competitive fees.",addr:"Hladilnika, Blvd. \"Cherni vrah\" 100, 1407 Sofia",phone:"028002545",english:false,lat:42.657174,lng:23.315261},
   // Legal
   {id:8,city:"sofia",cat:"legal",icon:"⚖️",name:"Migration Directorate Sofia",desc:"Register your EU residence here. Go early — bring all documents!",addr:"48 Knyaz Boris I Blvd",phone:"+359 2 982 3340",english:false,lat:42.7127,lng:23.3139},
   {id:9,city:"sofia",cat:"legal",icon:"📋",name:"Sofia Central Notary",desc:"Notary services for expats. Document authentication and apostille.",addr:"17 Tsar Osvoboditel Blvd",phone:"+359 2 986 1177",english:false,lat:42.6988,lng:23.3280},
@@ -4418,7 +4418,7 @@ const MAP_LOCATIONS = [
   {id:13,city:"sofia",cat:"work",icon:"💼",name:"Regus Sofia City",desc:"Professional offices and coworking. All-inclusive packages. Good for client meetings.",addr:"67 James Bourchier Blvd",phone:"+359 2 981 0000",english:true,lat:42.6844,lng:23.3165},
   // Sofia Neighborhoods
   {id:14,city:"sofia",cat:"hood",icon:"🏠",name:"Lozenets",desc:"Most popular with expats. Quiet, leafy, great cafes. Rent: €800-1,400/month.",addr:"Lozenets, Sofia",english:true,lat:42.673280,lng:23.325653},
-  {id:15,city:"sofia",cat:"hood",icon:"🏠",name:"Iztok",desc:"Upscale residential. Embassy area. Large apartments. Very safe.",addr:"Iztok, Sofia",english:true,lat:42.6761,lng:23.3493},
+  {id:15,city:"sofia",cat:"hood",icon:"🏠",name:"Iztok",desc:"Upscale residential. Embassy area. Large apartments. Very safe.",addr:"Iztok, Sofia",english:true,lat:42.672520,lng:23.356959},
   {id:16,city:"sofia",cat:"hood",icon:"🏠",name:"Doctor's Garden",desc:"Most central and premium. Near the park. Best restaurants nearby.",addr:"Doctor's Garden, Sofia",english:true,lat:42.6920,lng:23.3280},
   {id:17,city:"sofia",cat:"hood",icon:"🏠",name:"Oborishte",desc:"Great balance of location and price. Very liveable.",addr:"Oborishte, Sofia",english:true,lat:42.6967,lng:23.3348},
   {id:18,city:"sofia",cat:"hood",icon:"🏠",name:"Mladost 1",desc:"Modern area. Great metro links. Popular with families. Rent from €700/month.",addr:"Mladost, Sofia",english:true,lat:42.6486,lng:23.3789},
