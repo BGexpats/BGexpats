@@ -4655,7 +4655,7 @@ const MAP_LOCATIONS = [
   {id:170,cat:"winter",icon:"⛷️",name:"Pamporovo Ski Resort",desc:"South Bulgaria's main ski resort. Great for beginners and children. Sunny and warm ski climate.",addr:"Pamporovo, Rhodope Mountains",phone:"+359 3021 8686",english:true,lat:41.6450,lng:24.6833,city:"plovdiv"},
   {id:171,cat:"winter",icon:"🏔️",name:"Vitosha Winter Trails — Sofia",desc:"Snowshoeing and winter hiking on Sofia's mountain. Ski lifts operate. 30 min from city center.",addr:"Vitosha Nature Park, Sofia",english:true,lat:42.5936,lng:23.2984,city:"sofia"},
   {id:172,cat:"winter",icon:"⛷️",name:"Velingrad Ski & Spa",desc:"Combine skiing with thermal spa treatments. Small but charming slopes + world-class mineral waters.",addr:"Velingrad ski area",english:true,lat:42.0350,lng:23.9980,city:"velingrad"},
-  {id:173,cat:"winter",icon:"🛷",name:"Bansko Old Town Winter Walk",desc:"Magical cobblestone old town in winter. Traditional mehanas (taverns) with fireplaces. Bansko cheese and wine.",addr:"Old Town, Bansko",english:true,lat:41.8337,lng:23.4883,city:"sofia"},
+  {id:173,cat:"winter",icon:"🛷",name:"Bansko Old Town Winter Walk",desc:"Magical cobblestone old town in winter. Traditional mehanas (taverns) with fireplaces. Bansko cheese and wine.",addr:"Old Town, Bansko",english:true,lat:41.8337,lng:23.4883,city:"bansko"},
   {id:174,cat:"winter",icon:"❄️",name:"Plovdiv Winter Festival",desc:"Christmas market and winter events in the pedestrian zone. Ice skating rink. Great atmosphere.",addr:"Knyaz Aleksandar I St, Plovdiv",english:true,lat:42.1430,lng:24.7490,city:"plovdiv"},
 
   // ══ HOTELS ═══════════════════════════════════════════════════════
@@ -4768,7 +4768,7 @@ const MAP_LOCATIONS = [
   {id:332,cat:"summer",icon:"🏖️",name:"Sozopol Beach & Old Town",desc:"Most charming coastal town in Bulgaria. Ancient stone houses, beautiful beaches, great seafood. Must visit.",addr:"Sozopol, Burgas region",english:true,lat:42.4167,lng:27.6981,city:"burgas"},
 
   // ══ WINTER ACTIVITIES ═════════════════════════════════════════
-  {id:333,cat:"winter",icon:"⛷️",name:"Bansko Ski Resort",desc:"Bulgaria's premier ski resort. 75km of pistes, modern gondola, international ski schools. 1,000m–2,600m altitude.",addr:"Bansko, Pirin Mountains",phone:"+359 749 88580",english:true,lat:41.8433,lng:23.5006,city:"sofia"},
+  {id:333,cat:"winter",icon:"⛷️",name:"Bansko Ski Resort",desc:"Bulgaria's premier ski resort. 75km of pistes, modern gondola, international ski schools. 1,000m–2,600m altitude.",addr:"Bansko, Pirin Mountains",phone:"+359 749 88580",english:true,lat:41.8433,lng:23.5006,city:"bansko"},
   {id:334,cat:"winter",icon:"⛷️",name:"Borovets Ski Resort",desc:"Oldest ski resort in the Balkans. Good for beginners and families. 1.5 hours from Sofia. Very affordable.",addr:"Borovets, Rila Mountains",phone:"+359 7502 3211",english:true,lat:42.2671,lng:23.5967,city:"sofia"},
   {id:335,cat:"winter",icon:"🎿",name:"Pamporovo Ski Resort",desc:"Family-friendly resort in the Rhodopes. Best for beginners and intermediate skiers. Good prices.",addr:"Pamporovo, Rhodope Mountains",phone:"+359 3021 8220",english:true,lat:41.6523,lng:24.7196,city:"plovdiv"},
   {id:336,cat:"winter",icon:"⛷️",name:"Vitosha Ski Area — Sofia",desc:"Ski slope 15 minutes from Sofia city centre. Small but convenient. Night skiing available.",addr:"Vitosha Mountain, Aleko Area",english:true,lat:42.5600,lng:23.2750,city:"sofia"},
@@ -4853,6 +4853,7 @@ const MAP_CITIES=[
   {id:"montana",     label:"Montana",      icon:"🌲", lat:43.4083, lng:23.2250, zoom:13, region:"Montana Region"},
   // Blagoevgrad Region
   {id:"blagoevgrad", label:"Blagoevgrad",  icon:"🎓", lat:42.0195, lng:23.0942, zoom:13, region:"Blagoevgrad Region"},
+  {id:"bansko",      label:"Bansko",       icon:"⛷️", lat:41.8375, lng:23.4886, zoom:13, region:"Blagoevgrad Region"},
   // Pazardzhik Region
   {id:"velingrad",   label:"Velingrad",    icon:"♨️", lat:42.0250, lng:23.9944, zoom:13, region:"Pazardzhik Region"},
 ]
