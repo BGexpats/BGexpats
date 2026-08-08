@@ -4852,6 +4852,8 @@ const MAP_CITIES=[
   {id:"yambol",      label:"Yambol",       icon:"🌾", lat:42.4833, lng:26.5000, zoom:13, region:"Yambol Region"},
   // Montana Region
   {id:"montana",     label:"Montana",      icon:"🌲", lat:43.4083, lng:23.2250, zoom:13, region:"Montana Region"},
+  // Blagoevgrad Region
+  {id:"blagoevgrad", label:"Blagoevgrad",  icon:"🎓", lat:42.0195, lng:23.0942, zoom:13, region:"Blagoevgrad Region"},
   // Pazardzhik Region
   {id:"velingrad",   label:"Velingrad",    icon:"♨️", lat:42.0250, lng:23.9944, zoom:13, region:"Pazardzhik Region"},
 ]
