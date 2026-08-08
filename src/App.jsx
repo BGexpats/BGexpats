@@ -4735,7 +4735,6 @@ const MAP_LOCATIONS = [
 
   // ══ DINING ════════════════════════════════════════════════════
   {id:307,cat:"dining",icon:"🍽️",name:"Hadjidraganov's Houses — Sofia",desc:"Most famous traditional Bulgarian restaurant. Stunning old-Sofia atmosphere. Try the shopska salad and grilled meats. Book in advance!",addr:"34 Kozloduy St, Sofia",phone:"+359 2 931 3511",english:true,lat:42.6960,lng:23.3370,city:"sofia"},
-  {id:308,cat:"dining",icon:"🍽️",name:"Dark Sister by Made in Home",desc:"Cozy homestyle Bulgarian food. Great lunch spot. Very popular with expats. Fresh, seasonal menu.",addr:"Sofia Center, ul. \"Angel Kanchev\" 30, 1000 Sofia",phone:"0876884014",english:true,lat:42.689587,lng:23.321593,city:"sofia"},
   {id:309,cat:"dining",icon:"🍽️",name:"Uno Enoteca — Sofia",desc:"Best wine bar and restaurant in Sofia. Italian-Bulgarian fusion. 400+ wines. Romantic atmosphere.",addr:"18 Rakovski St, Sofia",phone:"+359 88 890 0101",english:true,lat:42.6980,lng:23.3320,city:"sofia"},
   {id:310,cat:"dining",icon:"🍽️",name:"Pavaj Restaurant — Plovdiv",desc:"Traditional Bulgarian cuisine in the Old Town. Terrace with stunning views. Live folk music on weekends.",addr:"Old Town, Plovdiv",phone:"+359 32 260 880",english:true,lat:42.1445,lng:24.7515,city:"plovdiv"},
   {id:311,cat:"dining",icon:"🦞",name:"Morski Club Neptune — Varna",desc:"Best seafood restaurant in Varna. Fresh Black Sea fish and shellfish. Right on the beach.",addr:"Sea Garden, Varna",phone:"+359 52 612 400",english:true,lat:42.2100,lng:27.9245,city:"varna"},
