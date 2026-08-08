@@ -4651,7 +4651,6 @@ const MAP_LOCATIONS = [
   {id:167,cat:"summer",icon:"🚣",name:"Kayaking — Arda River",desc:"White water kayaking and rafting in the Rhodope Mountains. Guided tours. Beginners welcome.",addr:"Kardzhali, Rhodope Mountains",phone:"+359 88 830 4400",english:true,lat:41.6389,lng:25.3781,city:"plovdiv"},
 
   // ══ WINTER ACTIVITIES ════════════════════════════════════════════
-  {id:168,cat:"winter",icon:"⛷️",name:"Bansko Ski Resort",desc:"Bulgaria's premier ski resort. 75km of pistes, modern gondola, ski season Dec-April. Excellent value vs Alps.",addr:"Bansko, Pirin Mountains",phone:"+359 749 88691",english:true,lat:41.8305,lng:23.4906,city:"sofia"},
   {id:169,cat:"winter",icon:"⛷️",name:"Borovets Ski Resort",desc:"Oldest ski resort in Bulgaria. Close to Sofia (73km). Good for beginners and families. Budget-friendly.",addr:"Borovets, Rila Mountains",phone:"+359 7508 2383",english:true,lat:42.2630,lng:23.5966,city:"sofia"},
   {id:170,cat:"winter",icon:"⛷️",name:"Pamporovo Ski Resort",desc:"South Bulgaria's main ski resort. Great for beginners and children. Sunny and warm ski climate.",addr:"Pamporovo, Rhodope Mountains",phone:"+359 3021 8686",english:true,lat:41.6450,lng:24.6833,city:"plovdiv"},
   {id:171,cat:"winter",icon:"🏔️",name:"Vitosha Winter Trails — Sofia",desc:"Snowshoeing and winter hiking on Sofia's mountain. Ski lifts operate. 30 min from city center.",addr:"Vitosha Nature Park, Sofia",english:true,lat:42.5936,lng:23.2984,city:"sofia"},
