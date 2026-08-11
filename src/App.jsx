@@ -4630,7 +4630,6 @@ const MAP_LOCATIONS = [
 
   // ══ NIGHTLIFE & PARTY ════════════════════════════════════════════
   {id:151,cat:"bars",icon:"🎵",name:"Jazz Bar",desc:"Best jazz bar in Sofia. Live music Thursday-Saturday. International artists. Great cocktails.",addr:"Sofia Center, ulitsa \"Sv. Sveti Kiril I Metodiy\" 27, 1202 Sofia",phone:"0888788613",english:true,lat:42.702807,lng:23.328837,city:"sofia"},
-  {id:153,cat:"party",icon:"🍺",name:"One More Bar — Sofia",desc:"Legendary expat bar in Sofia. Craft beers, friendly crowd, always busy. Great English service.",addr:"17 Lavele St, Sofia",phone:"+359 2 988 4765",english:true,lat:42.6963,lng:23.3281,city:"sofia"},
   {id:154,cat:"party",icon:"🎸",name:"Hambara Live Club — Sofia",desc:"Best live music venue in Sofia. Rock, blues, jazz — quality acts every night.",addr:"10 Stefan Karadzha St, Sofia",phone:"+359 2 981 4648",english:true,lat:42.6978,lng:23.3282,city:"sofia"},
   {id:155,cat:"party",icon:"🎶",name:"Club Exit — Varna",desc:"Premier club on the Black Sea coast. Top DJs, summer season May-October. Open air.",addr:"Primorski Park, Varna",phone:"+359 52 500 789",english:true,lat:42.2130,lng:27.9240,city:"varna"},
   {id:156,cat:"party",icon:"🌙",name:"Barcode Beach Bar — Sunny Beach",desc:"Most popular beach bar in Sunny Beach. Cocktails, DJ, right on the sand.",addr:"Beach zone, Sunny Beach",english:true,lat:42.6965,lng:27.7120,city:"sunny_beach"},
