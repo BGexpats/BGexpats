@@ -4809,8 +4809,8 @@ const MAP_LOCATIONS = [
 
   // ══ DISCOTHEQUES ══════════════════════════════════════════════
   {id:364,cat:"party",icon:"🪩",name:"Club Asylum",desc:"Long-running Sofia disco. Commercial and house music. Busy weekends. Popular with expats and locals alike.",addr:"Sofia Center, ul. \"Hristo Belchev\" 1, 1000 Sofia",phone:"+359 88 900 7777",english:true,lat:42.690735,lng:23.315112,city:"sofia"},
-  {id:365,cat:"party",icon:"🪩",name:"Library Club — Sofia",desc:"Unique Sofia club inside a converted building. Eclectic music policy. Art installations. Intellectual crowd.",addr:"2 Vassil Levski Blvd, Sofia",phone:"+359 88 822 2020",english:true,lat:42.6990,lng:23.3312,city:"sofia"},
-  {id:366,cat:"party",icon:"🪩",name:"Sinatra Club — Sofia",desc:"Classic Sofia disco. Good mix of 80s, 90s and current hits. Mature crowd. Popular with expats over 35.",addr:"Sofia Center",phone:"+359 88 811 1199",english:true,lat:42.6962,lng:23.3240,city:"sofia"},
+  {id:365,cat:"health",icon:"💊",name:"Bedroom Club",desc:"Healthcare service in Sofia Center.",addr:"Sofia Center, ul. \"Ivan Vazov\" 12, 1000 Sofia",phone:"0888764422",english:true,lat:42.692713,lng:23.328017,city:"sofia"},
+  {id:366,cat:"bars",icon:"🎵",name:"Piano Bar Sinatra",desc:"Classic Sofia piano bar. Good mix of 80s, 90s and current hits. Mature crowd. Popular with expats over 35.",addr:"g.k. Lozenets, Arsenalski Blvd 5, 1421 Sofia",phone:"0886101078",english:true,lat:42.678091,lng:23.321054,city:"sofia"},
   {id:367,cat:"party",icon:"🪩",name:"Premier Club — Varna",desc:"Most popular disco in Varna. House and commercial music. Indoor/outdoor sections. Summer nights are legendary.",addr:"Sea Garden, Varna",phone:"+359 52 612 850",english:true,lat:42.2139,lng:27.9238,city:"varna"},
   {id:368,cat:"party",icon:"🪩",name:"Lazur Disco Club — Sunny Beach",desc:"Classic Sunny Beach disco. Multiple floors, variety of music. Open every night May–October.",addr:"Sunny Beach, Nessebar",phone:"+359 554 42 350",english:true,lat:42.6960,lng:27.7100,city:"sunny_beach"},
 
