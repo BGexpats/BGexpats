@@ -4630,7 +4630,6 @@ const MAP_LOCATIONS = [
 
   // ══ NIGHTLIFE & PARTY ════════════════════════════════════════════
   {id:151,cat:"bars",icon:"🎵",name:"Jazz Bar",desc:"Best jazz bar in Sofia. Live music Thursday-Saturday. International artists. Great cocktails.",addr:"Sofia Center, ulitsa \"Sv. Sveti Kiril I Metodiy\" 27, 1202 Sofia",phone:"0888788613",english:true,lat:42.702807,lng:23.328837,city:"sofia"},
-  {id:152,cat:"party",icon:"🎉",name:"Yalta Club — Sofia",desc:"Sofia's most famous nightclub. Electronic music, international DJs. Dress code applies.",addr:"20 Tsar Boris III Blvd, Sofia",phone:"+359 2 953 0690",english:true,lat:42.6831,lng:23.3099,city:"sofia"},
   {id:153,cat:"party",icon:"🍺",name:"One More Bar — Sofia",desc:"Legendary expat bar in Sofia. Craft beers, friendly crowd, always busy. Great English service.",addr:"17 Lavele St, Sofia",phone:"+359 2 988 4765",english:true,lat:42.6963,lng:23.3281,city:"sofia"},
   {id:154,cat:"party",icon:"🎸",name:"Hambara Live Club — Sofia",desc:"Best live music venue in Sofia. Rock, blues, jazz — quality acts every night.",addr:"10 Stefan Karadzha St, Sofia",phone:"+359 2 981 4648",english:true,lat:42.6978,lng:23.3282,city:"sofia"},
   {id:155,cat:"party",icon:"🎶",name:"Club Exit — Varna",desc:"Premier club on the Black Sea coast. Top DJs, summer season May-October. Open air.",addr:"Primorski Park, Varna",phone:"+359 52 500 789",english:true,lat:42.2130,lng:27.9240,city:"varna"},
@@ -4743,7 +4742,7 @@ const MAP_LOCATIONS = [
 
   // ══ PARTY & CLUBS ════════════════════════════════════════════
   {id:314,cat:"party",icon:"🎉",name:"Yalta Club — Sofia",desc:"The most famous club in Sofia. Underground, great sound system, international DJs. Open Thursday–Saturday.",addr:"Sofia Center, Tsar Osvoboditel Blvd 20, 1000 Sofia",phone:"0897870230",english:true,lat:42.692789,lng:23.333626,city:"sofia"},
-  {id:315,cat:"party",icon:"🎉",name:"One More Bar — Sofia",desc:"Popular cocktail bar and club. Lively atmosphere. Good music mix. Expat favourite.",addr:"66 Vitosha Blvd, Sofia",phone:"+359 88 999 1212",english:true,lat:42.6918,lng:23.3193,city:"sofia"},
+  {id:315,cat:"party",icon:"🎉",name:"One More Bar — Sofia",desc:"Popular cocktail bar and club. Lively atmosphere. Good music mix. Expat favourite.",addr:"Borisova Gradina, ul. \"Nezabravka\" 3-5, 1113 Sofia",phone:"0882429974",english:true,lat:42.676973,lng:23.346896,city:"sofia"},
   {id:316,cat:"party",icon:"🏖️",name:"Cacao Beach Club — Sunny Beach",desc:"Biggest beach party venue in Bulgaria. International DJs, foam parties. Open May–September. 5,000+ capacity.",addr:"Sunny Beach North, Nessebar",phone:"+359 554 42 300",english:true,lat:42.7000,lng:27.7090,city:"sunny_beach"},
   {id:317,cat:"party",icon:"🎉",name:"Arena Club — Sunny Beach",desc:"Iconic Sunny Beach club. Electronic music, international DJs. The place to be in summer.",addr:"Sunny Beach, Nessebar",phone:"+359 554 42 200",english:true,lat:42.6970,lng:27.7110,city:"sunny_beach"},
   {id:318,cat:"party",icon:"🎉",name:"Exit Club — Varna",desc:"Best club in Varna. Two floors, indoor/outdoor. International and local DJs. Young energetic crowd.",addr:"9 Knyaz Boris I Blvd, Varna",phone:"+359 52 612 900",english:true,lat:42.2140,lng:27.9150,city:"varna"},
@@ -4810,7 +4809,7 @@ const MAP_LOCATIONS = [
   {id:363,cat:"wine",icon:"🍷",name:"Black Sea Wine — Pomorie",desc:"Unique coastal wine tradition. Local wineries produce Dimyat white wine from grapes grown near the sea. Distinct salty character.",addr:"Pomorie Wine Cellar",phone:"+359 596 22 300",english:true,lat:42.5594,lng:27.6428,city:"pomorie"},
 
   // ══ DISCOTHEQUES ══════════════════════════════════════════════
-  {id:364,cat:"party",icon:"🪩",name:"Mask Club — Sofia",desc:"Long-running Sofia disco. Commercial and house music. Busy weekends. Popular with expats and locals alike.",addr:"7 Hristo Belchev St, Sofia",phone:"+359 88 900 7777",english:true,lat:42.6978,lng:23.3278,city:"sofia"},
+  {id:364,cat:"party",icon:"🪩",name:"Club Asylum",desc:"Long-running Sofia disco. Commercial and house music. Busy weekends. Popular with expats and locals alike.",addr:"Sofia Center, ul. \"Hristo Belchev\" 1, 1000 Sofia",phone:"+359 88 900 7777",english:true,lat:42.690735,lng:23.315112,city:"sofia"},
   {id:365,cat:"party",icon:"🪩",name:"Library Club — Sofia",desc:"Unique Sofia club inside a converted building. Eclectic music policy. Art installations. Intellectual crowd.",addr:"2 Vassil Levski Blvd, Sofia",phone:"+359 88 822 2020",english:true,lat:42.6990,lng:23.3312,city:"sofia"},
   {id:366,cat:"party",icon:"🪩",name:"Sinatra Club — Sofia",desc:"Classic Sofia disco. Good mix of 80s, 90s and current hits. Mature crowd. Popular with expats over 35.",addr:"Sofia Center",phone:"+359 88 811 1199",english:true,lat:42.6962,lng:23.3240,city:"sofia"},
   {id:367,cat:"party",icon:"🪩",name:"Premier Club — Varna",desc:"Most popular disco in Varna. House and commercial music. Indoor/outdoor sections. Summer nights are legendary.",addr:"Sea Garden, Varna",phone:"+359 52 612 850",english:true,lat:42.2139,lng:27.9238,city:"varna"},
