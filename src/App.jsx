@@ -582,7 +582,7 @@ Get it apostilled before leaving your home country.
       {titles:{en:"Bulgarian tax system explained simply",fr:"Le système fiscal bulgare expliqué simplement",es:"El sistema fiscal búlgaro explicado de forma sencilla",de:"Das bulgarische Steuersystem einfach erklärt",nl:"Het Bulgaarse belastingsysteem eenvoudig uitgelegd"},
        body:`Bulgaria has one of the most attractive tax systems in the EU.\n\n**Personal income tax:** 10% flat — everyone pays the same rate, no brackets.\n\n**Corporate tax (EOOD):** 10% flat on company profits.\n\n**Dividend tax:** 5% — when you pay yourself from your company.\n\n**Total effective tax as company owner:** ~14.5%\n\n**VAT:** 20% standard (9% for hotels, restaurants, tourist services).\n\n**Social & health contributions (self-employed, 2024):** ~€65–100/month.\n\n**Tax residency:** 183+ days/year in Bulgaria = Bulgarian tax resident.\n\n**Filing deadline:** April 30 for the previous calendar year.\n\n💡 Always hire a local accountant (€75–150/month). Best investment you can make.`},
       {titles:{en:"Sending money to Bulgaria — best options",fr:"Envoyer de l'argent en Bulgarie — meilleures options",es:"Enviar dinero a Bulgaria — mejores opciones",de:"Geld nach Bulgarien senden — beste Optionen",nl:"Geld naar Bulgarije sturen — beste opties"},
-       body:`Bulgaria joined the Eurozone and uses the Euro (€) as its official currency since 2026.\n\n**Best transfer services:**\n\n**Wise** — best exchange rates, low fees, fast. Most expats' first choice for international transfers.\n\n**Revolut** — great for daily spending and transfers. Get a card as soon as you arrive.\n\n**Bank SWIFT** — works but fees are high (€5–13 per transfer). Avoid for regular use.\n\n**ATMs:** Very common. Use Wise or Revolut card to withdraw Euros. Always pay in local currency — never let the ATM convert for you.\n\n💡 Bulgaria is now in the Eurozone and uses the Euro.`},
+       body:`Bulgaria joined the Eurozone and uses the Euro (€) as its official currency since 2026.\n\n**Best transfer services:**\n\n**Wise** — best exchange rates, low fees, fast. Most expats' first choice for international transfers.\n\n**Revolut** — great for daily spending and transfers. Get a card as soon as you arrive.\n\n**Western Union** — widely available with agent locations across Bulgaria (post offices, exchange bureaus, EasyPay). Good for cash pickup when the recipient doesn't have a bank account, but exchange rates and fees are less competitive than Wise or Revolut.\n\n**MoneyGram** — similar to Western Union, cash pickup at partner locations nationwide. Useful for fast, in-person transfers, but compare fees before sending — they add up on larger amounts.\n\n**Bank SWIFT** — works but fees are high (€5–13 per transfer). Avoid for regular use.\n\n**ATMs:** Very common. Use Wise or Revolut card to withdraw Euros. Always pay in local currency — never let the ATM convert for you.\n\n💡 Bulgaria is now in the Eurozone and uses the Euro.`},
     ]
   },
   {
@@ -1479,7 +1479,7 @@ function CategoryGrid({setView,t,lang}){
     return out.filter(r=>{const k=r.label+"|"+r.view;if(seen.has(k))return false;seen.add(k);return true})
   })()
   return(
-    <div style={{maxWidth:1100,margin:"0 auto",padding:"52px 20px"}}>
+    <div id="topics-section" style={{maxWidth:1100,margin:"0 auto",padding:"52px 20px"}}>
       <h2 className="reveal serif" style={{fontSize:"clamp(26px,4vw,38px)",fontWeight:400,color:C.text,margin:"0 0 8px"}}>{t.browse}</h2>
       <p className="reveal" style={{color:C.muted,margin:"0 0 24px",fontSize:16,fontWeight:300}}>{t.browseSub}</p>
       <div className="reveal" style={{position:"relative",marginBottom:32,maxWidth:520}}>
@@ -1778,7 +1778,7 @@ function CategoryPage({catId,setView,lang,t,cache,setCache,user,reviews,setRevie
   return(
     <div style={{minHeight:"100vh",background:C.page}}>
       <div className="bg-article-wrap" style={{maxWidth:820,margin:"0 auto",padding:"32px 20px 60px"}}>
-        <button onClick={()=>setView("home")} style={{background:"none",border:"none",color:C.muted,cursor:"pointer",fontSize:13,marginBottom:16,padding:0,display:"flex",alignItems:"center",gap:5}}>
+        <button onClick={()=>{if(typeof window!=="undefined")sessionStorage.setItem("bg_scrollToTopics","1");setView("home")}} style={{background:"none",border:"none",color:C.muted,cursor:"pointer",fontSize:13,marginBottom:16,padding:0,display:"flex",alignItems:"center",gap:5}}>
           {t.home||"← Home"}
         </button>
         <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:26}}>
@@ -6797,8 +6797,21 @@ export default function App(){
     window.addEventListener("popstate",onPop)
     return()=>window.removeEventListener("popstate",onPop)
   },[])
-  // Scroll to top whenever the page/view changes.
-  useEffect(()=>{ if(typeof window!=="undefined") window.scrollTo(0,0) },[view])
+  // Scroll to top whenever the page/view changes — unless a prior "Home" tap
+  // from inside a topic asked to land on the topics section instead of the very top.
+  useEffect(()=>{
+    if(typeof window==="undefined")return
+    if(view==="home"&&sessionStorage.getItem("bg_scrollToTopics")==="1"){
+      sessionStorage.removeItem("bg_scrollToTopics")
+      requestAnimationFrame(()=>{
+        const el=document.getElementById("topics-section")
+        if(el)el.scrollIntoView({behavior:"auto",block:"start"})
+        else window.scrollTo(0,0)
+      })
+    }else{
+      window.scrollTo(0,0)
+    }
+  },[view])
   const [installPrompt,setInstallPrompt]=useState(null)
   const [showInstall,setShowInstall]=useState(false)
   const [showIosHelp,setShowIosHelp]=useState(false)
