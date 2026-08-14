@@ -1397,6 +1397,10 @@ function TopicIcon({id,size=20,color="#1e5e3f"}){
     housing:<g {...p}><path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-6h4v6"/></g>,
     // Business — briefcase
     business:<g {...p}><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></g>,
+    // Family — two people
+    family:<g {...p}><circle cx="8.5" cy="7" r="2.5"/><path d="M3 20v-2a4 4 0 0 1 4-4h3a4 4 0 0 1 4 4v2"/><circle cx="17" cy="8.5" r="2"/><path d="M15 20v-1.5a3.5 3.5 0 0 1 3-3.46"/></g>,
+    // Culture — folk mask
+    culture:<g {...p}><path d="M5 10c0-4 3-7 7-7s7 3 7 7c0 5-3 9-7 9s-7-4-7-9z"/><path d="M9 10.5c0 .8-.6 1.5-1.3 1.5S6.3 11.3 6.3 10.5 7 9 7.7 9 9 9.7 9 10.5zM17.7 10.5c0 .8-.6 1.5-1.3 1.5s-1.3-.7-1.3-1.5.6-1.5 1.3-1.5 1.3.7 1.3 1.5z"/><path d="M9.5 15c1 .8 4 .8 5 0"/></g>,
   }
   return(
     <svg width={size} height={size} viewBox="0 0 24 24" style={{flexShrink:0}}>
