@@ -28,6 +28,7 @@ import dolceAmaroImg from "./assets/dolce-amaro.jpg"
 import gardenBarImg from "./assets/garden-bar.jpg"
 import barDeRougeImg from "./assets/bar-de-rouge.webp"
 import familyImg from "./assets/family.jpg"
+import cultureImg from "./assets/culture.jpg"
 import vaultBarImg from "./assets/vault-bar.jpg"
 import mentholImg from "./assets/menthol.jpg"
 import theBrickImg from "./assets/the-brick.jpg"
@@ -1374,6 +1375,7 @@ const CAT_PHOTOS={
   housing:"https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=75",
   business:"https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=75",
   family:familyImg,
+  culture:cultureImg,
 }
 
 // Neutral outline icons for the topic cards — thin single-colour line art
