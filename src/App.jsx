@@ -5052,7 +5052,8 @@ function MapPage({user,setView,subscription,openCheckout,lang,t}){
   useEffect(()=>{
     if(!loaded||!mapRef.current||mapInst.current)return
     const L=window.L
-    const map=L.map(mapRef.current,{zoomControl:true,maxZoom:20}).setView([42.6977,23.3219],13)
+    const map=L.map(mapRef.current,{zoomControl:true,maxZoom:20,attributionControl:false}).setView([42.6977,23.3219],13)
+    L.control.attribution({prefix:false}).addTo(map)
 
     // Show each pin's name label once zoomed in close enough (>=16) that a
     // handful of pins are visible at once — solves "two nearby pins look
@@ -5234,15 +5235,16 @@ function MapPage({user,setView,subscription,openCheckout,lang,t}){
   },[pinsOnlyView,customPins,loaded])
 
   // Same idea for "★ Saved" — when it's turned on, zoom out to fit every saved
-  // official venue across all cities, so the map matches the sidebar overview.
+  // official venue AND custom pin across all cities, so the map matches the sidebar overview.
   useEffect(()=>{
     if(!mapInst.current||!showFavesOnly||!isBasic)return
     const saved=MAP_LOCATIONS.filter(l=>favorites.includes(locKey(l)))
-    if(saved.length===0)return
+    const savedPts=[...saved.map(l=>[l.lat,l.lng]),...customPins.map(p=>[p.lat,p.lng])]
+    if(savedPts.length===0)return
     const L=window.L
-    const bounds=L.latLngBounds(saved.map(l=>[l.lat,l.lng]))
+    const bounds=L.latLngBounds(savedPts)
     mapInst.current.fitBounds(bounds,{padding:[50,50],maxZoom:14})
-  },[showFavesOnly,favorites,loaded,isBasic])
+  },[showFavesOnly,favorites,customPins,loaded,isBasic])
 
   // "Saved" shows favorites from every city at once (an overview, like the pins
   // Overview) — so when it's active, skip the city restriction entirely.
@@ -5430,7 +5432,7 @@ function MapPage({user,setView,subscription,openCheckout,lang,t}){
           <div style={{background:C.surface,border:`1px solid ${C.border}`,borderRadius:14,overflow:"hidden"}}>
             <div style={{padding:"10px 14px",borderBottom:`1px solid ${C.border}`,fontSize:12,fontWeight:600,color:C.muted,letterSpacing:"0.04em",display:"flex",alignItems:"center",justifyContent:"space-between",gap:8}}>
               <span>{showFavesOnly
-                ? `★ ALL SAVED PLACES — ${sidebarList.length} across Bulgaria`
+                ? `★ ALL SAVED PLACES — ${sidebarList.length+(isBasic?customPins.length:0)} across Bulgaria`
                 : `${(MAP_CITIES.find(c=>c.id===city)&&MAP_CITIES.find(c=>c.id===city).icon)||""} ${(MAP_CITIES.find(c=>c.id===city)&&MAP_CITIES.find(c=>c.id===city).label||"").toUpperCase()} — ${sidebarList.length} ${!user?"(free preview)":isPremium?"(premium)":isBasic?"(basic)":"(free)"}`
               }</span>
               {showFavesOnly&&(
@@ -5440,7 +5442,7 @@ function MapPage({user,setView,subscription,openCheckout,lang,t}){
               )}
             </div>
             <div style={{maxHeight:360,overflowY:"auto"}}>
-              {sidebarList.length===0?(
+              {sidebarList.length===0&&!(showFavesOnly&&isBasic&&customPins.length>0)?(
                 <div style={{padding:"20px 14px",textAlign:"center",color:C.muted,fontSize:13}}>No locations match. Try clearing the search or the Saved filter.</div>
               ):sidebarList.map(loc=>(
                 <div key={locKey(loc)} style={{display:"flex",alignItems:"stretch",borderBottom:`1px solid ${C.border}`,background:locKey(selected)===locKey(loc)?C.primaryLight:"transparent"}}>
@@ -5462,6 +5464,22 @@ function MapPage({user,setView,subscription,openCheckout,lang,t}){
                       {favorites.includes(locKey(loc))?"★":"☆"}
                     </button>
                   )}
+                </div>
+              ))}
+              {/* Custom pins folded into the "★ Saved" view too, so everything you've
+                  bookmarked (official venues + your own dropped pins) lives in one list. */}
+              {showFavesOnly&&isBasic&&customPins.map(p=>(
+                <div key={`pin-${p.id}`} style={{display:"flex",alignItems:"stretch",borderBottom:`1px solid ${C.border}`}}>
+                  <button onClick={()=>{mapInst.current&&mapInst.current.setView([p.lat,p.lng],16);if(isMobile&&mapRef.current)mapRef.current.scrollIntoView({behavior:"smooth",block:"center"})}}
+                    style={{flex:1,minWidth:0,background:"none",border:"none",padding:"11px 6px 11px 14px",cursor:"pointer",textAlign:"left",display:"flex",gap:10,alignItems:"flex-start"}}>
+                    <span style={{fontSize:16,flexShrink:0}}>📍</span>
+                    <div style={{flex:1,minWidth:0}}>
+                      <div style={{fontSize:13,fontWeight:600,color:C.text,marginBottom:1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{p.label}</div>
+                      <div style={{fontSize:11,color:C.muted}}>My pin{nearMe&&<span style={{color:C.primary,fontWeight:600}}> · {distanceKm(nearMe.lat,nearMe.lng,p.lat,p.lng).toFixed(1)} km away</span>}</div>
+                    </div>
+                  </button>
+                  <button onClick={()=>deleteCustomPin(p.id)} aria-label="Delete pin"
+                    style={{background:"none",border:"none",cursor:"pointer",padding:"0 14px",fontSize:15,color:C.muted,flexShrink:0}}>✕</button>
                 </div>
               ))}
             </div>
