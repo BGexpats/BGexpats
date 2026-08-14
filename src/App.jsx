@@ -1481,7 +1481,6 @@ function CategoryGrid({setView,t,lang}){
                   onMouseLeave={e=>{e.currentTarget.style.transform="scale(1)"}}/>
                 <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(0,0,0,0.35) 0%,transparent 60%)"}}/>
                 <div style={{position:"absolute",top:12,left:12,width:38,height:38,borderRadius:10,background:"rgba(255,255,255,0.95)",display:"flex",alignItems:"center",justifyContent:"center"}}><TopicIcon id={cat.id}/></div>
-                <div style={{position:"absolute",bottom:10,left:12,color:"#fff",fontSize:13,fontWeight:600,textShadow:"0 1px 4px rgba(0,0,0,0.5)"}}>{lb.label}</div>
               </div>
               <div style={{padding:"14px 16px 16px"}}>
                 <div className="serif" style={{fontWeight:400,fontSize:17,color:C.text,marginBottom:4}}>{lb.label}</div>
