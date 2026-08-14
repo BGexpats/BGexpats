@@ -786,72 +786,6 @@ Bulgaria has **some of the fastest internet in Europe** — fibre optic is widel
 • VPN: not required, most international content is available
 
 💡 **Everything can be set up within your first week — electricity and internet are the priorities. Water and heating can usually wait a few days.**`},
-      {titles:{en:"Pets \u2014 bringing your animals to Bulgaria",fr:"Animaux de compagnie \u2014 amener vos animaux en Bulgarie",es:"Mascotas \u2014 traer sus animales a Bulgaria",de:"Haustiere \u2014 Ihre Tiere nach Bulgarien bringen",nl:"Huisdieren \u2014 uw dieren meenemen naar Bulgarije"},
-       body:`Bulgaria is a very pet-friendly country — dogs are welcome in most outdoor spaces, many restaurants have dog-friendly terraces, and vet care is excellent and affordable.
-
-## Entry requirements from EU countries
-
-**Dogs, cats and ferrets need:**
-1. **Microchip** — ISO 11784/11785 standard (mandatory before any vaccination)
-2. **EU Pet Passport** — issued by your vet, lists vaccinations
-3. **Valid rabies vaccination** — at least 21 days after the first vaccination
-4. **Dogs only:** Tapeworm treatment (echinococcus) — done by a vet 1–5 days before entry and recorded in the passport
-
-Your vet in your home country should handle all of this. Allow at least 3–4 weeks if your pet hasn't been vaccinated before.
-
----
-
-## Entry requirements from non-EU countries (UK, US, Canada, Australia)
-
-• Microchip ✓
-• Accredited veterinary health certificate (not an EU pet passport — must be the official country-specific form)
-• Rabies vaccination ✓
-• Rabies antibody titre test (blood test) — required for some countries. Done at approved labs, results take 30 days
-• UK: use the AHC (Animal Health Certificate) form from a DAERA/APHA-listed vet
-
-**Always check the current Bulgarian Food Safety Agency (БАБХ) requirements** before travel as rules can change.
-
----
-
-## Getting here with your pet
-
-**By air:**
-• Most airlines allow small pets in-cabin (under 8kg including carrier): Wizz Air, Ryanair (hold only), LOT, Turkish Airlines
-• Book the pet space when booking your ticket — limited spaces per flight
-• Larger dogs travel in the hold — check airline temperature restrictions in summer
-
-**By car/road:**
-• Easiest option — full control of your pet's comfort
-• Border checks are quick — have all documents ready
-• Stop every 2–3 hours, water available
-
----
-
-## Vet care in Bulgaria
-
-Excellent quality at a fraction of Western European prices:
-
-| Service | Bulgaria | UK/Germany |
-|---|---|---|
-| Consultation | €15–25 | €50–100 |
-| Vaccination | €10–20 | €40–80 |
-| Neutering (cat) | €50–80 | €150–300 |
-| Dental cleaning | €40–80 | €150–400 |
-| Emergency visit | €30–80 | €100–300 |
-
-**Recommended vet chains in Sofia:** Vet Clinic, Vita Vet, Dr. Djoki's clinics — all have English-speaking vets.
-
----
-
-## Pet life in Bulgaria
-
-• **Dogs in public:** Leash required. Most parks and outdoor terraces welcome dogs.
-• **Dog parks:** Borisova Gradina, Yuzhen Park, Vitosha mountain (Sofia)
-• **Pet shops:** Magnolia, Zoomarket in all major cities
-• **Pet food brands:** Royal Canin, Hills, Purina all widely available in Kaufland, BILLA, pet shops
-• **Facebook groups:** "Pets in Sofia", "Expat Pets Bulgaria" — great for vet recommendations
-
-💡 **Tip:** Register your pet with the Bulgarian Food Safety Agency (БАБХ) within 30 days of arrival. It's free and required. Your vet can help with this.`},
       {titles:{en:"Shipping, removals & moving logistics",fr:"Transport, d\u00e9m\u00e9nagement et logistique",es:"Env\u00edo, mudanzas y log\u00edstica",de:"Versand, Umzug und Logistik",nl:"Verzending, verhuizing en logistiek",ru:"Грузоперевозки и переезд в Болгарию",uk:"Перевезення та переїзд до Болгарії",tr:"Nakliye ve taşınma lojistiği",bg:"Транспорт и логистика при преместване"},
        body:`Moving to Bulgaria is logistically simpler than most people think — especially from the EU. Here's the practical breakdown.
 
@@ -1066,7 +1000,7 @@ All legally resident children — EU and non-EU citizens alike — have the righ
       {titles:{en:"Activities for adults in Bulgaria: a country-wide guide",fr:"Activités pour adultes en Bulgarie : un guide national",es:"Actividades para adultos en Bulgaria: una guía nacional",de:"Aktivitäten für Erwachsene in Bulgarien: ein landesweiter Leitfaden",nl:"Activiteiten voor volwassenen in Bulgarije: een landelijke gids",ru:"Досуг для взрослых в Болгарии: гид по всей стране",uk:"Дозвілля для дорослих у Болгарії: гід по всій країні",tr:"Bulgaristan'da yetişkinler için aktiviteler: ülke geneli rehber",bg:"Занимания за възрастни в България: национален наръчник"},
        body:`Beyond the kids' activities and expat family scene, Bulgaria has a genuinely broad range of things to do as an adult — some of it distinctly Bulgarian (wine, thermal springs), some of it the usual expat social infrastructure that makes settling in easier.\n\n## Wine tourism\n\nBulgaria's wine tradition actually goes back to Thracian times, and it's finally getting international recognition — the country joined the Council of Europe's "Iter Vitis" cultural wine route in 2025, and 2026 brings a national "Follow the Wine Route" campaign centered on the Thracian Valley and the Plovdiv region.\n\nLook out for native grape varieties you won't find anywhere else — **Melnik** and **Mavrud** in particular are considered the signature Bulgarian reds, with a distinct, rugged character shaped by mountain terroir. Several wineries around the country now pair tastings with accommodation (winery hotels near the Danube, Tryavna, and the Thracian Valley), so a weekend wine trip is a realistic option even without a car-heavy road trip.\n\n## Thermal spas & wellness\n\nBulgaria has a long-standing balneology tradition, and it's currently being pushed as a year-round tourism pillar rather than a summer-only add-on.\n\n**Velingrad** — officially branded the spa capital of the Rhodopes, built around dozens of mineral springs.\n\n**Sandanski** — known specifically for respiratory-related treatments, popular with visitors seeking preventive care rather than just relaxation.\n\n**Hisarya** — became the first Bulgarian town admitted to the European Historic Thermal Towns Association, with mineral pools dating back to Roman times.\n\n**Sapareva Banya** — home to the hottest natural geyser in Europe, plus smaller thermal enclaves like Banya and Belchin worth knowing about if you're not chasing a full resort experience.\n\n## Outdoor adventure\n\nHiking is genuinely central to Bulgarian life, not just a tourist activity — the Rila and Pirin mountains (including Rila Monastery and the Seven Rila Lakes) are classic weekend hiking destinations from Sofia, and mountain biking, paragliding, and river rafting/tubing are all well-established rather than niche.\n\nThe coast adds water sports on top — kayaking, windsurfing, and scuba diving are all available along the Black Sea coast in season, alongside the usual boat rentals and dolphin-watching trips out of Varna.\n\n## Nightlife & social scene, by city\n\n**Sofia** has a nightlife scene that's developing but still notably quieter than Belgrade or Bucharest — the Studentski Grad (student town) area is where most of the actual club culture concentrates.\n\n**Plovdiv's Kapana district** functions as the city's creative arts quarter — galleries, indie cafés, and artisan workshops, often compared to Belgrade's Savamala district.\n\n**Bansko** has built a genuinely tight-knit digital nomad community, with Coworking Bansko running weekly events — ski days in winter, hikes and dinners in summer, plus regular skill-shares. It's considered one of the more close-knit remote-work communities in Europe, not just a ski town with wifi.\n\n## Expat clubs & meeting people\n\nMaking friends as an adult expat in Bulgaria tends to run through a handful of well-established channels rather than random chance:\n\n• **InterNations and Meetup** both run active expat-specific groups in Sofia, with regular events aimed at newcomers.\n• **Sofia Expats** (sofiaexpats.com) is the largest English-language expat platform in the country — events, housing advice, and social groups in one place.\n• **The International Women's Club Sofia** runs a social and cultural calendar specifically for women living in the city.\n• Beyond dedicated expat groups, joining an ordinary local gym, sports club, or a cooking, dance, or Bulgarian language class tends to work just as well — shared activity is generally a faster way to make real friends than a purely social meetup.`},
       {titles:{en:"Pets in Bulgaria — vets, shelters & bringing your animal",fr:"Animaux en Bulgarie — vétérinaires, refuges et importation",es:"Mascotas en Bulgaria — veterinarios, refugios e importación",de:"Haustiere in Bulgarien — Tierärzte, Tierheime & Einreise",nl:"Huisdieren in Bulgarije — dierenartsen, asielen & invoer"},
-       body:`Bulgaria is a genuinely pet-friendly country, with a large stray population that has also produced a strong network of rescue charities — a good option if you're thinking of adopting rather than shopping.\n\n## Bringing your pet into Bulgaria\n\nSince **22 April 2026** the EU enforces stricter checks: your pet's microchip must have been implanted *before* its rabies vaccination, or the vaccination record is considered invalid at the border, even if the vaccine itself is still current. Double-check the dates on your paperwork before you travel.\n\n**What you need:**\n- **ISO 11784/11785-compliant 15-digit microchip**\n- **Valid rabies vaccination**, given at least 21 days before departure\n- **EU Pet Passport** (if your pet already lives in the EU) or an **Animal Health Certificate** (for non-EU pets — issued no earlier than 10 days before arrival, valid 4 months in the EU)\n\nComing from the US, UK, or another non-EU country? Your vet needs to scan the microchip *before* giving the rabies shot — get this wrong and the vaccination doesn't count for EU entry.\n\n## Finding a vet\n\nSofia has the deepest network, including two 24/7 emergency hospitals:\n\n- **Blue Cross Animal Hospital** (Pancharevo, edge of Sofia) — large, modern, popular with expats, English-speaking staff, open around the clock.\n- **Central Vet Clinic** (near Sofia Zoo) — downtown 24/7 alternative.\n\nFor routine care, well-regarded clinics with English-speaking vets include Good Idea Clinic, Madara Vet (also French/German), Dobro Hrumvane, and Julyvet. Consultations typically cost well below Western European rates.\n\n## Adopting instead of shopping\n\nBulgaria's rescue scene is active and well organized, and many charities specialize in placing dogs with adopters abroad:\n\n- **Animal Rescue Sofia** — runs "The Farm" shelter near Dolni Bogrov, English-language site, active adoption listings.\n- **Street Hearts Bulgaria** — based near Dryanovo, runs a neutering program alongside rescue and adoption, dogs delivered by van across Europe.\n- **Four Paws Bulgaria** — larger NGO, runs mobile clinics for strays in addition to shelter and adoption work.\n- Most regional cities (Plovdiv, Varna, Burgas, Ruse) also have municipal shelters, though conditions and capacity vary.\n\nSofia's municipal **"Ekoravnovesie"** program handles the city's stray population through a catch-neuter-return system — you can report strays to them directly if you spot an animal in distress.\n\n💡 If you're planning to adopt a rescue dog, ask the charity about post-adoption support — reputable ones will brief you on how a formerly street dog typically adjusts during the first few weeks in a new home.`},
+       body:`Bulgaria is a genuinely pet-friendly country, with a large stray population that has also produced a strong network of rescue charities — a good option if you're thinking of adopting rather than shopping.\n\n## Bringing your pet into Bulgaria\n\nSince **22 April 2026** the EU enforces stricter checks: your pet's microchip must have been implanted *before* its rabies vaccination, or the vaccination record is considered invalid at the border, even if the vaccine itself is still current. Double-check the dates on your paperwork before you travel.\n\n**What you need (EU-origin pets):**\n- **ISO 11784/11785-compliant 15-digit microchip**\n- **Valid rabies vaccination**, given at least 21 days before departure\n- **EU Pet Passport** (if your pet already lives in the EU) or an **Animal Health Certificate** (for non-EU pets — issued no earlier than 10 days before arrival, valid 4 months in the EU)\n- **Dogs only:** tapeworm (echinococcus) treatment, given by a vet 1–5 days before entry and recorded in the passport\n\n**Coming from the UK, US, Canada, or Australia?** You'll need an accredited veterinary health certificate (the official country-specific form, not an EU pet passport) instead, and some countries also require a rabies antibody titre test — a blood test done at an approved lab, with results taking up to 30 days, so plan ahead. Your vet needs to scan the microchip *before* giving the rabies shot — get this wrong and the vaccination doesn't count for EU entry. Always confirm current requirements with the Bulgarian Food Safety Agency (БАБХ) before you travel, as rules can change.\n\n**Getting here:**\n- **By air** — most airlines allow small pets in-cabin under 8kg including carrier (Wizz Air, LOT, Turkish Airlines; Ryanair is hold-only). Book the pet space when you book your ticket — spaces are limited per flight. Larger dogs travel in the hold; check the airline's summer temperature restrictions.\n- **By car** — the easiest option for full control over your pet's comfort. Border checks are quick with documents ready; stop every 2–3 hours for water.\n\n⚠️ **Register with БАБХ within 30 days of arrival** — it's free, required, and your vet can help you do it.\n\n## Finding a vet\n\nSofia has the deepest network, including two 24/7 emergency hospitals:\n\n- **Blue Cross Animal Hospital** (Pancharevo, edge of Sofia) — large, modern, popular with expats, English-speaking staff, open around the clock.\n- **Central Vet Clinic** (near Sofia Zoo) — downtown 24/7 alternative.\n\nFor routine care, well-regarded clinics with English-speaking vets include Good Idea Clinic, Madara Vet (also French/German), Dobro Hrumvane, Julyvet, Vita Vet, and Dr. Djoki's clinics.\n\n**Typical costs** (Bulgaria vs. UK/Germany):\n\n| Service | Bulgaria | UK/Germany |\n|---|---|---|\n| Consultation | €15–25 | €50–100 |\n| Vaccination | €10–20 | €40–80 |\n| Neutering (cat) | €50–80 | €150–300 |\n| Dental cleaning | €40–80 | €150–400 |\n| Emergency visit | €30–80 | €100–300 |\n\n## Adopting instead of shopping\n\nBulgaria's rescue scene is active and well organized, and many charities specialize in placing dogs with adopters abroad:\n\n- **Animal Rescue Sofia** — runs "The Farm" shelter near Dolni Bogrov, English-language site, active adoption listings.\n- **Street Hearts Bulgaria** — based near Dryanovo, runs a neutering program alongside rescue and adoption, dogs delivered by van across Europe.\n- **Four Paws Bulgaria** — larger NGO, runs mobile clinics for strays in addition to shelter and adoption work.\n- Most regional cities (Plovdiv, Varna, Burgas, Ruse) also have municipal shelters, though conditions and capacity vary.\n\nSofia's municipal **"Ekoravnovesie"** program handles the city's stray population through a catch-neuter-return system — you can report strays to them directly if you spot an animal in distress.\n\n## Day-to-day pet life\n\n- **Dogs in public:** leash required; most parks and outdoor terraces welcome dogs. Good dog parks in Sofia include Borisova Gradina, Yuzhen Park, and the lower slopes of Vitosha mountain.\n- **Pet shops:** Magnolia and Zoomarket have branches in all major cities; Royal Canin, Hills, and Purina are widely stocked at Kaufland, BILLA, and pet shops.\n- **Facebook groups:** "Pets in Sofia" and "Expat Pets Bulgaria" are the go-to places for vet recommendations and general advice.\n\n💡 If you're planning to adopt a rescue dog, ask the charity about post-adoption support — reputable ones will brief you on how a formerly street dog typically adjusts during the first few weeks in a new home.`},
     ]
   },
 ]
