@@ -5267,6 +5267,11 @@ function MapPage({user,setView,subscription,openCheckout,lang,t}){
       distanceKm(nearMe.lat,nearMe.lng,a.lat,a.lng) - distanceKm(nearMe.lat,nearMe.lng,b.lat,b.lng)
     )
   }
+  // Custom pins get the same near-me sort applied, so "Near me" covers everything
+  // you've dropped and saved yourself too, not just official venues.
+  const sortedCustomPins = (isBasic && nearMe)
+    ? [...customPins].sort((a,b)=>distanceKm(nearMe.lat,nearMe.lng,a.lat,a.lng) - distanceKm(nearMe.lat,nearMe.lng,b.lat,b.lng))
+    : customPins
 
   return(
     <div style={{minHeight:"100vh",background:C.page}}>
@@ -5289,16 +5294,17 @@ function MapPage({user,setView,subscription,openCheckout,lang,t}){
           ))}
         </div>
       </div>
-      {/* City dropdown — only shows cities within the selected region above */}
-      <div style={{background:C.primaryDark,padding:"6px 20px 10px",borderTop:"1px solid rgba(255,255,255,0.08)"}}>
-        <div style={{maxWidth:1200,margin:"0 auto"}}>
-          <select value={city} onChange={e=>{setCity(e.target.value);setFilter("all")}}
-            style={{padding:"7px 14px",borderRadius:10,border:"1.5px solid rgba(255,255,255,0.2)",background:"rgba(255,255,255,0.08)",color:"#f0c060",cursor:"pointer",fontSize:13,fontWeight:600,outline:"none",maxWidth:260}}>
-            {citiesInRegion.map(c=>(
-              <option key={c.id} value={c.id} style={{background:C.primaryDark,color:"#fff"}}>{c.icon} {c.label}</option>
-            ))}
-          </select>
-          {citiesInRegion.length>1&&<span style={{marginLeft:10,fontSize:11,color:"rgba(255,255,255,0.5)"}}>{citiesInRegion.length} places in {region}</span>}
+      {/* City slide banner — capital city of the region is always first (see MAP_CITIES
+          ordering), swipe/scroll sideways to see every other city in the region. */}
+      <div style={{background:C.primaryDark,padding:"8px 20px 12px",borderTop:"1px solid rgba(255,255,255,0.08)",overflowX:"auto",WebkitOverflowScrolling:"touch"}}>
+        <div style={{maxWidth:1200,margin:"0 auto",display:"flex",gap:8,alignItems:"center"}}>
+          {citiesInRegion.map(c=>(
+            <button key={c.id} onClick={()=>{setCity(c.id);setFilter("all")}}
+              style={{padding:"8px 16px",borderRadius:20,border:`1.5px solid ${city===c.id?"#f0c060":"rgba(255,255,255,0.18)"}`,background:city===c.id?"rgba(240,192,96,0.2)":"rgba(255,255,255,0.06)",color:city===c.id?"#f0c060":"rgba(255,255,255,0.75)",cursor:"pointer",fontSize:13,fontWeight:city===c.id?700:500,whiteSpace:"nowrap",flexShrink:0,display:"flex",alignItems:"center",gap:6,transition:"all 0.15s"}}>
+              <span>{c.icon}</span> {c.label}
+            </button>
+          ))}
+          {citiesInRegion.length>1&&<span style={{marginLeft:4,fontSize:11,color:"rgba(255,255,255,0.5)",flexShrink:0}}>{citiesInRegion.length} places in {region}</span>}
         </div>
       </div>
 
@@ -5355,7 +5361,7 @@ function MapPage({user,setView,subscription,openCheckout,lang,t}){
                 <div style={{display:"flex",alignItems:"center",gap:10}}>
                   {isBasic&&(
                     <button onClick={()=>toggleFavorite(selected)} aria-label="Save location"
-                      style={{background:"none",border:"none",cursor:"pointer",fontSize:20,padding:0,lineHeight:1,color:favorites.includes(locKey(selected))?"#f0c060":C.border}}>
+                      style={{background:"none",border:"none",cursor:"pointer",fontSize:22,padding:0,lineHeight:1,color:favorites.includes(locKey(selected))?"#f0c060":C.muted}}>
                       {favorites.includes(locKey(selected))?"★":"☆"}
                     </button>
                   )}
@@ -5460,7 +5466,7 @@ function MapPage({user,setView,subscription,openCheckout,lang,t}){
                   </button>
                   {isBasic&&(
                     <button onClick={()=>toggleFavorite(loc)} aria-label="Save location"
-                      style={{background:"none",border:"none",cursor:"pointer",padding:"0 12px",fontSize:17,color:favorites.includes(locKey(loc))?"#f0c060":C.border,flexShrink:0}}>
+                      style={{background:"none",border:"none",cursor:"pointer",padding:"0 12px",fontSize:19,color:favorites.includes(locKey(loc))?"#f0c060":C.muted,flexShrink:0}}>
                       {favorites.includes(locKey(loc))?"★":"☆"}
                     </button>
                   )}
@@ -5468,7 +5474,7 @@ function MapPage({user,setView,subscription,openCheckout,lang,t}){
               ))}
               {/* Custom pins folded into the "★ Saved" view too, so everything you've
                   bookmarked (official venues + your own dropped pins) lives in one list. */}
-              {showFavesOnly&&isBasic&&customPins.map(p=>(
+              {showFavesOnly&&isBasic&&sortedCustomPins.map(p=>(
                 <div key={`pin-${p.id}`} style={{display:"flex",alignItems:"stretch",borderBottom:`1px solid ${C.border}`}}>
                   <button onClick={()=>{mapInst.current&&mapInst.current.setView([p.lat,p.lng],16);if(isMobile&&mapRef.current)mapRef.current.scrollIntoView({behavior:"smooth",block:"center"})}}
                     style={{flex:1,minWidth:0,background:"none",border:"none",padding:"11px 6px 11px 14px",cursor:"pointer",textAlign:"left",display:"flex",gap:10,alignItems:"flex-start"}}>
@@ -5497,7 +5503,7 @@ function MapPage({user,setView,subscription,openCheckout,lang,t}){
               <div style={{maxHeight:220,overflowY:"auto"}}>
                 {customPins.length===0?(
                   <div style={{padding:"18px 14px",textAlign:"center",color:C.muted,fontSize:13}}>No pins yet. Tap "Add a pin" and drop one anywhere on the map.</div>
-                ):customPins.map(p=>(
+                ):sortedCustomPins.map(p=>(
                   <div key={p.id} style={{display:"flex",alignItems:"center",borderBottom:`1px solid ${C.border}`}}>
                     <button onClick={()=>mapInst.current&&mapInst.current.setView([p.lat,p.lng],16)}
                       style={{flex:1,minWidth:0,background:"none",border:"none",padding:"10px 6px 10px 14px",cursor:"pointer",textAlign:"left",display:"flex",gap:8,alignItems:"center"}}>
