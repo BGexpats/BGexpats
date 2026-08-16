@@ -1429,10 +1429,12 @@ function TopicIcon({id,size=20,color="#1e5e3f"}){
   )
 }
 
-function CategoryGrid({setView,t,lang}){
+function CategoryGrid({setView,t,lang,subscription}){
   useScrollReveal()
   const [q,setQ]=useState("")
   const query=q.trim().toLowerCase()
+  const FREE_TOPICS=["legal","healthcare"]
+  const isBasicPlus=(subscription&&(subscription.plan==="basic"||subscription.plan==="premium"))
   const results=(()=>{
     if(query.length<2)return null
     const out=[]
@@ -1511,8 +1513,11 @@ function CategoryGrid({setView,t,lang}){
               <div style={{padding:"14px 16px 16px"}}>
                 <div className="serif" style={{fontWeight:400,fontSize:17,color:C.text,marginBottom:4}}>{lb.label}</div>
                 <div style={{fontSize:13,color:C.muted,marginBottom:10}}>{lb.sub}</div>
-                <div style={{fontSize:12,color:C.primary,fontWeight:600,display:"flex",alignItems:"center",gap:4}}>
-                  {cat.articles.length} {cat.articles.length>1?t.guides:t.guide} <span style={{fontSize:14}}>→</span>
+                <div style={{fontSize:12,color:C.primary,fontWeight:600,display:"flex",alignItems:"center",gap:6}}>
+                  <span style={{display:"flex",alignItems:"center",gap:4}}>{cat.articles.length} {cat.articles.length>1?t.guides:t.guide} <span style={{fontSize:14}}>→</span></span>
+                  {!FREE_TOPICS.includes(cat.id)&&!isBasicPlus&&(
+                    <span style={{fontSize:10,background:"var(--bg-accent)",color:"var(--text-accent)",padding:"1px 6px",borderRadius:6,fontWeight:700}}>BASIC</span>
+                  )}
                 </div>
               </div>
             </button>
@@ -1658,11 +1663,20 @@ function Footer({lang}){
   )
 }
 
-function CategoryPage({catId,setView,lang,t,cache,setCache,user,reviews,setReviews}){
+function CategoryPage({catId,setView,lang,t,cache,setCache,user,subscription,openCheckout,reviews,setReviews}){
   const cat=CATEGORIES.find(c=>c.id===catId)
   const [open,setOpen]=useState(-1)
   if(!cat)return null
   const lb=cat.labels[lang]
+
+  // Free tier gets full access to the essential, need-it-before-anything-else
+  // topics. Everything else shows a preview (title + first section) with an
+  // upgrade prompt for the rest — same spirit as the map's Free/Basic split.
+  const FREE_TOPICS=["legal","healthcare"]
+  const tier=(subscription&&subscription.plan)||"free"
+  const topicIsFree=FREE_TOPICS.includes(catId)
+  const isBasic=tier==="basic"||tier==="premium"
+  const hasFullAccess=topicIsFree||isBasic
 
   const getTranslation=(artIdx)=>{
     const key=`${catId}_${artIdx}_${lang}`
@@ -1688,6 +1702,32 @@ function CategoryPage({catId,setView,lang,t,cache,setCache,user,reviews,setRevie
       setCache(prev=>({...prev,[key]:body}))
     }
   }
+
+  // For topics that aren't in the free set, non-Basic readers get the intro
+  // plus roughly the first section, then a fade + upgrade prompt instead of
+  // the rest of the guide.
+  const getPreviewBody=(body)=>{
+    const paras=body.split("\n\n")
+    let preview=paras.slice(0,2).join("\n\n")
+    if(preview.length>650){
+      preview=preview.slice(0,650)
+      const lastPeriod=preview.lastIndexOf(". ")
+      if(lastPeriod>200)preview=preview.slice(0,lastPeriod+1)
+    }
+    return preview
+  }
+
+  const UpgradePrompt=()=>(
+    <div style={{position:"relative",marginTop:-56}}>
+      <div style={{height:56,background:`linear-gradient(to bottom, transparent, ${C.surface})`,pointerEvents:"none"}}/>
+      <div style={{textAlign:"center",padding:"4px 4px 6px",borderTop:`1px solid ${C.border}`,marginTop:-2}}>
+        <p style={{fontSize:13,color:C.muted,margin:"14px 0 10px"}}>🔒 Upgrade to Basic to read the rest of this guide</p>
+        <button onClick={()=>openCheckout&&openCheckout("basic")} style={{background:C.primary,border:"none",color:"#fff",padding:"9px 20px",borderRadius:9,cursor:"pointer",fontSize:13,fontWeight:700}}>
+          Upgrade to Basic →
+        </button>
+      </div>
+    </div>
+  )
 
   // Auto-translate all articles in background when page opens or language changes
   useEffect(()=>{
@@ -1809,13 +1849,13 @@ function CategoryPage({catId,setView,lang,t,cache,setCache,user,reviews,setRevie
                         <span style={{animation:"spin 1s linear infinite",display:"inline-block"}}>⟳</span> {t.translating}
                       </div>
                     ):bodyToShow?(
-                      formatBody(bodyToShow)
+                      hasFullAccess?formatBody(bodyToShow):(<>{formatBody(getPreviewBody(bodyToShow))}<UpgradePrompt/></>)
                     ):(
                       lang!=="en"?(
                         <div style={{display:"flex",alignItems:"center",gap:8,color:C.muted,fontSize:13,padding:"20px 0"}}>
                           <span style={{animation:"spin 1s linear infinite",display:"inline-block"}}>⟳</span> {t.translating}
                         </div>
-                      ):<>{formatBody(art.body)}</>
+                      ):hasFullAccess?<>{formatBody(art.body)}</>:(<>{formatBody(getPreviewBody(art.body))}<UpgradePrompt/></>)
                     )}
                   </div>
                 )}
@@ -7142,11 +7182,11 @@ export default function App(){
             : <TravelRegionPage regionId={regionId} setView={setView}/>
         })()
       ):isCat?(
-        <CategoryPage catId={view} setView={setView} lang={lang} t={t} cache={cache} setCache={setCache} user={user} reviews={reviews} setReviews={setReviews}/>
+        <CategoryPage catId={view} setView={setView} lang={lang} t={t} cache={cache} setCache={setCache} user={user} subscription={subscription} openCheckout={openCheckout} reviews={reviews} setReviews={setReviews}/>
       ):(
         <>
           <Hero setView={setView} t={t} lang={lang}/>
-          <CategoryGrid setView={setView} t={t} lang={lang}/>
+          <CategoryGrid setView={setView} t={t} lang={lang} subscription={subscription}/>
           <PhotoGallery setView={setView} lang={lang}/>
           <QuickFacts t={t}/>
           <AiCta setView={setView} t={t}/>
