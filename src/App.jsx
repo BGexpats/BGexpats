@@ -4741,9 +4741,9 @@ const MAP_LOCATIONS = [
   {id:130,cat:"jobs",icon:"🌍",name:"Remote Work — Anywhere in Bulgaria",desc:"10% flat tax makes Bulgaria one of the best countries for remote workers. Register an EOOD and work for any client worldwide.",addr:"Anywhere in Bulgaria",english:true,lat:42.6977,lng:23.3219,city:"sofia"},
 
   // ══ ART & GALLERIES ═══════════════════════════════════════════
-  {id:300,cat:"art",icon:"🎨",name:"National Gallery of Art — Sofia",desc:"Bulgaria's most important art museum. Permanent collection of Bulgarian fine art from the 19th century to present. Free Sundays.",addr:"1 19th February St, Sofia",phone:"+359 2 980 0093",english:true,lat:42.6950,lng:23.3280,city:"sofia"},
-  {id:301,cat:"art",icon:"🖼️",name:"Sofia City Art Gallery",desc:"Contemporary Bulgarian and international art. Changing exhibitions. Stunning building in the city center.",addr:"1 Gen. Gurko St, Sofia",phone:"+359 2 987 2181",english:true,lat:42.6974,lng:23.3221,city:"sofia"},
-  {id:302,cat:"art",icon:"🎨",name:"ICA — Sofia (Contemporary Art)",desc:"Institute of Contemporary Art. Cutting-edge exhibitions, installations and events. English-language openings.",addr:"4 Shipka St, Sofia",phone:"+359 2 944 1752",english:true,lat:42.6913,lng:23.3383,city:"sofia"},
+  {id:300,cat:"art",icon:"🎨",name:"National Gallery of Art — Sofia",desc:"Bulgaria's most important art museum. Permanent collection of Bulgarian fine art from the 19th century to present. Free Sundays.",addr:"Sofia Center, pl. \"Knyaz Aleksandar I\" 1, 1000 Sofia",phone:"029800093",english:true,lat:42.6950,lng:23.3280,city:"sofia"},
+  {id:301,cat:"art",icon:"🖼️",name:"Sofia City Art Gallery",desc:"Contemporary Bulgarian and international art. Changing exhibitions. Stunning building in the city center.",addr:"Sofia Center, General Gurko St 1, 1000 Sofia",phone:"029872181",english:true,lat:42.694417,lng:23.324351,city:"sofia"},
+  {id:302,cat:"art",icon:"🎨",name:"ICA — Sofia (Contemporary Art)",desc:"Institute of Contemporary Art. Cutting-edge exhibitions, installations and events. English-language openings.",addr:"g.k. Lozenets, Blvd. \"Cherni vrah\" 2, 1421 Sofia",phone:"+359 2 944 1752",english:true,lat:42.680422,lng:23.320173,city:"sofia"},
   {id:303,cat:"art",icon:"🎨",name:"Kapana Art District — Plovdiv",desc:"Plovdiv's creative quarter. Dozens of galleries, studios and street art. Free to explore. Most vibrant art scene in Bulgaria.",addr:"Kapana, Plovdiv",english:true,lat:42.1410,lng:24.7450,city:"plovdiv"},
   {id:304,cat:"art",icon:"🖼️",name:"Art Zone Plovdiv",desc:"Multi-gallery complex in the Old Town. International and Bulgarian contemporary art.",addr:"Old Town, Plovdiv",phone:"+359 32 620 150",english:true,lat:42.1440,lng:24.7510,city:"plovdiv"},
   {id:305,cat:"art",icon:"🎨",name:"Boris Georgiev Gallery — Varna",desc:"Main art gallery of Varna. Impressive collection of fine art. Beautiful sea garden location.",addr:"4 Luybomir Miletich St, Varna",phone:"+359 52 612 551",english:true,lat:43.2139,lng:27.9240,city:"varna"},
@@ -5436,11 +5436,6 @@ function MapPage({user,setView,subscription,openCheckout,lang,t}){
                 {selected.english&&<div style={{fontSize:12,color:"#16a34a",display:"flex",gap:6,fontWeight:600}}><span>🇬🇧</span><span>English spoken</span></div>}
               </div>
               <div style={{display:"flex",gap:8,marginTop:12}}>
-                <a href={`https://www.google.com/maps/search/?api=1&query=${selected.lat},${selected.lng}`} target="_blank" rel="noopener noreferrer"
-                  style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",gap:5,background:"#4285F4",color:"#fff",borderRadius:8,padding:"9px",fontSize:12,fontWeight:600,textDecoration:"none"}}>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                  Google Maps
-                </a>
                 {selected.url&&(
                   <a href={selected.url} target="_blank" rel="noopener noreferrer"
                     style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",gap:5,background:selected.cat==="car"?"#dc2626":selected.cat==="jobs"?"#0891b2":C.primary,color:"#fff",borderRadius:8,padding:"9px",fontSize:12,fontWeight:600,textDecoration:"none"}}>
