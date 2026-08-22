@@ -5053,7 +5053,6 @@ const MAP_LOCATIONS = [
   {id:345,cat:"hotel",icon:"🏨",name:"Melia Grand Hermitage — Golden Sands",desc:"5-star luxury all-inclusive. One of the finest beach resorts in Bulgaria. Direct beach access.",addr:"Golden Sands Resort",phone:"+359 52 389 200",english:true,lat:43.2815,lng:28.0400,city:"golden_sands"},
 
   // ══ CULTURAL SITES ════════════════════════════════════════════
-  {id:346,cat:"cultural",icon:"⛪",name:"Alexander Nevsky Cathedral — Sofia",desc:"Bulgaria's most iconic landmark. Neo-Byzantine masterpiece. Free entry. Crypt museum has superb icon collection.",addr:"Alexander Nevsky Sq, Sofia",english:true,lat:42.6959,lng:23.3320,city:"sofia"},
   {id:347,cat:"cultural",icon:"🏛️",name:"National History Museum — Sofia",desc:"Largest museum in Bulgaria. Thracian gold treasures, medieval art, 700,000+ artifacts. Must-see.",addr:"16 Vitoshko Lale St, Sofia",phone:"+359 2 955 4280",english:true,lat:42.6447,lng:23.2906,city:"sofia"},
   {id:348,cat:"cultural",icon:"⛪",name:"Boyana Church — Sofia (UNESCO)",desc:"UNESCO World Heritage Site. 13th century medieval frescoes of extraordinary beauty. Small but unforgettable.",addr:"1 Boyansko Ezero St, Sofia",phone:"+359 2 959 0939",english:true,lat:42.6406,lng:23.2669,city:"sofia"},
   {id:349,cat:"cultural",icon:"🏟️",name:"Roman Amphitheatre — Plovdiv",desc:"Ancient Roman theatre still used today for concerts and opera. 2,000 years old. Free to view, ticketed shows.",addr:"Old Town, Plovdiv",english:true,lat:42.1440,lng:24.7510,city:"plovdiv"},
