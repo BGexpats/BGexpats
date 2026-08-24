@@ -4951,11 +4951,11 @@ const MAP_LOCATIONS = [
 
   // ══ FESTIVALS & TRADITIONAL EVENTS ═══════════════════════════════
   {id:194,cat:"festival",icon:"🌹",name:"Rose Festival — Kazanlak",desc:"Bulgaria's most famous festival. June. Rose picking, parades, folk costumes. Rose Valley is magical in bloom.",addr:"Kazanlak, Rose Valley",english:true,lat:42.6154,lng:25.3986,city:"stara_zagora"},
-  {id:195,cat:"festival",icon:"🎭",name:"Kukeri Fire Festival — Pernik",desc:"Ancient Thracian tradition. January. Men in terrifying monster costumes to scare away evil spirits. Unmissable.",addr:"Pernik, near Sofia",english:true,lat:42.6037,lng:23.0363,city:"sofia"},
-  {id:196,cat:"festival",icon:"🎵",name:"Sofia Jazz Festival",desc:"Annual international jazz festival. October-November. Top international and Bulgarian artists. Multiple venues.",addr:"National Palace of Culture, Sofia",phone:"+359 2 916 6300",english:true,lat:42.6842,lng:23.3190,city:"sofia"},
-  {id:197,cat:"festival",icon:"🎬",name:"Sofia International Film Festival",desc:"March. Bulgaria's premier film event. International films with English subtitles. Very popular with expats.",addr:"Cinema House, Sofia",phone:"+359 2 986 8969",english:true,lat:42.6950,lng:23.3290,city:"sofia"},
+  {id:195,cat:"festival",icon:"🎭",name:"Kukeri Fire Festival — Pernik",desc:"Ancient Thracian tradition. January. Men in terrifying monster costumes to scare away evil spirits. Unmissable.",addr:"Tsentar, pl. \"Krakra Pernishki\", 2300 Pernik",phone:"076684232",english:true,lat:42.609564,lng:23.029214,city:"sofia"},
+  {id:196,cat:"festival",icon:"🎵",name:"Ж Jazz Room",desc:"Annual international jazz festival. October-November. Top international and Bulgarian artists. Multiple venues.",addr:"Sofia Center, \"Tsar Simeon\" St 49, 1000 Sofia",phone:"0893566026",english:true,lat:42.701011,lng:23.325324,city:"sofia"},
+  {id:197,cat:"festival",icon:"🎬",name:"Sofia Summer Fest",desc:"March. Bulgaria's premier film event. International films with English subtitles. Very popular with expats.",addr:"Yuzhen, 1421 Sofia",phone:"+359 2 986 8969",english:true,lat:42.679801,lng:23.319713,city:"sofia"},
   {id:198,cat:"festival",icon:"🏺",name:"Kapana Fest — Plovdiv",desc:"Creative festival in Plovdiv's arts district. June and September. Crafts, music, food, street art. Free entry.",addr:"Kapana, Plovdiv",english:true,lat:42.1415,lng:24.7455,city:"plovdiv"},
-  {id:199,cat:"festival",icon:"🎻",name:"Koprivshtitsa Folk Festival",desc:"Held every 5 years. Most important Bulgarian folk music and dance gathering. Truly unforgettable cultural experience.",addr:"Koprivshtitsa, Sofia region",english:true,lat:42.6372,lng:24.3439,city:"sofia"},
+  {id:199,cat:"festival",icon:"🎻",name:"Koprivshtitsa Folk Festival",desc:"Held every 5 years. Most important Bulgarian folk music and dance gathering. Truly unforgettable cultural experience.",addr:"Koprivshtitsa, Sofia region",english:true,lat:42.6372,lng:24.3439,city:"koprivshtitsa"},
   {id:200,cat:"festival",icon:"🔥",name:"Nestinarstvo Fire Dancing — Bulgarevo",desc:"Ancient ritual. June 3rd. Barefoot fire dancing on burning embers. UNESCO Intangible Heritage. Near Varna.",addr:"Bulgarevo village, Kavarna",english:true,lat:43.4869,lng:28.3208,city:"varna"},
   {id:201,cat:"festival",icon:"🌊",name:"Spirit of Burgas Festival",desc:"Bulgaria's biggest music festival. August. International pop, rock, electronic artists on Black Sea beach.",addr:"Burgas Beach",phone:"+359 56 870 500",english:true,lat:42.4960,lng:27.4780,city:"burgas"},
   {id:202,cat:"festival",icon:"🍷",name:"Wine & Spirits Festival — Sofia",desc:"November. Bulgarian wines, rakiya and spirits. 200+ producers. Held at NDK. Very popular with expats.",addr:"National Palace of Culture, Sofia",english:true,lat:42.6842,lng:23.3190,city:"sofia"},
@@ -5099,6 +5099,7 @@ const MAP_LOCATIONS = [
 const MAP_CITIES=[
   // Sofia City Region
   {id:"sofia",       label:"Sofia",        icon:"🏛️", lat:42.6977, lng:23.3219, zoom:13, region:"Sofia Region"},
+  {id:"koprivshtitsa",label:"Koprivshtitsa",icon:"🎻", lat:42.6372, lng:24.3439, zoom:14, region:"Sofia Region"},
   // Plovdiv Region
   {id:"plovdiv",     label:"Plovdiv",      icon:"🏺", lat:42.1354, lng:24.7453, zoom:13, region:"Plovdiv Region"},
   // Burgas Region
