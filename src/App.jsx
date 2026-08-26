@@ -5018,12 +5018,10 @@ const MAP_LOCATIONS = [
   {id:319,cat:"party",icon:"🎉",name:"Copacabana Beach Bar — Varna",desc:"Famous open-air beach bar. Live music, cocktails, stunning sea backdrop. Summer classic.",addr:"Northern Beach, Varna",phone:"+359 52 388 100",english:true,lat:43.2110,lng:27.9230,city:"varna"},
 
   // ══ FESTIVALS ════════════════════════════════════════════════
-  {id:320,cat:"festival",icon:"🎪",name:"International Short Film Festival",desc:"Largest film festival in Southeast Europe. March annually. 200+ films from 60 countries. Many events in English.",addr:"Dom na Kinoto, Sofia",phone:"+359 2 986 9669",english:true,lat:42.606601,lng:23.029121,city:"sofia"},
   {id:321,cat:"festival",icon:"🎵",name:"Varna Summer International Music Festival",desc:"Prestigious classical music festival. June–July. World-class performers. Open-air amphitheatre concerts.",addr:"Sea Garden, Varna",phone:"+359 52 612 833",english:true,lat:42.2139,lng:27.9242,city:"varna"},
   {id:322,cat:"festival",icon:"🎪",name:"Opera Open Festival — Plovdiv",desc:"Opera and ballet under the stars in the Roman Amphitheatre. June–July. Spectacular setting. International artists.",addr:"Roman Amphitheatre, Plovdiv",phone:"+359 32 627 654",english:true,lat:42.1440,lng:24.7505,city:"plovdiv"},
   {id:323,cat:"festival",icon:"🌹",name:"Rose Festival — Kazanlak (June)",desc:"Celebrates Bulgaria's famous rose oil. Rose-picking ceremony, parades, folk music. First week of June. Unique experience.",addr:"Kazanlak, Rose Valley",phone:"+359 431 62 846",english:true,lat:42.6192,lng:25.3981,city:"stara_zagora"},
   {id:324,cat:"festival",icon:"🎵",name:"Hills of Rock — Plovdiv",desc:"Bulgaria's biggest rock festival. International headliners. July. Plovdiv Stadium. Camping available.",addr:"Plovdiv Stadium",phone:"+359 32 999 800",english:true,lat:42.1350,lng:24.7500,city:"plovdiv"},
-  {id:325,cat:"festival",icon:"🎵",name:"A to Jazz Festival — Sofia",desc:"Premier jazz festival in Bulgaria. October. Multiple city venues. International and local jazz artists.",addr:"Various venues, Sofia",english:true,lat:42.6977,lng:23.3219,city:"sofia"},
 
   // ══ SUMMER ACTIVITIES ═════════════════════════════════════════
   {id:326,cat:"summer",icon:"🏄",name:"Action Aquapark — Golden Sands",desc:"Largest water park in Bulgaria. 30+ slides, lazy river, wave pool. Open June–September. Great for families.",addr:"Golden Sands Resort, Varna",phone:"+359 52 389 500",english:true,lat:43.2820,lng:28.0410,city:"golden_sands"},
