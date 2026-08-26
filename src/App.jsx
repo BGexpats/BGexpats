@@ -4951,7 +4951,7 @@ const MAP_LOCATIONS = [
 
   // ══ FESTIVALS & TRADITIONAL EVENTS ═══════════════════════════════
   {id:194,cat:"festival",icon:"🌹",name:"Rose Festival — Kazanlak",desc:"Bulgaria's most famous festival. June. Rose picking, parades, folk costumes. Rose Valley is magical in bloom.",addr:"Kazanlak, Rose Valley",english:true,lat:42.6154,lng:25.3986,city:"stara_zagora"},
-  {id:195,cat:"festival",icon:"🎭",name:"Kukeri Fire Festival — Pernik",desc:"Ancient Thracian tradition. January. Men in terrifying monster costumes to scare away evil spirits. Unmissable.",addr:"Tsentar, pl. \"Krakra Pernishki\", 2300 Pernik",phone:"076684232",english:true,lat:42.609564,lng:23.029214,city:"sofia"},
+  {id:195,cat:"festival",icon:"🎭",name:"Kukeri Fire Festival — Pernik",desc:"Ancient Thracian tradition. January. Men in terrifying monster costumes to scare away evil spirits. Unmissable.",addr:"Tsentar, pl. \"Krakra Pernishki\", 2300 Pernik",phone:"076684232",english:true,lat:42.609564,lng:23.029214,city:"pernik"},
   {id:196,cat:"festival",icon:"🎵",name:"Ж Jazz Room",desc:"Annual international jazz festival. October-November. Top international and Bulgarian artists. Multiple venues.",addr:"Sofia Center, \"Tsar Simeon\" St 49, 1000 Sofia",phone:"0893566026",english:true,lat:42.701011,lng:23.325324,city:"sofia"},
   {id:197,cat:"festival",icon:"🎬",name:"Sofia Summer Fest",desc:"March. Bulgaria's premier film event. International films with English subtitles. Very popular with expats.",addr:"Yuzhen, 1421 Sofia",phone:"+359 2 986 8969",english:true,lat:42.679801,lng:23.319713,city:"sofia"},
   {id:198,cat:"festival",icon:"🏺",name:"Kapana Fest — Plovdiv",desc:"Creative festival in Plovdiv's arts district. June and September. Crafts, music, food, street art. Free entry.",addr:"Kapana, Plovdiv",english:true,lat:42.1415,lng:24.7455,city:"plovdiv"},
@@ -4959,7 +4959,7 @@ const MAP_LOCATIONS = [
   {id:200,cat:"festival",icon:"🔥",name:"Nestinarstvo Fire Dancing — Bulgarevo",desc:"Ancient ritual. June 3rd. Barefoot fire dancing on burning embers. UNESCO Intangible Heritage. Near Varna.",addr:"Bulgarevo village, Kavarna",english:true,lat:43.4869,lng:28.3208,city:"varna"},
   {id:201,cat:"festival",icon:"🌊",name:"Spirit of Burgas Festival",desc:"Bulgaria's biggest music festival. August. International pop, rock, electronic artists on Black Sea beach.",addr:"Burgas Beach",phone:"+359 56 870 500",english:true,lat:42.4960,lng:27.4780,city:"burgas"},
   {id:202,cat:"festival",icon:"🍷",name:"Wine & Spirits Festival — Sofia",desc:"November. Bulgarian wines, rakiya and spirits. 200+ producers. Held at NDK. Very popular with expats.",addr:"Sofia Center, bul. \"Patriarh Evtimiy\" 28, 1000 Sofia",phone:"0894467155",english:true,lat:42.6842,lng:23.3190,city:"sofia"},
-  {id:203,cat:"festival",icon:"❄️",name:"Nosferatu - Craft Beer Shop",desc:"Last weekend of January. Biggest Kukeri/masquerade festival in the Balkans. Spectacular costumes.",addr:"Tsentar, pl. \"Krakra Pernishki\", 2300 Pernik",phone:"076684232",english:true,lat:42.607416,lng:23.031285,city:"sofia"},
+  {id:203,cat:"festival",icon:"❄️",name:"Nosferatu - Craft Beer Shop",desc:"Last weekend of January. Biggest Kukeri/masquerade festival in the Balkans. Spectacular costumes.",addr:"Tsentar, pl. \"Krakra Pernishki\", 2300 Pernik",phone:"076684232",english:true,lat:42.607416,lng:23.031285,city:"pernik"},
 
   // ── MORE HOTELS ──────────────────────────────────────────────
   {id:204,cat:"hotel",icon:"🏨",name:"Novotel Sofia",desc:"4-star international chain. Central location, pool, good business facilities. Consistent quality.",addr:"115 N, м. Къро, Boulevard \"Tsarigradsko shose\" Blvd, 1784 Sofia",phone:"029043000",english:true,lat:42.659037,lng:23.383132,city:"sofia"},
@@ -5059,7 +5059,7 @@ const MAP_LOCATIONS = [
   {id:352,cat:"cultural",icon:"🏛️",name:"Ancient Nessebar (UNESCO)",desc:"3,000 years of history on a tiny peninsula. Byzantine churches, Roman ruins, medieval town walls. Free entry.",addr:"Old Town, Nessebar",english:true,lat:42.6597,lng:27.7355,city:"nessebar"},
 
   // ══ TRADITIONAL FESTIVALS ══════════════════════════════════════
-  {id:353,cat:"tradfest",icon:"🎭",name:"Kukeri Festival — Pernik (January)",desc:"Ancient pagan ritual to scare away evil spirits. Men in incredible monster costumes. Most spectacular folklore event in Bulgaria. Near Sofia.",addr:"Pernik, near Sofia",english:true,lat:42.6000,lng:23.0330,city:"sofia"},
+  {id:353,cat:"tradfest",icon:"🎭",name:"Kukeri Festival — Pernik (January)",desc:"Ancient pagan ritual to scare away evil spirits. Men in incredible monster costumes. Most spectacular folklore event in Bulgaria. Near Sofia.",addr:"Pernik, near Sofia",english:true,lat:42.6000,lng:23.0330,city:"pernik"},
   {id:354,cat:"tradfest",icon:"🌹",name:"Rose Picking Festival — Kazanlak (June)",desc:"Wake at dawn to pick roses in the valley. Ancient tradition, folk costumes, music. Unique Bulgarian experience.",addr:"Kazanlak, Rose Valley",english:true,lat:42.6192,lng:25.3981,city:"stara_zagora"},
   {id:355,cat:"tradfest",icon:"🎭",name:"National Folklore Festival — Koprivshtitsa",desc:"Held every 5 years (next: 2025). Thousands of performers in traditional costume from every region. Extraordinary event.",addr:"Koprivshtitsa (2h from Sofia)",english:true,lat:42.6348,lng:24.3428,city:"sofia"},
   {id:356,cat:"tradfest",icon:"🎶",name:"Nestinari Fire Dancing — June",desc:"Ancient ritual where barefoot dancers walk on hot embers to folk music and icons. Held in Bulgari and Strandja villages.",addr:"Strandja Mountain villages",english:true,lat:42.1700,lng:27.6500,city:"burgas"},
@@ -5126,6 +5126,8 @@ const MAP_CITIES=[
   {id:"bansko",      label:"Bansko",       icon:"⛷️", lat:41.8375, lng:23.4886, zoom:13, region:"Blagoevgrad Region"},
   // Pazardzhik Region
   {id:"velingrad",   label:"Velingrad",    icon:"♨️", lat:42.0250, lng:23.9944, zoom:13, region:"Pazardzhik Region"},
+  // Pernik Region
+  {id:"pernik",      label:"Pernik",       icon:"🎭", lat:42.6053, lng:23.0378, zoom:13, region:"Pernik Region"},
 ]
 
 const MAP_CATS=[
