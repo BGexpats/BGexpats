@@ -4724,10 +4724,9 @@ const MAP_LOCATIONS = [
   {id:40,cat:"hood",icon:"🏠",name:"Center Burgas",desc:"City center. Pedestrian zone, restaurants, bars. Good for short to mid-term stays.",addr:"Aleksandrovska St, Burgas",english:true,lat:42.5048,lng:27.4626,city:"burgas"},
 
   // ── STARA ZAGORA ───────────────────────────────────────────────
-  {id:41,cat:"health",icon:"🏥",name:"UMBAL Prof. Dr. Stoyan Kirkovich",desc:"University hospital Stara Zagora. Full emergency services.",addr:"2 Ivan Armeyski St, Stara Zagora",phone:"+359 42 664 400",english:false,lat:42.424771,lng:25.611525,city:"stara_zagora"},
-  {id:42,cat:"bank",icon:"🏦",name:"DSK Bank — Stara Zagora",desc:"Main branch. Standard services for expats.",addr:"кв. Гео Милев, bul. \"Tsar Simeon Veliki\" 114, 6000 Stara Zagora",phone:"+359 42 690 100",english:false,lat:42.424718,lng:25.630739,city:"stara_zagora"},
+  {id:41,cat:"health",icon:"🏥",name:"UMBAL Prof. Dr. Stoyan Kirkovich",desc:"University hospital Stara Zagora. Full emergency services.",addr:"кв. Възраждане, ul. \"General Stoletov\" 2, 6003 Stara Zagora",phone:"+359 42 664 400",english:false,lat:42.424031,lng:25.612492,city:"stara_zagora"},
+  {id:42,cat:"bank",icon:"🏦",name:"DSK Bank — Stara Zagora",desc:"Main branch. Standard services for expats.",addr:"Southern Industrial Zone, bul. \"Sveti Patriarh Evtimiy\" № 23, 6000 Stara Zagora",phone:"070010375",english:false,lat:42.412291,lng:25.638671,city:"stara_zagora"},
   {id:43,cat:"legal",icon:"⚖️",name:"Migration Directorate Stara Zagora",desc:"Residence registration for Stara Zagora region.",addr:"Stara Zagora Centre, ul. \"Graf Ignatiev\" 16, 6000 Stara Zagora",phone:"042 602 805",english:false,lat:42.427571,lng:25.631691,city:"stara_zagora"},
-  {id:44,cat:"hood",icon:"🌳",name:"Stara Zagora Center",desc:"City of linden trees. Well-planned streets, good quality of life, affordable.",addr:"Center, Stara Zagora",english:false,lat:42.4278,lng:25.6344,city:"stara_zagora"},
 
   // ── SUNNY BEACH ────────────────────────────────────────────────
   {id:45,cat:"health",icon:"🏥",name:"Medical Center Sunny Beach",desc:"Tourist medical center. English-speaking. Open all summer season.",addr:"Sunny Beach Resort, Nesebar",phone:"+359 554 22 123",english:true,lat:42.6965,lng:27.7105,city:"sunny_beach"},
