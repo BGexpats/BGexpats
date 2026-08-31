@@ -4944,12 +4944,12 @@ const MAP_LOCATIONS = [
   {id:188,cat:"cultural",icon:"🕌",name:"Dzhumaya Mosque — Plovdiv",desc:"14th century Ottoman mosque still in use. Remarkable history. Free to visit outside prayer times.",addr:"Dzhumaya Square, Plovdiv",english:true,lat:42.1447,lng:24.7483,city:"plovdiv"},
   {id:189,cat:"cultural",icon:"🏛️",name:"Nessebar UNESCO Churches",desc:"Ancient city packed with Byzantine churches. UNESCO World Heritage. Walking the peninsula is magical.",addr:"Old Town, Nessebar",english:true,lat:42.6597,lng:27.7355,city:"nessebar"},
   {id:190,cat:"cultural",icon:"🏰",name:"Tsarevets Fortress — Veliko Tarnovo",desc:"Magnificent medieval fortress. Sound and light show evenings. Former Bulgarian capital.",addr:"Tsarevets, Veliko Tarnovo",phone:"+359 62 638 841",english:true,lat:43.0845,lng:25.6453,city:"ruse"},
-  {id:191,cat:"cultural",icon:"🏛️",name:"Thracian Tomb of Kazanlak (UNESCO)",desc:"Beautifully preserved Thracian royal tomb from 4th century BC. UNESCO listed. Near Rose Valley.",addr:"Kazanlak, Stara Zagora region",english:true,lat:42.6154,lng:25.3986,city:"stara_zagora"},
+  {id:191,cat:"cultural",icon:"🏛️",name:"Thracian Tomb of Kazanlak (UNESCO)",desc:"Beautifully preserved Thracian royal tomb from 4th century BC. UNESCO listed. Near Rose Valley.",addr:"Kazanlak, Stara Zagora region",english:true,lat:42.6154,lng:25.3986,city:"kazanlak"},
   {id:192,cat:"cultural",icon:"🕍",name:"Sofia Synagogue",desc:"Third largest synagogue in Europe. Stunning Moorish architecture. Small museum inside.",addr:"Sofia Center, Exarch Joseph Street 16, 1000 Sofia",phone:"029831273",english:true,lat:42.700247,lng:23.320939,city:"sofia"},
   {id:193,cat:"cultural",icon:"🛕",name:"Banya Bashi Mosque — Sofia",desc:"16th century mosque in the heart of Sofia. Right next to mineral springs. Unique city landmark.",addr:"Sofia Center, Knyagina Maria Luisa Blvd 18, 1000 Sofia",phone:"029816001",english:true,lat:42.699501,lng:23.322568,city:"sofia"},
 
   // ══ FESTIVALS & TRADITIONAL EVENTS ═══════════════════════════════
-  {id:194,cat:"festival",icon:"🌹",name:"Rose Festival — Kazanlak",desc:"Bulgaria's most famous festival. June. Rose picking, parades, folk costumes. Rose Valley is magical in bloom.",addr:"Kazanlak, Rose Valley",english:true,lat:42.6154,lng:25.3986,city:"stara_zagora"},
+  {id:194,cat:"festival",icon:"🌹",name:"Rose Festival — Kazanlak",desc:"Bulgaria's most famous festival. June. Rose picking, parades, folk costumes. Rose Valley is magical in bloom.",addr:"Kazanlak, Rose Valley",english:true,lat:42.6154,lng:25.3986,city:"kazanlak"},
   {id:195,cat:"festival",icon:"🎭",name:"Kukeri Fire Festival — Pernik",desc:"Ancient Thracian tradition. January. Men in terrifying monster costumes to scare away evil spirits. Unmissable.",addr:"Tsentar, pl. \"Krakra Pernishki\", 2300 Pernik",phone:"076684232",english:true,lat:42.609564,lng:23.029214,city:"pernik"},
   {id:196,cat:"festival",icon:"🎵",name:"Ж Jazz Room",desc:"Annual international jazz festival. October-November. Top international and Bulgarian artists. Multiple venues.",addr:"Sofia Center, \"Tsar Simeon\" St 49, 1000 Sofia",phone:"0893566026",english:true,lat:42.701011,lng:23.325324,city:"sofia"},
   {id:197,cat:"festival",icon:"🎬",name:"Sofia Summer Fest",desc:"March. Bulgaria's premier film event. International films with English subtitles. Very popular with expats.",addr:"Yuzhen, 1421 Sofia",phone:"+359 2 986 8969",english:true,lat:42.679801,lng:23.319713,city:"sofia"},
@@ -5020,7 +5020,7 @@ const MAP_LOCATIONS = [
   // ══ FESTIVALS ════════════════════════════════════════════════
   {id:321,cat:"festival",icon:"🎵",name:"Varna Summer International Music Festival",desc:"Prestigious classical music festival. June–July. World-class performers. Open-air amphitheatre concerts.",addr:"Sea Garden, Varna",phone:"+359 52 612 833",english:true,lat:42.2139,lng:27.9242,city:"varna"},
   {id:322,cat:"festival",icon:"🎪",name:"Opera Open Festival — Plovdiv",desc:"Opera and ballet under the stars in the Roman Amphitheatre. June–July. Spectacular setting. International artists.",addr:"Roman Amphitheatre, Plovdiv",phone:"+359 32 627 654",english:true,lat:42.1440,lng:24.7505,city:"plovdiv"},
-  {id:323,cat:"festival",icon:"🌹",name:"Rose Festival — Kazanlak (June)",desc:"Celebrates Bulgaria's famous rose oil. Rose-picking ceremony, parades, folk music. First week of June. Unique experience.",addr:"Kazanlak, Rose Valley",phone:"+359 431 62 846",english:true,lat:42.6192,lng:25.3981,city:"stara_zagora"},
+  {id:323,cat:"festival",icon:"🌹",name:"Rose Festival — Kazanlak (June)",desc:"Celebrates Bulgaria's famous rose oil. Rose-picking ceremony, parades, folk music. First week of June. Unique experience.",addr:"Kazanlak, Rose Valley",phone:"+359 431 62 846",english:true,lat:42.6192,lng:25.3981,city:"kazanlak"},
   {id:324,cat:"festival",icon:"🎵",name:"Hills of Rock — Plovdiv",desc:"Bulgaria's biggest rock festival. International headliners. July. Plovdiv Stadium. Camping available.",addr:"Plovdiv Stadium",phone:"+359 32 999 800",english:true,lat:42.1350,lng:24.7500,city:"plovdiv"},
 
   // ══ SUMMER ACTIVITIES ═════════════════════════════════════════
@@ -5111,6 +5111,7 @@ const MAP_CITIES=[
   {id:"golden_sands",label:"Golden Sands", icon:"✨", lat:43.2817, lng:28.0395, zoom:14, region:"Varna Region"},
   // Stara Zagora Region
   {id:"stara_zagora",label:"Stara Zagora", icon:"🌳", lat:42.4278, lng:25.6344, zoom:13, region:"Stara Zagora Region"},
+  {id:"kazanlak",     label:"Kazanlak",     icon:"🌹", lat:42.6154, lng:25.3986, zoom:13, region:"Stara Zagora Region"},
   // Ruse Region
   {id:"ruse",        label:"Ruse",         icon:"🌉", lat:43.8485, lng:25.9533, zoom:13, region:"Ruse Region"},
   // Sliven Region
