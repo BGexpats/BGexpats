@@ -4949,7 +4949,7 @@ const MAP_LOCATIONS = [
   {id:193,cat:"cultural",icon:"🛕",name:"Banya Bashi Mosque — Sofia",desc:"16th century mosque in the heart of Sofia. Right next to mineral springs. Unique city landmark.",addr:"Sofia Center, Knyagina Maria Luisa Blvd 18, 1000 Sofia",phone:"029816001",english:true,lat:42.699501,lng:23.322568,city:"sofia"},
 
   // ══ FESTIVALS & TRADITIONAL EVENTS ═══════════════════════════════
-  {id:194,cat:"festival",icon:"🌹",name:"Rose Festival — Kazanlak",desc:"Bulgaria's most famous festival. June. Rose picking, parades, folk costumes. Rose Valley is magical in bloom.",addr:"Kazanlak, Rose Valley",english:true,lat:42.6154,lng:25.3986,city:"kazanlak"},
+  {id:194,cat:"festival",icon:"🌹",name:"Rose Festival — Kazanlak",desc:"Bulgaria's most famous festival. June. Rose picking, parades, folk costumes. Rose Valley is magical in bloom.",addr:"Kazanlak, Rose Valley",english:true,lat:42.619197,lng:25.393186,city:"kazanlak"},
   {id:195,cat:"festival",icon:"🎭",name:"Kukeri Fire Festival — Pernik",desc:"Ancient Thracian tradition. January. Men in terrifying monster costumes to scare away evil spirits. Unmissable.",addr:"Tsentar, pl. \"Krakra Pernishki\", 2300 Pernik",phone:"076684232",english:true,lat:42.609564,lng:23.029214,city:"pernik"},
   {id:196,cat:"festival",icon:"🎵",name:"Ж Jazz Room",desc:"Annual international jazz festival. October-November. Top international and Bulgarian artists. Multiple venues.",addr:"Sofia Center, \"Tsar Simeon\" St 49, 1000 Sofia",phone:"0893566026",english:true,lat:42.701011,lng:23.325324,city:"sofia"},
   {id:197,cat:"festival",icon:"🎬",name:"Sofia Summer Fest",desc:"March. Bulgaria's premier film event. International films with English subtitles. Very popular with expats.",addr:"Yuzhen, 1421 Sofia",phone:"+359 2 986 8969",english:true,lat:42.679801,lng:23.319713,city:"sofia"},
@@ -5020,7 +5020,6 @@ const MAP_LOCATIONS = [
   // ══ FESTIVALS ════════════════════════════════════════════════
   {id:321,cat:"festival",icon:"🎵",name:"Varna Summer International Music Festival",desc:"Prestigious classical music festival. June–July. World-class performers. Open-air amphitheatre concerts.",addr:"Sea Garden, Varna",phone:"+359 52 612 833",english:true,lat:42.2139,lng:27.9242,city:"varna"},
   {id:322,cat:"festival",icon:"🎪",name:"Opera Open Festival — Plovdiv",desc:"Opera and ballet under the stars in the Roman Amphitheatre. June–July. Spectacular setting. International artists.",addr:"Roman Amphitheatre, Plovdiv",phone:"+359 32 627 654",english:true,lat:42.1440,lng:24.7505,city:"plovdiv"},
-  {id:323,cat:"festival",icon:"🌹",name:"Rose Festival — Kazanlak (June)",desc:"Celebrates Bulgaria's famous rose oil. Rose-picking ceremony, parades, folk music. First week of June. Unique experience.",addr:"Kazanlak, Rose Valley",phone:"+359 431 62 846",english:true,lat:42.6192,lng:25.3981,city:"kazanlak"},
   {id:324,cat:"festival",icon:"🎵",name:"Hills of Rock — Plovdiv",desc:"Bulgaria's biggest rock festival. International headliners. July. Plovdiv Stadium. Camping available.",addr:"Plovdiv Stadium",phone:"+359 32 999 800",english:true,lat:42.1350,lng:24.7500,city:"plovdiv"},
 
   // ══ SUMMER ACTIVITIES ═════════════════════════════════════════
