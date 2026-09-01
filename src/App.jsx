@@ -4707,12 +4707,12 @@ const MAP_LOCATIONS = [
   {id:27,cat:"hood",icon:"🏠",name:"Primorski (Varna Center)",desc:"Upscale central neighbourhood. Great cafes, restaurants, sea views.",addr:"Primorski, Varna",english:true,lat:43.2090,lng:27.9200,city:"varna"},
 
   // ── PLOVDIV ────────────────────────────────────────────────────
-  {id:28,cat:"health",icon:"🏥",name:"UMBAL St. George Hospital",desc:"Main university hospital in Plovdiv. Emergency department 24/7.",addr:"66 Peshtersko Shosse, Plovdiv",phone:"+359 32 602 930",english:false,lat:42.1490,lng:24.7490,city:"plovdiv"},
-  {id:29,cat:"health",icon:"🏥",name:"Pulmed Private Hospital",desc:"Modern private hospital. English-speaking specialists available.",addr:"5 Byala Cherkva St, Plovdiv",phone:"+359 32 943 000",english:true,lat:42.1420,lng:24.7500,city:"plovdiv"},
+  {id:28,cat:"health",icon:"🏥",name:"UMBAL St. George Hospital",desc:"Main university hospital in Plovdiv. Emergency department 24/7.",addr:"Western Industrial Zone, Zapaden, bulevard \"Peshtersko Shose\" 66, 4001 Plovdiv",phone:"032602911",english:false,lat:42.138341,lng:24.713014,city:"plovdiv"},
+  {id:29,cat:"health",icon:"🏥",name:"Pulmed Private Hospital",desc:"Modern private hospital. English-speaking specialists available.",addr:"Western Industrial Zone, Zapaden, ul. \"Perushtitsa\" 1А, 4002 Plovdiv",phone:"032607300",english:true,lat:42.137568,lng:24.716905,city:"plovdiv"},
   {id:30,cat:"bank",icon:"🏦",name:"DSK Bank — Plovdiv Main",desc:"Central Plovdiv branch. Expat accounts. English-speaking staff.",addr:"2 Rayko Daskalov St, Plovdiv",phone:"+359 32 260 000",english:true,lat:43.1430,lng:24.7500,city:"plovdiv"},
   {id:31,cat:"bank",icon:"🏦",name:"UniCredit Bulbank Plovdiv",desc:"International bank. Good for international transfers.",addr:"4 Ivan Vazov St, Plovdiv",phone:"+359 32 955 000",english:true,lat:42.1420,lng:24.7490,city:"plovdiv"},
   {id:32,cat:"legal",icon:"⚖️",name:"Migration Directorate Plovdiv",desc:"EU residence registration. Bring passport, rental contract and photos.",addr:"2 Ekzarh Iosif St, Plovdiv",phone:"+359 32 629 811",english:false,lat:42.1390,lng:24.7540,city:"plovdiv"},
-  {id:33,cat:"hood",icon:"🏛️",name:"Plovdiv Old Town (Stari Grad)",desc:"UNESCO heritage area. Cobblestone streets, Roman amphitheatre. Most charming area.",addr:"Old Town, Plovdiv",english:true,lat:42.1440,lng:24.7510,city:"plovdiv"},
+  {id:33,cat:"hood",icon:"🏛️",name:"Plovdiv Old Town (Stari Grad)",desc:"UNESCO heritage area. Cobblestone streets, Roman amphitheatre. Most charming area.",addr:"Staria grad, Plovdiv Center, ul. \"Hristo G. Danov\", 4000 Plovdiv",phone:"03589258",english:true,lat:42.147717,lng:24.748068,city:"plovdiv"},
   {id:34,cat:"hood",icon:"🎨",name:"Kapana Creative District",desc:"Trendy arts quarter. Great cafes, galleries, restaurants. Popular with digital nomads.",addr:"Kapana, Plovdiv",english:true,lat:42.1410,lng:24.7450,city:"plovdiv"},
   {id:35,cat:"work",icon:"💼",name:"Kapana Coworking Plovdiv",desc:"Great coworking in the creative district. Events, community, fast WiFi.",addr:"11 Nektariya St, Plovdiv",phone:"+359 88 700 7007",english:true,lat:42.1415,lng:24.7455,city:"plovdiv"},
 
