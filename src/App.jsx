@@ -4714,7 +4714,6 @@ const MAP_LOCATIONS = [
   {id:32,cat:"legal",icon:"⚖️",name:"Migration Directorate Plovdiv",desc:"EU residence registration. Bring passport, rental contract and photos.",addr:"Tsentar, Plovdiv Center, ul. \"Volga\" 70, 4020 Plovdiv",phone:"032932879",english:false,lat:42.145090,lng:24.730982,city:"plovdiv"},
   {id:33,cat:"hood",icon:"🏛️",name:"Plovdiv Old Town (Stari Grad)",desc:"UNESCO heritage area. Cobblestone streets, Roman amphitheatre. Most charming area.",addr:"Staria grad, Plovdiv Center, ul. \"Hristo G. Danov\", 4000 Plovdiv",phone:"03589258",english:true,lat:42.147717,lng:24.748068,city:"plovdiv"},
   {id:34,cat:"hood",icon:"🎨",name:"Kapana Creative District",desc:"Trendy arts quarter. Great cafes, galleries, restaurants. Popular with digital nomads.",addr:"Kapana, Plovdiv",english:true,lat:42.1410,lng:24.7450,city:"plovdiv"},
-  {id:35,cat:"work",icon:"💼",name:"Kapana Coworking Plovdiv",desc:"Great coworking in the creative district. Events, community, fast WiFi.",addr:"11 Nektariya St, Plovdiv",phone:"+359 88 700 7007",english:true,lat:42.1415,lng:24.7455,city:"plovdiv"},
 
   // ── BURGAS ─────────────────────────────────────────────────────
   {id:36,cat:"health",icon:"🏥",name:"MBAL Burgas Hospital",desc:"Main Burgas hospital. Emergency services. Good cardiology department.",addr:"73 Stefan Stambolov St, Burgas",phone:"+359 56 813 000",english:false,lat:42.5070,lng:27.4670,city:"burgas"},
