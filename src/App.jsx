@@ -4720,8 +4720,8 @@ const MAP_LOCATIONS = [
   {id:406,cat:"health",icon:"🏥",name:"Burgas Hospital",desc:"Regional hospital in the Zornitsa district of Burgas.",addr:"Zornitsa, ж.к. Зорница 9, 8018 Burgas",phone:"056894729",english:false,lat:42.513950,lng:27.464959,city:"burgas"},
   {id:407,cat:"health",icon:"🏥",name:"Heart and Brain Burgas Hospital",desc:"Specialized cardiology and neurology hospital in Burgas's Northern Industrial Zone.",addr:"Northern Industrial Zone, улица \"Здраве\" 29, 8000 Burgas",phone:"056703003",english:false,lat:42.527658,lng:27.470000,city:"burgas"},
   {id:408,cat:"health",icon:"🏥",name:"Hospital Burgasmed",desc:"Private hospital serving the Meden Rudnik district of Burgas.",addr:"8011 А, ж.к. Меден рудник, Meden Rudnik, zh.k. Meden rudnik 176, 8011 Burgas",phone:"0892222525",english:false,lat:42.463349,lng:27.420720,city:"burgas"},
-  {id:37,cat:"bank",icon:"🏦",name:"DSK Bank — Burgas Center",desc:"Main Burgas branch. Good service for expats and seasonal workers.",addr:"3 Aleksandrovska St, Burgas",phone:"+359 56 866 200",english:true,lat:42.5048,lng:27.4626,city:"burgas"},
-  {id:38,cat:"legal",icon:"⚖️",name:"Migration Directorate Burgas",desc:"Residence registration for Burgas region. Includes Black Sea coastal areas.",addr:"1 Slavyanska St, Burgas",phone:"+359 56 894 470",english:false,lat:42.5010,lng:27.4580,city:"burgas"},
+  {id:37,cat:"bank",icon:"🏦",name:"DSK Bank — Burgas Center",desc:"Main Burgas branch. Good service for expats and seasonal workers.",addr:"Burgas Center, ul. \"Vasil Aprilov\" No 12, 8000 Burgas",phone:"0700 10 375",english:true,lat:42.497479,lng:27.470115,city:"burgas"},
+  {id:38,cat:"legal",icon:"⚖️",name:"Migration Directorate Burgas",desc:"Residence registration for Burgas region. Includes Black Sea coastal areas.",addr:"g.k. Lazur, ul. \"Perushtitsa\" 63, 8001 Burgas",phone:"056 856 573",english:false,lat:42.511062,lng:27.469858,city:"burgas"},
   {id:39,cat:"hood",icon:"🌊",name:"Burgas Sea Garden",desc:"Beautiful park along the seafront. Best walking and running area. Near beach.",addr:"Sea Garden, Burgas",english:true,lat:42.5000,lng:27.4700,city:"burgas"},
   {id:40,cat:"hood",icon:"🏠",name:"Center Burgas",desc:"City center. Pedestrian zone, restaurants, bars. Good for short to mid-term stays.",addr:"Aleksandrovska St, Burgas",english:true,lat:42.5048,lng:27.4626,city:"burgas"},
 
@@ -4908,7 +4908,7 @@ const MAP_LOCATIONS = [
   {id:156,cat:"party",icon:"🌙",name:"Barcode Beach Bar — Sunny Beach",desc:"Most popular beach bar in Sunny Beach. Cocktails, DJ, right on the sand.",addr:"Beach zone, Sunny Beach",english:true,lat:42.6965,lng:27.7120,city:"sunny_beach"},
   {id:157,cat:"party",icon:"🎉",name:"Sands Club — Sunny Beach",desc:"One of Europe's biggest open-air nightclubs. International DJs. Season May-September.",addr:"South End, Sunny Beach",english:true,lat:42.6920,lng:27.7125,city:"sunny_beach"},
   {id:158,cat:"party",icon:"🍷",name:"The Trap",desc:"Dozens of bars and cafes in the Kapana creative district. The heart of Plovdiv nightlife.",addr:"Kapana, Plovdiv Center, ul. \"Magura\" 3, 4000 Plovdiv",phone:"0879880168",english:true,lat:42.149734,lng:24.747605,city:"plovdiv"},
-  {id:159,cat:"party",icon:"🎵",name:"Club Lazur — Burgas",desc:"Main nightclub in Burgas. Electronic and pop music. Popular with locals and tourists.",addr:"Seaside Park, Burgas",phone:"+359 56 878 000",english:true,lat:42.4995,lng:27.4710,city:"burgas"},
+  {id:159,cat:"party",icon:"🎵",name:"Fabric Club Burgas",desc:"Main nightclub in Burgas. Electronic and pop music. Popular with locals and tourists.",addr:"g.k. Bratya Miladinovi, bul. \"Stefan Stambolov\" 53, 8000 Burgas",phone:"0887 909 019",english:true,lat:42.505553,lng:27.469631,city:"burgas"},
 
   // ══ SUMMER ACTIVITIES ════════════════════════════════════════════
   {id:160,cat:"summer",icon:"🏄",name:"Golden Sands Water Sports",desc:"Jet ski, parasailing, windsurfing, banana boat. Instruction available. English-speaking staff.",addr:"Beach, Golden Sands",phone:"+359 52 389 600",english:true,lat:43.2815,lng:28.0395,city:"golden_sands"},
@@ -4972,7 +4972,7 @@ const MAP_LOCATIONS = [
   {id:210,cat:"hotel",icon:"🏨",name:"Melia Grand Hermitage — Golden Sands",desc:"5-star luxury resort. Private beach, multiple pools, excellent spa. Most prestigious address on the coast.",addr:"Golden Sands Resort",phone:"+359 52 394 300",english:true,lat:43.2825,lng:28.0388,city:"golden_sands"},
   {id:211,cat:"hotel",icon:"🌴",name:"Riu Helios Bay — Sunny Beach",desc:"Large all-inclusive resort. Family-friendly. Beachfront. Good entertainment programme.",addr:"North Sunny Beach",phone:"+359 554 66 000",english:true,lat:42.7010,lng:27.7080,city:"sunny_beach"},
   {id:212,cat:"hotel",icon:"🌊",name:"Hotel Nessebar Bay",desc:"Beautiful boutique hotel overlooking the sea. Perfect base to explore Nessebar Old Town.",addr:"New Nessebar, seafront",phone:"+359 554 42 500",english:true,lat:42.6630,lng:27.7310,city:"nessebar"},
-  {id:213,cat:"hotel",icon:"⚓",name:"Bulgaria Hotel Burgas",desc:"Central 4-star in Burgas. Good restaurant, sea views from upper floors. Year-round operation.",addr:"21 Aleksandrovska St, Burgas",phone:"+359 56 842 820",english:true,lat:42.5048,lng:27.4635,city:"burgas"},
+  {id:213,cat:"hotel",icon:"⚓",name:"Bulgaria Hotel Burgas",desc:"Central 4-star in Burgas. Good restaurant, sea views from upper floors. Year-round operation.",addr:"Burgas Center, ul. \"Aleksandrovska\" 21, 8000 Burgas",phone:"056 842 610",english:true,lat:42.492978,lng:27.473536,city:"burgas"},
   {id:214,cat:"hotel",icon:"🌉",name:"Riga Hotel Ruse",desc:"Classic hotel in central Ruse. Danube views. Great breakfast. Close to all attractions.",addr:"22 Svoboda Square, Ruse",phone:"+359 82 822 671",english:true,lat:42.8487,lng:25.9535,city:"ruse"},
   {id:215,cat:"hotel",icon:"♨️",name:"Olymp Spa Hotel — Velingrad",desc:"4-star spa hotel with mineral pools. Thermal pools, sauna, massages included. Year-round.",addr:"25 Han Presian St, Velingrad",phone:"+359 359 56 388",english:true,lat:42.0260,lng:23.9950,city:"velingrad"},
   {id:216,cat:"hotel",icon:"🏔️",name:"Hotel Banderitsa — Bansko",desc:"Authentic ski hotel in Bansko Old Town. Ski storage, warming fireplace, traditional food.",addr:"4 Banderitsa St, Bansko",phone:"+359 749 88300",english:true,lat:41.8337,lng:23.4885,city:"bansko"},
@@ -5030,7 +5030,7 @@ const MAP_LOCATIONS = [
   {id:329,cat:"summer",icon:"⛵",name:"Sailing & Boat Tours — Varna",desc:"Day and sunset sailing trips along the Black Sea coast. Visit sea caves and hidden beaches. 4–8 hours.",addr:"Varna Port",phone:"+359 52 612 700",english:true,lat:42.2141,lng:27.9190,city:"varna"},
   {id:330,cat:"summer",icon:"🧗",name:"Vratsa",desc:"Best rock climbing destination in Bulgaria. 500+ routes for all levels. 3 hours from Sofia. Stunning Balkan scenery.",addr:"Vratsa Gorge, Vratsa",phone:"+359 92 662 533",english:true,lat:43.2013,lng:23.5534,city:"sofia"},
   {id:331,cat:"summer",icon:"🚵",name:"Mountain Biking — Vitosha (Sofia)",desc:"Trails for all levels just 15 min from Sofia city center. Bike rentals available. Stunning mountain views.",addr:"Vitosha Mountain, Sofia",english:true,lat:42.5790,lng:23.2813,city:"sofia"},
-  {id:332,cat:"summer",icon:"🏖️",name:"Sozopol Beach & Old Town",desc:"Most charming coastal town in Bulgaria. Ancient stone houses, beautiful beaches, great seafood. Must visit.",addr:"Sozopol, Burgas region",english:true,lat:42.4167,lng:27.6981,city:"burgas"},
+  {id:332,cat:"summer",icon:"🏖️",name:"Kavatsite Beach",desc:"Sandy beach south of Sozopol with beach bars nearby. A quieter alternative to the Old Town beaches.",addr:"Kavatsite, Sozopol area",english:true,lat:42.371830,lng:27.710647,city:"burgas"},
   {id:9002,cat:"summer",icon:"🦁",name:"The Sofia Zoo",desc:"Sofia's city zoo, home to over 200 species including lions, bears, and exotic birds. Great for families.",addr:"Sofia",english:true,lat:42.659582,lng:23.335734,city:"sofia"},
 
   // ══ WINTER ACTIVITIES ═════════════════════════════════════════
@@ -8424,6 +8424,71 @@ function BudgetPlanner({subscription,setView}){
   )
 }
 
+// ── Trip route map ───────────────────────────────────────────────────
+// Draws a trip's stops in order on a Leaflet map: numbered markers joined by a
+// dashed line. `points` = [{lat,lng,name,icon,day}] already in visiting order.
+function TripRouteMap({points}){
+  const mapRef=useRef(null)
+  const mapInst=useRef(null)
+  const layerRef=useRef(null)
+  const [loaded,setLoaded]=useState(!!(typeof window!=="undefined"&&window.L))
+  // Stable signature so typing a note (which re-renders) doesn't reset the map view.
+  const sig=JSON.stringify(points.map(p=>[p.lat,p.lng,p.name,p.day]))
+
+  useEffect(()=>{
+    if(!document.getElementById("leaflet-css")){
+      const l=document.createElement("link")
+      l.id="leaflet-css";l.rel="stylesheet"
+      l.href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
+      document.head.appendChild(l)
+    }
+    if(!window.L){
+      const s=document.createElement("script")
+      s.src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"
+      s.onload=()=>setLoaded(true)
+      document.head.appendChild(s)
+    } else setLoaded(true)
+    return()=>{ if(mapInst.current){mapInst.current.remove();mapInst.current=null;layerRef.current=null} }
+  },[])
+
+  useEffect(()=>{
+    if(!loaded||!mapRef.current)return
+    const L=window.L
+    if(!mapInst.current){
+      const map=L.map(mapRef.current,{zoomControl:true,maxZoom:18,attributionControl:false}).setView([42.7,25.3],7)
+      L.control.attribution({prefix:false}).addTo(map)
+      const osm=L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:"© OpenStreetMap contributors",maxZoom:18})
+      let fellBack=false
+      const mt=L.tileLayer("https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=nH3oySI2WkMV18HpsJCK&language=latin",{attribution:"© MapTiler © OpenStreetMap contributors",maxZoom:18,crossOrigin:true})
+      mt.on("tileerror",()=>{ if(fellBack)return; fellBack=true; map.removeLayer(mt); osm.addTo(map) })
+      mt.addTo(map)
+      layerRef.current=L.layerGroup().addTo(map)
+      mapInst.current=map
+    }
+    const group=layerRef.current
+    group.clearLayers()
+    if(!points.length)return
+    const latlngs=points.map(p=>[p.lat,p.lng])
+    if(latlngs.length>1)L.polyline(latlngs,{color:"#0891b2",weight:3,opacity:0.8,dashArray:"7 7"}).addTo(group)
+    points.forEach((p,i)=>{
+      const icon=L.divIcon({
+        className:"",
+        html:`<div style="background:#0891b2;color:#fff;border:2px solid #fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.35)">${i+1}</div>`,
+        iconSize:[26,26],iconAnchor:[13,13]
+      })
+      const m=L.marker([p.lat,p.lng],{icon}).addTo(group)
+      const box=document.createElement("div")
+      const b=document.createElement("b"); b.textContent=`${p.icon||"📍"} ${p.name}`
+      const d=document.createElement("div"); d.style.cssText="font-size:11px;color:#666"; d.textContent=p.day
+      box.appendChild(b); box.appendChild(d)
+      m.bindPopup(box)
+    })
+    mapInst.current.fitBounds(L.latLngBounds(latlngs),{padding:[30,30],maxZoom:14})
+  },[loaded,sig])
+
+  return <div ref={mapRef} style={{height:280,borderRadius:12,overflow:"hidden",border:"1px solid #e5e7eb"}}/>
+}
+
 // ── Trip Planner (Premium) ───────────────────────────────────────────
 // Phase 1: manual itinerary builder. Stops can be pulled from the app's own
 // verified location database (MAP_LOCATIONS) or from the user's own saved
@@ -8520,6 +8585,19 @@ function TripPlanner({subscription,setView,user}){
   }
 
   const days=editing?dayKeysBetween(editing.start_date,editing.end_date):[]
+
+  // Ordered, coordinate-resolved stops for the route map (day by day, in list order).
+  const routePoints=(()=>{
+    if(!editing)return[]
+    const out=[]
+    days.forEach((dayKey,di)=>{
+      ;(editing.itinerary[dayKey]||[]).forEach(stop=>{
+        const src=stop.source==="pin"?customPins.find(x=>x.id===stop.sourceId):MAP_LOCATIONS.find(x=>x.id===stop.sourceId)
+        if(src&&typeof src.lat==="number"&&typeof src.lng==="number")out.push({lat:src.lat,lng:src.lng,name:stop.name,icon:stop.icon,day:`Day ${di+1}`})
+      })
+    })
+    return out
+  })()
 
   const pickerResults=(()=>{
     if(!editing)return[]
@@ -8639,6 +8717,13 @@ function TripPlanner({subscription,setView,user}){
                   </div>
                 )
               })}
+            </div>
+          )}
+
+          {routePoints.length>0&&(
+            <div style={{marginTop:16}}>
+              <div style={{fontSize:12,fontWeight:700,color:C.primary,marginBottom:6}}>🗺️ Route map — {routePoints.length} stop{routePoints.length===1?"":"s"}</div>
+              <TripRouteMap points={routePoints}/>
             </div>
           )}
 
